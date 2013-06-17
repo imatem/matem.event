@@ -1,0 +1,26 @@
+# byte-compiled Python files
+*.py[co]
+
+
+# Packages
+bin
+develop-eggs
+eggs
+parts
+src/matem.event.egg-info/
+var
+.installed.cfg
+Makefile
+
+# Unit test / coverage reports
+.coverage
+coverage
+
+# Translations
+*.mo
+
+# Mr Developer
+.mr.developer.cfg
+
+# SublimeCodeIntel
+.codeintel

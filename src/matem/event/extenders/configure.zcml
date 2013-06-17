@@ -1,0 +1,13 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    i18n_domain="matem.event">
+
+  <!-- configure your content components here -->
+  
+  <include package="archetypes.schemaextender" />
+  <adapter factory=".event.MatemEventExtender" />
+  
+  <!-- -*- extra stuff goes here -*- -->
+
+</configure>
