@@ -1,10 +1,16 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:browser="http://namespaces.zope.org/browser"
-    i18n_domain="matem.event">
+    xmlns:browser="http://namespaces.zope.org/browser">
 
-  <include package="plone.app.contentmenu" />
+  <include package="Products.Collage" />
 
-  <!-- -*- extra stuff goes here -*- -->
+  <browser:page
+        name="imstandard"
+        for="Products.ATContentTypes.content.topic.ATTopic"
+        permission="zope.Public"
+        template="topic_imstandard.pt"
+        class=".views.IMStandardTopicView"
+        layer="Products.Collage.interfaces.ICollageBrowserLayer"
+    />
 
 </configure>
