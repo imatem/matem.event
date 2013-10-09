@@ -39,23 +39,63 @@
                  define="view context/@@collage_kss_helper/getKssView;
                          getKssClasses python: view.getKssClasses;
                          templateId string:folder_summary_view;
-                         folderContents topicContents">
+                         folderContents topicContents;
+                         site_properties context/portal_properties/site_properties;
+                         use_view_action site_properties/typesUseViewActionInListings|python:();
+                         ">
                          
       <!-- <metal:listing-macro use-macro="here/folder_listing/macros/listing" /> -->
 
       <dl>
         <tal:entry tal:repeat="item folderContents" metal:define-macro="entries">
+          <div class="tileItem">
           <tal:block tal:define="item_url item/getURL|item/absolute_url;
-                                item_title_or_id item/pretty_title_or_id;">
+                                item_title_or_id item/pretty_title_or_id;
+                                item_type item/portal_type;
+                                item_type_class python:'contenttype-' + normalizeString(item_type);
+                                item_wf_state item/review_state|python: context.portal_workflow.getInfoFor(item, 'review_state', '');
+                                item_icon python:plone_view.getIcon(item);
+                                item_ponente nothing;
+                                item_date item/start/pCommon|nothing;
+                                item_location item/location|nothing;
+                                item_start item/start|item/StartDate|nothing;
+                                item_type_title item/getRemoteUrl">
             <metal:block>
-                <dt metal:define-macro="listitem">
+              <!-- <fieldset> -->
+              <!-- <legend>Coloquio </legend> -->
+              <dt metal:define-macro="listitem">
+
+                    <span class="summary">
+                        <img tal:replace="structure item_icon/html_tag" />
+                        <a href="#" tal:content="item_title_or_id"
+                          tal:attributes="href item_url">Title</a><br/>
+                    </span>
+                    
+              </dt>
+              <dd>
+                    <span><i>Fulanito de tal.</i></span>
+                        <span>Instituto de Matemáticas, UNAM</span><br/>
+                        <!-- <span tal:content="python:toLocalizedTime(item_start)"/> -->
+                        <span tal:content="python:item_date.replace('2013', '')+'.'"/>
+                        <span tal:condition="item_location">
+                          <span tal:content="python:item_location+'.'"/>
+                        </span><br/>
+                        <span tal:content="item_type"/><br/>
+                        <small>Seminario J.J. Charatonik de Teoría de los Continuos</small><br>
+                        
+              </dd>
+
+                <!-- <dt metal:define-macro="listitem">
                   <span tal:content="item_title_or_id"/>
-                </dt>
+                </dt> -->
+              <!-- </fieldset> -->
             </metal:block>
 
-          </tal:block>
 
+          </tal:block>
+        </div>
         </tal:entry>
+
 
       </dl>
 
