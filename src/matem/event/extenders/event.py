@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from archetypes.schemaextender.field import ExtensionField
-from archetypes.schemaextender.interfaces import ISchemaExtender
+from archetypes.schemaextender.interfaces import IOrderableSchemaExtender
 from zope import component
 from zope import interface
 from Products.Archetypes import atapi
@@ -13,6 +13,15 @@ class _StringExtensionField(ExtensionField, atapi.StringField):
     pass
 
 BasicSchema = [
+
+    _StringExtensionField(
+        name='speaker',
+        widget=atapi.StringWidget(
+            label=u'Nombre del expositor',
+            size=60,
+        ),
+    ),
+
 
     _StringExtensionField('researchTopic',
         widget=atapi.InAndOutWidget(
@@ -37,7 +46,7 @@ class MatemEventExtender(object):
     """ Adapter that adds matem fields to Person
     """
     component.adapts(ATEvent)
-    interface.implements(ISchemaExtender)
+    interface.implements(IOrderableSchemaExtender)
 
     _fields = BasicSchema
 
@@ -46,3 +55,11 @@ class MatemEventExtender(object):
 
     def getFields(self):
         return self._fields
+
+    def getOrder(self, original):
+        default = original['default']
+        idx = default.index('description')
+        default.remove('speaker')
+        default.insert(idx, 'speaker')
+
+        return original
