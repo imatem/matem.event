@@ -4,7 +4,7 @@
 
   <include package="Products.Collage" />
 
-  <browser:page
+    <browser:page
         name="imstandard"
         for="Products.ATContentTypes.content.topic.ATTopic"
         permission="zope.Public"
@@ -12,5 +12,16 @@
         class=".views.IMStandardTopicView"
         layer="Products.Collage.interfaces.ICollageBrowserLayer"
     />
+
+
+    <browser:page
+        name="im_news_standard"
+        for="Products.ATContentTypes.content.topic.ATTopic"
+        permission="zope.Public"
+        template="news_imstandard.pt"
+        class=".views.IMStandardTopicView"
+        layer="Products.Collage.interfaces.ICollageBrowserLayer"
+    />
+
 
 </configure>
