@@ -8,4 +8,6 @@
   <adapter factory=".event.MatemEventExtender"
     provides="archetypes.schemaextender.interfaces.IOrderableSchemaExtender" />
 
+  <adapter name="getSpeaker" factory=".event.getSpeaker" />
+
 </configure>

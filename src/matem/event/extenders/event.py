@@ -5,6 +5,7 @@ from zope import component
 from zope import interface
 from Products.Archetypes import atapi
 from Products.ATContentTypes.content.event import ATEvent
+from plone.indexer.decorator import indexer
 
 
 class _StringExtensionField(ExtensionField, atapi.StringField):
@@ -63,3 +64,12 @@ class MatemEventExtender(object):
         default.insert(idx, 'speaker')
 
         return original
+
+
+@indexer(ATEvent)
+def getSpeaker(self):
+    return getattr(self, 'speaker', None)
+    #return self.getWrappedField(self, 'speaker')
+        #return self.getField('speaker')
+
+

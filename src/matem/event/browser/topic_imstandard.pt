@@ -37,17 +37,20 @@
                                 item_type_title item/getRemoteUrl;
                                 item_subjects item/Subject|None;
                                 item_subject python: item_subjects and item_subjects[0] or None;
-                                item_seminary item_subject">
+                                item_seminary item_subject;
+                                item_expositor item/getSpeaker|nothing">
               <metal:block>
                 <dt metal:define-macro="listitem">
                   <span class="summary">
                     <img tal:replace="structure item_icon/html_tag" />
                     <a href="#" tal:content="item_title_or_id" tal:attributes="href item_url">Title</a>
                     <br/>
+                    <span tal:content="item_expositor"/>
                   </span>  
                 </dt>
                 <dd>
                   <span tal:content="item_description"/><br/>
+                  <span tal:content="item/start"/><br/>
                   <span tal:content="python:item_date.replace('2013', '')+'.'"/>
                   <span tal:condition="item_location">
                     <span tal:content="python:item_location+'.'"/>
