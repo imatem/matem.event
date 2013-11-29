@@ -16,53 +16,45 @@
                  define="view context/@@collage_kss_helper/getKssView;
                          getKssClasses python: view.getKssClasses;
                          templateId string:folder_summary_view;
-                         folderContents topicContents;
-                         month_name python:{'Jan.': 'Enero', 'Feb.':'Febrero', 'Mar.':'Marzo', 'Apr.':'Abril', 'May':'Mayo', 'June':'Junio', 'July':'Julio', 'Aug.':'Agosto', 'Sep.':'Septiembre', 'Oct.':'Octubre', 'Nov.':'Noviembre', 'Dec.':'Diciembre'};
-                         ">
+                         folderContents topicContents;">
 
       <!-- <metal:listing-macro use-macro="here/folder_listing/macros/listing" /> -->
       <dl>
         <tal:entry tal:repeat="item folderContents" metal:define-macro="entries">
           <div class="tileItem">
-<!-- 
+            <tal:block tal:define="item_url item/getURL|item/absolute_url;
+                                item_title_or_id item/pretty_title_or_id;
+                                item_description item/Description;
                                 item_type item/portal_type;
                                 item_type_class python:'contenttype-' + normalizeString(item_type);
                                 item_wf_state item/review_state|python: context.portal_workflow.getInfoFor(item, 'review_state', '');
+                                ploneview context/@@plone;
+                                item_icon python:ploneview.getIcon(item);
+                                item_ponente nothing;
+                                item_date item/start/pCommon|nothing;
+                                item_location item/location|nothing;
                                 item_start item/start|item/StartDate|nothing;
                                 item_type_title item/getRemoteUrl;
                                 item_subjects item/Subject|None;
                                 item_subject python: item_subjects and item_subjects[0] or None;
- -->
-            <tal:block tal:define="item_url item/getURL|item/absolute_url;
-                                item_title_or_id item/pretty_title_or_id;
-                                item_description item/Description;
-                                ploneview context/@@plone;
-                                item_icon python:ploneview.getIcon(item);
-                                item_date item/start/pCommon|nothing;
-                                item_location item/location|nothing;
-                                item_subjects item/Subject|None;
-                                item_seminary python: item_subjects and item_subjects[0] or None;
-                                item_expositor item/getSpeaker|nothing;
-                                date_s python:item_date.split(' ');
-                                fancy_date python:date_s[1].replace(',', '') +' de '+ month_name[date_s[0]] + ', ' +  date_s[3] + ' ' + date_s[4] + '.';
-                                ">
-                                
-
+                                item_seminary item_subject;
+                                item_expositor item/getSpeaker|nothing">
               <metal:block>
                 <dt metal:define-macro="listitem">
                   <span class="summary">
                     <img tal:replace="structure item_icon/html_tag" />
                     <a href="#" tal:content="item_title_or_id" tal:attributes="href item_url">Title</a>
                     <br/>
-                    
+                    <span tal:content="item_expositor"/>
                   </span>  
                 </dt>
                 <dd>
-                  <b><span tal:content="python:item_expositor+'. '"/></b><span tal:content="item_description"/><br/>
-                  <span tal:content="fancy_date"/>
-                    <!-- <span tal:condition="item_location"> -->
-                     <span tal:content="python:item_location"/>
-                    <!-- </span> -->
+                  <span tal:content="item_description"/><br/>
+                  <span tal:content="item/start"/><br/>
+                  <span tal:content="python:item_date.replace('2013', '')+'.'"/>
+                  <span tal:condition="item_location">
+                    <span tal:content="python:item_location+'.'"/>
+                  </span>
                   <br/>
                   <span tal:content="item_seminary"/>
 
