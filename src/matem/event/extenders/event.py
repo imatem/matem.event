@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import IOrderableSchemaExtender
-from archetypes.schemaextender.interfaces import ISchemaExtender
-from archetypes.schemaextender.interfaces import ISchemaModifier
 from zope import component
 from zope import interface
 from Products.Archetypes import atapi
@@ -49,7 +47,7 @@ class MatemEventExtender(object):
     """ Adapter that adds matem fields to Person
     """
     component.adapts(ATEvent)
-    interface.implements(IOrderableSchemaExtender, ISchemaModifier)
+    interface.implements(IOrderableSchemaExtender)
 
     _fields = BasicSchema
 
@@ -64,16 +62,13 @@ class MatemEventExtender(object):
         idx = default.index('description')
         default.remove('speaker')
         default.insert(idx, 'speaker')
+
         return original
 
-    def fiddle(self, schema):
-        subject = schema['subject']
-        subject.default=[self.context.aq_parent.aq_parent.aq_parent.aq_parent.Title()]
 
 @indexer(ATEvent)
 def getSpeaker(self):
     return getattr(self, 'speaker', None)
     #return self.getWrappedField(self, 'speaker')
-        #return self.getField('speaker')
 
 
