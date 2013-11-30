@@ -58,7 +58,7 @@
                   </span>  
                 </dt>
                 <dd>
-                  <b><span tal:content="python:item_expositor+'. '"/></b><span tal:content="item_description"/><br/>
+                  <b><span tal:condition="item_expositor" tal:content="python:item_expositor+'. '"/></b><span tal:content="item_description"/><br/>
                   <span tal:content="fancy_date"/>
                     <!-- <span tal:condition="item_location"> -->
                      <span tal:content="python:item_location"/>
