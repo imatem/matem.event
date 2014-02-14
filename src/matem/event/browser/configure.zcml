@@ -23,5 +23,21 @@
         layer="Products.Collage.interfaces.ICollageBrowserLayer"
     />
 
+    <browser:page
+        name="event_view"
+        for="Products.ATContentTypes.content.event.ATEvent"
+        permission="zope.Public"
+        template="event_view.pt"
+        class=".views.IMEventView"
+    />
+
+    <browser:page
+        name="events"
+        for="*"
+        permission="zope.Public"
+        template="events.pt"
+        class=".events.EventsView"
+    />
+
 
 </configure>

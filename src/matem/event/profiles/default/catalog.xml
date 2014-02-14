@@ -5,6 +5,11 @@
   <indexed_attr value="getSpeaker"/>
  </index>
 
+<index name="getEventInstitution" meta_type="FieldIndex">
+  <indexed_attr value="getEventInstitution"/>
+ </index>
+
 <column value="getSpeaker"/>
+<column value="getEventInstitution"/>
 
 </object>

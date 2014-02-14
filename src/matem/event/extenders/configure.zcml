@@ -9,6 +9,7 @@
     provides="archetypes.schemaextender.interfaces.IOrderableSchemaExtender" />
 
   <adapter name="getSpeaker" factory=".event.getSpeaker" />
+  <adapter name="getEventInstitution" factory=".event.getEventInstitution" />
 
 
 </configure>

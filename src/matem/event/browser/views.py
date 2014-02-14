@@ -1,8 +1,15 @@
 # -*- coding: utf-8 -*-
 
 from Products.Collage.browser.views import BaseTopicView
-from Products.Collage.utilities import CollageMessageFactory as _
 
 class IMStandardTopicView(BaseTopicView):
     pass
     #title = _(u'IM Standard')
+
+class IMEventView(BaseTopicView):
+
+    def getSpeaker(self):
+        return getattr(self.context, 'speaker', None)
+
+    def getEventInstitution(self):
+        return getattr(self.context, 'institution', None)

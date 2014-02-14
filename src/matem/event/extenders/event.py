@@ -8,6 +8,7 @@ from Products.ATContentTypes.content.event import ATEvent
 from plone.indexer.decorator import indexer
 
 
+
 class _StringExtensionField(ExtensionField, atapi.StringField):
     '''Any field you can tack on must have ExtensionField as its first subclass
     '''
@@ -19,6 +20,16 @@ BasicSchema = [
         name='speaker',
         widget=atapi.StringWidget(
             label=u'Nombre del expositor',
+            size=60,
+        ),
+    ),
+
+    _StringExtensionField(
+        name='institution',
+        widget=atapi.StringWidget(
+            label=u'Institution',
+            label_msgid='label_institution',
+            i18n_domain='UNAM.imateCVct',
             size=60,
         ),
     ),
@@ -40,7 +51,9 @@ BasicSchema = [
         multiValued=True,
         relationship='researchTopicOf',
         ),
+
 ]
+
 
 
 class MatemEventExtender(object):
@@ -62,6 +75,8 @@ class MatemEventExtender(object):
         idx = default.index('description')
         default.remove('speaker')
         default.insert(idx, 'speaker')
+        default.remove('institution')
+        default.insert(idx +1, 'institution')
 
         return original
 
@@ -70,5 +85,9 @@ class MatemEventExtender(object):
 def getSpeaker(self):
     return getattr(self, 'speaker', None)
     #return self.getWrappedField(self, 'speaker')
+
+@indexer(ATEvent)
+def getEventInstitution(self):
+    return getattr(self, 'institution', None)
 
 
