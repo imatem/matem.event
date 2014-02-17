@@ -3,6 +3,19 @@
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="Solgema.fullcalendar">
 <head>
+    <!-- 
+    disable_column_one python:request.set('disable_plone.leftcolumn',1);
+              disable_column_two python:request.set('disable_plone.rightcolumn',1);
+    -->
+    <metal:block fill-slot="top_slot"
+      tal:define="disable_column_one python:request.set('disable_plone.leftcolumn',1);
+              disable_column_two python:request.set('disable_plone.rightcolumn',1);
+              my_self nocall:context/@@events;
+              type_border python:my_self.viewAbovecontent();">
+      <tal:insert tal:replace="nothing" tal:define="dummy python:request.set(type_border, 1)" />
+    </metal:block>
+
+
   <metal:slot fill-slot="style_slot">
         <style media="all"  type="text/css" tal:content="structure python:path('here/solgemafullcalendar_colors.css')">
         </style>
@@ -30,12 +43,13 @@
                     Title
                 </h1>
 
-                <div tal:replace="structure provider:plone.belowcontenttitle" />
+                <!-- <div tal:replace="structure provider:plone.belowcontenttitle" /> -->
 
                 <p class="documentDescription" tal:content="context/Description">
                     Description
                 </p>
                 <p class="help" tal:condition="view/tzaware" i18n:translate="help_displaying_localtime">Events displayed on this calendar are adjusted by your web browser to your computer's local time.</p>
+                <!-- Esto es lo que muestra el calendario -->
                 <div id="calendar" tal:attributes="class string:query-${view/getCriteriaClass}">
                     <div id="event_edit_container"></div>
                 </div>

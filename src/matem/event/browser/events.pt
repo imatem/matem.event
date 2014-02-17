@@ -32,7 +32,7 @@
     <tal:block replace="structure view/render_filter"/>
 
     <div class="eventlist">
-        <div class="eventlist_month" tal:repeat="month view/_getEventList">
+        <div class="eventlist_month" tal:repeat="month view/upcomingEvents">
         </div>
 
     </div>
