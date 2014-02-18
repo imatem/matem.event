@@ -3,17 +3,17 @@
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="Solgema.fullcalendar">
 <head>
-    <!-- 
+    <!--
     disable_column_one python:request.set('disable_plone.leftcolumn',1);
               disable_column_two python:request.set('disable_plone.rightcolumn',1);
     -->
-    <metal:block fill-slot="top_slot"
+<!--     <metal:block fill-slot="top_slot"
       tal:define="disable_column_one python:request.set('disable_plone.leftcolumn',1);
               disable_column_two python:request.set('disable_plone.rightcolumn',1);
               my_self nocall:context/@@events;
               type_border python:my_self.viewAbovecontent();">
       <tal:insert tal:replace="nothing" tal:define="dummy python:request.set(type_border, 1)" />
-    </metal:block>
+    </metal:block> -->
 
 
   <metal:slot fill-slot="style_slot">
