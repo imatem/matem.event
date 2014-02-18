@@ -16,58 +16,102 @@
     </metal:block>
 
 
-  <metal:slot fill-slot="style_slot">
+  <metal:slot fill-slot="style_slot" tal:define="resources_url string:${context/portal_url}/++resource++wcfc">
+
         <style media="all"  type="text/css" tal:content="structure python:path('here/solgemafullcalendar_colors.css')">
         </style>
+
+        <!-- <link href="++resource++wcfc/bootstrap/bootstrap-fixed.css"
+            tal:attributes="href string:${resources_url}/bootstrap/bootstrap-fixed.css"
+            rel="stylesheet" type="text/css"/> -->
   </metal:slot>
-    <metal:slot fill-slot="javascript_head_slot" tal:omit-tag="">
+    <metal:slot fill-slot="javascript_head_slot" tal:omit-tag="" tal:define="resources_url string:${context/portal_url}/++resource++wcfc">
         <script type="text/javascript" tal:condition="view/calendar/gcalSources | nothing"
             tal:attributes="src string:${context/portal_url}/++resource++collective.js.fullcalendar/fullcalendar.gcal.js"></script>
         <script type="text/javascript"
             tal:attributes="src view/getCalendarVarsUrl"></script>
         <script type="text/javascript"
             tal:attributes="src string:${context/absolute_url}/solgemafullcalendar.js"></script>
+
+        <!-- <script type="text/javascript" src="++resource++wcfc/bootstrap/bootstrap.min.js"
+              tal:attributes="src string:${resources_url}/bootstrap/bootstrap.min.js"></script> -->
+
+        <script type="text/javascript">
+            function visible(tab) {
+                document.getElementById('mcalendar').style.display = 'none';
+                document.getElementById('pastevents').style.display = 'none';
+                document.getElementById('li_mcalendar').setAttribute("class", "");
+                document.getElementById('li_pastevents').setAttribute("class", "");
+                document.getElementById(tab).style.display = "block";
+                document.getElementById('li_'+tab).setAttribute("class", "active");
+
+            }
+</script>
+
     </metal:slot>
 </head>
 <body>
     <div metal:fill-slot="main">
         <tal:main-macro metal:define-macro="main">
+            
+
+
             <metal:body define-macro="body_macro"
                 tal:define="kssClassesView context/@@kss_field_decorator_view;
                             getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
                             templateId template/getId">
 
-                <div tal:replace="structure provider:plone.abovecontenttitle" />
+                <ul>
+                    <li id="li_mcalendar" onclick="visible('mcalendar')" ><a>Calendario</a></li>
+                    <li id="li_pastevents" onclick="visible('pastevents')" ><a>Eventos Anteriores</a></li>
+                </ul>
 
-                <h1 class="documentFirstHeading" tal:content="context/Title">
-                    Title
-                </h1>
+                <div id="mcalendar">
+                    <div tal:replace="structure provider:plone.abovecontenttitle" />
 
-                <!-- <div tal:replace="structure provider:plone.belowcontenttitle" /> -->
+                    <!-- <h1 class="documentFirstHeading" tal:content="context/Title">Title</h1> -->
+                    <center><h1 class="documentFirstHeading" tal:content="python:here.aq_parent.Title()">Title</h1></center>
 
-                <p class="documentDescription" tal:content="context/Description">
-                    Description
-                </p>
-                <p class="help" tal:condition="view/tzaware" i18n:translate="help_displaying_localtime">Events displayed on this calendar are adjusted by your web browser to your computer's local time.</p>
-                <!-- Esto es lo que muestra el calendario -->
-                <div id="calendar" tal:attributes="class string:query-${view/getCriteriaClass}">
-                    <div id="event_edit_container"></div>
+
+                    <!-- <div tal:replace="structure provider:plone.belowcontenttitle" /> -->
+
+                    <p class="documentDescription" tal:content="context/Description">
+                        Description
+                    </p>
+                    <p class="help" tal:condition="view/tzaware" i18n:translate="help_displaying_localtime">Events displayed on this calendar are adjusted by your web browser to your computer's local time.</p>
+                    <!-- Esto es lo que muestra el calendario -->
+                    <div id="calendar" tal:attributes="class string:query-${view/getCriteriaClass}">
+                        <div id="event_edit_container"></div>
+                    </div>
+                    <noscript tal:condition="view/displayNoscriptList | python:True">
+                        <metal:list metal:use-macro="here/atct_topic_view/macros/listing"/>
+                    </noscript>
+                    <div tal:replace="structure provider:Solgema.fullcalendar.queryManager" />
+                    <div tal:replace="structure provider:plone.belowcontentbody" />
+                    <metal:body define-macro="folderlisting_macro">
+                        <tal:subtopics condition="here/hasSubtopics|nothing"
+                           define="folderContents here/getFolderContents">
+                            <h2 i18n:domain="atcontenttypes"
+                              i18n:translate="heading_contained_collections">
+                              Also in this section
+                            </h2>
+                        <metal:list metal:use-macro="here/base/macros/folderlisting"/>
+                        </tal:subtopics>
+                    </metal:body>
+                </div> <!-- Fin del calendario -->
+
+                <div id="pastevents" style="display: none;">
+                    
+                    <h1 class="documentFirstHeading"> 
+                        <center> <metal:field use-macro="python:here.aq_parent.widget('title', mode='view')"> Title </metal:field></center>
+                    </h1>
+
+                    
+
                 </div>
-                <noscript tal:condition="view/displayNoscriptList | python:True">
-                    <metal:list metal:use-macro="here/atct_topic_view/macros/listing"/>
-                </noscript>
-                <div tal:replace="structure provider:Solgema.fullcalendar.queryManager" />
-                <div tal:replace="structure provider:plone.belowcontentbody" />
-                <metal:body define-macro="folderlisting_macro">
-                    <tal:subtopics condition="here/hasSubtopics|nothing"
-                       define="folderContents here/getFolderContents">
-                        <h2 i18n:domain="atcontenttypes"
-                          i18n:translate="heading_contained_collections">
-                          Also in this section
-                        </h2>
-                    <metal:list metal:use-macro="here/base/macros/folderlisting"/>
-                    </tal:subtopics>
-                </metal:body>
+       
+
+
             </metal:body>
         </tal:main-macro>
     </div>
