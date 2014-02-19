@@ -86,7 +86,7 @@ class EventsView(BrowserView):
 
         minute ="00"
         if dt.minute():
-            if len(dt.minute()) > 1:
+            if len(str(dt.minute())) > 1:
                 minute = dt.minute()
 
 

@@ -20,6 +20,56 @@
 
         <style media="all"  type="text/css" tal:content="structure python:path('here/solgemafullcalendar_colors.css')">
         </style>
+        <style type="text/css">
+        .hCalendar-hidden {
+            display:none; /* hide hCal fields not useful to human eyes */
+        }
+
+        article.vevent {
+            background-color: #EAEAEA;
+            border-radius: 1em 1em 1em 1em;
+            margin-top: 1em;
+            padding: 1em;
+        }
+        .vevent div.cal_date { 
+            float:left;
+            vertical-align:top;
+            margin: 0 1.5em 0.5em 0;
+            padding:0.7em 0.7em 0.5em;
+            background-color:white;
+            border:none;
+            border-radius:0.5em;
+            box-shadow: 0.5em 0.5em 0.4em black;
+            min-width:4.4em;
+        }
+        .vevent span.cal_wkday {
+            display:block;
+            font-size:2.3em;
+            font-weight:bold;
+            border-bottom:2px solid black;
+            padding-bottom:0.3em;
+        }
+        .vevent span.cal_day {
+            font-size:1.7em;
+            display:inline-block;
+            padding-top:0.3em;
+        }
+        .vevent span.cal_month {
+            font-size:1.3em;
+            line-height:1.3em;
+            display:inline-block;
+        }
+
+        .vevent div.cal_info { margin-left:8em; }
+        article.vevent .documentByLine {
+            background: none repeat scroll 0 0 transparent;
+            color: black !important;
+            font-size: 1em !important;
+            font-weight: bold;
+            padding: 0;
+        }
+ 
+    </style>
 
         <!-- <link href="++resource++wcfc/bootstrap/bootstrap-fixed.css"
             tal:attributes="href string:${resources_url}/bootstrap/bootstrap-fixed.css"
@@ -40,8 +90,10 @@
             function visible(tab) {
                 document.getElementById('mcalendar').style.display = 'none';
                 document.getElementById('pastevents').style.display = 'none';
+                document.getElementById('upcomingevents').style.display = 'none';
                 document.getElementById('li_mcalendar').setAttribute("class", "");
                 document.getElementById('li_pastevents').setAttribute("class", "");
+                document.getElementById('li_upcomingevents').setAttribute("class", "");
                 document.getElementById(tab).style.display = "block";
                 document.getElementById('li_'+tab).setAttribute("class", "active");
 
@@ -62,8 +114,10 @@
                             templateId template/getId">
 
                 <ul>
-                    <li id="li_mcalendar" onclick="visible('mcalendar')" ><a>Calendario</a></li>
                     <li id="li_pastevents" onclick="visible('pastevents')" ><a>Eventos Anteriores</a></li>
+                    <li id="li_mcalendar" onclick="visible('mcalendar')" ><a>Calendario</a></li>
+                    <li id="li_upcomingevents" onclick="visible('upcomingevents')" ><a>Eventos Siguientes</a></li>
+                    
                 </ul>
 
                 <div id="mcalendar">
@@ -100,15 +154,90 @@
                     </metal:body>
                 </div> <!-- Fin del calendario -->
 
-                <div id="pastevents" style="display: none;">
+                <div id="pastevents" style="display: none;" tal:define="parent python:here.aq_parent; my_self nocall:parent/@@events; ">
                     
                     <h1 class="documentFirstHeading"> 
                         <center> <metal:field use-macro="python:here.aq_parent.widget('title', mode='view')"> Title </metal:field></center>
                     </h1>
 
-                    
+                    <div class="eventlist">
+                        <div class="eventlist_month" tal:define="items my_self/pastEvents">
+                            <tal:items repeat="data items">
+                                <article itemscope itemtype="http://data-vocabulary.org/Event" class="vevent"
+                                                tal:define="startf python:my_self.date_speller(data.start)">
+                                    <ul class="hCalendar-hidden">
+                                        <li itemprop="startDate" class="dtstart" tal:content="data/start/ISO8601">end</li>
+                                        <li itemprop="endDate" class="dtend" tal:content="data/end/ISO8601">end</li>
+                                    </ul>
+                                    <div class="cal_date">
+                                        <!-- <span class="cal_wkday" tal:content="python:startf['wkday_abbr'][:2]">Tue</span> -->
+                                        <span class="cal_day" tal:content="string:${startf/day}">15.</span>
+                                        <span class="cal_month" tal:content="string:${startf/month}.">Oct.</span>
+                                    </div>
+                                    <div class="cal_info">
+                                        <h3><a href="" itemprop="url" class="url" tal:attributes="href data/getURL|data/absolute_url;">
+                                            <span itemprop="summary" class="summary" tal:content="data/pretty_title_or_id">Title</span>
+                                        </a></h3>
+                                        
+                                        <div class="documentByLine">
+                                            <div tal:define="expositor data/getSpeaker|nothing" tal:content="expositor"/>
+                                            <div class="fc">
+                                                <span tal:define="location data/location|nothing" tal:content="location"/>
+                                                <span tal:content="string:${startf/hour} : ${startf/minute} hrs."/>
+                                                <button id="example" class="btn btn-default" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." title="" data-original-title="Popover on top">Popover on top</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            </tal:items>
+                        </div>              
+                    </div>
+                </div><!-- end pastevents -->
 
-                </div>
+
+
+
+                <div id="upcomingevents" style="display: none;" tal:define="parent python:here.aq_parent; my_self nocall:parent/@@events; ">
+                    
+                    <h1 class="documentFirstHeading"> 
+                        <center> <metal:field use-macro="python:here.aq_parent.widget('title', mode='view')"> Title </metal:field></center>
+                    </h1>
+
+                    <div class="eventlist">
+                        <div class="eventlist_month" tal:define="items my_self/upcomingEvents">
+                            <tal:items repeat="data items">
+                                <article itemscope itemtype="http://data-vocabulary.org/Event" class="vevent"
+                                                tal:define="startf python:my_self.date_speller(data.start)">
+                                    <ul class="hCalendar-hidden">
+                                        <li itemprop="startDate" class="dtstart" tal:content="data/start/ISO8601">end</li>
+                                        <li itemprop="endDate" class="dtend" tal:content="data/end/ISO8601">end</li>
+                                    </ul>
+                                    <div class="cal_date">
+                                        <!-- <span class="cal_wkday" tal:content="python:startf['wkday_abbr'][:2]">Tue</span> -->
+                                        <span class="cal_day" tal:content="string:${startf/day}">15.</span>
+                                        <span class="cal_month" tal:content="string:${startf/month}.">Oct.</span>
+                                    </div>
+                                    <div class="cal_info">
+                                        <h3><a href="" itemprop="url" class="url" tal:attributes="href data/getURL|data/absolute_url;">
+                                            <span itemprop="summary" class="summary" tal:content="data/pretty_title_or_id">Title</span>
+                                        </a></h3>
+                                        
+                                        <div class="documentByLine">
+                                            <div tal:define="expositor data/getSpeaker|nothing" tal:content="expositor"/>
+                                            <div class="fc">
+                                                <span tal:define="location data/location|nothing" tal:content="location"/>
+                                                <span tal:content="string:${startf/hour} : ${startf/minute} hrs."/>
+                                                <button id="example" class="btn btn-default" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." title="" data-original-title="Popover on top">Popover on top</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            </tal:items>
+                        </div>              
+                    </div>
+
+
+                </div><!-- end upcomingevents -->
        
 
 
