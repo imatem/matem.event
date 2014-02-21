@@ -3,10 +3,6 @@
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="Solgema.fullcalendar">
 <head>
-    <!-- 
-    disable_column_one python:request.set('disable_plone.leftcolumn',1);
-              disable_column_two python:request.set('disable_plone.rightcolumn',1);
-    -->
     <metal:block fill-slot="top_slot"
       tal:define="disable_column_one python:request.set('disable_plone.leftcolumn',1);
               disable_column_two python:request.set('disable_plone.rightcolumn',1);
@@ -71,9 +67,6 @@
  
     </style>
 
-        <!-- <link href="++resource++wcfc/bootstrap/bootstrap-fixed.css"
-            tal:attributes="href string:${resources_url}/bootstrap/bootstrap-fixed.css"
-            rel="stylesheet" type="text/css"/> -->
   </metal:slot>
     <metal:slot fill-slot="javascript_head_slot" tal:omit-tag="" tal:define="resources_url string:${context/portal_url}/++resource++wcfc">
         <script type="text/javascript" tal:condition="view/calendar/gcalSources | nothing"
@@ -82,9 +75,6 @@
             tal:attributes="src view/getCalendarVarsUrl"></script>
         <script type="text/javascript"
             tal:attributes="src string:${context/absolute_url}/solgemafullcalendar.js"></script>
-
-        <!-- <script type="text/javascript" src="++resource++wcfc/bootstrap/bootstrap.min.js"
-              tal:attributes="src string:${resources_url}/bootstrap/bootstrap.min.js"></script> -->
 
         <script type="text/javascript">
             function visible(tab) {
@@ -111,7 +101,7 @@
             <metal:body define-macro="body_macro"
                 tal:define="kssClassesView context/@@kss_field_decorator_view;
                             getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
-                            templateId template/getId">
+                            templateId template/getId;">
 
                 <ul>
                     <li id="li_pastevents" onclick="visible('pastevents')" ><a>Eventos Anteriores</a></li>
@@ -119,6 +109,24 @@
                     <li id="li_upcomingevents" onclick="visible('upcomingevents')" ><a>Eventos Siguientes</a></li>
                     
                 </ul>
+
+                <span tal:define="my_self nocall:here/@@events; menu_item my_self/factory_item;">
+
+                    <a href="#" class="btn btn-small" tal:condition="menu_item"
+                       tal:attributes="href menu_item/action | nothing;
+                                       title menu_item/description;
+                                       id menu_item/extra/id | nothing;"
+                       i18n:attributes="title">
+
+                        Agregar <span tal:content="menu_item/title"
+                              i18n:translate="">
+                            Title
+                        </span>
+                    </a>
+                </span>
+
+                
+
 
                 <div id="mcalendar">
                     <div tal:replace="structure provider:plone.abovecontenttitle" />
@@ -154,7 +162,7 @@
                     </metal:body>
                 </div> <!-- Fin del calendario -->
 
-                <div id="pastevents" style="display: none;" tal:define="parent python:here.aq_parent; my_self nocall:parent/@@events; ">
+                <div id="pastevents" style="display: none;" tal:define="my_self nocall:here/@@events; ">
                     
                     <h1 class="documentFirstHeading"> 
                         <center> <metal:field use-macro="python:here.aq_parent.widget('title', mode='view')"> Title </metal:field></center>
@@ -170,9 +178,9 @@
                                         <li itemprop="endDate" class="dtend" tal:content="data/end/ISO8601">end</li>
                                     </ul>
                                     <div class="cal_date">
-                                        <!-- <span class="cal_wkday" tal:content="python:startf['wkday_abbr'][:2]">Tue</span> -->
                                         <span class="cal_day" tal:content="string:${startf/day}">15.</span>
-                                        <span class="cal_month" tal:content="string:${startf/month}.">Oct.</span>
+                                        <span class="cal_month" tal:content="string:${startf/month}">Oct.</span><br/>
+                                        <span class="cal_month" tal:content="string:${startf/year}">2014.</span>
                                     </div>
                                     <div class="cal_info">
                                         <h3><a href="" itemprop="url" class="url" tal:attributes="href data/getURL|data/absolute_url;">
@@ -184,7 +192,6 @@
                                             <div class="fc">
                                                 <span tal:define="location data/location|nothing" tal:content="location"/>
                                                 <span tal:content="string:${startf/hour} : ${startf/minute} hrs."/>
-                                                <button id="example" class="btn btn-default" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." title="" data-original-title="Popover on top">Popover on top</button>
                                             </div>
                                         </div>
                                     </div>
@@ -195,9 +202,7 @@
                 </div><!-- end pastevents -->
 
 
-
-
-                <div id="upcomingevents" style="display: none;" tal:define="parent python:here.aq_parent; my_self nocall:parent/@@events; ">
+                <div id="upcomingevents" style="display: none;" tal:define="my_self nocall:here/@@events; ">
                     
                     <h1 class="documentFirstHeading"> 
                         <center> <metal:field use-macro="python:here.aq_parent.widget('title', mode='view')"> Title </metal:field></center>
@@ -213,9 +218,9 @@
                                         <li itemprop="endDate" class="dtend" tal:content="data/end/ISO8601">end</li>
                                     </ul>
                                     <div class="cal_date">
-                                        <!-- <span class="cal_wkday" tal:content="python:startf['wkday_abbr'][:2]">Tue</span> -->
                                         <span class="cal_day" tal:content="string:${startf/day}">15.</span>
-                                        <span class="cal_month" tal:content="string:${startf/month}.">Oct.</span>
+                                        <span class="cal_month" tal:content="string:${startf/month}.">Oct.</span> <br/>
+                                        <span class="cal_month" tal:content="string:${startf/year}">2014.</span>
                                     </div>
                                     <div class="cal_info">
                                         <h3><a href="" itemprop="url" class="url" tal:attributes="href data/getURL|data/absolute_url;">
@@ -227,7 +232,6 @@
                                             <div class="fc">
                                                 <span tal:define="location data/location|nothing" tal:content="location"/>
                                                 <span tal:content="string:${startf/hour} : ${startf/minute} hrs."/>
-                                                <button id="example" class="btn btn-default" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." title="" data-original-title="Popover on top">Popover on top</button>
                                             </div>
                                         </div>
                                     </div>
@@ -235,7 +239,6 @@
                             </tal:items>
                         </div>              
                     </div>
-
 
                 </div><!-- end upcomingevents -->
        
