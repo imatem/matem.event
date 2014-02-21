@@ -81,12 +81,15 @@
                 document.getElementById('mcalendar').style.display = 'none';
                 document.getElementById('pastevents').style.display = 'none';
                 document.getElementById('upcomingevents').style.display = 'none';
-                document.getElementById('li_mcalendar').setAttribute("class", "");
-                document.getElementById('li_pastevents').setAttribute("class", "");
-                document.getElementById('li_upcomingevents').setAttribute("class", "");
+                document.getElementById('li_mcalendar').setAttribute("class", "formTab");
+                document.getElementById('li_pastevents').setAttribute("class", "formTab firstFormTab");
+                document.getElementById('li_upcomingevents').setAttribute("class", "formTab lastFormTab");
                 document.getElementById(tab).style.display = "block";
-                document.getElementById('li_'+tab).setAttribute("class", "active");
-
+                document.getElementById('li_'+tab).setAttribute("class", "formTab active");
+                document.getElementById('a_mcalendar').setAttribute("class", "");
+                document.getElementById('a_pastevents').setAttribute("class", "");
+                document.getElementById('a_upcomingevents').setAttribute("class", "");
+                document.getElementById('a_'+tab).setAttribute("class", "selected");                
             }
 </script>
 
@@ -95,37 +98,34 @@
 <body>
     <div metal:fill-slot="main">
         <tal:main-macro metal:define-macro="main">
-            
 
+            <div>
+                <ul class="formTabs">
+                    <li class="formTab firstFormTab" id="li_pastevents" onclick="visible('pastevents')" ><a id="a_pastevents">Eventos Anteriores</a></li>
+                    <li class="formTab" id="li_mcalendar" onclick="visible('mcalendar')" ><a id="a_mcalendar" class="selected">Calendario</a></li>
+                    <li class="formTab lastFormTab" id="li_upcomingevents" onclick="visible('upcomingevents')" ><a id="a_upcomingevents">Eventos Siguientes</a></li>
+                    <li class="formTab" style="float: right; position: relative;" tal:define="my_self nocall:here/@@events; menu_item my_self/factory_item;">
+                        <a href="#" tal:condition="menu_item"
+                           tal:attributes="href menu_item/action | nothing;
+                                           title menu_item/description;
+                                           id menu_item/extra/id | nothing;"
+                           i18n:attributes="title">
+
+                            Agregar <span tal:content="menu_item/title"
+                                  i18n:translate="">
+                                Title
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="visual-clear"> <!-- --> </div>
 
             <metal:body define-macro="body_macro"
                 tal:define="kssClassesView context/@@kss_field_decorator_view;
                             getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
-                            templateId template/getId;">
-
-                <ul>
-                    <li id="li_pastevents" onclick="visible('pastevents')" ><a>Eventos Anteriores</a></li>
-                    <li id="li_mcalendar" onclick="visible('mcalendar')" ><a>Calendario</a></li>
-                    <li id="li_upcomingevents" onclick="visible('upcomingevents')" ><a>Eventos Siguientes</a></li>
-                    
-                </ul>
-
-                <span tal:define="my_self nocall:here/@@events; menu_item my_self/factory_item;">
-
-                    <a href="#" class="btn btn-small" tal:condition="menu_item"
-                       tal:attributes="href menu_item/action | nothing;
-                                       title menu_item/description;
-                                       id menu_item/extra/id | nothing;"
-                       i18n:attributes="title">
-
-                        Agregar <span tal:content="menu_item/title"
-                              i18n:translate="">
-                            Title
-                        </span>
-                    </a>
-                </span>
-
-                
+                            templateId template/getId;">                
 
 
                 <div id="mcalendar">
