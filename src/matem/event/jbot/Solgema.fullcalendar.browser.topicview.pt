@@ -99,12 +99,13 @@
     <div metal:fill-slot="main">
         <tal:main-macro metal:define-macro="main">
 
-            <div>
+            <div tal:define="checkPermission nocall: context/portal_membership/checkPermission;">
                 <ul class="formTabs">
                     <li class="formTab firstFormTab" id="li_pastevents" onclick="visible('pastevents')" ><a id="a_pastevents">Eventos Anteriores</a></li>
                     <li class="formTab" id="li_mcalendar" onclick="visible('mcalendar')" ><a id="a_mcalendar" class="selected">Calendario</a></li>
                     <li class="formTab lastFormTab" id="li_upcomingevents" onclick="visible('upcomingevents')" ><a id="a_upcomingevents">Eventos Siguientes</a></li>
-                    <li class="formTab" style="float: right; position: relative;" tal:define="my_self nocall:here/@@events; menu_item my_self/factory_item;">
+              
+                    <li class="formTab"  style="float: right; position: relative;" tal:define="my_self nocall:here/@@events; menu_item my_self/factory_item;" tal:condition="python:checkPermission('Add portal content', context)">
                         <a href="#" tal:condition="menu_item"
                            tal:attributes="href menu_item/action | nothing;
                                            title menu_item/description;
@@ -120,16 +121,17 @@
                 </ul>
             </div>
 
-            <div class="visual-clear"> <!-- --> </div>
+            <div class="visual-clear"> <!-- --> </div>            
 
             <metal:body define-macro="body_macro"
                 tal:define="kssClassesView context/@@kss_field_decorator_view;
                             getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
                             templateId template/getId;">                
 
-
+                
                 <div id="mcalendar">
-                    <div tal:replace="structure provider:plone.abovecontenttitle" />
+                    
+                    <div style="float: right; position: relative;" tal:replace="structure provider:plone.abovecontenttitle" />
 
                     <!-- <h1 class="documentFirstHeading" tal:content="context/Title">Title</h1> -->
                     <center><h1 class="documentFirstHeading" tal:content="python:here.aq_parent.Title()">Title</h1></center>
