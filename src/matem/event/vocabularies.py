@@ -1,0 +1,42 @@
+from Products.CMFCore.utils import getToolByName
+from zope.component.hooks import getSite
+from zope.interface import directlyProvides
+from zope.schema.interfaces import IVocabularyFactory
+from zope.schema.vocabulary import SimpleTerm
+from zope.schema.vocabulary import SimpleVocabulary
+
+
+def Weekdays(context):
+    """Vocabulary for Weekdays.
+
+    PLEASE NOTE: strftime %w interprets 0 as Sunday unlike the calendar module!
+
+        Note: Context is here a RecordProxy and cannot be used to get the site
+              root. zope.i18n.translate seems not to respect the portal
+              language.
+    """
+
+    # TODO: revisit, use zope.i18n
+    # see: http://weblion.psu.edu/chatlogs/%23plone/2012/08/15.txt
+    # avoid using:
+    # translate = getSite().translate
+    # it breaks tests. it's defined in:
+    # Products.CMFPlone.skins.plone_scripts.translate.py
+    # better use:
+    # from zope.i18n import translate
+    translate = getToolByName(getSite(), 'translation_service').translate
+
+    domain = 'plonelocales'
+    items = [
+        (translate(u'weekday_mon', domain=domain, default=u'Monday'), 0),
+        (translate(u'weekday_tue', domain=domain, default=u'Tuesday'), 1),
+        (translate(u'weekday_wed', domain=domain, default=u'Wednesday'), 2),
+        (translate(u'weekday_thu', domain=domain, default=u'Thursday'), 3),
+        (translate(u'weekday_fri', domain=domain, default=u'Friday'), 4),
+        (translate(u'weekday_sat', domain=domain, default=u'Saturday'), 5),
+        (translate(u'weekday_sun', domain=domain, default=u'Sunday'), 6),
+    ]
+
+    items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
+    return SimpleVocabulary(items)
+directlyProvides(Weekdays, IVocabularyFactory)

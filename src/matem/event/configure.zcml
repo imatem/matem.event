@@ -1,6 +1,7 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five"
+    xmlns:grok="http://namespaces.zope.org/grok"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="matem.event">
@@ -10,7 +11,11 @@
   <!-- Include the sub-packages that use their own configure.zcml files. -->
   <include package=".browser" />
   <include package=".extenders" />
-  
+
+  <includeDependencies package="." />
+
+  <grok:grok package="." />
+
   <!-- Register the installation GenericSetup extension profile -->
   <genericsetup:registerProfile
       name="default"
@@ -25,5 +30,10 @@
 
   <browser:jbot
       directory="jbot" />
+
+  <utility
+      component=".vocabularies.Weekdays"
+      name="plone.app.event.Weekdays"
+      />
 
 </configure>

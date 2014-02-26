@@ -30,6 +30,7 @@ setup(
     zip_safe=False,
     install_requires=[
         'setuptools',
+        'plone.app.dexterity',
     ],
     extras_require={
         'develop': [
