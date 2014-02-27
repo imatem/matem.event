@@ -20,32 +20,96 @@
 
         <h1 class="documentFirstHeading" tal:content="context/title" />
 
-        <div class="discreet">
+        <div class="eventDetails vcard">
+          <table class="vertical listing" summary="Event details" i18n:attributes="summary summary_event_details;">
+            <tbody>
+              <tr>
+                <th i18n:translate="event_when">When</th>
+                <td>
+                  <span tal:content="view/getDayTitle"/><br/>
+                  <tal:block condition="context/start">
+                    <span i18n:translate="label_from">From:</span>
+                    <span tal:content="context/start"/>
+                    <!-- <span tal:content="python:context.start.strftime('%x %X')" /> -->
+                  </tal:block>
+                  <tal:block condition="context/end">
+                    <span i18n:translate="label_to">To:</span>
+                    <span tal:content="context/end"/>
+                    <!-- <span tal:content="python:context.end.strftime('%x %X')" /> -->
+                  </tal:block>
+                  
+                </td>
+              </tr>
+              <tr>
+                <th>Periodicity</th>     
+                <td> 
+                  <tal:block condition="context/periodicity">
+                    <span tal:content="view/getPeriodicityTitle"/>
+                  </tal:block>
+                </td>
+              </tr>
+              <tr>
+                <th i18n:translate="event_where">Where</th>
+                <td>
+                  <tal:block condition="context/location">
+                    <span tal:content="context/location"/>
+                  </tal:block>
+                </td>
+              </tr>
+              <tr>
+                <th> Organizers</th>
+                <td>
+                  <tal:block tal:repeat="organizer view/getOrganizers">
+                    <a href="" tal:attributes="href organizer/url"><span tal:content="organizer/name"/></a><br/>
+                    <span class="discreet"> <span tal:content="organizer/email"/> <span tal:content="organizer/phone"/></span><br/>
+                  </tal:block>
+                </td>
+
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+        <div tal:content="structure context/details|nothing" />
+
+
+
+
+
+
+
+        <!-- <div class="discreet">
             <tal:block condition="context/start">
                 <span i18n:translate="label_from">From:</span>
                 <span tal:content="context/start"/>
-                <!-- <span tal:content="python:context.start.strftime('%x %X')" /> -->
             </tal:block>
             <tal:block condition="context/end">
                 <span i18n:translate="label_to">To:</span>
                 <span tal:content="context/end"/>
-                <!-- <span tal:content="python:context.end.strftime('%x %X')" /> -->
             </tal:block>
             <tal:block condition="context/location">
               - <span tal:content="context/location"/>
             </tal:block>
         </div>
+ -->
+        
 
-        <!-- <div tal:content="context/organizer"/> -->
-        <div tal:define="organizers view/getOrganizers">
+        <!-- <div style="float: right; padding-left: 10px;" tal:define="organizers view/getOrganizers">
           <h2> Contact </h2>
           <tal:block tal:repeat="organizer organizers">
             <a href="" tal:attributes="href organizer/url"><span tal:content="organizer/name"/></a><br/>
             <span class="discreet"> <span tal:content="organizer/email"/> <span tal:content="organizer/phone"/></span><br/>
           </tal:block>
         </div>
+ -->
 
-        <div tal:content="structure context/details|nothing" />
+         
+        <!-- <div tal:content="context/organizer"/> -->
+        
+
+          
+        <div class="visualClear"><!-- --></div>
 
 <!--         <div class="discreet">
             <tal:block condition="context/start">

@@ -22,6 +22,9 @@ from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
 from plone.autoform import directives as form
 from Products.CMFCore.utils import getToolByName
 from zope.component.hooks import getSite
+from zope.component import getUtility
+from zope.schema.interfaces import IVocabularyFactory
+
 import unicodedata
 
 
@@ -91,6 +94,20 @@ class ISeminar(model.Schema):
         required=False
     )
 
+    periodicity = schema.Choice(
+        title=_(
+            u'label_seminar_periodicity',
+            default=u'Periodicity'
+        ),
+        description=_(
+            u'help_seminar_periodicity',
+            default=u'Periodicity of the seminar.'
+        ),
+        required=False,
+        vocabulary="matem.event.PeriodicitySeminar"
+
+    )
+
     # organizer = schema.Choice(
     #     title=_(u"Organizer"),
     #     vocabulary=u"plone.app.event.Weekdays",
@@ -142,7 +159,7 @@ class ISeminar(model.Schema):
     @invariant
     def requiredOrganizer(data):
         if len(data.organizer) < 1:
-            raise RequiredOrganizer(_(u"At leat organizer"))
+            raise RequiredOrganizer(_(u"At least an organizer"))
         
 # Views
 class View(grok.View):
@@ -169,8 +186,15 @@ class View(grok.View):
 
         return rows
 
-        #return organizers
+    def getPeriodicityTitle(self):
+        value = self.context.periodicity
+        vocabulary = getUtility(IVocabularyFactory, 'matem.event.PeriodicitySeminar')(self.context).by_value
+        return vocabulary[value].title
 
+    def getDayTitle(self):
+        value = self.context.day
+        vocabulary = getUtility(IVocabularyFactory, 'matem.event.Weekdays')(self.context).by_value
+        return vocabulary[value].title
 
 
 

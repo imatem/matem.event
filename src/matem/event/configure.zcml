@@ -40,4 +40,11 @@
       component=".vocabularies.PersonVocabulary"
       name="matem.event.PersonVocabulary"
       />
+
+  <utility
+      component=".vocabularies.PeriodicitySeminar"
+      name="matem.event.PeriodicitySeminar"
+      />
+
+      
 </configure>
