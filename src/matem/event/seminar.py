@@ -31,6 +31,10 @@ class StartBeforeEnd(Invalid):
     __doc__ = _(u"The start or end date is invalid")
 
 
+class RequiredOrganizer(Invalid):
+    __doc__ = _(u"At leat organizer")
+
+
 class ISeminar(model.Schema):
     """A folder for Seminars.
     """
@@ -135,6 +139,11 @@ class ISeminar(model.Schema):
                 raise StartBeforeEnd(_(
                     u"The start date must be before the end date."))
 
+    @invariant
+    def requiredOrganizer(data):
+        if len(data.organizer) < 1:
+            raise RequiredOrganizer(_(u"At leat organizer"))
+        
 # Views
 class View(grok.View):
     grok.context(ISeminar)
