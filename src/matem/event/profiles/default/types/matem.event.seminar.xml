@@ -1,20 +1,33 @@
 <?xml version="1.0"?>
-<object name="matem.event.seminar" meta_type="Dexterity FTI"
+<object name="Seminar" meta_type="Dexterity FTI"
    i18n:domain="matem.event" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
  <!-- Basic metadata -->
- <property name="title" i18n:translate="">Seminar</property>
- <property name="description" i18n:translate="">A seminar folder</property>
- <property name="content_icon">string:${portal_url}/document_icon.png</property>
- <property name="allow_discussion">False</property>
+ <property name="title" i18n:translate="">Seminar Folder</property>
+ <property name="description" i18n:translate=""></property>
+ <property name="icon_expr">string:${portal_url}/folder_icon.png</property>
+
+ <property name="factory">matem.event.seminar</property>
+ <!-- <property name="factory">Folder</property> -->
+ <property name="add_view_expr">string:${folder_url}/++add++matem.event.seminar</property>
+  <!-- <property name="add_view_expr">string:${folder_url}/++add++Folder</property> -->
+ <property name="link_target"></property>
+ <property name="immediate_view">view</property>
+
  <property name="global_allow">True</property>
  <property name="filter_content_types">True</property>
-  <property name="allowed_content_types">
+ <property name="allowed_content_types">
   <element value="Folder"/>
  </property>
+ <property name="allow_discussion">False</property>
+
  <!-- schema interface -->
  <property name="schema">matem.event.seminar.ISeminar</property>
-
+ <property name="model_source"></property>
+ <property name="model_file"></property>
+ <!-- <property name="model_file">plone.app.contenttypes.schema:folder.xml</property> -->
+ <property name="schema_policy">dexterity</property>
+ 
  <!-- class used for content items -->
  <property name="klass">plone.dexterity.content.Container</property>
 
@@ -23,10 +36,11 @@
 
  <!-- enabled behaviors -->
  <property name="behaviors">
-  <element value="plone.app.content.interfaces.INameFromTitle"/>
   <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
+  <element value="plone.app.content.interfaces.INameFromTitle"/>
   <element value="plone.app.dexterity.behaviors.metadata.ICategorization"/>
   <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation"/>
+  <element value="Products.CMFPlone.interfaces.constrains.ISelectableConstrainTypes"/>
   <element value="plone.app.dexterity.behaviors.metadata.IOwnership"/>
  </property>
 
@@ -45,11 +59,13 @@
 
  <!-- Actions -->
  <action title="View" action_id="view" category="object" condition_expr=""
-    url_expr="string:${object_url}" visible="True">
+    icon_expr="" link_target="" url_expr="string:${object_url}"
+    visible="True" i18n:attributes="title">
   <permission value="View"/>
  </action>
  <action title="Edit" action_id="edit" category="object" condition_expr=""
-    url_expr="string:${object_url}/edit" visible="True">
+    icon_expr="" link_target="" url_expr="string:${object_url}/edit"
+    visible="True" i18n:attributes="title">
   <permission value="Modify portal content"/>
  </action>
 </object>
