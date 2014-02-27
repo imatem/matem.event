@@ -148,10 +148,13 @@ class View(grok.View):
 
         rows =[]
         for b in brains:
+            obj = b.getObject()
             rows.append(
                 {
-                    'url': b.getObject().absolute_url(),
-                    'value': ', '.join((b.lastName, b.firstName))
+                    'url': obj.absolute_url(),
+                    'name': ', '.join((b.lastName, b.firstName)),
+                    'phone': obj.getOfficePhone(),
+                    'email': obj.getEmail(),
                 }
             )
 
