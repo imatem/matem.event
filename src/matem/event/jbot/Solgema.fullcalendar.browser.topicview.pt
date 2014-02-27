@@ -193,7 +193,12 @@
                                             <div tal:define="expositor data/getSpeaker|nothing" tal:content="expositor"/>
                                             <div class="fc">
                                                 <span tal:define="location data/location|nothing" tal:content="location"/>
-                                                <span tal:content="string:${startf/hour} : ${startf/minute} hrs."/>
+                                                <span tal:content="string:${startf/hour} : ${startf/minute} hrs."/><br/>
+                                                <span style="color:#75ad0a" tal:define="item_subjects data/Subject|None;
+                                                                    item_seminary python: item_subjects and item_subjects[0] or None;" 
+                                                    tal:content="item_seminary"/>
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -233,7 +238,10 @@
                                             <div tal:define="expositor data/getSpeaker|nothing" tal:content="expositor"/>
                                             <div class="fc">
                                                 <span tal:define="location data/location|nothing" tal:content="location"/>
-                                                <span tal:content="string:${startf/hour} : ${startf/minute} hrs."/>
+                                                <span tal:content="string:${startf/hour} : ${startf/minute} hrs."/><br/>
+                                                <span style="color:#75ad0a" tal:define="item_subjects data/Subject|None;
+                                                                    item_seminary python: item_subjects and item_subjects[0] or None;" 
+                                                    tal:content="item_seminary"/>
                                             </div>
                                         </div>
                                     </div>

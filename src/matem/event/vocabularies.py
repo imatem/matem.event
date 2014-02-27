@@ -1,9 +1,12 @@
+# -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
 from zope.component.hooks import getSite
 from zope.interface import directlyProvides
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
+from matem.fsdextender.users import get_users_as_brains
+#from matem.event import _
 
 
 def Weekdays(context):
@@ -40,3 +43,19 @@ def Weekdays(context):
     items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
     return SimpleVocabulary(items)
 directlyProvides(Weekdays, IVocabularyFactory)
+
+
+def PersonVocabulary(context):
+    """Vocabulary factory for all people
+    """
+    items = []
+    res = get_users_as_brains(getSite(), sortable=True, person_classification=['investigadores', 'posdoc', 'becarios'])
+
+    for r in res:
+        title = (r.lastName + ', ' + r.firstName).encode('utf-8')
+        items.append((title, r.UID))
+
+    items = [SimpleTerm(i[0], i[1], i[0]) for i in items]
+    return SimpleVocabulary(items)
+directlyProvides(PersonVocabulary, IVocabularyFactory)
+

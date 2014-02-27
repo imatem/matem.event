@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from Acquisition import aq_inner
 from DateTime import DateTime
 from Products.CMFCore.utils import getToolByName
@@ -16,6 +17,11 @@ from zope.filerepresentation.interfaces import IFileFactory
 from zope.interface import invariant, Invalid
 from zope.lifecycleevent import ObjectCreatedEvent
 import datetime
+
+import unicodedata
+
+
+
 
 
 class StartBeforeEnd(Invalid):
@@ -36,17 +42,32 @@ class ISeminar(model.Schema):
             default=u'Select the day, where this seminar happens.'
         ),
         required=True,
-        vocabulary="plone.app.event.Weekdays"
+        vocabulary="matem.event.Weekdays"
     )
 
-
-    start = schema.Datetime(
-        title=_(u"Start date"),
+    start = schema.TextLine(
+        #title=_(u"Start time"),
+        title=_(
+            u'label_seminar_start',
+            default=u'Start time'
+        ),
+        description=_(
+            u'help_seminar_start',
+            default=u'Write the start time, when this seminar happens. The format time is hh:mm.'
+        ),
         required=False,
     )
 
-    end = schema.Datetime(
-        title=_(u"End date"),
+    end = schema.TextLine(
+        #title=_(u"End date"),
+        title=_(
+            u'label_seminar_end',
+            default=u'End time'
+        ),
+        description=_(
+            u'help_seminar_end',
+            default=u'Write the end time, when this seminar happens. The format time is hh:mm.'
+        ),
         required=False,
     )
 
@@ -62,11 +83,30 @@ class ISeminar(model.Schema):
         required=False
     )
 
-    organizer = schema.Choice(
-        title=_(u"Organizer"),
-        vocabulary=u"plone.app.event.Weekdays",
-        required=False,
+    # organizer = schema.Choice(
+    #     title=_(u"Organizer"),
+    #     vocabulary=u"plone.app.event.Weekdays",
+    #     required=False,
+    # )
+
+    organizer = schema.Set(
+        title=_(
+            u'label_seminar_organizer',
+            default=u'Organizer',
+        ),
+        description=_(
+            u'help_seminar_organizer',
+            default=u'Seminar Organizer'
+        ),
+        value_type=schema.Choice(
+            vocabulary="matem.event.PersonVocabulary",
+        ),
+        #value_type=schema.Choice(values=(1, 2, 3, 4)),
+        #vocabulary=u"plone.app.event.Weekdays",
+        required=True,
+        #default=set([1,3])
     )
+
 
     details = RichText(
         title=_(u"Details"),

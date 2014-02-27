@@ -33,7 +33,11 @@
 
   <utility
       component=".vocabularies.Weekdays"
-      name="plone.app.event.Weekdays"
+      name="matem.event.Weekdays"
       />
 
+  <utility
+      component=".vocabularies.PersonVocabulary"
+      name="matem.event.PersonVocabulary"
+      />
 </configure>
