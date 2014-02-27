@@ -5,7 +5,7 @@ from Products.CMFCore.utils import getToolByName
 from matem.event import _
 from five import grok
 from plone.app.textfield import RichText
-from plone.directives import form
+#from plone.directives import form
 from plone.formwidget.autocomplete import AutocompleteFieldWidget
 from plone.indexer import indexer
 from plone.supermodel import model
@@ -18,8 +18,9 @@ from zope.interface import invariant, Invalid
 from zope.lifecycleevent import ObjectCreatedEvent
 import datetime
 
+from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
+from plone.autoform import directives as form
 import unicodedata
-
 
 
 
@@ -56,6 +57,7 @@ class ISeminar(model.Schema):
             default=u'Write the start time, when this seminar happens. The format time is hh:mm.'
         ),
         required=False,
+        max_length=5,
     )
 
     end = schema.TextLine(
@@ -101,21 +103,27 @@ class ISeminar(model.Schema):
         value_type=schema.Choice(
             vocabulary="matem.event.PersonVocabulary",
         ),
-        #value_type=schema.Choice(values=(1, 2, 3, 4)),
-        #vocabulary=u"plone.app.event.Weekdays",
         required=True,
         #default=set([1,3])
     )
 
+    # details = RichText(
+    #     title=_(u"Details"),
+    #     description=_(u"Details about the seminar"),
+    #     default_mime_type='text/structured',
+    #     output_mime_type='text/html',
+    #     allowed_mime_types=('text/structured', 'text/plain',),
+    #     required=False,
+    
+    # )
 
-    details = RichText(
+    form.widget('details', WysiwygFieldWidget)
+    details = schema.Text(
         title=_(u"Details"),
         description=_(u"Details about the seminar"),
-        default_mime_type='text/structured',
-        output_mime_type='text/html',
-        allowed_mime_types=('text/structured', 'text/plain',),
         required=False,
     )
+
 
 
     @invariant
