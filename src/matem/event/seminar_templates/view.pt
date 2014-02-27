@@ -33,6 +33,8 @@
             </tal:block>
         </div>
 
+        <div tal:content="context/organizer"/>
+
         <div tal:content="structure context/details|nothing" />
 
 <!--         <div class="discreet">

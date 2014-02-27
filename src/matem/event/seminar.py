@@ -91,7 +91,7 @@ class ISeminar(model.Schema):
     #     required=False,
     # )
 
-    organizer = schema.Set(
+    organizer = schema.List(
         title=_(
             u'label_seminar_organizer',
             default=u'Organizer',
