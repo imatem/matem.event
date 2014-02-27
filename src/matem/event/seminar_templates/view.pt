@@ -33,8 +33,14 @@
             </tal:block>
         </div>
 
-        <div tal:content="context/organizer"/>
-
+        <!-- <div tal:content="context/organizer"/> -->
+        <div tal:define="organizers view/getOrganizers">
+          <h2> Contact </h2>
+          <tal:block tal:repeat="organizer organizers">
+            <a href="" tal:attributes="href organizer/url"><span tal:content="organizer/value"/></a><br/>
+          </tal:block>
+        </div>
+        
         <div tal:content="structure context/details|nothing" />
 
 <!--         <div class="discreet">

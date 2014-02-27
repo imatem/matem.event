@@ -55,7 +55,9 @@ def PersonVocabulary(context):
         title = (r.lastName + ', ' + r.firstName).encode('utf-8')
         items.append((title, r.UID))
 
-    items = [SimpleTerm(i[0], i[1], i[0]) for i in items]
+    #value, token, título
+    #items = [SimpleTerm(i[0], i[1], i[0]) for i in items]
+    items = [SimpleTerm(i[1], str(i[1]), i[0]) for i in items]
     return SimpleVocabulary(items)
 directlyProvides(PersonVocabulary, IVocabularyFactory)
 

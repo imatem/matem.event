@@ -20,6 +20,8 @@ import datetime
 
 from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
 from plone.autoform import directives as form
+from Products.CMFCore.utils import getToolByName
+from zope.component.hooks import getSite
 import unicodedata
 
 
@@ -137,5 +139,26 @@ class ISeminar(model.Schema):
 class View(grok.View):
     grok.context(ISeminar)
     grok.require('zope2.View')
+
+    def getOrganizers(self):
+        organizers = self.context.organizer
+
+        catalog = getToolByName(getSite(), 'portal_catalog')
+        brains = catalog.searchResults(portal_type='FSDPerson', UID=organizers)
+
+        rows =[]
+        for b in brains:
+            rows.append(
+                {
+                    'url': b.getObject().absolute_url(),
+                    'value': ', '.join((b.lastName, b.firstName))
+                }
+            )
+
+        return rows
+
+        #return organizers
+
+
 
 
