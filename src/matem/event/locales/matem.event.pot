@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-02-28 23:40+0000\n"
+"POT-Creation-Date: 2014-02-28 23:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,12 +14,8 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: matem/event/seminar.py:158
-msgid "At least an organizer"
-msgstr ""
-
 #: matem/event/seminar.py:38
-msgid "At least organizer"
+msgid "At least an organizer"
 msgstr ""
 
 #: matem/event/profiles/default/types/matem.event.seminar.xml
@@ -31,14 +27,14 @@ msgid "Seminar Folder"
 msgstr ""
 
 #: matem/event/seminar.py:34
-msgid "The start date must be before the end date"
+msgid "The start time must be before the end time"
 msgstr ""
 
 #: matem/event/profiles/default/types/matem.event.seminar.xml
 msgid "View"
 msgstr ""
 
-#. Default: "Select the day, where this seminar happens."
+#. Default: "Select the day, when this seminar happens."
 #: matem/event/seminar.py:50
 msgid "help_seminar_day"
 msgstr ""
