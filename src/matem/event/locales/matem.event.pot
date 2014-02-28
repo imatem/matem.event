@@ -16,15 +16,15 @@ msgstr ""
 
 #: matem/event/seminar.py:158
 msgid "At least an organizer"
-msgstr ""
+msgstr "Al menos un organizador"
 
 #: matem/event/seminar.py:38
 msgid "At least organizer"
-msgstr ""
+msgstr "Al menos un organizador"
 
 #: matem/event/profiles/default/types/matem.event.seminar.xml
 msgid "Edit"
-msgstr ""
+msgstr "Editar"
 
 #: matem/event/profiles/default/types/matem.event.seminar.xml
 msgid "Seminar Folder"
@@ -32,74 +32,74 @@ msgstr ""
 
 #: matem/event/seminar.py:34
 msgid "The start date must be before the end date"
-msgstr ""
+msgstr "La hora de incio debe ser menor que la de termino"
 
 #: matem/event/profiles/default/types/matem.event.seminar.xml
 msgid "View"
-msgstr ""
+msgstr "Ver"
 
 #. Default: "Select the day, where this seminar happens."
 #: matem/event/seminar.py:50
 msgid "help_seminar_day"
-msgstr ""
+msgstr "Selecciona el día en que se lleva a cabo el seminario."
 
 #. Default: "Details about the seminar"
 #: matem/event/seminar.py:139
 msgid "help_seminar_details"
-msgstr ""
+msgstr "Detalles sobre el seminario"
 
 #. Default: "Type the end time, when this seminar happens. The time format is hh:mm."
 #: matem/event/seminar.py:78
 msgid "help_seminar_end"
-msgstr ""
+msgstr "Teclea la hora de termino del seminaro. El formato de hora es: hh:mm"
 
 #. Default: "Location of the seminar."
 #: matem/event/seminar.py:90
 msgid "help_seminar_location"
-msgstr ""
+msgstr "Lugar donde se lleva a cabo semianrio"
 
 #. Default: "Periodicity of the seminar."
 #: matem/event/seminar.py:102
 msgid "help_seminar_periodicity"
-msgstr ""
+msgstr "Periodicidad del semanario"
 
 #. Default: "Type the start time, when this seminar happens. The time format is hh:mm."
 #: matem/event/seminar.py:64
 msgid "help_seminar_start"
-msgstr ""
+msgstr "Teclea la hora inicial del seminario. El formato de hora es: hh:mm."
 
 #. Default: "Day"
 #: matem/event/seminar.py:46
 msgid "label_seminar_day"
-msgstr ""
+msgstr "Día"
 
 #. Default: "Details"
 #: matem/event/seminar.py:135
 msgid "label_seminar_details"
-msgstr ""
+msgstr "Detalles"
 
 #. Default: "End time"
 #: matem/event/seminar.py:74
 msgid "label_seminar_end"
-msgstr ""
+msgstr "Hora de termino"
 
 #. Default: "Location"
 #: matem/event/seminar.py:86
 msgid "label_seminar_location"
-msgstr ""
+msgstr "Lugar"
 
 #. Default: "Organizer"
 #: matem/event/seminar.py:112
 msgid "label_seminar_organizer"
-msgstr ""
+msgstr "Organizador"
 
 #. Default: "Periodicity"
 #: matem/event/seminar.py:98
 msgid "label_seminar_periodicity"
-msgstr ""
+msgstr "Periodicidad"
 
 #. Default: "Start time"
 #: matem/event/seminar.py:60
 msgid "label_seminar_start"
-msgstr ""
+msgstr "Hora de inicio"
 
