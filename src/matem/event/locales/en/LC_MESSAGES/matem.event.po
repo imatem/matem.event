@@ -1,0 +1,105 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2014-02-28 23:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+
+#: matem/event/seminar.py:158
+msgid "At least an organizer"
+msgstr ""
+
+#: matem/event/seminar.py:38
+msgid "At least organizer"
+msgstr ""
+
+#: matem/event/profiles/default/types/matem.event.seminar.xml
+msgid "Edit"
+msgstr ""
+
+#: matem/event/profiles/default/types/matem.event.seminar.xml
+msgid "Seminar Folder"
+msgstr ""
+
+#: matem/event/seminar.py:34
+msgid "The start date must be before the end date"
+msgstr ""
+
+#: matem/event/profiles/default/types/matem.event.seminar.xml
+msgid "View"
+msgstr ""
+
+#. Default: "Select the day, where this seminar happens."
+#: matem/event/seminar.py:50
+msgid "help_seminar_day"
+msgstr ""
+
+#. Default: "Details about the seminar"
+#: matem/event/seminar.py:139
+msgid "help_seminar_details"
+msgstr ""
+
+#. Default: "Type the end time, when this seminar happens. The time format is hh:mm."
+#: matem/event/seminar.py:78
+msgid "help_seminar_end"
+msgstr ""
+
+#. Default: "Location of the seminar."
+#: matem/event/seminar.py:90
+msgid "help_seminar_location"
+msgstr ""
+
+#. Default: "Periodicity of the seminar."
+#: matem/event/seminar.py:102
+msgid "help_seminar_periodicity"
+msgstr ""
+
+#. Default: "Type the start time, when this seminar happens. The time format is hh:mm."
+#: matem/event/seminar.py:64
+msgid "help_seminar_start"
+msgstr ""
+
+#. Default: "Day"
+#: matem/event/seminar.py:46
+msgid "label_seminar_day"
+msgstr ""
+
+#. Default: "Details"
+#: matem/event/seminar.py:135
+msgid "label_seminar_details"
+msgstr ""
+
+#. Default: "End time"
+#: matem/event/seminar.py:74
+msgid "label_seminar_end"
+msgstr ""
+
+#. Default: "Location"
+#: matem/event/seminar.py:86
+msgid "label_seminar_location"
+msgstr ""
+
+#. Default: "Organizer"
+#: matem/event/seminar.py:112
+msgid "label_seminar_organizer"
+msgstr ""
+
+#. Default: "Periodicity"
+#: matem/event/seminar.py:98
+msgid "label_seminar_periodicity"
+msgstr ""
+
+#. Default: "Start time"
+#: matem/event/seminar.py:60
+msgid "label_seminar_start"
+msgstr ""
+
