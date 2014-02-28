@@ -28,7 +28,7 @@ msgstr "Folder Seminario"
 
 #: matem/event/seminar.py:34
 msgid "The start time must be before the end time"
-msgstr ""
+msgstr "La hora de inicio debe ser menor que la de término"
 
 #: matem/event/profiles/default/types/matem.event.seminar.xml
 msgid "View"
@@ -36,7 +36,6 @@ msgstr "Ver"
 
 #. Default: "Select the day, when this seminar happens."
 #: matem/event/seminar.py:50
-#, fuzzy
 msgid "help_seminar_day"
 msgstr "Selecciona el día que el seminario se lleva a cabo"
 
@@ -48,7 +47,7 @@ msgstr "Detalles sobre el seminario"
 #. Default: "Type the end time, when this seminar happens. The time format is hh:mm."
 #: matem/event/seminar.py:78
 msgid "help_seminar_end"
-msgstr "Teclea la hora de termino del seminario. El formato de hora es: hh:mm."
+msgstr "Teclea la hora de término del seminario. El formato de hora es: hh:mm."
 
 #. Default: "Location of the seminar."
 #: matem/event/seminar.py:90
@@ -78,7 +77,7 @@ msgstr "Detalles"
 #. Default: "End time"
 #: matem/event/seminar.py:74
 msgid "label_seminar_end"
-msgstr "Hora de termino"
+msgstr "Hora de término"
 
 #. Default: "From:"
 #: matem/event/seminar_templates/view.pt:26
@@ -90,10 +89,10 @@ msgstr "De:"
 msgid "label_seminar_location"
 msgstr "Lugar"
 
-#. Default: "Organizer"
+#. Default: "Organizer(s)"
 #: matem/event/seminar.py:112
 msgid "label_seminar_organizer"
-msgstr "Organizador"
+msgstr "Organizadores"
 
 #. Default: "Organizers"
 #: matem/event/seminar_templates/view.pt:52
@@ -109,7 +108,7 @@ msgstr "Periodicidad"
 #. Default: "Start time"
 #: matem/event/seminar.py:60
 msgid "label_seminar_start"
-msgstr "Hora de inico"
+msgstr "Hora de inicio"
 
 #. Default: "To:"
 #: matem/event/seminar_templates/view.pt:30

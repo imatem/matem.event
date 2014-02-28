@@ -111,7 +111,7 @@ class ISeminar(model.Schema):
     organizer = schema.List(
         title=_(
             u'label_seminar_organizer',
-            default=u'Organizer',
+            default=u'Organizer(s)',
         ),
         value_type=schema.Choice(
             vocabulary="matem.event.PersonVocabulary",
@@ -143,6 +143,8 @@ class ISeminar(model.Schema):
         required=False,
     )
 
+
+    ##TODO: Add the details field for to english
 
 
     @invariant
