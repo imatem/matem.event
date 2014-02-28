@@ -16,6 +16,8 @@
 
   <grok:grok package="." />
 
+  <i18n:registerTranslations directory="locales" />
+
   <!-- Register the installation GenericSetup extension profile -->
   <genericsetup:registerProfile
       name="default"
