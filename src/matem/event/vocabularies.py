@@ -63,14 +63,14 @@ directlyProvides(PersonVocabulary, IVocabularyFactory)
 
 
 def PeriodicitySeminar(context):
-    
+
     translate = getToolByName(getSite(), 'translation_service').translate
 
     domain = 'plonelocales'
     items = [
-        (translate(u'periodicity_weekly', domain=domain, default=u'Weekly'), 0),
-        (translate(u'periodicity_fortnightly', domain=domain, default=u'Fortnightly'), 1),
-        (translate(u'periodicity_monthtly', domain=domain, default=u'Monthtly'), 2),
+        (translate(u'periodicity_weekly', domain=domain, default=u'Weekly'), 1),
+        (translate(u'periodicity_fortnightly', domain=domain, default=u'Fortnightly'), 2),
+        (translate(u'periodicity_monthtly', domain=domain, default=u'Monthtly'), 3),
     ]
 
     items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
