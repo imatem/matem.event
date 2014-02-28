@@ -31,11 +31,11 @@ import unicodedata
 
 
 class StartBeforeEnd(Invalid):
-    __doc__ = _(u"The start date must be before the end date")
+    __doc__ = _(u"The start time must be before the end time")
 
 
 class RequiredOrganizer(Invalid):
-    __doc__ = _(u"At least organizer")
+    __doc__ = _(u"At least an organizer")
 
 
 class ISeminar(model.Schema):
@@ -49,7 +49,7 @@ class ISeminar(model.Schema):
         ),
         description=_(
             u'help_seminar_day',
-            default=u'Select the day, where this seminar happens.'
+            default=u'Select the day, when this seminar happens.'
         ),
         required=True,
         vocabulary="matem.event.Weekdays"
@@ -150,7 +150,7 @@ class ISeminar(model.Schema):
         if data.start is not None and data.end is not None:
             if data.start > data.end:
                 raise StartBeforeEnd(_(
-                    u"The start date must be before the end date"))
+                    u"The start time must be before the end time"))
 
     @invariant
     def requiredOrganizer(data):
