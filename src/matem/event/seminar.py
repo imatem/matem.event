@@ -31,11 +31,11 @@ import unicodedata
 
 
 class StartBeforeEnd(Invalid):
-    __doc__ = _(u"The start or end date is invalid")
+    __doc__ = _(u"The start date must be before the end date")
 
 
 class RequiredOrganizer(Invalid):
-    __doc__ = _(u"At leat organizer")
+    __doc__ = _(u"At least organizer")
 
 
 class ISeminar(model.Schema):
@@ -63,7 +63,7 @@ class ISeminar(model.Schema):
         ),
         description=_(
             u'help_seminar_start',
-            default=u'Write the start time, when this seminar happens. The format time is hh:mm.'
+            default=u'Type the start time, when this seminar happens. The time format is hh:mm.'
         ),
         required=False,
         max_length=5,
@@ -77,7 +77,7 @@ class ISeminar(model.Schema):
         ),
         description=_(
             u'help_seminar_end',
-            default=u'Write the end time, when this seminar happens. The format time is hh:mm.'
+            default=u'Type the end time, when this seminar happens. The time format is hh:mm.'
         ),
         required=False,
     )
@@ -108,20 +108,10 @@ class ISeminar(model.Schema):
 
     )
 
-    # organizer = schema.Choice(
-    #     title=_(u"Organizer"),
-    #     vocabulary=u"plone.app.event.Weekdays",
-    #     required=False,
-    # )
-
     organizer = schema.List(
         title=_(
             u'label_seminar_organizer',
             default=u'Organizer',
-        ),
-        description=_(
-            u'help_seminar_organizer',
-            default=u'Seminar Organizer'
         ),
         value_type=schema.Choice(
             vocabulary="matem.event.PersonVocabulary",
@@ -142,8 +132,14 @@ class ISeminar(model.Schema):
 
     form.widget('details', WysiwygFieldWidget)
     details = schema.Text(
-        title=_(u"Details"),
-        description=_(u"Details about the seminar"),
+        title=_(
+            u'label_seminar_details', 
+            default=u'Details'
+        ),
+        description=_(
+            u'help_seminar_details',
+            u'Details about the seminar'
+        ),
         required=False,
     )
 
@@ -154,7 +150,7 @@ class ISeminar(model.Schema):
         if data.start is not None and data.end is not None:
             if data.start > data.end:
                 raise StartBeforeEnd(_(
-                    u"The start date must be before the end date."))
+                    u"The start date must be before the end date"))
 
     @invariant
     def requiredOrganizer(data):

@@ -13,35 +13,27 @@
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />
 
-        <!-- <img style="float: left; margin-right: 2px; margin-top: 2px"
-             tal:define="navroot context/@@plone_portal_state/navigation_root_url"
-             tal:attributes="src string:${navroot}/++resource++example.conference/program.gif"
-             /> -->
-
         <h1 class="documentFirstHeading" tal:content="context/title" />
 
         <div class="eventDetails vcard">
-          <table class="vertical listing" summary="Event details" i18n:attributes="summary summary_event_details;">
+          <table class="vertical listing">
             <tbody>
               <tr>
-                <th i18n:translate="event_when">When</th>
+                <th i18n:translate="label_seminar_when">When</th>
                 <td>
                   <span tal:content="view/getDayTitle"/><br/>
                   <tal:block condition="context/start">
-                    <span i18n:translate="label_from">From:</span>
+                    <span i18n:translate="label_seminar_from">From:</span>
                     <span tal:content="context/start"/>
-                    <!-- <span tal:content="python:context.start.strftime('%x %X')" /> -->
                   </tal:block>
                   <tal:block condition="context/end">
-                    <span i18n:translate="label_to">To:</span>
+                    <span i18n:translate="label_seminar_to">To:</span>
                     <span tal:content="context/end"/>
-                    <!-- <span tal:content="python:context.end.strftime('%x %X')" /> -->
                   </tal:block>
-                  
                 </td>
               </tr>
               <tr>
-                <th>Periodicity</th>     
+                <th i18n:translate="label_seminar_periodicity">Periodicity</th>     
                 <td> 
                   <tal:block condition="context/periodicity">
                     <span tal:content="view/getPeriodicityTitle"/>
@@ -49,7 +41,7 @@
                 </td>
               </tr>
               <tr>
-                <th i18n:translate="event_where">Where</th>
+                <th i18n:translate="label_seminar_where">Where</th>
                 <td>
                   <tal:block condition="context/location">
                     <span tal:content="context/location"/>
@@ -57,7 +49,7 @@
                 </td>
               </tr>
               <tr>
-                <th> Organizers</th>
+                <th i18n:translate="label_seminar_organizers">Organizers</th>
                 <td>
                   <tal:block tal:repeat="organizer view/getOrganizers">
                     <a href="" tal:attributes="href organizer/url"><span tal:content="organizer/name"/></a><br/>
@@ -73,75 +65,7 @@
 
         <div tal:content="structure context/details|nothing" />
 
-
-
-
-
-
-
-        <!-- <div class="discreet">
-            <tal:block condition="context/start">
-                <span i18n:translate="label_from">From:</span>
-                <span tal:content="context/start"/>
-            </tal:block>
-            <tal:block condition="context/end">
-                <span i18n:translate="label_to">To:</span>
-                <span tal:content="context/end"/>
-            </tal:block>
-            <tal:block condition="context/location">
-              - <span tal:content="context/location"/>
-            </tal:block>
-        </div>
- -->
-        
-
-        <!-- <div style="float: right; padding-left: 10px;" tal:define="organizers view/getOrganizers">
-          <h2> Contact </h2>
-          <tal:block tal:repeat="organizer organizers">
-            <a href="" tal:attributes="href organizer/url"><span tal:content="organizer/name"/></a><br/>
-            <span class="discreet"> <span tal:content="organizer/email"/> <span tal:content="organizer/phone"/></span><br/>
-          </tal:block>
-        </div>
- -->
-
-         
-        <!-- <div tal:content="context/organizer"/> -->
-        
-
-          
         <div class="visualClear"><!-- --></div>
-
-<!--         <div class="discreet">
-            <tal:block condition="context/start">
-                <span i18n:translate="label_from">From:</span>
-                <span tal:content="python:context.start.strftime('%x %X')" />
-            </tal:block>
-            <tal:block condition="context/end">
-                <span i18n:translate="label_to">To:</span>
-                <span tal:content="python:context.end.strftime('%x %X')" />
-            </tal:block>
-        </div>
-
-        <div tal:replace="structure provider:plone.belowcontenttitle" />
-
-        <p class="documentDescription" tal:content="context/description" />
-
-        <div tal:replace="structure provider:plone.abovecontentbody" />
-
-        <div tal:content="structure context/details/output|nothing" />
-
-        <h2 i18n:translate="heading_sessions">Sessions</h2>
-        <dl>
-            <tal:block repeat="session view/sessions">
-                <dt>
-                    <a tal:attributes="href session/getURL"
-                       tal:content="session/Title" />
-                </dt>
-                <dd tal:content="session/Description" />
-            </tal:block>
-        </dl>
-
-        <div tal:replace="structure provider:plone.belowcontentbody" /> -->
 
     </tal:main-macro>
 </metal:main>
