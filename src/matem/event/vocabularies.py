@@ -6,7 +6,7 @@ from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 from matem.fsdextender.users import get_users_as_brains
-#from matem.event import _
+from matem.event import _
 
 
 def Weekdays(context):
@@ -40,7 +40,7 @@ def Weekdays(context):
         (translate(u'weekday_sun', domain=domain, default=u'Sunday'), 6),
     ]
 
-    items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
+    items = [SimpleTerm(i[1], i[1], _(i[0])) for i in items]
     return SimpleVocabulary(items)
 directlyProvides(Weekdays, IVocabularyFactory)
 
