@@ -96,7 +96,6 @@ msgstr "Organizadores"
 
 #. Default: "Organizer(s)"
 #: matem/event/seminar_templates/view.pt:52
-#, fuzzy
 msgid "label_seminar_organizers"
 msgstr "Organizadores"
 

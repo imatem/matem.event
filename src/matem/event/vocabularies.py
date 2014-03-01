@@ -29,7 +29,7 @@ def Weekdays(context):
     # from zope.i18n import translate
     translate = getToolByName(getSite(), 'translation_service').translate
 
-    domain = 'plonelocales'
+    domain = 'matem.event'
     items = [
         (translate(u'weekday_mon', domain=domain, default=u'Monday'), 0),
         (translate(u'weekday_tue', domain=domain, default=u'Tuesday'), 1),
@@ -66,7 +66,7 @@ def PeriodicitySeminar(context):
 
     translate = getToolByName(getSite(), 'translation_service').translate
 
-    domain = 'plonelocales'
+    domain = 'matem.event'
     items = [
         (translate(u'periodicity_weekly', domain=domain, default=u'Weekly'), 1),
         (translate(u'periodicity_fortnightly', domain=domain, default=u'Fortnightly'), 2),
