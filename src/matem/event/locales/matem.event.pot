@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-02-28 23:58+0000\n"
+"POT-Creation-Date: 2014-03-01 00:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,20 +18,60 @@ msgstr ""
 msgid "At least an organizer"
 msgstr ""
 
+#: matem/event/vocabularies.py:83
+msgid "Biweekly"
+msgstr ""
+
 #: matem/event/profiles/default/types/matem.event.seminar.xml
 msgid "Edit"
+msgstr ""
+
+#: matem/event/vocabularies.py:48
+msgid "Friday"
+msgstr ""
+
+#: matem/event/vocabularies.py:44
+msgid "Monday"
+msgstr ""
+
+#: matem/event/vocabularies.py:84
+msgid "Monthtly"
+msgstr ""
+
+#: matem/event/vocabularies.py:49
+msgid "Saturday"
 msgstr ""
 
 #: matem/event/profiles/default/types/matem.event.seminar.xml
 msgid "Seminar Folder"
 msgstr ""
 
+#: matem/event/vocabularies.py:50
+msgid "Sunday"
+msgstr ""
+
 #: matem/event/seminar.py:34
 msgid "The start time must be before the end time"
 msgstr ""
 
+#: matem/event/vocabularies.py:47
+msgid "Thursday"
+msgstr ""
+
+#: matem/event/vocabularies.py:45
+msgid "Tuesday"
+msgstr ""
+
 #: matem/event/profiles/default/types/matem.event.seminar.xml
 msgid "View"
+msgstr ""
+
+#: matem/event/vocabularies.py:46
+msgid "Wednesday"
+msgstr ""
+
+#: matem/event/vocabularies.py:82
+msgid "Weekly"
 msgstr ""
 
 #. Default: "Select the day, when this seminar happens."
