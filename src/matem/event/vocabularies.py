@@ -75,13 +75,16 @@ directlyProvides(PersonVocabulary, IVocabularyFactory)
 
 def PeriodicitySeminar(context):
 
-    translate = getToolByName(getSite(), 'translation_service').translate
+    # translate = getToolByName(getSite(), 'translation_service').translate
 
-    domain = 'matem.event'
+    # domain = 'matem.event'
     items = [
-        (translate(u'periodicity_weekly', domain=domain, default=u'Weekly'), 1),
-        (translate(u'periodicity_fortnightly', domain=domain, default=u'Fortnightly'), 2),
-        (translate(u'periodicity_monthtly', domain=domain, default=u'Monthtly'), 3),
+        (_(u'Weekly'), 1),
+        (_(u'Biweekly'), 2),
+        (_(u'Monthtly'), 3),
+        # (translate(u'periodicity_weekly', domain=domain, default=u'Weekly'), 1),
+        # (translate(u'periodicity_fortnightly', domain=domain, default=u'Fortnightly'), 2),
+        # (translate(u'periodicity_monthtly', domain=domain, default=u'Monthtly'), 3),
     ]
 
     items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
