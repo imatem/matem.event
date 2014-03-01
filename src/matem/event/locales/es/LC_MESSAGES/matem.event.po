@@ -107,12 +107,12 @@ msgstr "Teclea la hora de inicio del seminario. El formato de hora es hh:mm."
 #. Default: "Seminar Activities"
 #: matem/event/seminar_templates/view.pt:22
 msgid "label_seminar_activities"
-msgstr ""
+msgstr "Actividades del Seminario"
 
 #. Default: "Calendar"
 #: matem/event/seminar_templates/view.pt:23
 msgid "label_seminar_calendar"
-msgstr ""
+msgstr "Calendario"
 
 #. Default: "Day"
 #: matem/event/seminar.py:46
@@ -132,7 +132,7 @@ msgstr "Hora de término"
 #. Default: "From:"
 #: matem/event/seminar_templates/view.pt:30
 msgid "label_seminar_from"
-msgstr ""
+msgstr "De:"
 
 #. Default: "Location"
 #: matem/event/seminar.py:86
@@ -147,7 +147,7 @@ msgstr "Organizadores"
 #. Default: "Organizer(s)"
 #: matem/event/seminar_templates/view.pt:56
 msgid "label_seminar_organizers"
-msgstr ""
+msgstr "Or"
 
 #. Default: "Periodicity"
 #: matem/event/seminar.py:98
@@ -163,15 +163,15 @@ msgstr "Hora de inicio"
 #. Default: "To:"
 #: matem/event/seminar_templates/view.pt:34
 msgid "label_seminar_to"
-msgstr ""
+msgstr "a:"
 
 #. Default: "When"
 #: matem/event/seminar_templates/view.pt:26
 msgid "label_seminar_when"
-msgstr ""
+msgstr "Cuándo"
 
 #. Default: "Where"
 #: matem/event/seminar_templates/view.pt:48
 msgid "label_seminar_where"
-msgstr ""
+msgstr "Dónde"
 

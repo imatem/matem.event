@@ -53,7 +53,7 @@
                 </td>
               </tr>
               <tr>
-                <th i18n:translate="label_seminar_organizers">Organizer(s)</th>
+                <th i18n:translate="label_seminar_organizer">Organizer(s)</th>
                 <td>
                   <tal:block tal:repeat="organizer view/getOrganizers">
                     <a href="" tal:attributes="href organizer/url"><span tal:content="organizer/name"/></a><br/>
