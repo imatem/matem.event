@@ -18,6 +18,10 @@
         <div class="eventDetails vcard">
           <table class="vertical listing">
             <tbody>
+              <tr> 
+                <th i18n:translate="label_seminar_activities">Seminar Activities</th>
+                <td><a href="actividades"><img src="" tal:attributes="src string:${portal_url}/event_icon.png"/><span i18:translate="label_seminar_calendar">Calendar</a></td>
+              </tr>
               <tr>
                 <th i18n:translate="label_seminar_when">When</th>
                 <td>
