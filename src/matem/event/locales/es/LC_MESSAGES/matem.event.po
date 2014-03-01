@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-03-01 01:06+0000\n"
+"POT-Creation-Date: 2014-03-01 01:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -141,13 +141,9 @@ msgstr "Lugar"
 
 #. Default: "Organizer(s)"
 #: matem/event/seminar.py:112
+#: matem/event/seminar_templates/view.pt:56
 msgid "label_seminar_organizer"
 msgstr "Organizadores"
-
-#. Default: "Organizer(s)"
-#: matem/event/seminar_templates/view.pt:56
-msgid "label_seminar_organizers"
-msgstr "Or"
 
 #. Default: "Periodicity"
 #: matem/event/seminar.py:98
