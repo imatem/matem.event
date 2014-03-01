@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-03-01 00:23+0000\n"
+"POT-Creation-Date: 2014-03-01 01:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -104,6 +104,16 @@ msgstr ""
 msgid "help_seminar_start"
 msgstr ""
 
+#. Default: "Seminar Activities"
+#: matem/event/seminar_templates/view.pt:22
+msgid "label_seminar_activities"
+msgstr ""
+
+#. Default: "Calendar"
+#: matem/event/seminar_templates/view.pt:23
+msgid "label_seminar_calendar"
+msgstr ""
+
 #. Default: "Day"
 #: matem/event/seminar.py:46
 msgid "label_seminar_day"
@@ -120,7 +130,7 @@ msgid "label_seminar_end"
 msgstr ""
 
 #. Default: "From:"
-#: matem/event/seminar_templates/view.pt:26
+#: matem/event/seminar_templates/view.pt:30
 msgid "label_seminar_from"
 msgstr ""
 
@@ -135,13 +145,13 @@ msgid "label_seminar_organizer"
 msgstr ""
 
 #. Default: "Organizer(s)"
-#: matem/event/seminar_templates/view.pt:52
+#: matem/event/seminar_templates/view.pt:56
 msgid "label_seminar_organizers"
 msgstr ""
 
 #. Default: "Periodicity"
 #: matem/event/seminar.py:98
-#: matem/event/seminar_templates/view.pt:36
+#: matem/event/seminar_templates/view.pt:40
 msgid "label_seminar_periodicity"
 msgstr ""
 
@@ -151,17 +161,17 @@ msgid "label_seminar_start"
 msgstr ""
 
 #. Default: "To:"
-#: matem/event/seminar_templates/view.pt:30
+#: matem/event/seminar_templates/view.pt:34
 msgid "label_seminar_to"
 msgstr ""
 
 #. Default: "When"
-#: matem/event/seminar_templates/view.pt:22
+#: matem/event/seminar_templates/view.pt:26
 msgid "label_seminar_when"
 msgstr ""
 
 #. Default: "Where"
-#: matem/event/seminar_templates/view.pt:44
+#: matem/event/seminar_templates/view.pt:48
 msgid "label_seminar_where"
 msgstr ""
 
