@@ -20,7 +20,7 @@ msgstr "Al menos un investigador"
 
 #: matem/event/vocabularies.py:83
 msgid "Biweekly"
-msgstr ""
+msgstr "Quincenal"
 
 #: matem/event/profiles/default/types/matem.event.seminar.xml
 msgid "Edit"
@@ -28,19 +28,19 @@ msgstr "Editar"
 
 #: matem/event/vocabularies.py:48
 msgid "Friday"
-msgstr ""
+msgstr "Viernes"
 
 #: matem/event/vocabularies.py:44
 msgid "Monday"
-msgstr ""
+msgstr "Lunes"
 
 #: matem/event/vocabularies.py:84
 msgid "Monthtly"
-msgstr ""
+msgstr "Mensual"
 
 #: matem/event/vocabularies.py:49
 msgid "Saturday"
-msgstr ""
+msgstr "Sábado"
 
 #: matem/event/profiles/default/types/matem.event.seminar.xml
 msgid "Seminar Folder"
@@ -48,7 +48,7 @@ msgstr "Folder Seminario"
 
 #: matem/event/vocabularies.py:50
 msgid "Sunday"
-msgstr ""
+msgstr "Domingo"
 
 #: matem/event/seminar.py:34
 msgid "The start time must be before the end time"
@@ -56,11 +56,11 @@ msgstr "La hora de inicio debe ser menor que la de término"
 
 #: matem/event/vocabularies.py:47
 msgid "Thursday"
-msgstr ""
+msgstr "Jueves"
 
 #: matem/event/vocabularies.py:45
 msgid "Tuesday"
-msgstr ""
+msgstr "Martes"
 
 #: matem/event/profiles/default/types/matem.event.seminar.xml
 msgid "View"
@@ -68,11 +68,11 @@ msgstr "Ver"
 
 #: matem/event/vocabularies.py:46
 msgid "Wednesday"
-msgstr ""
+msgstr "Miércoles"
 
 #: matem/event/vocabularies.py:82
 msgid "Weekly"
-msgstr ""
+msgstr "Semanal"
 
 #. Default: "Select the day, when this seminar happens."
 #: matem/event/seminar.py:50
@@ -153,7 +153,7 @@ msgstr "Hora de inicio"
 #. Default: "To:"
 #: matem/event/seminar_templates/view.pt:30
 msgid "label_seminar_to"
-msgstr "a las:"
+msgstr "a:"
 
 #. Default: "When"
 #: matem/event/seminar_templates/view.pt:22
