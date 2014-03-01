@@ -27,20 +27,31 @@ def Weekdays(context):
     # Products.CMFPlone.skins.plone_scripts.translate.py
     # better use:
     # from zope.i18n import translate
-    translate = getToolByName(getSite(), 'translation_service').translate
+    # translate = getToolByName(getSite(), 'translation_service').translate
 
-    domain = 'matem.event'
+    # domain = 'matem.event'
+    # items = [
+    #     (translate(u'weekday_mon', domain=domain, default=u'Monday'), 0),
+    #     (translate(u'weekday_tue', domain=domain, default=u'Tuesday'), 1),
+    #     (translate(u'weekday_wed', domain=domain, default=u'Wednesday'), 2),
+    #     (translate(u'weekday_thu', domain=domain, default=u'Thursday'), 3),
+    #     (translate(u'weekday_fri', domain=domain, default=u'Friday'), 4),
+    #     (translate(u'weekday_sat', domain=domain, default=u'Saturday'), 5),
+    #     (translate(u'weekday_sun', domain=domain, default=u'Sunday'), 6),
+    # ]
+
     items = [
-        (translate(u'weekday_mon', domain=domain, default=u'Monday'), 0),
-        (translate(u'weekday_tue', domain=domain, default=u'Tuesday'), 1),
-        (translate(u'weekday_wed', domain=domain, default=u'Wednesday'), 2),
-        (translate(u'weekday_thu', domain=domain, default=u'Thursday'), 3),
-        (translate(u'weekday_fri', domain=domain, default=u'Friday'), 4),
-        (translate(u'weekday_sat', domain=domain, default=u'Saturday'), 5),
-        (translate(u'weekday_sun', domain=domain, default=u'Sunday'), 6),
+        (_(u'Monday'), 0),
+        (_(u'Tuesday'), 1),
+        (_(u'Wednesday'), 2),
+        (_(u'Thursday'), 3),
+        (_(u'Friday'), 4),
+        (_(u'Saturday'), 5),
+        (_(u'Sunday'), 6),
     ]
 
-    items = [SimpleTerm(i[1], i[1], _(i[0])) for i in items]
+
+    items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
     return SimpleVocabulary(items)
 directlyProvides(Weekdays, IVocabularyFactory)
 
