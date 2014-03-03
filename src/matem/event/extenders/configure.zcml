@@ -5,8 +5,25 @@
 
   <include package="archetypes.schemaextender" />
 
-  <adapter factory=".event.MatemEventExtender"
+<!--   <adapter factory=".event.MatemEventExtender"
     provides="archetypes.schemaextender.interfaces.IOrderableSchemaExtender" />
+ -->
+
+    <!-- Event changes -->
+
+  <adapter
+    name="matem.event.EventOrderableExtender"
+    factory=".event.MatemEventExtender"
+    provides="archetypes.schemaextender.interfaces.IOrderableSchemaExtender"
+  /> 
+
+  <adapter
+    name="matem.event.EventModifier"
+    factory=".event.MatemEventExtender"
+    provides="archetypes.schemaextender.interfaces.ISchemaModifier"
+  /> 
+ 
+    <!-- Event indexers -->
 
   <adapter name="getSpeaker" factory=".event.getSpeaker" />
   <adapter name="getEventInstitution" factory=".event.getEventInstitution" />

@@ -1,12 +1,17 @@
 # -*- coding: utf-8 -*-
 from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import IOrderableSchemaExtender
+from archetypes.schemaextender.interfaces import ISchemaModifier
+
+from five import grok
+from Products.Archetypes import atapi
+from Products.Archetypes.interfaces import IObjectInitializedEvent
+from zope.lifecycleevent import IObjectCreatedEvent
+from Products.ATContentTypes.content.event import ATEvent
+from Products.ATContentTypes.interfaces import IATEvent
+from plone.indexer.decorator import indexer
 from zope import component
 from zope import interface
-from Products.Archetypes import atapi
-from Products.ATContentTypes.content.event import ATEvent
-from plone.indexer.decorator import indexer
-
 
 
 class _StringExtensionField(ExtensionField, atapi.StringField):
@@ -59,8 +64,8 @@ BasicSchema = [
 class MatemEventExtender(object):
     """ Adapter that adds matem fields to Person
     """
-    component.adapts(ATEvent)
-    interface.implements(IOrderableSchemaExtender)
+    component.adapts(IATEvent)
+    interface.implements(IOrderableSchemaExtender, ISchemaModifier)
 
     _fields = BasicSchema
 
@@ -80,6 +85,35 @@ class MatemEventExtender(object):
 
         return original
 
+    def fiddle(self, schema):
+        schema.changeSchemataForField('subject', 'default')
+        schema.changeSchemataForField('attendees', 'categorization')
+        schema.changeSchemataForField('eventUrl', 'categorization')
+        schema.changeSchemataForField('contactName', 'categorization')
+        schema.changeSchemataForField('contactEmail', 'categorization')
+        schema.changeSchemataForField('contactPhone', 'categorization')
+
+        description = schema['description']
+        description.widget.visible = {'edit':'invisible','view':'invisible'}
+
+        # Hide the administrative tabs for non-Managers
+        for hideme in ['categorization', 'creators', 'settings']:
+            for fieldName in schema.getSchemataFields(hideme):
+                fieldName.widget.visible = {'edit': 'invisible'}
+        return schema
+
+@grok.subscribe(ATEvent, IObjectInitializedEvent)
+def object_added(context, event):
+    """
+    """
+    # Set description
+    location = "text"
+
+@grok.subscribe(ATEvent, IObjectCreatedEvent)
+def object_created(context, event):
+    """
+    """
+    location = "Foo"
 
 @indexer(ATEvent)
 def getSpeaker(self):
