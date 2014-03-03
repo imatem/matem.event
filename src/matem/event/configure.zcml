@@ -50,5 +50,9 @@
       name="matem.event.PeriodicitySeminar"
       />
 
+  <utility
+      component=".vocabularies.Months"
+      name="matem.event.Months"
+      />
       
 </configure>

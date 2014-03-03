@@ -57,7 +57,7 @@
                 <td>
                   <tal:block tal:repeat="organizer view/getOrganizers">
                     <a href="" tal:attributes="href organizer/url"><span tal:content="organizer/name"/></a><br/>
-                    <span class="discreet"> <span tal:content="organizer/email"/> <span tal:content="organizer/phone"/></span><br/>
+                    <!-- <span class="discreet"> <span tal:content="organizer/email"/> <span tal:content="organizer/phone"/></span><br/> -->
                   </tal:block>
                 </td>
 

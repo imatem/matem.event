@@ -13,6 +13,8 @@ from DateTime import DateTime
 from zope.component.hooks import getSite
 from zope.browsermenu.interfaces import IBrowserMenu
 from zope.component import getUtility
+from zope.schema.interfaces import IVocabularyFactory
+
 
 
 from datetime import datetime
@@ -24,7 +26,15 @@ class EventsView(BrowserView):
 
     def upcomingEvents(self, **kw):
         """Show all upcoming events"""
-        query = self.context.buildQuery()
+
+        query = {}
+        has_query = getattr(self.context, 'buildQuery', None)
+
+        if has_query:
+            query = self.context.buildQuery()
+        else:
+            query['path'] = {'query': '/'.join(self.context.getPhysicalPath()), 'depth': 1}
+            query['Type'] = ('Event',)
 
         start = DateTime()
         query['end'] = {'query': start, 'range': 'min'}
@@ -40,8 +50,18 @@ class EventsView(BrowserView):
 
     def pastEvents(self, **kw):
         """Show all past events"""
-        query = self.context.buildQuery()
 
+
+        query = {}
+        has_query = getattr(self.context, 'buildQuery', None)
+
+        if has_query:
+            query = self.context.buildQuery()
+        else:
+            query['path'] = {'query': '/'.join(self.context.getPhysicalPath()), 'depth': 1}
+            query['Type'] = ('Event',)
+
+    
         end = DateTime()
         query['start'] = {'query': end, 'range': 'max'}
 
@@ -78,7 +98,18 @@ class EventsView(BrowserView):
 
     def date_speller(self, dt):
 
-        month_name = {'1': 'Enero', '2':'Febrero', '3':'Marzo', '4':'Abril', '5':'Mayo', '6':'Junio', '7':'Julio', '8':'Agosto', '9':'Septiembre', '10':'Octubre', '11':'Noviembre', '12':'Diciembre'}
+
+        # from zope.i18n import translate
+        # translate = getToolByName(getSite(), 'translation_service').translate
+        #(translate(u'weekday_mon', domain=domain, default=u'Monday'), 0),
+
+        #month_apr
+        #import pdb; pdb.set_trace( )
+
+        #month_name = {'1': 'Enero', '2':'Febrero', '3':'Marzo', '4':'Abril', '5':'Mayo', '6':'Junio', '7':'Julio', '8':'Agosto', '9':'Septiembre', '10':'Octubre', '11':'Noviembre', '12':'Diciembre'}
+
+        vocabulary = getUtility(IVocabularyFactory, 'matem.event.Months')(self.context).by_value
+        #return vocabulary[value].title
 
         minute ="00"
         if dt.minute():
@@ -86,13 +117,22 @@ class EventsView(BrowserView):
                 minute = dt.minute()
 
         ret = { 'year':dt.year(),
-                'month':month_name[str(dt.month())][:3],
+                'month':vocabulary[dt.month()].title[:3],
                 'day':dt.day(),
                 'hour':dt.hour(),
                 'minute': minute,
                 'second':int(dt.second()),
                 'tz': dt.timezone(),
         }
+
+        # ret = { 'year':dt.year(),
+        #         'month':month_name[str(dt.month())][:3],
+        #         'day':dt.day(),
+        #         'hour':dt.hour(),
+        #         'minute': minute,
+        #         'second':int(dt.second()),
+        #         'tz': dt.timezone(),
+        # }
 
         return ret
 
@@ -102,6 +142,7 @@ class EventsView(BrowserView):
         return description
 
     def factory_item(self):
+
         menu = getUtility(IBrowserMenu, name='plone_contentmenu_factory')
         items = menu.getMenuItems(self.context, self.request)
         if items:

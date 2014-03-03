@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-03-01 01:12+0000\n"
+"POT-Creation-Date: 2014-03-03 22:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,21 +14,57 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
+#: matem/event/vocabularies.py:101
+msgid "April"
+msgstr ""
+
 #: matem/event/seminar.py:38
 msgid "At least an organizer"
 msgstr "Al menos un investigador"
+
+#: matem/event/vocabularies.py:105
+msgid "August"
+msgstr ""
 
 #: matem/event/vocabularies.py:83
 msgid "Biweekly"
 msgstr "Quincenal"
 
+#: matem/event/vocabularies.py:109
+msgid "December"
+msgstr ""
+
 #: matem/event/profiles/default/types/matem.event.seminar.xml
 msgid "Edit"
 msgstr "Editar"
 
+#: matem/event/vocabularies.py:99
+msgid "February"
+msgstr ""
+
 #: matem/event/vocabularies.py:48
 msgid "Friday"
 msgstr "Viernes"
+
+#: matem/event/vocabularies.py:98
+msgid "January"
+msgstr ""
+
+#: matem/event/vocabularies.py:104
+msgid "July"
+msgstr ""
+
+#: matem/event/vocabularies.py:103
+msgid "June"
+msgstr ""
+
+#: matem/event/vocabularies.py:100
+msgid "March"
+msgstr ""
+
+#: matem/event/vocabularies.py:102
+msgid "May"
+msgstr ""
 
 #: matem/event/vocabularies.py:44
 msgid "Monday"
@@ -38,6 +74,14 @@ msgstr "Lunes"
 msgid "Monthtly"
 msgstr "Mensual"
 
+#: matem/event/vocabularies.py:108
+msgid "November"
+msgstr ""
+
+#: matem/event/vocabularies.py:107
+msgid "October"
+msgstr ""
+
 #: matem/event/vocabularies.py:49
 msgid "Saturday"
 msgstr "Sábado"
@@ -45,6 +89,10 @@ msgstr "Sábado"
 #: matem/event/profiles/default/types/matem.event.seminar.xml
 msgid "Seminar Folder"
 msgstr "Folder Seminario"
+
+#: matem/event/vocabularies.py:106
+msgid "September"
+msgstr ""
 
 #: matem/event/vocabularies.py:50
 msgid "Sunday"
@@ -110,6 +158,7 @@ msgid "label_seminar_activities"
 msgstr "Actividades del Seminario"
 
 #. Default: "Calendar"
+#: matem/event/jbot/Solgema.fullcalendar.browser.folderview.pt:108
 #: matem/event/seminar_templates/view.pt:23
 msgid "label_seminar_calendar"
 msgstr "Calendario"
@@ -145,6 +194,11 @@ msgstr "Lugar"
 msgid "label_seminar_organizer"
 msgstr "Organizadores"
 
+#. Default: "Past events"
+#: matem/event/jbot/Solgema.fullcalendar.browser.folderview.pt:105
+msgid "label_seminar_past_events"
+msgstr ""
+
 #. Default: "Periodicity"
 #: matem/event/seminar.py:98
 #: matem/event/seminar_templates/view.pt:40
@@ -160,6 +214,11 @@ msgstr "Hora de inicio"
 #: matem/event/seminar_templates/view.pt:34
 msgid "label_seminar_to"
 msgstr "a:"
+
+#. Default: "Upcoming Events"
+#: matem/event/jbot/Solgema.fullcalendar.browser.folderview.pt:111
+msgid "label_seminar_upcoming_events"
+msgstr ""
 
 #. Default: "When"
 #: matem/event/seminar_templates/view.pt:26
