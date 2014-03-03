@@ -5,7 +5,6 @@ from archetypes.schemaextender.interfaces import ISchemaModifier
 
 from five import grok
 from Products.Archetypes import atapi
-from Products.Archetypes.interfaces import IObjectInitializedEvent
 from zope.lifecycleevent import IObjectCreatedEvent
 from Products.ATContentTypes.content.event import ATEvent
 from Products.ATContentTypes.interfaces import IATEvent
@@ -86,34 +85,45 @@ class MatemEventExtender(object):
         return original
 
     def fiddle(self, schema):
-        schema.changeSchemataForField('subject', 'default')
+        # schema.changeSchemataForField('subject', 'default')
+        # schema.changeSchemataForField('description', 'categorization')
         schema.changeSchemataForField('attendees', 'categorization')
         schema.changeSchemataForField('eventUrl', 'categorization')
         schema.changeSchemataForField('contactName', 'categorization')
         schema.changeSchemataForField('contactEmail', 'categorization')
         schema.changeSchemataForField('contactPhone', 'categorization')
-
         description = schema['description']
-        description.widget.visible = {'edit':'invisible','view':'invisible'}
+        description.widget.visible = {'edit': 'invisible'}
 
         # Hide the administrative tabs for non-Managers
-        for hideme in ['categorization', 'creators', 'settings']:
+        for hideme in ['categorization', 'dates', 'creators', 'settings']:
             for fieldName in schema.getSchemataFields(hideme):
                 fieldName.widget.visible = {'edit': 'invisible'}
         return schema
-
-@grok.subscribe(ATEvent, IObjectInitializedEvent)
-def object_added(context, event):
-    """
-    """
-    # Set description
-    location = "text"
 
 @grok.subscribe(ATEvent, IObjectCreatedEvent)
 def object_created(context, event):
     """
     """
-    location = "Foo"
+    seminar = context.getFolderWhenPortalFactory().aq_parent
+    context.setLocation(seminar.location)
+    context.setSubject(seminar.subject)
+    # from DateTime import DateTime
+    # context.setStartDate(DateTime())
+    # try:
+    #     import pdb; pdb.set_trace( )
+    #     context.REQUEST.form['startDate_hour'] = '14'
+    #     startdate = context.REQUEST['startDate']
+    #     enddate = context.REQUEST['endDate']
+    #     hour, minute = seminar.start.split(':')
+    #     startdate._hour = int(hour)
+    #     startdate._minute = int(minute)
+    #     e_hour, e_minute = seminar.end.split(':')
+    #     enddate._hour = int(e_hour)
+    #     enddate._minute = int(e_minute)
+    # except Exception, e:
+    #     context.REQUEST.form['startDate_hour'] = '14'
+    #     pass
 
 @indexer(ATEvent)
 def getSpeaker(self):
