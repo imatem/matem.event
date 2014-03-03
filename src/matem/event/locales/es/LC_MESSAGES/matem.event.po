@@ -16,7 +16,7 @@ msgstr ""
 
 #: matem/event/vocabularies.py:101
 msgid "April"
-msgstr ""
+msgstr "Abril"
 
 #: matem/event/seminar.py:38
 msgid "At least an organizer"
@@ -24,7 +24,7 @@ msgstr "Al menos un investigador"
 
 #: matem/event/vocabularies.py:105
 msgid "August"
-msgstr ""
+msgstr "Agosto"
 
 #: matem/event/vocabularies.py:83
 msgid "Biweekly"
@@ -32,7 +32,7 @@ msgstr "Quincenal"
 
 #: matem/event/vocabularies.py:109
 msgid "December"
-msgstr ""
+msgstr "Diciembre"
 
 #: matem/event/profiles/default/types/matem.event.seminar.xml
 msgid "Edit"
@@ -40,7 +40,7 @@ msgstr "Editar"
 
 #: matem/event/vocabularies.py:99
 msgid "February"
-msgstr ""
+msgstr "Febrero"
 
 #: matem/event/vocabularies.py:48
 msgid "Friday"
@@ -48,23 +48,23 @@ msgstr "Viernes"
 
 #: matem/event/vocabularies.py:98
 msgid "January"
-msgstr ""
+msgstr "Enero"
 
 #: matem/event/vocabularies.py:104
 msgid "July"
-msgstr ""
+msgstr "Julio"
 
 #: matem/event/vocabularies.py:103
 msgid "June"
-msgstr ""
+msgstr "Junio"
 
 #: matem/event/vocabularies.py:100
 msgid "March"
-msgstr ""
+msgstr "Marzo"
 
 #: matem/event/vocabularies.py:102
 msgid "May"
-msgstr ""
+msgstr "Mayo"
 
 #: matem/event/vocabularies.py:44
 msgid "Monday"
@@ -76,11 +76,11 @@ msgstr "Mensual"
 
 #: matem/event/vocabularies.py:108
 msgid "November"
-msgstr ""
+msgstr "Noviembre"
 
 #: matem/event/vocabularies.py:107
 msgid "October"
-msgstr ""
+msgstr "Octubre"
 
 #: matem/event/vocabularies.py:49
 msgid "Saturday"
@@ -92,7 +92,7 @@ msgstr "Folder Seminario"
 
 #: matem/event/vocabularies.py:106
 msgid "September"
-msgstr ""
+msgstr "Septiembre"
 
 #: matem/event/vocabularies.py:50
 msgid "Sunday"
@@ -197,7 +197,7 @@ msgstr "Organizadores"
 #. Default: "Past events"
 #: matem/event/jbot/Solgema.fullcalendar.browser.folderview.pt:105
 msgid "label_seminar_past_events"
-msgstr ""
+msgstr "Actividades Pasadas"
 
 #. Default: "Periodicity"
 #: matem/event/seminar.py:98
@@ -218,7 +218,7 @@ msgstr "a:"
 #. Default: "Upcoming Events"
 #: matem/event/jbot/Solgema.fullcalendar.browser.folderview.pt:111
 msgid "label_seminar_upcoming_events"
-msgstr ""
+msgstr "Próximas Actividades"
 
 #. Default: "When"
 #: matem/event/seminar_templates/view.pt:26

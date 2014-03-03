@@ -182,7 +182,7 @@
                                     </ul>
                                     <div class="cal_date">
                                         <span class="cal_day" tal:content="string:${startf/day}">15.</span>
-                                        <span class="cal_month" tal:content="string:${startf/month}">Oct.</span><br/>
+                                        <span class="cal_month" tal:content="string:${startf/month}.">Oct.</span><br/>
                                         <span class="cal_month" tal:content="string:${startf/year}">2014.</span>
                                     </div>
                                     <div class="cal_info">
@@ -222,7 +222,7 @@
                                     </ul>
                                     <div class="cal_date">
                                         <span class="cal_day" tal:content="string:${startf/day}">15.</span>
-                                        <span class="cal_month" i18n:translate="" tal:content="string:${startf/month}.">Oct.</span> <br/>
+                                        <span class="cal_month" tal:content="string:${startf/month}.">Oct.</span> <br/>
                                         <span class="cal_month" tal:content="string:${startf/year}">2014.</span>
                                     </div>
                                     <div class="cal_info">
