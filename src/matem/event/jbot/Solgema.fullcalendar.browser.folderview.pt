@@ -101,23 +101,25 @@
 
             <div tal:define="checkPermission nocall: context/portal_membership/checkPermission;">
                 <ul class="formTabs">
-                    <li class="formTab firstFormTab" id="li_pastevents" onclick="visible('pastevents')" ><a id="a_pastevents">Eventos Anteriores</a></li>
-                    <li class="formTab" id="li_mcalendar" onclick="visible('mcalendar')" ><a id="a_mcalendar" class="selected">Calendario</a></li>
-                    <li class="formTab lastFormTab" id="li_upcomingevents" onclick="visible('upcomingevents')" ><a id="a_upcomingevents">Eventos Siguientes</a></li>
+                    <li class="formTab firstFormTab" id="li_pastevents" onclick="visible('pastevents')" >
+                        <a id="a_pastevents" i18n:domain="matem.event" i18n:translate="label_seminar_past_events">Past events</a>
+                    </li>
+                    <li class="formTab" id="li_mcalendar" onclick="visible('mcalendar')" >
+                        <a id="a_mcalendar" class="selected" i18n:domain="matem.event" i18n:translate="label_seminar_calendar">Calendar</a>
+                    </li>
+                    <li class="formTab lastFormTab" id="li_upcomingevents" onclick="visible('upcomingevents')" >
+                        <a id="a_upcomingevents" i18n:domain="matem.event" i18n:translate="label_seminar_upcoming_events">Upcoming Events</a>
+                    </li>
               
-                    <!-- <li class="formTab"  style="float: right; position: relative;" tal:define="my_self nocall:here/@@events; menu_item my_self/factory_item;" tal:condition="python:checkPermission('Add portal content', context)">
+                    <li class="formTab"  style="float: right; position: relative;" tal:define="my_self nocall:here/@@events; menu_item my_self/factory_item;" tal:condition="python:checkPermission('Add portal content', context)">
                         <a href="#" tal:condition="menu_item"
                            tal:attributes="href menu_item/action | nothing;
                                            title menu_item/description;
                                            id menu_item/extra/id | nothing;"
                            i18n:attributes="title">
-
-                            Agregar <span tal:content="menu_item/title"
-                                  i18n:translate="">
-                                Title
-                            </span>
+                           <span i18n:translate="" i18n:domain="plone">Add</span> <span tal:content="menu_item/title" i18n:translate="">Title</span>  
                         </a>
-                    </li> -->
+                    </li>
                 </ul>
             </div>
 
@@ -131,7 +133,7 @@
                 
                 <div id="mcalendar">
                     
-                    <div style="float: right; position: relative;" tal:replace="structure provider:plone.abovecontenttitle" />
+                    <div tal:replace="structure provider:plone.abovecontenttitle" />
 
                     <!-- <h1 class="documentFirstHeading" tal:content="context/Title">Title</h1> -->
                     <center><h1 class="documentFirstHeading" tal:content="python:here.aq_parent.Title()">Title</h1></center>
@@ -142,13 +144,12 @@
                     <p class="documentDescription" tal:content="context/Description">
                         Description
                     </p>
-                    <p class="help" tal:condition="view/tzaware" i18n:translate="help_displaying_localtime">Events displayed on this calendar are adjusted by your web browser to your computer's local time.</p>
                     <!-- Esto es lo que muestra el calendario -->
                     <div id="calendar" tal:attributes="class string:query-${view/getCriteriaClass}">
                         <div id="event_edit_container"></div>
                     </div>
                     <noscript tal:condition="view/displayNoscriptList | python:True">
-                        <metal:list metal:use-macro="here/atct_topic_view/macros/listing"/>
+                        <metal:list metal:use-macro="here/folder_listing/macros/listing"/>
                     </noscript>
                     <div tal:replace="structure provider:Solgema.fullcalendar.queryManager" />
                     <div tal:replace="structure provider:plone.belowcontentbody" />
@@ -194,11 +195,6 @@
                                             <div class="fc">
                                                 <span tal:define="location data/location|nothing" tal:content="location"/>
                                                 <span tal:content="string:${startf/hour} : ${startf/minute} hrs."/><br/>
-                                                <span style="color:#75ad0a" tal:define="item_subjects data/Subject|None;
-                                                                    item_seminary python: item_subjects and item_subjects[0] or None;" 
-                                                    tal:content="item_seminary"/>
-
-
                                             </div>
                                         </div>
                                     </div>
@@ -226,7 +222,7 @@
                                     </ul>
                                     <div class="cal_date">
                                         <span class="cal_day" tal:content="string:${startf/day}">15.</span>
-                                        <span class="cal_month" tal:content="string:${startf/month}.">Oct.</span> <br/>
+                                        <span class="cal_month" i18n:translate="" tal:content="string:${startf/month}.">Oct.</span> <br/>
                                         <span class="cal_month" tal:content="string:${startf/year}">2014.</span>
                                     </div>
                                     <div class="cal_info">
@@ -239,9 +235,6 @@
                                             <div class="fc">
                                                 <span tal:define="location data/location|nothing" tal:content="location"/>
                                                 <span tal:content="string:${startf/hour} : ${startf/minute} hrs."/><br/>
-                                                <span style="color:#75ad0a" tal:define="item_subjects data/Subject|None;
-                                                                    item_seminary python: item_subjects and item_subjects[0] or None;" 
-                                                    tal:content="item_seminary"/>
                                             </div>
                                         </div>
                                     </div>
