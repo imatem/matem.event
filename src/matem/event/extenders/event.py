@@ -2,7 +2,7 @@
 from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import IOrderableSchemaExtender
 from archetypes.schemaextender.interfaces import ISchemaModifier
-
+from DateTime import DateTime
 from five import grok
 from Products.Archetypes import atapi
 from zope.lifecycleevent import IObjectCreatedEvent
@@ -85,8 +85,6 @@ class MatemEventExtender(object):
         return original
 
     def fiddle(self, schema):
-        # schema.changeSchemataForField('subject', 'default')
-        # schema.changeSchemataForField('description', 'categorization')
         schema.changeSchemataForField('attendees', 'categorization')
         schema.changeSchemataForField('eventUrl', 'categorization')
         schema.changeSchemataForField('contactName', 'categorization')
@@ -108,22 +106,16 @@ def object_created(context, event):
     seminar = context.getFolderWhenPortalFactory().aq_parent
     context.setLocation(seminar.location)
     context.setSubject(seminar.subject)
-    # from DateTime import DateTime
-    # context.setStartDate(DateTime())
-    # try:
-    #     import pdb; pdb.set_trace( )
-    #     context.REQUEST.form['startDate_hour'] = '14'
-    #     startdate = context.REQUEST['startDate']
-    #     enddate = context.REQUEST['endDate']
-    #     hour, minute = seminar.start.split(':')
-    #     startdate._hour = int(hour)
-    #     startdate._minute = int(minute)
-    #     e_hour, e_minute = seminar.end.split(':')
-    #     enddate._hour = int(e_hour)
-    #     enddate._minute = int(e_minute)
-    # except Exception, e:
-    #     context.REQUEST.form['startDate_hour'] = '14'
-    #     pass
+
+    if 'startDate' in context.REQUEST:
+        date = context.REQUEST['startDate']
+        sdate = '%s %s:00 %s' % (date.Date(), seminar.start, date.timezone())
+        context.REQUEST['startDate'] = DateTime(sdate)
+
+    if 'endDate' in context.REQUEST:
+        date = context.REQUEST['endDate']
+        edate = '%s %s:00 %s' % (date.Date(), seminar.end, date.timezone())
+        context.REQUEST['endDate'] = DateTime(edate)
 
 @indexer(ATEvent)
 def getSpeaker(self):
