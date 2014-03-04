@@ -107,13 +107,14 @@ def object_created(context, event):
     context.setLocation(seminar.location)
     context.setSubject(seminar.subject)
 
+    wholeday = context.REQUEST.get('wholeDay', False)
     dt = context.REQUEST.get('startDate', None)
-    if isinstance(dt, DateTime):
+    if isinstance(dt, DateTime) and wholeday:
         date = '%s %s:00 %s' % (dt.Date(), seminar.start, dt.timezone())
         context.REQUEST['startDate'] = DateTime(date)
 
     dt = context.REQUEST.get('endDate', None)
-    if isinstance(dt, DateTime):
+    if isinstance(dt, DateTime) and wholeday:
         date = '%s %s:00 %s' % (dt.Date(), seminar.end, dt.timezone())
         context.REQUEST['endDate'] = DateTime(date)
 
