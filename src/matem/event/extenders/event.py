@@ -107,15 +107,17 @@ def object_created(context, event):
     context.setLocation(seminar.location)
     context.setSubject(seminar.subject)
 
-    if 'startDate' in context.REQUEST:
-        date = context.REQUEST['startDate']
-        sdate = '%s %s:00 %s' % (date.Date(), seminar.start, date.timezone())
-        context.REQUEST['startDate'] = DateTime(sdate)
+    dt = context.REQUEST.get('startDate', None)
+    if isinstance(dt, DateTime):
+        date = '%s %s:00 %s' % (dt.Date(), seminar.start, dt.timezone())
+        context.REQUEST['startDate'] = DateTime(date)
 
-    if 'endDate' in context.REQUEST:
-        date = context.REQUEST['endDate']
-        edate = '%s %s:00 %s' % (date.Date(), seminar.end, date.timezone())
-        context.REQUEST['endDate'] = DateTime(edate)
+    dt = context.REQUEST.get('endDate', None)
+    if isinstance(dt, DateTime):
+        date = '%s %s:00 %s' % (dt.Date(), seminar.end, dt.timezone())
+        context.REQUEST['endDate'] = DateTime(date)
+
+
 
 @indexer(ATEvent)
 def getSpeaker(self):
