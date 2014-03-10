@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import IOrderableSchemaExtender
 from archetypes.schemaextender.interfaces import ISchemaModifier
@@ -39,7 +40,8 @@ BasicSchema = [
     ),
 
 
-    _StringExtensionField('researchTopic',
+    _StringExtensionField(
+        name='researchTopic',
         widget=atapi.InAndOutWidget(
             label=u'area(s) de trabajo',
             label_msgid='label_researchtopic',
@@ -47,7 +49,7 @@ BasicSchema = [
             description_msgid="help_researchtopic",
             i18n_domain='UNAM.imateCVct',
             checkbox_bound=1,
-            visible = {'view': 'invisible'},
+            visible={'view': 'invisible'},
             modes=("edit"),
         ),
         allowed_types=('FSDSpecialty', ),
@@ -57,7 +59,6 @@ BasicSchema = [
         ),
 
 ]
-
 
 
 class MatemEventExtender(object):
@@ -80,7 +81,7 @@ class MatemEventExtender(object):
         default.remove('speaker')
         default.insert(idx, 'speaker')
         default.remove('institution')
-        default.insert(idx +1, 'institution')
+        default.insert(idx + 1, 'institution')
 
         return original
 
@@ -98,6 +99,7 @@ class MatemEventExtender(object):
             for fieldName in schema.getSchemataFields(hideme):
                 fieldName.widget.visible = {'edit': 'invisible'}
         return schema
+
 
 @grok.subscribe(ATEvent, IObjectCreatedEvent)
 def object_created(context, event):
@@ -128,14 +130,12 @@ def object_created(context, event):
         context.REQUEST['endDate'] = DateTime(date)
 
 
-
 @indexer(ATEvent)
 def getSpeaker(self):
     return getattr(self, 'speaker', None)
     #return self.getWrappedField(self, 'speaker')
 
+
 @indexer(ATEvent)
 def getEventInstitution(self):
     return getattr(self, 'institution', None)
-
-

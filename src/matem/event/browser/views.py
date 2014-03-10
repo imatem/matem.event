@@ -2,9 +2,10 @@
 
 from Products.Collage.browser.views import BaseTopicView
 
+
 class IMStandardTopicView(BaseTopicView):
     pass
-    #title = _(u'IM Standard')
+
 
 class IMEventView(BaseTopicView):
 

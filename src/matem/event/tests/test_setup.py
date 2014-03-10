@@ -12,8 +12,9 @@ class testInstall(base.TestCase):
                         'matem.event is not installed')
 
     def testSchemaExtension(self):
-        self.failUnless(self.dummyEvent.Schema().get('researchTopic') is not None,
-                        'fail to append researchTopic field to Events.')
+        self.failUnless(
+            self.dummyEvent.Schema().get('researchTopic') is not None,
+            'fail to append researchTopic field to Events.')
 
 
 def test_suite():

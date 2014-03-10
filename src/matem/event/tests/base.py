@@ -21,6 +21,7 @@ from Products.PloneTestCase.layer import onsetup
 # not in the Products.*) namespace. For that, see below.
 # All of Plone's products are already set up by PloneTestCase.
 
+
 @onsetup
 def setup_product():
     """Set up the package and its dependencies.
@@ -70,8 +71,8 @@ class TestCase(ptc.PloneTestCase):
     def afterSetUp(self):
         self.qi = self.portal.portal_quickinstaller
         self.loginAsPortalOwner()
-        self.portal.invokeFactory(type_name="Event",
-                                id='coloquio', title='Coloquio 2010')
+        self.portal.invokeFactory(
+            type_name="Event", id='coloquio', title='Coloquio 2010')
         self.dummyEvent = self.portal['coloquio']
 
 
