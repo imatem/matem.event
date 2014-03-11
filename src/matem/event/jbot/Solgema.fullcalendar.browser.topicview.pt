@@ -110,6 +110,16 @@
                     <li class="formTab lastFormTab" id="li_upcomingevents" onclick="visible('upcomingevents')" >
                         <a id="a_upcomingevents" i18n:domain="matem.event" i18n:translate="label_seminar_upcoming_events">Upcoming Events</a>
                     </li>
+
+                    <li class="formTab"  style="float: right; position: relative;" tal:define="my_self nocall:here/@@events; menu_item my_self/factory_item;" tal:condition="python:checkPermission('Add portal content', context)">
+                        <a href="#" tal:condition="menu_item"
+                           tal:attributes="href menu_item/action | nothing;
+                                           title menu_item/description;
+                                           id menu_item/extra/id | nothing;"
+                           i18n:attributes="title">
+                           <span i18n:translate="" i18n:domain="plone">Add</span> <span tal:content="menu_item/title" i18n:translate="">Title</span>  
+                        </a>
+                    </li>
                 </ul>
             </div>
 
