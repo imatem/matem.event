@@ -9,7 +9,11 @@
   <indexed_attr value="getEventInstitution"/>
  </index>
 
+<index name="isCanceled" meta_type="BooleanIndex">
+  <indexed_attr value="isCanceled"/>
+ </index>
+
 <column value="getSpeaker"/>
 <column value="getEventInstitution"/>
-
+<column value="isCanceled"/>
 </object>

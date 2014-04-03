@@ -58,6 +58,16 @@ BasicSchema = [
         relationship='researchTopicOf',
         ),
 
+    _StringExtensionField(
+        name='canceled',
+        widget=atapi.BooleanWidget(
+            label=u'Evento Cancelado',
+            label_msgid='label_status_event',
+            description=u'Seleccione si el evento fue cancelado',
+            description_msgid="help_status_event",
+            i18n_domain='UNAM.imateCVct',
+        ),
+    ),
 ]
 
 
@@ -139,3 +149,8 @@ def getSpeaker(self):
 @indexer(ATEvent)
 def getEventInstitution(self):
     return getattr(self, 'institution', None)
+
+
+@indexer(ATEvent)
+def isCanceled(self):
+    return getattr(self, 'canceled', None)
