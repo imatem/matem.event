@@ -14,3 +14,6 @@ class IMEventView(BaseTopicView):
 
     def getEventInstitution(self):
         return getattr(self.context, 'institution', None)
+
+    def isCanceled(self):
+        return getattr(self.context, 'canceled', None)

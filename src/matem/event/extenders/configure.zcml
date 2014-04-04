@@ -27,6 +27,7 @@
 
   <adapter name="getSpeaker" factory=".event.getSpeaker" />
   <adapter name="getEventInstitution" factory=".event.getEventInstitution" />
+  <adapter name="isCanceled" factory=".event.isCanceled" />
 
 
 </configure>
