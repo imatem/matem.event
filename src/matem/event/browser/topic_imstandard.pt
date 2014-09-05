@@ -37,8 +37,6 @@
                                 date_s python:item_date and item_date.split(' ') or '';
                                 fancy_date python:date_s and date_s[1].replace(',', '') +' de '+ month_name[date_s[0]] + ', ' +  date_s[3] + ' ' + date_s[4] + '.' or '';
                                 ">
-                                
-
               <metal:block>
                 <dt metal:define-macro="listitem">
                   <span tal:condition="item_isCanceled">
@@ -48,11 +46,9 @@
                     <img tal:replace="structure item_icon/html_tag" />
                     <a href="#" tal:content="item_title_or_id" tal:attributes="href item_url">Title</a>
                     <br/>
-                    
-                  </span>  
+                  </span>
                 </dt>
                 <dd>
-                  
                   <span tal:condition="item_institution">
                     <b><span tal:condition="item_expositor" tal:content="item_expositor"/><span tal:condition="item_institution" tal:content="python:' (' + item_institution + ').'"/></b>
                   </span>
@@ -60,29 +56,18 @@
                   <span tal:condition="python: not item_institution">
                     <b><span tal:condition="item_expositor" tal:content="python:item_expositor+'.'"/></b>
                   </span>
-
-
                   <span tal:content="item_description"/><br/>
                   <span tal:content="fancy_date"/>
                   <span tal:content="python:item_location"/>
                   <br/>
                   <span tal:content="item_seminary"/> <br/>
-
-                        
                 </dd>
             </metal:block>
-
 
           </tal:block>
         </div>
         </tal:entry>
-
-
       </dl>
-
-
-
-
 
     </tal:listing>
 
