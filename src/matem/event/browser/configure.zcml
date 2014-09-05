@@ -5,6 +5,15 @@
   <include package="Products.Collage" />
 
     <browser:page
+        name="rssview"
+        for="*"
+        permission="zope.Public"
+        template="rss_view.pt"
+        class=".rss_view.RSSView"
+    />
+
+
+    <browser:page
         name="imstandard"
         for="Products.ATContentTypes.content.topic.ATTopic"
         permission="zope.Public"

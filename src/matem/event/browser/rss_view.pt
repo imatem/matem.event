@@ -1,0 +1,80 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  metal:use-macro="context/main_template/macros/master"
+  i18n:domain="UNAM.imateCVct">
+  <head>
+    <metal:css fill-slot="style_slot" tal:define="resources_url string:${context/portal_url}/++resource++wcfc">
+      <style type="text/css">
+        #content span.link-external a{
+            background: none;
+            padding: 0;
+        }
+      </style>
+    </metal:css>
+    <metal:block fill-slot="top_slot"
+        tal:define="dummy python:request.set('disable_border',1);
+            disable_column_one python:request.set('disable_plone.leftcolumn',1);
+            disable_column_two python:request.set('disable_plone.rightcolumn',1);"
+    />
+  </head>
+  <body>
+    <div id="content-core" metal:fill-slot="main">
+      <dl>
+        <tal:entry tal:condition="view/feedAvailable"
+          tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime"
+          tal:repeat="item view/items">
+          <div class="tileItem">
+            <metal:block>
+              <dt metal:define-macro="listitem">
+                <span class="summary">
+                  <a href="#" tal:content="item/title" tal:attributes="href item/url">Title</a>
+                  <br/>
+                </span>
+              </dt>
+              <dd>
+                <span tal:content="item/summary"/>
+              </dd>
+            </metal:block>
+          </div><!-- class item -->
+        </tal:entry>
+      </dl>
+    </div><!-- End main -->
+  </body>
+</html>
+
+
+<!--End dl in CU activities -->
+<!-- <span>
+          <br/>
+          <h3 style="background-color: #75ad0a;"><font color="#FFFFFF">&nbsp; C.U.</font>  &nbsp;</h3>
+          <br/>
+        </span> -->
+
+<!-- For Cuernavaca activities -->
+<!--         <span>
+          <br/>
+          <h3 style="background-color: #75ad0a;"><font color="#FFFFFF">&nbsp; Cuernavaca</font>  &nbsp;</h3>
+          <br/>
+        </span>
+
+        <tal:entry tal:define="rssview nocall:context/@@rssview;">
+          <tal:entry tal:condition="rssview/feedAvailable"
+            tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime"
+            tal:repeat="item rssview/items">
+            <div class="tileItem">
+              <metal:block>
+                <dt>
+                  <span class="summary">
+                    <a style="background: none; padding: 0;" href="#" tal:content="item/title" tal:attributes="href item/url">Title</a>
+                    <br/>
+                  </span>
+                </dt>
+                <dd>
+                  <span tal:content="item/summary"/>
+                </dd>
+              </metal:block>
+            </div>
+          </tal:entry>
+        </tal:entry> -->
