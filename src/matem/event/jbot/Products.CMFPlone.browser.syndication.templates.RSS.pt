@@ -9,6 +9,7 @@
 
 <tal:block
     tal:define="feed view/feed;
+                toLocalizedTime nocall:context/@@plone/toLocalizedTime;
                 items python: [f for f in feed.items]">
 
 <channel rdf:about="" tal:attributes="rdf:about request/URL">
@@ -28,27 +29,36 @@
 
 </channel>
 
+
 <tal:block repeat="item python: items">
   <item rdf:about="" tal:attributes="rdf:about item/link" tal:define="item_type item/context/portal_type">
-    <title tal:content="item/title" />
-    <link tal:content="item/link" />
-    <description tal:content="item/description" />
-    <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    <tal:block tal:condition="python: item_type == 'Event'">
+      <title tal:content="item/title" />
+      <link tal:content="item/link" />
+      <dc:date tal:content="python: item.context.start().__str__() or ''">Start date</dc:date>
+      <dc:speaker tal:content="item/context/speaker | nothing">Speaker</dc:speaker>
+      <dc:institution tal:content="item/context/institution | noting">Institution</dc:institution>
+      <dc:seminarytitle tal:content="python:item.context.subject[0] or ''">Seminary title</dc:seminarytitle>
+      <dc:location tal:content="item/context/location">Location</dc:location>
+    </tal:block>
+
+    <tal:block tal:condition="python: item_type != 'Event'">
+      <title tal:content="item/title" />
+      <link tal:content="item/link" />
+      <description tal:content="item/description" />
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"
         tal:condition="feed/settings/render_body"
         tal:content="structure python:'&lt;![CDATA[' + item.body + ']]&gt;'">Content</content:encoded>
-    <dc:publisher tal:content="item/publisher" />
-    <dc:creator tal:condition="feed/show_about" tal:content="item/author_name">Creator</dc:creator>
-    <dc:rights tal:content="item/rights">Rights</dc:rights>
-    <tal:block tal:repeat="item item/categories">
-      <dc:subject tal:content="item">Item</dc:subject>
+      <dc:publisher tal:content="item/publisher" />
+      <dc:creator tal:condition="feed/show_about" tal:content="item/author_name">Creator</dc:creator>
+      <dc:rights tal:content="item/rights">Rights</dc:rights>
+      <tal:block tal:repeat="item item/categories">
+        <dc:subject tal:content="item">Item</dc:subject>
+      </tal:block>
+      <dc:date tal:content="item/published/HTML4|item/modified/HTML4">Published or last modified date if no published date</dc:date>
+      <dc:type tal:content="item/context/portal_type">Type</dc:type>
     </tal:block>
-    <dc:date tal:condition="python: item_type == 'Event'"
-        tal:content="python: item.context.start().HTML4() or ''">Start date</dc:date>
-    <dc:date tal:condition="python: item_type != 'Event'"
-        tal:content="item/published/HTML4|item/modified/HTML4">Published or last modified date if no published date</dc:date>
-    <dc:type tal:content="item/context/portal_type">Type</dc:type>
   </item>
 </tal:block>
-
 </tal:block>
 </rdf:RDF>
