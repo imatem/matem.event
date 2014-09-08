@@ -44,8 +44,9 @@ class RSSView(BrowserView):
         date = DateTime()
         for item in self.feed.items:
             if item.get('updated', ''):
-                # import pdb; pdb.set_trace( )
                 if item['updated'] >= date and item['updated']<= date + 15:
+                    ritems.append(item)
+                elif item['updated']._hour >= date._hour -1 and item['updated']<= date + 15:
                     ritems.append(item)
 
 
