@@ -34,7 +34,19 @@
                 </span>
               </dt>
               <dd>
-                <span tal:content="item/summary"/>
+                <span tal:condition="item/institution">
+                  <b><span tal:condition="item/speaker" tal:content="item/speaker"/><span tal:condition="item/institution" tal:content="python:' (' + item['institution'] + ').'"/></b>
+                </span>
+                <span tal:condition="python: not item['institution']">
+                  <b><span tal:condition="item/speaker" tal:content="item/speaker"/></b>
+                </span>
+                <br/>
+                <span tal:content="item/updated"/>
+                <span tal:content="item/location"/>
+                <br/>
+                <span tal:content="item/seminarytitle"/> <br/>
+              
+                <!-- <span tal:content="item/summary"/> -->
               </dd>
             </metal:block>
           </div><!-- class item -->

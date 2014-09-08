@@ -25,8 +25,6 @@
             <tal:block tal:define="item_url item/getURL|item/absolute_url;
                                 item_title_or_id item/pretty_title_or_id;
                                 item_description item/Description;
-                                ploneview context/@@plone;
-                                item_icon python:ploneview.getIcon(item);
                                 item_date item/start/pCommon|nothing;
                                 item_location item/location|nothing;
                                 item_subjects item/Subject|None;
@@ -43,7 +41,6 @@
                     <span style="background-color: #FF0000;"><font color="#FFFFFF">&nbsp; Cancelado</font>  &nbsp;</span>
                   </span><!-- end is canceled-->
                   <span class="summary">
-                    <img tal:replace="structure item_icon/html_tag" />
                     <a href="#" tal:content="item_title_or_id" tal:attributes="href item_url">Title</a>
                     <br/>
                   </span>
@@ -65,9 +62,48 @@
             </metal:block>
 
           </tal:block>
+
         </div>
         </tal:entry>
       </dl>
+
+          <span>
+          <br/>
+          <h3 style="background-color: #75ad0a; ; width: 17em;"><font color="#FFFFFF">&nbsp; Cuernavaca</font>  &nbsp;</h3>
+        </span>
+
+        <tal:entry tal:define="rssview nocall:context/@@rssview;">
+          <tal:entry tal:condition="rssview/feedAvailable"
+            tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime"
+            tal:repeat="item rssview/items">
+            <div class="tileItem">
+              <metal:block>
+                <dt>
+                  <span>
+                    <span style="background-color: #75ad0a"><font color="#FFFFFF">&nbsp;</font>  &nbsp;</span>
+                  </span>
+                  <span class="summary">
+                    <a style="background: none; padding: 0;" href="#" tal:content="item/title" tal:attributes="href item/url">Title</a>
+                    <br/>
+                  </span>
+                </dt>
+                <dd>
+                  <span tal:condition="item/institution">
+                  <b><span tal:condition="item/speaker" tal:content="item/speaker"/><span tal:condition="item/institution" tal:content="python:' (' + item['institution'] + ').'"/></b>
+                </span>
+                <span tal:condition="python: not item['institution']">
+                  <b><span tal:condition="item/speaker" tal:content="item/speaker"/></b>
+                </span>
+                <br/>
+                <span tal:content="python: rssview.getFancyDate(item['updated']) or ''"/>
+                <span tal:content="item/location | nothing"/>
+                <br/>
+                <span tal:content="item/seminarytitle | nothing"/> <br/>
+                </dd>
+              </metal:block>
+            </div>
+          </tal:entry>
+        </tal:entry>
 
     </tal:listing>
 
