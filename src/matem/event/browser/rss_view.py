@@ -39,9 +39,9 @@ class RSSView(BrowserView):
         date = DateTime()
         for item in self.feed.items:
             if item.get('updated', ''):
-                if item['updated'] >= date and item['updated'] <= date + 15:
+                if item['updated'] >= date and item['updated'] <= date + 14:
                     ritems.append(item)
-                elif item['updated']._hour + 1 >= date._hour and item['updated'] <= date + 15:
+                elif item['updated']._hour + 1 >= date._hour and item['updated'] <= date + 14:
                     ritems.append(item)
         return ritems
 

@@ -89,7 +89,7 @@
                     <font color="#FFFFFF">&nbsp;</font>  &nbsp;</span>
                 </span>
                 <span class="summary">
-                  <a style="background: none; padding: 0;" href="#" tal:content="item/title" tal:attributes="href item/url">Title</a>
+                  <a style="background: none; padding: 0; border: none !important" href="#" tal:content="item/title" tal:attributes="href item/url">Title</a>
                   <br/>
                 </span>
               </dt>
