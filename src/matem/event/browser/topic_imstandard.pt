@@ -38,7 +38,7 @@
               <metal:block>
                 <dt metal:define-macro="listitem">
                   <span>
-                    <span style="background-color: #0066FF">
+                    <span style="background-color: #4387fd">
                       <font color="#FFFFFF">&nbsp;</font>  &nbsp;</span>
                   </span>
                   <span tal:condition="item_isCanceled">
