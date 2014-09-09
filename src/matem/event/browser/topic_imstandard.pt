@@ -37,6 +37,10 @@
                                 ">
               <metal:block>
                 <dt metal:define-macro="listitem">
+                  <span>
+                    <span style="background-color: #0066FF">
+                      <font color="#FFFFFF">&nbsp;</font>  &nbsp;</span>
+                  </span>
                   <span tal:condition="item_isCanceled">
                     <span style="background-color: #FF0000;"><font color="#FFFFFF">&nbsp; Cancelado</font>  &nbsp;</span>
                   </span><!-- end is canceled-->
@@ -67,29 +71,34 @@
         </tal:entry>
       </dl>
 
-          <span>
+      <tal:entry tal:define="rssview nocall:context/@@rssview;">
+        <span tal:condition="rssview/hasFeed">
           <br/>
-          <h3 style="background-color: #75ad0a; ; width: 17em;"><font color="#FFFFFF">&nbsp; Cuernavaca</font>  &nbsp;</h3>
+          <h3 style="background-color: #75ad0a; ; width: 17em;">
+            <font color="#FFFFFF">&nbsp; Cuernavaca</font>  &nbsp;</h3>
         </span>
 
-        <tal:entry tal:define="rssview nocall:context/@@rssview;">
-          <tal:entry tal:condition="rssview/feedAvailable"
-            tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime"
-            tal:repeat="item rssview/items">
-            <div class="tileItem">
-              <metal:block>
-                <dt>
-                  <span>
-                    <span style="background-color: #75ad0a"><font color="#FFFFFF">&nbsp;</font>  &nbsp;</span>
-                  </span>
-                  <span class="summary">
-                    <a style="background: none; padding: 0;" href="#" tal:content="item/title" tal:attributes="href item/url">Title</a>
-                    <br/>
-                  </span>
-                </dt>
-                <dd>
-                  <span tal:condition="item/institution">
-                  <b><span tal:condition="item/speaker" tal:content="item/speaker"/><span tal:condition="item/institution" tal:content="python:' (' + item['institution'] + ').'"/></b>
+        <tal:entry tal:condition="rssview/feedAvailable"
+          tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime"
+          tal:repeat="item rssview/items">
+          <div class="tileItem">
+            <metal:block>
+              <dt>
+                <span>
+                  <span style="background-color: #75ad0a">
+                    <font color="#FFFFFF">&nbsp;</font>  &nbsp;</span>
+                </span>
+                <span class="summary">
+                  <a style="background: none; padding: 0;" href="#" tal:content="item/title" tal:attributes="href item/url">Title</a>
+                  <br/>
+                </span>
+              </dt>
+              <dd>
+                <span tal:condition="item/institution">
+                  <b>
+                    <span tal:condition="item/speaker" tal:content="item/speaker"/>
+                    <span tal:condition="item/institution" tal:content="python:' (' + item['institution'] + ').'"/>
+                  </b>
                 </span>
                 <span tal:condition="python: not item['institution']">
                   <b><span tal:condition="item/speaker" tal:content="item/speaker"/></b>
@@ -98,12 +107,13 @@
                 <span tal:content="python: rssview.getFancyDate(item['updated']) or ''"/>
                 <span tal:content="item/location | nothing"/>
                 <br/>
-                <span tal:content="item/seminarytitle | nothing"/> <br/>
-                </dd>
-              </metal:block>
-            </div>
-          </tal:entry>
+                <span tal:content="item/seminarytitle | nothing"/>
+                <br/>
+              </dd>
+            </metal:block>
+          </div>
         </tal:entry>
+      </tal:entry>
 
     </tal:listing>
 

@@ -4,6 +4,7 @@ from plone.app.portlets.portlets.rss import RSSFeed
 from DateTime import DateTime
 from DateTime.interfaces import DateTimeError
 
+
 class RSSView(BrowserView):
 
     def __init__(self, context, request):
@@ -27,16 +28,10 @@ class RSSView(BrowserView):
         """checks if the feed data is available"""
         return self.feed
 
-    # def isCurrentHour(self):
-    #     """Return true if this object represents a date/time
-    #     that falls within the current hour, in the context
-    #     of this object\'s timezone representation.
-    #     """
-    #     t=time()
-    #     gmt=safegmtime(t+_tzoffset(self._tz, t))
-    #     return (gmt[0]==self._year and gmt[1]==self._month and
-    #             gmt[2]==self._day and gmt[3]==self._hour)
-
+    def hasFeed(self):
+        if self.items():
+            return True
+        return False
 
     def items(self):
 
@@ -44,36 +39,32 @@ class RSSView(BrowserView):
         date = DateTime()
         for item in self.feed.items:
             if item.get('updated', ''):
-                if item['updated'] >= date and item['updated']<= date + 15:
+                if item['updated'] >= date and item['updated'] <= date + 15:
                     ritems.append(item)
-                elif item['updated']._hour >= date._hour -1 and item['updated']<= date + 15:
+                elif item['updated']._hour + 1 >= date._hour and item['updated'] <= date + 15:
                     ritems.append(item)
-
-
         return ritems
-        # return self.feed.items
-
 
     def getFancyDate(self, date):
         month_name = {
             'Jan.': 'Enero',
-            'Feb.':'Febrero',
-            'Mar.':'Marzo',
-            'Apr.':'Abril',
-            'May':'Mayo',
-            'June':'Junio',
-            'July':'Julio',
-            'Aug.':'Agosto',
-            'Sep.':'Septiembre',
-            'Oct.':'Octubre',
-            'Nov.':'Noviembre',
-            'Dec.':'Diciembre'
+            'Feb.': 'Febrero',
+            'Mar.': 'Marzo',
+            'Apr.': 'Abril',
+            'May': 'Mayo',
+            'June': 'Junio',
+            'July': 'Julio',
+            'Aug.': 'Agosto',
+            'Sep.': 'Septiembre',
+            'Oct.': 'Octubre',
+            'Nov.': 'Noviembre',
+            'Dec.': 'Diciembre'
         }
 
         datetime = date and date.pCommon() or ''
         if datetime:
             date_s = datetime.split(' ')
-            return date_s[1].replace(',', '') +' de '+ month_name[date_s[0]] + ', ' +  date_s[3] + ' ' + date_s[4] + '.' or ''
+            return date_s[1].replace(',', '') + ' de ' + month_name[date_s[0]] + ', ' + date_s[3] + ' ' + date_s[4] + '.' or ''
 
         return datetime
 
@@ -102,4 +93,3 @@ class IMRSSFeed(RSSFeed):
                 pass
 
         return itemdict
-
