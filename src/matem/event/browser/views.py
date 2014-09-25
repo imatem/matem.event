@@ -4,7 +4,16 @@ from Products.Collage.browser.views import BaseTopicView
 
 
 class IMStandardTopicView(BaseTopicView):
-    pass
+    def filterTopics(self, topics):
+        cu = []
+        juriquilla = []
+        for topic in topics:
+            subject = topic.Subject
+            if 'Juriquilla' in subject:
+                juriquilla.append(topic)
+            else:
+                cu.append(topic)
+        return{'CU': cu, 'Juriquilla': juriquilla}
 
 
 class IMEventView(BaseTopicView):

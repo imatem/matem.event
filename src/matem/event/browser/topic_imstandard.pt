@@ -9,18 +9,18 @@
                        site_properties view/site_properties">
 
   <div class="standard-topic"
-       tal:define="topicContents view/getContents"
+       tal:define="topicContents view/getContents;
+       folderContents python:view.filterTopics(topicContents);"
        tal:condition="topicContents">
 
     <tal:listing i18n:domain="plone"
                  define="view context/@@collage_kss_helper/getKssView;
                          getKssClasses python: view.getKssClasses;
                          templateId string:folder_summary_view;
-                         folderContents topicContents;
                          month_name python:{'Jan.': 'Enero', 'Feb.':'Febrero', 'Mar.':'Marzo', 'Apr.':'Abril', 'May':'Mayo', 'June':'Junio', 'July':'Julio', 'Aug.':'Agosto', 'Sep.':'Septiembre', 'Oct.':'Octubre', 'Nov.':'Noviembre', 'Dec.':'Diciembre'};
                          ">
       <dl>
-        <tal:entry tal:repeat="item folderContents" metal:define-macro="entries">
+        <tal:entry tal:repeat="item folderContents/CU" metal:define-macro="entries">
           <div class="tileItem">
             <tal:block tal:define="item_url item/getURL|item/absolute_url;
                                 item_title_or_id item/pretty_title_or_id;
@@ -71,6 +71,7 @@
         </tal:entry>
       </dl>
 
+      <!-- Cuernavaca -->
       <tal:entry tal:define="rssview nocall:context/@@rssview;">
         <span tal:condition="rssview/hasFeed">
           <br/>
@@ -113,7 +114,66 @@
             </metal:block>
           </div>
         </tal:entry>
-      </tal:entry>
+      </tal:entry><!-- En Cuernavaca -->
+
+      <!-- Juriquilla -->
+      <dl tal:condition="folderContents/Juriquilla">
+        <br/>
+        <br/>
+        <h3 style="background-color: #BA3C5D; ; width: 17em;">
+            <font color="#FFFFFF">&nbsp; Juriquilla</font>  &nbsp;</h3>
+        <tal:entry tal:repeat="item folderContents/Juriquilla">
+          <div class="tileItem">
+            <tal:block tal:define="item_url item/getURL|item/absolute_url;
+                                item_title_or_id item/pretty_title_or_id;
+                                item_description item/Description;
+                                item_date item/start/pCommon|nothing;
+                                item_location item/location|nothing;
+                                item_subjects item/Subject|None;
+                                item_seminary python: item_subjects and item_subjects[0] or None;
+                                item_expositor item/getSpeaker|nothing;
+                                item_institution item/getEventInstitution|nothing;
+                                item_isCanceled item/isCanceled|nothing;
+                                date_s python:item_date and item_date.split(' ') or '';
+                                fancy_date python:date_s and date_s[1].replace(',', '') +' de '+ month_name[date_s[0]] + ', ' +  date_s[3] + ' ' + date_s[4] + '.' or '';
+                                ">
+              <metal:block>
+                <dt>
+                  <span>
+                    <span style="background-color: #BA3C5D">
+                      <font color="#FFFFFF">&nbsp;</font>  &nbsp;</span>
+                  </span>
+                  <span tal:condition="item_isCanceled">
+                    <span style="background-color: #FF0000;"><font color="#FFFFFF">&nbsp; Cancelado</font>  &nbsp;</span>
+                  </span><!-- end is canceled-->
+                  <span class="summary">
+                    <a href="#" tal:content="item_title_or_id" tal:attributes="href item_url">Title</a>
+                    <br/>
+                  </span>
+                </dt>
+                <dd>
+                  <span tal:condition="item_institution">
+                    <b><span tal:condition="item_expositor" tal:content="item_expositor"/><span tal:condition="item_institution" tal:content="python:' (' + item_institution + ').'"/></b>
+                  </span>
+
+                  <span tal:condition="python: not item_institution">
+                    <b><span tal:condition="item_expositor" tal:content="python:item_expositor+'.'"/></b>
+                  </span>
+                  <span tal:content="item_description"/><br/>
+                  <span tal:content="fancy_date"/>
+                  <span tal:content="python:item_location"/>
+                  <br/>
+                  <span tal:content="item_seminary"/> <br/>
+                </dd>
+            </metal:block>
+
+          </tal:block>
+
+        </div>
+        </tal:entry>
+      </dl> <!-- End juriquilla -->
+
+
 
     </tal:listing>
 
