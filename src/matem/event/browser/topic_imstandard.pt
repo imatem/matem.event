@@ -117,10 +117,10 @@
       </tal:entry><!-- En Cuernavaca -->
 
       <!-- Juriquilla -->
-      <dl tal:condition="folderContents/Juriquilla">
+      <dl tal:condition="folderContents/Juriquilla ">
         <br/>
         <br/>
-        <h3 style="background-color: #BA3C5D; ; width: 17em;">
+        <h3 style="background-color: #944ADF; ; width: 17em;">
             <font color="#FFFFFF">&nbsp; Juriquilla</font>  &nbsp;</h3>
         <tal:entry tal:repeat="item folderContents/Juriquilla">
           <div class="tileItem">
@@ -140,7 +140,7 @@
               <metal:block>
                 <dt>
                   <span>
-                    <span style="background-color: #BA3C5D">
+                    <span style="background-color: #944ADF">
                       <font color="#FFFFFF">&nbsp;</font>  &nbsp;</span>
                   </span>
                   <span tal:condition="item_isCanceled">
