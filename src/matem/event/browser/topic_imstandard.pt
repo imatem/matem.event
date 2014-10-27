@@ -72,7 +72,7 @@
       </dl>
 
       <!-- Cuernavaca -->
-<!--       <tal:entry tal:define="rssview nocall:context/@@rssview;">
+      <tal:entry tal:define="rssview nocall:context/@@rssview;">
         <span tal:condition="rssview/hasFeed">
           <br/>
           <h3 style="background-color: #75ad0a; ; width: 17em;">
@@ -114,7 +114,7 @@
             </metal:block>
           </div>
         </tal:entry>
-      </tal:entry> -->
+      </tal:entry>
       <!-- En Cuernavaca -->
 
       <!-- Juriquilla -->
