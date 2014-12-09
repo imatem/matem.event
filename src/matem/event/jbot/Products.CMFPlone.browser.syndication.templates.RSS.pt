@@ -37,7 +37,7 @@
       <link tal:content="item/link" />
       <dc:date tal:content="python: item.context.start().__str__() or ''">Start date</dc:date>
       <dc:speaker tal:content="item/context/speaker | nothing">Speaker</dc:speaker>
-      <dc:institution tal:content="item/context/institution | noting">Institution</dc:institution>
+      <dc:institution tal:content="item/context/institution | nothing">Institution</dc:institution>
       <dc:seminarytitle tal:content="python:item.context.subject[0] or ''">Seminary title</dc:seminarytitle>
       <dc:location tal:content="item/context/location">Location</dc:location>
     </tal:block>
