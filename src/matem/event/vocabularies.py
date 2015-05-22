@@ -77,7 +77,56 @@ def Months(context):
         (_(u'December'), 12),
     ]
 
-    #value, token, título
+    # value, token, título
     items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
     return SimpleVocabulary(items)
 directlyProvides(Months, IVocabularyFactory)
+
+
+def NationalityExpositor(context):
+    items = [
+        (_(u'Mexican'), 1),
+        (_(u'Foreigner'), 2),
+    ]
+
+    items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
+    return SimpleVocabulary(items)
+directlyProvides(NationalityExpositor, IVocabularyFactory)
+
+
+def TypeEvent(context):
+    items = [
+        (_(u'Researcher'), 1),
+        (_(u'Human Resource Training'), 2),
+        (_(u'Divulgation'), 3),
+    ]
+
+    items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
+    return SimpleVocabulary(items)
+directlyProvides(TypeEvent, IVocabularyFactory)
+
+
+def isIMember(context):
+    items = [
+        (_(u'Yes'), 'yes'),
+        (_(u'No'), 'no'),
+    ]
+
+    items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
+    return SimpleVocabulary(items)
+directlyProvides(isIMember, IVocabularyFactory)
+
+
+def speakersVocabulary(context):
+    items = []
+    brains = get_users_as_brains(
+        getSite(),
+        sortable=True,
+        review_state='active',
+        # person_classification=['investigadores', 'tecnicos-academicos']
+    )
+    items.append(SimpleTerm(value='', title=''))
+    for b in brains:
+        items.append(SimpleTerm(value=b.id, title=" ".join([b.firstName, b.lastName])))
+    return SimpleVocabulary(items)
+directlyProvides(speakersVocabulary, IVocabularyFactory)

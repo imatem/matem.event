@@ -54,5 +54,26 @@
       component=".vocabularies.Months"
       name="matem.event.Months"
       />
+
+  <utility
+      component=".vocabularies.NationalityExpositor"
+      name="matem.event.NationalityExpositor"
+      />
+
+  <utility
+      component=".vocabularies.TypeEvent"
+      name="matem.event.TypeEvent"
+      />
+
+  <utility
+      component=".vocabularies.isIMember"
+      name="matem.event.isIMember"
+      />
+
+  <utility
+      component=".vocabularies.speakersVocabulary"
+      name="matem.event.speakersVocabulary"
+      />
+
       
 </configure>

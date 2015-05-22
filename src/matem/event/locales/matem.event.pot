@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-03-03 22:19+0000\n"
+"POT-Creation-Date: 2015-05-21 19:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,141 +14,225 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: matem/event/vocabularies.py:101
+#: matem/event/vocabularies.py:69
 msgid "April"
 msgstr ""
 
-#: matem/event/seminar.py:38
+#: matem/event/seminar.py:21
 msgid "At least an organizer"
 msgstr ""
 
-#: matem/event/vocabularies.py:105
+#: matem/event/vocabularies.py:73
 msgid "August"
 msgstr ""
 
-#: matem/event/vocabularies.py:83
+#: matem/event/vocabularies.py:54
 msgid "Biweekly"
 msgstr ""
 
-#: matem/event/vocabularies.py:109
+#: matem/event/extenders/event.py:149
+msgid "Canceled Event"
+msgstr ""
+
+#: matem/event/vocabularies.py:77
 msgid "December"
+msgstr ""
+
+#: matem/event/vocabularies.py:101
+msgid "Divulgation"
 msgstr ""
 
 #: matem/event/profiles/default/types/matem.event.seminar.xml
 msgid "Edit"
 msgstr ""
 
-#: matem/event/vocabularies.py:99
+#: matem/event/extenders/event.py:110
+msgid "Event Type"
+msgstr ""
+
+#: matem/event/vocabularies.py:67
 msgid "February"
 msgstr ""
 
-#: matem/event/vocabularies.py:48
+#: matem/event/vocabularies.py:89
+msgid "Foreigner"
+msgstr ""
+
+#: matem/event/vocabularies.py:26
 msgid "Friday"
 msgstr ""
 
-#: matem/event/vocabularies.py:98
+#: matem/event/vocabularies.py:100
+msgid "Human Resource Training"
+msgstr ""
+
+#: matem/event/extenders/event.py:79
+msgid "Institution"
+msgstr ""
+
+#: matem/event/extenders/event.py:32
+msgid "Is the speaker IM Member?"
+msgstr ""
+
+#: matem/event/vocabularies.py:66
 msgid "January"
 msgstr ""
 
-#: matem/event/vocabularies.py:104
+#: matem/event/vocabularies.py:72
 msgid "July"
 msgstr ""
 
-#: matem/event/vocabularies.py:103
+#: matem/event/vocabularies.py:71
 msgid "June"
 msgstr ""
 
-#: matem/event/vocabularies.py:100
+#: matem/event/vocabularies.py:68
 msgid "March"
 msgstr ""
 
-#: matem/event/vocabularies.py:102
+#: matem/event/vocabularies.py:70
 msgid "May"
 msgstr ""
 
-#: matem/event/vocabularies.py:44
+#: matem/event/vocabularies.py:88
+msgid "Mexican"
+msgstr ""
+
+#: matem/event/vocabularies.py:22
 msgid "Monday"
 msgstr ""
 
-#: matem/event/vocabularies.py:84
+#: matem/event/vocabularies.py:55
 msgid "Monthtly"
 msgstr ""
 
-#: matem/event/vocabularies.py:108
+#: matem/event/vocabularies.py:112
+msgid "No"
+msgstr ""
+
+#: matem/event/vocabularies.py:76
 msgid "November"
 msgstr ""
 
-#: matem/event/vocabularies.py:107
+#: matem/event/vocabularies.py:75
 msgid "October"
 msgstr ""
 
-#: matem/event/vocabularies.py:49
+#: matem/event/vocabularies.py:99
+msgid "Researcher"
+msgstr ""
+
+#: matem/event/extenders/event.py:126
+msgid "Researcher Topics"
+msgstr ""
+
+#: matem/event/vocabularies.py:27
 msgid "Saturday"
+msgstr ""
+
+#: matem/event/extenders/event.py:95
+msgid "Select Mexican if the speaker was born in Mexico"
+msgstr ""
+
+#: matem/event/extenders/event.py:34
+msgid "Select Yes if the speaker is IM member"
+msgstr ""
+
+#: matem/event/extenders/event.py:151
+msgid "Select if the event was canceled"
+msgstr ""
+
+#: matem/event/extenders/event.py:128
+msgid "Select the Research Topics. For more information go to the offical page <a href=\"http://www.ams.org/msc\">AMS</a>"
+msgstr ""
+
+#: matem/event/extenders/event.py:112
+msgid "Select the event type. You can select one o more"
+msgstr ""
+
+#: matem/event/extenders/event.py:54
+msgid "Select the speaker name"
 msgstr ""
 
 #: matem/event/profiles/default/types/matem.event.seminar.xml
 msgid "Seminar Folder"
 msgstr ""
 
-#: matem/event/vocabularies.py:106
+#: matem/event/vocabularies.py:74
 msgid "September"
 msgstr ""
 
-#: matem/event/vocabularies.py:50
+#: matem/event/extenders/event.py:93
+msgid "Speaker Nationality"
+msgstr ""
+
+#: matem/event/extenders/event.py:52
+msgid "Speaker name"
+msgstr ""
+
+#: matem/event/vocabularies.py:28
 msgid "Sunday"
 msgstr ""
 
-#: matem/event/seminar.py:34
+#: matem/event/seminar.py:17
 msgid "The start time must be before the end time"
 msgstr ""
 
-#: matem/event/vocabularies.py:47
+#: matem/event/vocabularies.py:25
 msgid "Thursday"
 msgstr ""
 
-#: matem/event/vocabularies.py:45
+#: matem/event/vocabularies.py:23
 msgid "Tuesday"
+msgstr ""
+
+#: matem/event/extenders/event.py:68
+msgid "Type the Speaker Name"
 msgstr ""
 
 #: matem/event/profiles/default/types/matem.event.seminar.xml
 msgid "View"
 msgstr ""
 
-#: matem/event/vocabularies.py:46
+#: matem/event/vocabularies.py:24
 msgid "Wednesday"
 msgstr ""
 
-#: matem/event/vocabularies.py:82
+#: matem/event/vocabularies.py:53
 msgid "Weekly"
 msgstr ""
 
+#: matem/event/vocabularies.py:111
+msgid "Yes"
+msgstr ""
+
 #. Default: "Select the day, when this seminar happens."
-#: matem/event/seminar.py:50
+#: matem/event/seminar.py:33
 msgid "help_seminar_day"
 msgstr ""
 
 #. Default: "Details about the seminar"
-#: matem/event/seminar.py:139
+#: matem/event/seminar.py:111
 msgid "help_seminar_details"
 msgstr ""
 
 #. Default: "Type the end time, when this seminar happens. The time format is hh:mm."
-#: matem/event/seminar.py:78
+#: matem/event/seminar.py:60
 msgid "help_seminar_end"
 msgstr ""
 
 #. Default: "Location of the seminar."
-#: matem/event/seminar.py:90
+#: matem/event/seminar.py:72
 msgid "help_seminar_location"
 msgstr ""
 
 #. Default: "Periodicity of the seminar."
-#: matem/event/seminar.py:102
+#: matem/event/seminar.py:84
 msgid "help_seminar_periodicity"
 msgstr ""
 
 #. Default: "Type the start time, when this seminar happens. The time format is hh:mm."
-#: matem/event/seminar.py:64
+#: matem/event/seminar.py:46
 msgid "help_seminar_start"
 msgstr ""
 
@@ -159,22 +243,23 @@ msgstr ""
 
 #. Default: "Calendar"
 #: matem/event/jbot/Solgema.fullcalendar.browser.folderview.pt:108
+#: matem/event/jbot/Solgema.fullcalendar.browser.topicview.pt:108
 #: matem/event/seminar_templates/view.pt:23
 msgid "label_seminar_calendar"
 msgstr ""
 
 #. Default: "Day"
-#: matem/event/seminar.py:46
+#: matem/event/seminar.py:29
 msgid "label_seminar_day"
 msgstr ""
 
 #. Default: "Details"
-#: matem/event/seminar.py:135
+#: matem/event/seminar.py:107
 msgid "label_seminar_details"
 msgstr ""
 
 #. Default: "End time"
-#: matem/event/seminar.py:74
+#: matem/event/seminar.py:56
 msgid "label_seminar_end"
 msgstr ""
 
@@ -184,29 +269,30 @@ msgid "label_seminar_from"
 msgstr ""
 
 #. Default: "Location"
-#: matem/event/seminar.py:86
+#: matem/event/seminar.py:68
 msgid "label_seminar_location"
 msgstr ""
 
 #. Default: "Organizer(s)"
-#: matem/event/seminar.py:112
+#: matem/event/seminar.py:94
 #: matem/event/seminar_templates/view.pt:56
 msgid "label_seminar_organizer"
 msgstr ""
 
 #. Default: "Past events"
 #: matem/event/jbot/Solgema.fullcalendar.browser.folderview.pt:105
+#: matem/event/jbot/Solgema.fullcalendar.browser.topicview.pt:105
 msgid "label_seminar_past_events"
 msgstr ""
 
 #. Default: "Periodicity"
-#: matem/event/seminar.py:98
+#: matem/event/seminar.py:80
 #: matem/event/seminar_templates/view.pt:40
 msgid "label_seminar_periodicity"
 msgstr ""
 
 #. Default: "Start time"
-#: matem/event/seminar.py:60
+#: matem/event/seminar.py:42
 msgid "label_seminar_start"
 msgstr ""
 
@@ -217,6 +303,7 @@ msgstr ""
 
 #. Default: "Upcoming Events"
 #: matem/event/jbot/Solgema.fullcalendar.browser.folderview.pt:111
+#: matem/event/jbot/Solgema.fullcalendar.browser.topicview.pt:111
 msgid "label_seminar_upcoming_events"
 msgstr ""
 
