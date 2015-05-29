@@ -12,6 +12,12 @@ from zope.i18nmessageid import MessageFactory
 
 _ = MessageFactory('matem.event')
 
+from Products.validation import validation
+from matem.event.validators import InternalSpeakerValidator
+from matem.event.validators import ExternalSpeakerValidator
+validation.register(InternalSpeakerValidator('isEmptyInternalSpeakerValidator'))
+validation.register(ExternalSpeakerValidator('isEmptyExternalSpeakerValidator'))
+
 
 def initialize(context):
     """Initializer called when used as a Zope 2 product.

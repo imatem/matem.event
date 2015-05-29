@@ -123,10 +123,10 @@ def speakersVocabulary(context):
         getSite(),
         sortable=True,
         review_state='active',
-        # person_classification=['investigadores', 'tecnicos-academicos']
+        person_classification=['investigadores', 'posdoc', 'catedras-conacyt', 'tecnicos-academicos', 'becarios']
     )
     items.append(SimpleTerm(value='', title=''))
     for b in brains:
-        items.append(SimpleTerm(value=b.id, title=" ".join([b.firstName, b.lastName])))
+        items.append(SimpleTerm(value=b.id, title=" ".join([b.lastName, b.firstName])))
     return SimpleVocabulary(items)
 directlyProvides(speakersVocabulary, IVocabularyFactory)

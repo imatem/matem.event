@@ -17,6 +17,10 @@ from zope import interface
 from Products.MasterSelectWidget.MasterSelectWidget import MasterSelectWidget
 from matem.event import _
 
+from zope.component import subscribers
+from Products.Archetypes.interfaces import IObjectPreValidation
+from Products.Archetypes.interfaces import IObjectPostValidation
+
 
 class _StringExtensionField(ExtensionField, atapi.StringField):
     '''Any field you can tack on must have ExtensionField as its first subclass
@@ -59,6 +63,7 @@ BasicSchema = [
             # description=u'Seleccione el expositor',
             size=60,
         ),
+        validators='isEmptyInternalSpeakerValidator',
     ),
 
     _StringExtensionField(
@@ -72,6 +77,7 @@ BasicSchema = [
             i18n_domain='matem.event',
             size=60,
         ),
+        validators='isEmptyExternalSpeakerValidator',
     ),
 
     _StringExtensionField(
@@ -210,6 +216,7 @@ class MatemEventExtender(object):
             for fieldName in schema.getSchemataFields(hideme):
                 fieldName.widget.visible = {'edit': 'invisible'}
         return schema
+
 
 
 @grok.subscribe(ATEvent, IObjectCreatedEvent)

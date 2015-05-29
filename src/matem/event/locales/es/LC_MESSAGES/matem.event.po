@@ -136,7 +136,7 @@ msgstr "Selecciona Mexicana si el expositor nació en México"
 
 #: matem/event/extenders/event.py:34
 msgid "Select Yes if the speaker is IM member"
-msgstr "Selecciona Sí, si el expositor es parte de la omunidad del IM"
+msgstr "Selecciona Sí, si el expositor es parte de la comunidad del IM"
 
 #: matem/event/extenders/event.py:151
 msgid "Select if the event was canceled"
