@@ -53,9 +53,14 @@ class ExternalSpeakerValidator:
         self.description = description
 
     def __call__(self, value, *args, **kwargs):
-
-        instance = kwargs.get('instance', None)
-        if instance and instance.isIMember == 'no' and not value:
+        request = kwargs['REQUEST']
+        member_value = request.form.get('isIMember', '')
+        if member_value == 'no' and not value:
             return _("Validation failed: Speaker is required, please correct it.")
 
+        # instance = kwargs.get('instance', None)
+        # if instance and instance.isIMember == 'no' and not value:
+        #     return _("Validation failed: Speaker is required, please correct it.")
+
         return True
+
