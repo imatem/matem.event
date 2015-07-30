@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-05-21 19:31+0000\n"
+"POT-Creation-Date: 2015-07-30 18:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,7 +30,7 @@ msgstr "Agosto"
 msgid "Biweekly"
 msgstr "Quincenal"
 
-#: matem/event/extenders/event.py:149
+#: matem/event/extenders/event.py:159
 msgid "Canceled Event"
 msgstr "Evento Cancelado"
 
@@ -46,7 +46,7 @@ msgstr "Divulgación"
 msgid "Edit"
 msgstr "Editar"
 
-#: matem/event/extenders/event.py:110
+#: matem/event/extenders/event.py:120
 msgid "Event Type"
 msgstr "Tipo de Evento"
 
@@ -66,13 +66,13 @@ msgstr "Viernes"
 msgid "Human Resource Training"
 msgstr "Formación de Recursos Humanos"
 
-#: matem/event/extenders/event.py:79
+#: matem/event/extenders/event.py:89
 msgid "Institution"
 msgstr "Institución"
 
-#: matem/event/extenders/event.py:32
-msgid "Is the speaker IM Member?"
-msgstr "¿El expositor es miembro del IM?"
+#: matem/event/extenders/event.py:36
+msgid "Is the speaker IM Researcher Member?"
+msgstr "¿El expositor es Investigador del IM?"
 
 #: matem/event/vocabularies.py:66
 msgid "January"
@@ -122,7 +122,7 @@ msgstr "Octubre"
 msgid "Researcher"
 msgstr "Investigación"
 
-#: matem/event/extenders/event.py:126
+#: matem/event/extenders/event.py:136
 msgid "Researcher Topics"
 msgstr "Áreas de Investigación"
 
@@ -130,27 +130,27 @@ msgstr "Áreas de Investigación"
 msgid "Saturday"
 msgstr "Sábado"
 
-#: matem/event/extenders/event.py:95
+#: matem/event/extenders/event.py:105
 msgid "Select Mexican if the speaker was born in Mexico"
 msgstr "Selecciona Mexicana si el expositor nació en México"
 
-#: matem/event/extenders/event.py:34
-msgid "Select Yes if the speaker is IM member"
-msgstr "Selecciona Sí, si el expositor es parte de la comunidad del IM"
+#: matem/event/extenders/event.py:38
+msgid "Select Yes if the speaker is a Researcher of IM. Remember that Speaker name is required."
+msgstr "Selecciona Sí si el expositor es Investigador del IM. Recuerda que Nombre de Expositor es requerido."
 
-#: matem/event/extenders/event.py:151
+#: matem/event/extenders/event.py:161
 msgid "Select if the event was canceled"
 msgstr "Selecciona si el evento fue cancelado"
 
-#: matem/event/extenders/event.py:128
+#: matem/event/extenders/event.py:138
 msgid "Select the Research Topics. For more information go to the offical page <a href=\"http://www.ams.org/msc\">AMS</a>"
 msgstr "Seleccciona la(s) área(s) de trabajo. Dudas acerca de la clasificación y cómo encontrar una área, acceder a la página oficial de la <a href=\"http://www.ams.org/msc\">AMS</a>"
 
-#: matem/event/extenders/event.py:112
+#: matem/event/extenders/event.py:122
 msgid "Select the event type. You can select one o more"
 msgstr "Selecciona el tipo de evento. Puedes seleccionar uno o varios tipos"
 
-#: matem/event/extenders/event.py:54
+#: matem/event/extenders/event.py:60
 msgid "Select the speaker name"
 msgstr "Selecciona el nombre del expositor"
 
@@ -162,11 +162,11 @@ msgstr "Folder Seminario"
 msgid "September"
 msgstr "Septiembre"
 
-#: matem/event/extenders/event.py:93
+#: matem/event/extenders/event.py:103
 msgid "Speaker Nationality"
 msgstr "Nacionalidad del Expositor"
 
-#: matem/event/extenders/event.py:52
+#: matem/event/extenders/event.py:58
 msgid "Speaker name"
 msgstr "Nombre del Expositor"
 
@@ -186,9 +186,13 @@ msgstr "Jueves"
 msgid "Tuesday"
 msgstr "Martes"
 
-#: matem/event/extenders/event.py:68
+#: matem/event/extenders/event.py:76
 msgid "Type the Speaker Name"
 msgstr "Teclea el nombre del expositor"
+
+#: matem/event/validators.py:44
+msgid "Validation failed: Speaker is required, please correct it."
+msgstr "Error en validación: Expositor es requerido, por favor corrijalo."
 
 #: matem/event/profiles/default/types/matem.event.seminar.xml
 msgid "View"

@@ -123,7 +123,8 @@ def speakersVocabulary(context):
         getSite(),
         sortable=True,
         review_state='active',
-        person_classification=['investigadores', 'posdoc', 'catedras-conacyt', 'tecnicos-academicos', 'becarios']
+        # 'tecnicos-academicos', 'becarios'
+        person_classification=['investigadores', 'posdoc', 'catedras-conacyt']
     )
     items.append(SimpleTerm(value='', title=''))
     for b in brains:

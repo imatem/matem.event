@@ -1,25 +1,22 @@
 # -*- coding: utf-8 -*-
-
+from DateTime import DateTime
+from Products.ATContentTypes.content.event import ATEvent
+from Products.ATContentTypes.interfaces import IATEvent
+from Products.Archetypes import atapi
+from Products.CMFCore.utils import getToolByName
+from Products.MasterSelectWidget.MasterSelectWidget import MasterSelectWidget
 from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import IOrderableSchemaExtender
 from archetypes.schemaextender.interfaces import ISchemaModifier
-from DateTime import DateTime
 from five import grok
-from Products.Archetypes import atapi
-from zope.lifecycleevent import IObjectAddedEvent
-from zope.lifecycleevent import IObjectCreatedEvent
-from Products.ATContentTypes.content.event import ATEvent
-from Products.ATContentTypes.interfaces import IATEvent
+from matem.event import _
 from plone.indexer.decorator import indexer
 from zope import component
 from zope import interface
-
-from Products.MasterSelectWidget.MasterSelectWidget import MasterSelectWidget
-from matem.event import _
-
-from zope.component import subscribers
-from Products.Archetypes.interfaces import IObjectPreValidation
-from Products.Archetypes.interfaces import IObjectPostValidation
+from zope.component.hooks import getSite
+from zope.lifecycleevent import IObjectAddedEvent
+from zope.lifecycleevent import IObjectCreatedEvent
+from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 
 
 class _StringExtensionField(ExtensionField, atapi.StringField):
@@ -33,19 +30,17 @@ BasicSchema = [
         name='isIMember',
         required=True,
         vocabulary_factory='matem.event.isIMember',
+        enforceVocabulary=1,
+        default='no',
         widget=MasterSelectWidget(
-            label=_(u'Is the speaker IM Member?'),
-            # label_msgid='label_ismember_event',
-            description=_(u'Select Yes if the speaker is IM member'),
-            # description_msgid='help_ismember_event',
-            # Seleccione si el expositor es de la comunidad del IM',
+            label=_(u'Is the speaker IM Researcher Member?'),
+            description=_(u'Select Yes if the speaker is a Researcher of IM. Remember that Speaker name is required.'),
             i18n_domain='matem.event',
             slave_fields=(
                 {'name': 'internal_speaker', 'action': 'hide', 'hide_values': ('no',)},
                 {'name': 'institution', 'action': 'hide', 'hide_values': ('yes',)},
                 {'name': 'speaker', 'action': 'hide', 'hide_values': ('yes',)},
             ),
-            # visible={'edit': 'visible', 'view': 'invisible'},
         ),
     ),
 
@@ -55,37 +50,28 @@ BasicSchema = [
         widget=atapi.SelectionWidget(
             format='select',
             label=_(u'Speaker name'),
-            # label_msgid='label_namespeaker_event',
             description=_(u'Select the speaker name'),
-            # description_msgid='help_internal_speaker_event',
             i18n_domain='matem.event',
-            # label=u'Nombre del expositor',
-            # description=u'Seleccione el expositor',
             size=60,
         ),
-        validators='isEmptyInternalSpeakerValidator',
+        validators=('isEmptyInternalSpeakerValidator', ),
     ),
 
     _StringExtensionField(
         name='speaker',
         widget=atapi.StringWidget(
             label=_(u'Speaker name'),
-            # label_msgid='label_namespeaker_event',
             description=_(u'Type the Speaker Name'),
-            # description_msgid='help_external_speaker_event',
-            # label=u'Nombre del expositor',
             i18n_domain='matem.event',
             size=60,
         ),
-        validators='isEmptyExternalSpeakerValidator',
+        validators=('isEmptyExternalSpeakerValidator', ),
     ),
 
     _StringExtensionField(
         name='institution',
         widget=atapi.StringWidget(
             label=_(u'Institution'),
-            # label_msgid='label_institution',
-            # i18n_domain='UNAM.imateCVct',
             i18n_domain='matem.event',
             size=60,
         ),
@@ -98,13 +84,7 @@ BasicSchema = [
         widget=atapi.SelectionWidget(
             format='select',
             label=_(u'Speaker Nationality'),
-            # label_msgid='label_speaker_nationality_event',
             description=_(u'Select Mexican if the speaker was born in Mexico'),
-            # description_msgid='help_speaker_nationality_event',
-            # label=u'Nacionalidad del expositor',
-            # # label_msgid='label_speaker_origin',
-            # description=u'Seleccione la nacionalidad del expositor',
-            # i18n_domain='UNAM.imateCVct',
             i18n_domain='matem.event',
         ),
     ),
@@ -115,13 +95,7 @@ BasicSchema = [
         widget=atapi.MultiSelectionWidget(
             format='checkbox',
             label=_(u'Event Type'),
-            # label_msgid='label_type_event',
             description=_(u'Select the event type. You can select one o more'),
-            # description_msgid='help_type_event',
-            # label=u'Tipo del Evento',
-            # # label_msgid='label_speaker_origin',
-            # description=u'Seleccione el (los) tipo(s) de evento(s)',
-            # i18n_domain='UNAM.imateCVct',
             i18n_domain='matem.event',
         ),
     ),
@@ -131,15 +105,8 @@ BasicSchema = [
         name='researchTopic',
         widget=atapi.InAndOutWidget(
             label=_(u'Researcher Topics'),
-            # label_msgid='label_researchtopic_event',
             description=_(u'Select the Research Topics. For more information go to the offical page <a href=\"http://www.ams.org/msc\">AMS</a>'),
-            # description_msgid='help_researchtopic_event',
             i18n_domain='matem.event',
-            # label=u'area(s) de trabajo',
-            # label_msgid='label_researchtopic',
-            # description=u'Selecccione la(s) area(s) de trabajo. Dudas acerca de la clasificacion y como encontrar una area, acceder a la pagina oficial de la <a href=\"http://www.ams.org/msc\">AMS</a>',
-            # description_msgid="help_researchtopic",
-            # i18n_domain='UNAM.imateCVct',
             checkbox_bound=1,
             visible={'view': 'invisible'},
             modes=("edit"),
@@ -148,21 +115,14 @@ BasicSchema = [
         vocabulary_factory='imatem.person.specialties',
         multiValued=True,
         relationship='researchTopicOf',
-        ),
+    ),
 
     _StringExtensionField(
         name='canceled',
         widget=atapi.BooleanWidget(
             label=_(u'Canceled Event'),
-            # label_msgid='label_status_event',
             description=_(u'Select if the event was canceled'),
-            # description_msgid='help_status_event',
             i18n_domain='matem.event',
-            # label=u'Evento Cancelado',
-            # label_msgid='label_status_event',
-            # description=u'Seleccione si el evento fue cancelado',
-            # description_msgid="help_status_event",
-            # i18n_domain='UNAM.imateCVct',
         ),
     ),
 ]
@@ -218,7 +178,6 @@ class MatemEventExtender(object):
         return schema
 
 
-
 @grok.subscribe(ATEvent, IObjectCreatedEvent)
 def object_created(context, event):
     """
@@ -248,23 +207,55 @@ def object_created(context, event):
         context.REQUEST['endDate'] = DateTime(date)
 
 
-# @grok.subscribe(ATEvent, IObjectAddedEvent)
-# def object_added(context, event):
-#     if not context.isIMember:
-#         return
-#     import pdb; pdb.set_trace()
+@grok.subscribe(ATEvent, IObjectAddedEvent)
+def object_added(context, event):
+    """
+    """
+
+    member_value = context.isIMember
+    if member_value == 'yes':
+        context.speaker = None
+        context.institution = None
+    else:
+        context.internal_speaker = None
 
 
+@grok.subscribe(ATEvent, IObjectModifiedEvent)
+def object_modified(context, event):
+    """
+    """
+    member_value = context.isIMember
+    if member_value == 'yes':
+        context.speaker = None
+        context.institution = None
+    else:
+        context.internal_speaker = None
 
 
 @indexer(ATEvent)
 def getSpeaker(self):
+    member_value = getattr(self, 'isIMember', None)
+    if member_value == 'yes':
+        rid = getattr(self, 'internal_speaker', None)
+        if rid:
+            portal_catalog = getToolByName(getSite(), 'portal_catalog')
+            query = {
+                'portal_type': 'FSDPerson',
+                'id': rid,
+            }
+            return portal_catalog.searchResults(query)[0].Title
+
+        return None
+
     return getattr(self, 'speaker', None)
-    #return self.getWrappedField(self, 'speaker')
+    # return self.getWrappedField(self, 'speaker')
 
 
 @indexer(ATEvent)
 def getEventInstitution(self):
+    member_value = getattr(self, 'isIMember', None)
+    if member_value == 'yes':
+        return 'IM-UNAM'
     return getattr(self, 'institution', None)
 
 

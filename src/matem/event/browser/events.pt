@@ -15,12 +15,6 @@
             tal:attributes="href string:${resources_url}/bootstrap/bootstrap-fixed.css"
             rel="stylesheet" type="text/css"/>
 
-    
-
-    <!-- <style type="text/css"
-           media="all" 
-           tal:content="string:@import url(${context/absolute_url}/chronos.css);" /> -->
-
     <style type="text/css">
         .hCalendar-hidden {
             display:none; /* hide hCal fields not useful to human eyes */
@@ -32,7 +26,7 @@
             margin-top: 1em;
             padding: 1em;
         }
-        .vevent div.cal_date { 
+        .vevent div.cal_date {
             float:left;
             vertical-align:top;
             margin: 0 1.5em 0.5em 0;
@@ -69,7 +63,7 @@
             font-weight: bold;
             padding: 0;
         }
- 
+
     </style>
 
 </metal:block>
@@ -78,21 +72,13 @@
 <body>
 
     <div metal:fill-slot="body">
-        <h1 class="documentFirstHeading"> 
+        <h1 class="documentFirstHeading">
            <center> <metal:field use-macro="python:here.widget('title', mode='view')"> Title </metal:field></center>
         </h1>
 
-        <!--creador y ultima modificaion -->    
-        <!-- <div tal:replace="structure provider:plone.belowcontenttitle" /> -->
-    
         <p class="documentDescription">
             <metal:field use-macro="python:here.widget('description', mode='view')">Description</metal:field>
         </p>
-    
-        <!-- <div tal:replace="structure provider:plone.abovecontentbody" /> -->
-    
-        <!-- <div metal:use-macro="here/@@chronos_macros/calendar_view_tabs" /> -->
-    
         <tal:block replace="structure view/render_filter"/>
 
         <div class="eventlist">
@@ -105,7 +91,6 @@
                             <li itemprop="endDate" class="dtend" tal:content="data/end/ISO8601">end</li>
                         </ul>
                         <div class="cal_date">
-                            <!-- <span class="cal_wkday" tal:content="python:startf['wkday_abbr'][:2]">Tue</span> -->
                             <span class="cal_day" tal:content="string:${startf/day}">15.</span>
                             <span class="cal_month" tal:content="string:${startf/month}.">Oct.</span>
                         </div>
@@ -113,7 +98,6 @@
                             <h3><a href="" itemprop="url" class="url" tal:attributes="href data/getURL|data/absolute_url;">
                                 <span itemprop="summary" class="summary" tal:content="data/pretty_title_or_id">Title</span>
                             </a></h3>
-                            
                             <div class="documentByLine">
                                 <div tal:define="expositor data/getSpeaker|nothing" tal:content="expositor"/>
                                 <div class="fc">
@@ -125,19 +109,8 @@
                         </div>
                     </article>
                 </tal:items>
-
-            
             </div>
-  
         </div>
-    
-  
-
-
-    <!-- <div tal:replace="structure provider:plone.belowcontentbody" /> -->
-
-
-
     </div> <!-- end main fill slot -->
 
 </body>

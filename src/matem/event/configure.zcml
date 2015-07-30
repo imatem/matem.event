@@ -28,7 +28,7 @@
       description="IMATEM Event extension"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
-  
+
   <!-- Use jbot for template overrides -->
   <include package="z3c.jbot" file="meta.zcml" />
 
@@ -75,5 +75,4 @@
       name="matem.event.speakersVocabulary"
       />
 
-      
 </configure>

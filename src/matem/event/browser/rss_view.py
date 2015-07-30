@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from Products.Five import BrowserView
-from plone.app.portlets.portlets.rss import RSSFeed
 from DateTime import DateTime
 from DateTime.interfaces import DateTimeError
+from Products.Five import BrowserView
+from plone.app.portlets.portlets.rss import RSSFeed
 
 
 class RSSView(BrowserView):

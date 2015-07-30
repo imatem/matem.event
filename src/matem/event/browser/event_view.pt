@@ -15,7 +15,6 @@
                                     templateId template/getId;
                                     toLocalizedTime nocall:context/@@plone/toLocalizedTime;">
 
-      
       <span tal:condition="view/isCanceled">
         <span style="background-color: #FF0000;"><font color="#FFFFFF">&nbsp; Cancelado</font>  &nbsp;</span><br/>
       </span><!-- end is canceled-->
@@ -157,9 +156,6 @@
                 </tbody>
             </table>
         </div> <!-- Fin card -->
-
-        
-
 
         <metal:field use-macro="python:context.widget('text', mode='view')">
         Body text

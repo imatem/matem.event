@@ -1,12 +1,7 @@
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from Products.validation.interfaces.IValidator import IValidator
-from zope.interface import implements
 from matem.event import _
-# from DateTime import DateTime
-# from DateTime.interfaces import DateError
-from zope.i18n import translate
-# from zope.i18nmessageid import Message
-from zope.interface import Invalid
+from zope.interface import implements
 
 
 class InternalSpeakerValidator:
@@ -21,14 +16,27 @@ class InternalSpeakerValidator:
         self.description = description
 
     def __call__(self, value, *args, **kwargs):
+        """
+        For add blur attributte
+        Products/CMFPlone/skins/plone_ecmascript/inline_validation.js
+        $('.field #internal_speaker').live('blur', function () {
+            var $input = $(this),
+                $field = $input.closest('.field'),
+                uid = $field.attr('data-uid'),
+                fname = $field.attr('data-fieldname'),
+                value = $input.val();
 
+            if ($field && uid && fname) {
+                $.post($('base').attr('href') + '/at_validate_field', {uid: uid, fname: fname, value: value}, function (data) {
+                    render_error($field, data.errmsg);
+                });
+            }
+        });
+        """
         request = kwargs['REQUEST']
-        if request.form['isIMember'] == 'yes':
-            if not value:
-                kwargs['errors']['internal_speaker'] = _(u'Validation failed: Internal Author is required, please correct.')
-                # return
-                # raise Invalid(_(u'Validation failed: Internal Author is required, please correct.'))
-                # return translate(_("Validation failed: Internal Author is required, please correct."), domain='matem.event', context=request)
+        member_value = request.form.get('isIMember', '')
+        if member_value == 'yes' and not value:
+            return _("Validation failed: Speaker is required, please correct it.")
 
         return True
 
@@ -46,9 +54,8 @@ class ExternalSpeakerValidator:
 
     def __call__(self, value, *args, **kwargs):
 
-        request = kwargs['REQUEST']
-        if request.form['isIMember'] == 'no':
-            if not value:
-                return translate(_("Validation failed: External Author is required, please correct."), domain='matem.event', context=request)
+        instance = kwargs.get('instance', None)
+        if instance and instance.isIMember == 'no' and not value:
+            return _("Validation failed: Speaker is required, please correct it.")
 
         return True

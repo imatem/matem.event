@@ -1,6 +1,6 @@
-import unittest
-
+# -*- coding: utf-8 -*-
 from matem.event.tests import base
+import unittest
 
 
 class testInstall(base.TestCase):

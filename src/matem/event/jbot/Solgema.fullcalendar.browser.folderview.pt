@@ -27,7 +27,7 @@
             margin-top: 1em;
             padding: 1em;
         }
-        .vevent div.cal_date { 
+        .vevent div.cal_date {
             float:left;
             vertical-align:top;
             margin: 0 1.5em 0.5em 0;
@@ -64,7 +64,7 @@
             font-weight: bold;
             padding: 0;
         }
- 
+
     </style>
 
   </metal:slot>
@@ -89,7 +89,7 @@
                 document.getElementById('a_mcalendar').setAttribute("class", "");
                 document.getElementById('a_pastevents').setAttribute("class", "");
                 document.getElementById('a_upcomingevents').setAttribute("class", "");
-                document.getElementById('a_'+tab).setAttribute("class", "selected");                
+                document.getElementById('a_'+tab).setAttribute("class", "selected");
             }
 </script>
 
@@ -110,29 +110,29 @@
                     <li class="formTab lastFormTab" id="li_upcomingevents" onclick="visible('upcomingevents')" >
                         <a id="a_upcomingevents" i18n:domain="matem.event" i18n:translate="label_seminar_upcoming_events">Upcoming Events</a>
                     </li>
-              
+
                     <li class="formTab"  style="float: right; position: relative;" tal:define="my_self nocall:here/@@events; menu_item my_self/factory_item;" tal:condition="python:checkPermission('Add portal content', context)">
                         <a href="#" tal:condition="menu_item"
                            tal:attributes="href menu_item/action | nothing;
                                            title menu_item/description;
                                            id menu_item/extra/id | nothing;"
                            i18n:attributes="title">
-                           <span i18n:translate="" i18n:domain="plone">Add</span> <span tal:content="menu_item/title" i18n:translate="">Title</span>  
+                           <span i18n:translate="" i18n:domain="plone">Add</span> <span tal:content="menu_item/title" i18n:translate="">Title</span>
                         </a>
                     </li>
                 </ul>
             </div>
 
-            <div class="visual-clear"> <!-- --> </div>            
+            <div class="visual-clear"> <!-- --> </div>
 
             <metal:body define-macro="body_macro"
                 tal:define="kssClassesView context/@@kss_field_decorator_view;
                             getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
-                            templateId template/getId;">                
+                            templateId template/getId;">
 
-                
+
                 <div id="mcalendar">
-                    
+
                     <div tal:replace="structure provider:plone.abovecontenttitle" />
 
                     <!-- <h1 class="documentFirstHeading" tal:content="context/Title">Title</h1> -->
@@ -166,8 +166,8 @@
                 </div> <!-- Fin del calendario -->
 
                 <div id="pastevents" style="display: none;" tal:define="my_self nocall:here/@@events; ">
-                    
-                    <h1 class="documentFirstHeading"> 
+
+                    <h1 class="documentFirstHeading">
                         <center> <metal:field use-macro="python:here.aq_parent.widget('title', mode='view')"> Title </metal:field></center>
                     </h1>
 
@@ -189,7 +189,7 @@
                                         <h3><a href="" itemprop="url" class="url" tal:attributes="href data/getURL|data/absolute_url;">
                                             <span itemprop="summary" class="summary" tal:content="data/pretty_title_or_id">Title</span>
                                         </a></h3>
-                                        
+
                                         <div class="documentByLine">
                                             <div tal:define="expositor data/getSpeaker|nothing" tal:content="expositor"/>
                                             <div class="fc">
@@ -200,14 +200,14 @@
                                     </div>
                                 </article>
                             </tal:items>
-                        </div>              
+                        </div>
                     </div>
                 </div><!-- end pastevents -->
 
 
                 <div id="upcomingevents" style="display: none;" tal:define="my_self nocall:here/@@events; ">
-                    
-                    <h1 class="documentFirstHeading"> 
+
+                    <h1 class="documentFirstHeading">
                         <center> <metal:field use-macro="python:here.aq_parent.widget('title', mode='view')"> Title </metal:field></center>
                     </h1>
 
@@ -229,7 +229,7 @@
                                         <h3><a href="" itemprop="url" class="url" tal:attributes="href data/getURL|data/absolute_url;">
                                             <span itemprop="summary" class="summary" tal:content="data/pretty_title_or_id">Title</span>
                                         </a></h3>
-                                        
+
                                         <div class="documentByLine">
                                             <div tal:define="expositor data/getSpeaker|nothing" tal:content="expositor"/>
                                             <div class="fc">
@@ -240,11 +240,11 @@
                                     </div>
                                 </article>
                             </tal:items>
-                        </div>              
+                        </div>
                     </div>
 
                 </div><!-- end upcomingevents -->
-       
+
 
 
             </metal:body>
