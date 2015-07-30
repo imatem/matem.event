@@ -24,6 +24,12 @@ class _StringExtensionField(ExtensionField, atapi.StringField):
     '''
     pass
 
+
+class _LinesExtensionField(ExtensionField, atapi.LinesField):
+    '''Any field you can tack on must have ExtensionField as its first subclass
+    '''
+    pass
+
 BasicSchema = [
 
     _StringExtensionField(
@@ -89,16 +95,32 @@ BasicSchema = [
         ),
     ),
 
-    _StringExtensionField(
+    _LinesExtensionField(
         name='type_event',
-        vocabulary_factory='matem.event.TypeEvent',
+        # vocabulary_factory='matem.event.TypeEvent',
+        vocabulary=atapi.DisplayList((
+            ('researcher', _(u'Researcher')),
+            ('rhuman', _(u'Human Resource Training')),
+            ('divulgation', _(u'Divulgation')),
+        )),
         widget=atapi.MultiSelectionWidget(
             format='checkbox',
             label=_(u'Event Type'),
             description=_(u'Select the event type. You can select one o more'),
             i18n_domain='matem.event',
         ),
+        multiValued=True,
     ),
+    # _StringExtensionField(
+    #     name='type_event',
+    #     vocabulary_factory='matem.event.TypeEvent',
+    #     widget=atapi.MultiSelectionWidget(
+    #         format='checkbox',
+    #         label=_(u'Event Type'),
+    #         description=_(u'Select the event type. You can select one o more'),
+    #         i18n_domain='matem.event',
+    #     ),
+    # ),
 
 
     _StringExtensionField(
