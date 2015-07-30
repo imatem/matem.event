@@ -21,7 +21,10 @@ class IMStandardTopicView(BaseTopicView):
 class IMEventView(BaseTopicView):
 
     def getSpeaker(self):
-        member_value = self.context.isIMember
+        try:
+            member_value = self.context.isIMember
+        except AttributeError:
+            member_value = 'no'
         if member_value == 'yes':
             rid = self.context.internal_speaker
             if rid:
@@ -38,7 +41,10 @@ class IMEventView(BaseTopicView):
         # return getattr(self.context, 'speaker', None)
 
     def getEventInstitution(self):
-        member_value = self.context.isIMember
+        try:
+            member_value = self.context.isIMember
+        except AttributeError:
+            member_value = 'no'
         if member_value == 'yes':
             return 'IM-UNAM'
         return self.context.institution
@@ -51,26 +57,28 @@ class IMEventView(BaseTopicView):
 
         etypes = []
         values = getattr(self.context, 'type_event', None)
-        vocabulary = self.context.getField('type_event').Vocabulary(self.context)
-        translation_service = getSite().translation_service
-        for value in filter(None, values):
-            langvalue = translation_service.translate(vocabulary.getValue(
-                value),
-                domain="matem.event",
-                target_language=self.context.REQUEST.LANGUAGE).encode('utf-8')
+        if values:
+            vocabulary = self.context.getField('type_event').Vocabulary(self.context)
+            translation_service = getSite().translation_service
+            for value in filter(None, values):
+                langvalue = translation_service.translate(vocabulary.getValue(
+                    value),
+                    domain="matem.event",
+                    target_language=self.context.REQUEST.LANGUAGE).encode('utf-8')
 
-            etypes.append(langvalue)
+                etypes.append(langvalue)
         return etypes
 
     def getNationality(self):
         nationality = None
         value = getattr(self.context, 'speaker_nationality', None)
-        vocabulary = self.context.getField('speaker_nationality').Vocabulary(self.context)
-        translation_service = getSite().translation_service
-        nationality = translation_service.translate(vocabulary.getValue(
-            int(value)),
-            domain="matem.event",
-            target_language=self.context.REQUEST.LANGUAGE).encode('utf-8')
+        if value:
+            vocabulary = self.context.getField('speaker_nationality').Vocabulary(self.context)
+            translation_service = getSite().translation_service
+            nationality = translation_service.translate(vocabulary.getValue(
+                int(value)),
+                domain="matem.event",
+                target_language=self.context.REQUEST.LANGUAGE).encode('utf-8')
 
         return nationality
         # return getattr(self.context, 'speaker_nationality', None)
