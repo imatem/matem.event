@@ -87,6 +87,7 @@ BasicSchema = [
     _StringExtensionField(
         name='speaker_nationality',
         vocabulary_factory='matem.event.NationalityExpositor',
+        default=1,
         widget=atapi.SelectionWidget(
             format='select',
             label=_(u'Speaker Nationality'),

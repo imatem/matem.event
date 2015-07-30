@@ -46,3 +46,31 @@ class IMEventView(BaseTopicView):
 
     def isCanceled(self):
         return getattr(self.context, 'canceled', None)
+
+    def getEvetType(self):
+
+        etypes = []
+        values = getattr(self.context, 'type_event', None)
+        vocabulary = self.context.getField('type_event').Vocabulary(self.context)
+        translation_service = getSite().translation_service
+        for value in filter(None, values):
+            langvalue = translation_service.translate(vocabulary.getValue(
+                value),
+                domain="matem.event",
+                target_language=self.context.REQUEST.LANGUAGE).encode('utf-8')
+
+            etypes.append(langvalue)
+        return etypes
+
+    def getNationality(self):
+        nationality = None
+        value = getattr(self.context, 'speaker_nationality', None)
+        vocabulary = self.context.getField('speaker_nationality').Vocabulary(self.context)
+        translation_service = getSite().translation_service
+        nationality = translation_service.translate(vocabulary.getValue(
+            int(value)),
+            domain="matem.event",
+            target_language=self.context.REQUEST.LANGUAGE).encode('utf-8')
+
+        return nationality
+        # return getattr(self.context, 'speaker_nationality', None)
