@@ -266,8 +266,10 @@ def getSpeaker(self):
                 'portal_type': 'FSDPerson',
                 'id': rid,
             }
-            return portal_catalog.searchResults(query)[0].Title
-
+            brain = portal_catalog.searchResults(query)
+            if brain:
+                return brain[0].Title.decode('utf-8')
+            return None
         return None
 
     return getattr(self, 'speaker', None)
