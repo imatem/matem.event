@@ -85,8 +85,8 @@ directlyProvides(Months, IVocabularyFactory)
 
 def NationalityExpositor(context):
     items = [
-        (_(u'Mexican'), 1),
-        (_(u'Foreigner'), 2),
+        (_(u'Mexican'), '1'),
+        (_(u'Foreigner'), '2'),
     ]
 
     items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
