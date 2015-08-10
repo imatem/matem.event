@@ -27,7 +27,7 @@
  <property name="model_file"></property>
  <!-- <property name="model_file">plone.app.contenttypes.schema:folder.xml</property> -->
  <property name="schema_policy">dexterity</property>
- 
+
  <!-- class used for content items -->
  <property name="klass">plone.dexterity.content.Container</property>
 

@@ -18,7 +18,7 @@
         <div class="eventDetails vcard">
           <table class="vertical listing">
             <tbody>
-              <tr> 
+              <tr>
                 <th i18n:translate="label_seminar_activities">Seminar Activities</th>
                 <td><a href="actividades"><img src="" tal:attributes="src string:${portal_url}/event_icon.png"/><span i18n:translate="label_seminar_calendar">Calendar</span></a></td>
               </tr>
@@ -37,8 +37,8 @@
                 </td>
               </tr>
               <tr>
-                <th i18n:translate="label_seminar_periodicity">Periodicity</th>     
-                <td> 
+                <th i18n:translate="label_seminar_periodicity">Periodicity</th>
+                <td>
                   <tal:block condition="context/periodicity">
                     <span tal:content="view/getPeriodicityTitle"/>
                   </tal:block>

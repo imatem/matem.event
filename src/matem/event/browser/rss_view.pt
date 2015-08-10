@@ -45,8 +45,6 @@
                 <span tal:content="item/location"/>
                 <br/>
                 <span tal:content="item/seminarytitle"/> <br/>
-              
-                <!-- <span tal:content="item/summary"/> -->
               </dd>
             </metal:block>
           </div><!-- class item -->
@@ -56,37 +54,3 @@
   </body>
 </html>
 
-
-<!--End dl in CU activities -->
-<!-- <span>
-          <br/>
-          <h3 style="background-color: #75ad0a;"><font color="#FFFFFF">&nbsp; C.U.</font>  &nbsp;</h3>
-          <br/>
-        </span> -->
-
-<!-- For Cuernavaca activities -->
-<!--         <span>
-          <br/>
-          <h3 style="background-color: #75ad0a;"><font color="#FFFFFF">&nbsp; Cuernavaca</font>  &nbsp;</h3>
-          <br/>
-        </span>
-
-        <tal:entry tal:define="rssview nocall:context/@@rssview;">
-          <tal:entry tal:condition="rssview/feedAvailable"
-            tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime"
-            tal:repeat="item rssview/items">
-            <div class="tileItem">
-              <metal:block>
-                <dt>
-                  <span class="summary">
-                    <a style="background: none; padding: 0;" href="#" tal:content="item/title" tal:attributes="href item/url">Title</a>
-                    <br/>
-                  </span>
-                </dt>
-                <dd>
-                  <span tal:content="item/summary"/>
-                </dd>
-              </metal:block>
-            </div>
-          </tal:entry>
-        </tal:entry> -->

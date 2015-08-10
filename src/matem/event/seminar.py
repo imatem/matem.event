@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
-
+from Products.CMFCore.utils import getToolByName
 from five import grok
 from matem.event import _
 from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
 from plone.autoform import directives as form
 from plone.supermodel import model
-from Products.CMFCore.utils import getToolByName
 from zope import schema
 from zope.component import getUtility
 from zope.component.hooks import getSite
-from zope.interface import invariant, Invalid
+from zope.interface import Invalid
+from zope.interface import invariant
 from zope.schema.interfaces import IVocabularyFactory
 
 
@@ -52,7 +52,7 @@ class ISeminar(model.Schema):
     )
 
     end = schema.TextLine(
-        #title=_(u"End date"),
+        # title=_(u"End date"),
         title=_(
             u'label_seminar_end',
             default=u'End time'
@@ -99,7 +99,7 @@ class ISeminar(model.Schema):
             vocabulary="matem.event.PersonVocabulary",
         ),
         required=True,
-        #default=set([1,3])
+        # default=set([1,3])
     )
 
     form.widget('details', WysiwygFieldWidget)
@@ -115,7 +115,7 @@ class ISeminar(model.Schema):
         required=False,
     )
 
-    ##TODO: Add the details field for english
+    # #TODO: Add the details field for english
 
     @invariant
     def validateStartEnd(data):

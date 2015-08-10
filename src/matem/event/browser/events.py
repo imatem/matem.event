@@ -16,9 +16,9 @@ class EventsView(BrowserView):
 
     def upcomingEvents(self, **kw):
         """Show all upcoming events"""
+
         query = {}
         has_query = getattr(self.context, 'buildQuery', None)
-
         if has_query:
             query = self.context.buildQuery()
         else:
