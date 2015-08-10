@@ -33,6 +33,16 @@
     />
 
     <browser:page
+        name="im_news_comments"
+        for="Products.ATContentTypes.content.topic.ATTopic"
+        permission="zope.Public"
+        template="news_comments.pt"
+        class=".views.IMStandardTopicView"
+        layer="Products.Collage.interfaces.ICollageBrowserLayer"
+    />
+
+
+    <browser:page
         name="event_view"
         for="Products.ATContentTypes.content.event.ATEvent"
         permission="zope.Public"

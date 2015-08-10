@@ -1,0 +1,103 @@
+<tal:manager replace="structure provider:collage.ContentManager" />
+
+<tal:variables define="plone_view here/@@plone;
+                       toLocalizedTime nocall: plone_view/toLocalizedTime;
+                       isAnon view/isAnon;
+                       mtool view/mtool;
+                       portal_url view/portal_url;
+                       normalizeString view/normalizeString;
+                       site_properties view/site_properties">
+
+  <div class="standard-topic"
+       tal:define="topicContents view/getContents"
+       tal:condition="topicContents">
+
+    <a tal:omit-tag="not: view/isAlias"
+       tal:attributes="href context/absolute_url">
+      <h2 metal:define-macro="title"
+          tal:define="kssview context/@@collage_kss_helper"
+          tal:attributes="id string:title-${kssview/getUniqueIdentifier};
+                          class python: kssview.getKssClasses('title')"
+          tal:condition="here/Title">
+        <span metal:define-slot="inside"
+              tal:replace="here/Title">title</span>
+      </h2>
+    </a>
+
+    <p class="description-topic">
+      <span metal:define-macro="description"
+            tal:define="view context/@@collage_kss_helper"
+            tal:attributes="id string:description-${view/getUniqueIdentifier};
+                            class python: view.getKssClasses('description')"
+            tal:condition="here/Description">
+        <span metal:define-slot="inside"
+              tal:replace="here/Description">description</span>
+      </span>
+    </p>
+
+    <tal:listing i18n:domain="plone"
+                 define="view context/@@collage_kss_helper/getKssView;
+                         getKssClasses python: view.getKssClasses;
+                         templateId string:folder_summary_view;
+                         folderContents topicContents">
+        <metal:block use-macro="context/folder_listing/macros/content-core">
+            <!-- we don't want the dl -->
+            <metal:entries fill-slot="entries">
+                <metal:block use-macro="context/folder_listing/macros/entries">
+                    <metal:entry fill-slot="entry">
+                <div class="tileItem visualIEFloatFix"
+                     tal:define="item_object item/getObject; item_efective_date item/EffectiveDate|nothing;">
+
+                    <a href="#"
+                       tal:condition="exists:item_object/image_thumb"
+                       tal:attributes="href python:item_type in use_view_action and item_url+'/view' or item_url">
+                        <img src="" alt=""
+                             tal:replace="structure python: path('nocall:item_object/tag')(scale='thumb', css_class='tileImage')" />
+                    </a>
+
+
+                <div id="parent-fieldname-description" class="documentDescription">
+                   La comunidad del IM lamenta el sensible fallecimiento del Dr. Humberto Cárdenas Trigos, Premio UNAM 1991, Profesor Emérito y ex Director de nuestra entidad académica, quien realizó una notable labor de investigación y enseñanza a lo largo de toda su trayectoria, convirtiéndolo en uno de los pilares de las matemáticas mexicanas.
+                </div>
+
+
+
+
+<div id="parent-fieldname-text" class="plain">
+            <p><span><br /></span></p>
+<p style="text-align: justify; "><span>Humberto Cárdenas (1925-2015) nació en Morelia, Michoacán y estudió la licenciatura en Matemáticas en la Facultad de Ciencias de la Universidad Nacional Autónoma de México. Durante los años cincuenta, cursó sus estudios de maestría y doctorado en la Escuela de Graduados de la Universidad de Princeton, Estados Unidos. </span></p>
+<p style="text-align: justify; "><span>Fue profesor universitario desde 1949; impartió cátedra en la Escuela Nacional Preparatoria, en la Escuela Nacional de Ingenieros (hoy día, Facultad de Ingeniería) y en la Facultad de Ciencias, donde llegó a ser Jefe del Departamento de Matemáticas.</span></p>
+<p style="text-align: justify; "><span>En 1952 se integró al Instituto de Matemáticas para realizar labores de investigación, primero en Ciudad Universitaria y años después en la Unidad Morelia, actualmente Centro de Ciencias Matemáticas. Fue director por dos periodos, de 1972 a 1978  —durante el cual, se inauguraron las actuales instalaciones del IM en CU— y de 1978 a 1984. Su gran compromiso hacia nuestra comunidad se evidencia con el impulso que dio al desarrollo en la investigación y con el notable aumento en la cantidad de investigadores adscritos y becarios. </span></p>
+<p style="text-align: justify; "><span>Con más de 30 trabajos científicos publicados, entre los que destacan los relacionados con la Teoría de Homología de Grupos, ha sido líder en diversas áreas de investigación como Álgebra, Topología y Geometría. Dirigió varios seminarios de docencia e investigación entre los que sobresale el seminario de Álgebra Homológica, convertido con el paso de los años en el actual seminario de Teoría de Representaciones.</span></p>
+<p style="text-align: justify; "><span>El Dr. Cárdenas siempre tuvo una gran preocupación por la docencia y escribió 22 libros de texto que van desde el nivel secundaria hasta el de posgrado ...</span></p>
+</div>
+
+
+                    <p class="tileFooter">
+                        <a href=""
+                           tal:attributes="href python:item_type in use_view_action and item_url+'/view' or item_url;">
+                        Continuar leyendo </a>
+                        &nbsp; &nbsp; &nbsp;
+                         <a href=""
+                           tal:attributes="href python:item_type in use_view_action and item_url+'/view' or item_url + '#viewlet-below-content';">Comentarios
+                        </a>
+                    </p>
+
+                    <div class="visualClear"><!-- --></div>
+
+
+                </div>
+                    </metal:entry>
+                </metal:block>
+            </metal:entries>
+        </metal:block>
+    </tal:listing>
+
+    <a tal:attributes="href here/absolute_url"
+       tal:condition="python:len(topicContents) ==  here.itemCount"
+       i18n:domain="plone" i18n:translate="box_morelink">More...</a>
+
+  </div>
+
+</tal:variables>
+
