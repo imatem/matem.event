@@ -75,7 +75,6 @@ class RSSOaxacaView(RSSView):
         self.context = context
         self.request = request
         self.feed = IMRSSFeed('http://paginas.matem.unam.mx/oaxaca/index.php?option=com_jevents&task=modlatest.rss&format=feed&type=rss&Itemid=1871&modid=0', 100)
-        import pdb; pdb.set_trace()
         self.feed.update()
 
 
