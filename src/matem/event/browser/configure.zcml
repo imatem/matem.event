@@ -5,6 +5,14 @@
   <include package="Products.Collage" />
 
     <browser:page
+        name="rssoaxacaview"
+        for="*"
+        permission="zope.Public"
+        template="rss_view.pt"
+        class=".rss_view.RSSOaxacaView"
+    />
+
+    <browser:page
         name="rssview"
         for="*"
         permission="zope.Public"

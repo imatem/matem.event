@@ -39,6 +39,8 @@ class RSSView(BrowserView):
         date = DateTime()
         for item in self.feed.items:
             if item.get('updated', ''):
+                if item['updated'] < date:
+                    continue
                 if item['updated'] >= date and item['updated'] <= date + 14:
                     ritems.append(item)
                 elif item['updated']._hour + 1 >= date._hour and item['updated'] <= date + 14:
@@ -67,6 +69,15 @@ class RSSView(BrowserView):
             return date_s[1].replace(',', '') + ' de ' + month_name[date_s[0]] + ', ' + date_s[3] + ' ' + date_s[4] + '.' or ''
 
         return datetime
+
+
+class RSSOaxacaView(RSSView):
+
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+        self.feed = IMRSSFeed('http://paginas.matem.unam.mx/oaxaca/RSS/index.xml', 100)
+        self.feed.update()
 
 
 class IMRSSFeed(RSSFeed):

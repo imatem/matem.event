@@ -126,7 +126,7 @@
           </div>
         </tal:entry>
       </tal:entry>
-      <!-- En Cuernavaca -->
+      <!-- End Cuernavaca -->
 
       <!-- Juriquilla -->
       <dl tal:condition="folderContents/Juriquilla ">
@@ -184,6 +184,57 @@
         </div>
         </tal:entry>
       </dl> <!-- End juriquilla -->
+
+
+
+      <!-- Oaxaca -->
+      <tal:entry tal:define="rssoaxview nocall:context/@@rssoaxacaview;">
+        <span tal:condition="rssoaxview/hasFeed">
+          <br/>
+          <h3 style="background-color: #F17C06; ; width: 17em;">
+            <font color="#FFFFFF">&nbsp; Oaxaca</font>  &nbsp;</h3>
+        </span>
+
+        <tal:entry tal:condition="rssoaxview/feedAvailable"
+          tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime"
+          tal:repeat="item rssoaxview/items">
+          <div class="tileItem">
+            <metal:block>
+              <dt>
+                <span>
+                  <span style="background-color: #F17C06">
+                    <font color="#FFFFFF">&nbsp;</font>  &nbsp;</span>
+                </span>
+                <span class="summary">
+
+                  <a tal:define="mtitle item/title" style="background: none; padding: 0; border: none !important" href="#" tal:attributes="href item/url">
+                    <span tal:replace="structure mtitle"/>
+                  </a>
+                  <br/>
+                </span>
+              </dt>
+              <dd>
+                <span tal:condition="item/institution">
+                  <b>
+                    <span tal:condition="item/speaker" tal:content="item/speaker"/>
+                    <span tal:condition="item/institution" tal:content="python:' (' + item['institution'] + ').'"/>
+                  </b>
+                </span>
+                <span tal:condition="python: not item['institution']">
+                  <b><span tal:condition="item/speaker" tal:content="item/speaker"/></b>
+                </span>
+                <br/>
+                <span tal:content="python: rssoaxview.getFancyDate(item['updated']) or ''"/>
+                <span tal:content="item/location | nothing"/>
+                <br/>
+                <span tal:content="item/seminarytitle | nothing"/>
+                <br/>
+              </dd>
+            </metal:block>
+          </div>
+        </tal:entry>
+      </tal:entry>
+      <!-- End Oaxaca -->
 
 
 
