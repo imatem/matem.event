@@ -188,7 +188,7 @@
 
 
       <!-- Oaxaca -->
-<!--       <tal:entry tal:define="rssoaxview nocall:context/@@rssoaxacaview;">
+      <tal:entry tal:define="rssoaxview nocall:context/@@rssoaxacaview;">
         <span tal:condition="rssoaxview/hasFeed">
           <br/>
           <h3 style="background-color: #F17C06; ; width: 17em;">
@@ -233,7 +233,7 @@
             </metal:block>
           </div>
         </tal:entry>
-      </tal:entry> -->
+      </tal:entry>
       <!-- End Oaxaca -->
 
 
