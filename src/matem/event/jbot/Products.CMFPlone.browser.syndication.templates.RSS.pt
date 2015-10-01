@@ -10,7 +10,7 @@
 <tal:block
     tal:define="feed view/feed;
                 toLocalizedTime nocall:context/@@plone/toLocalizedTime;
-                items python: [f for f in feed.items]">
+                items python: [f for f in feed.items];">
 
 <channel rdf:about="" tal:attributes="rdf:about request/URL">
   <title tal:content="feed/title">The title</title>
@@ -31,13 +31,13 @@
 
 
 <tal:block repeat="item python: items">
-  <item rdf:about="" tal:attributes="rdf:about item/link" tal:define="item_type item/context/portal_type">
+  <item rdf:about="" tal:attributes="rdf:about item/link" tal:define="item_type item/context/portal_type; myview python:item.context.unrestrictedTraverse('@@event_view')">
     <tal:block tal:condition="python: item_type == 'Event'">
       <title tal:content="item/title" />
       <link tal:content="item/link" />
       <dc:date tal:content="python: item.context.start().__str__() or ''">Start date</dc:date>
-      <dc:speaker tal:content="item/context/speaker | nothing">Speaker</dc:speaker>
-      <dc:institution tal:content="item/context/institution | nothing">Institution</dc:institution>
+      <dc:speaker tal:content="myview/getSpeaker| nothing">Speaker</dc:speaker>
+      <dc:institution tal:content="myview/getEventInstitution | nothing">Institution</dc:institution>
       <dc:seminarytitle tal:content="python:item.context.subject[0] or ''">Seminary title</dc:seminarytitle>
       <dc:location tal:content="item/context/location">Location</dc:location>
     </tal:block>
