@@ -31,15 +31,17 @@
 
 
 <tal:block repeat="item python: items">
-  <item rdf:about="" tal:attributes="rdf:about item/link" tal:define="item_type item/context/portal_type; myview python:item.context.unrestrictedTraverse('@@event_view')">
+  <item rdf:about="" tal:attributes="rdf:about item/link" tal:define="item_type item/context/portal_type;">
     <tal:block tal:condition="python: item_type == 'Event'">
-      <title tal:content="item/title" />
-      <link tal:content="item/link" />
-      <dc:date tal:content="python: item.context.start().__str__() or ''">Start date</dc:date>
-      <dc:speaker tal:content="myview/getSpeaker| nothing">Speaker</dc:speaker>
-      <dc:institution tal:content="myview/getEventInstitution | nothing">Institution</dc:institution>
-      <dc:seminarytitle tal:content="python:item.context.subject[0] or ''">Seminary title</dc:seminarytitle>
-      <dc:location tal:content="item/context/location">Location</dc:location>
+      <tal:block tal:define="myview python:item.context.unrestrictedTraverse('@@event_view')">
+        <title tal:content="item/title" />
+        <link tal:content="item/link" />
+        <dc:date tal:content="python: item.context.start().__str__() or ''">Start date</dc:date>
+        <dc:speaker tal:content="myview/getSpeaker| nothing">Speaker</dc:speaker>
+        <dc:institution tal:content="myview/getEventInstitution | nothing">Institution</dc:institution>
+        <dc:seminarytitle tal:content="python:item.context.subject[0] or ''">Seminary title</dc:seminarytitle>
+        <dc:location tal:content="item/context/location">Location</dc:location>
+      </tal:block>
     </tal:block>
 
     <tal:block tal:condition="python: item_type != 'Event'">
