@@ -15,7 +15,26 @@
 
         <h1 class="documentFirstHeading" tal:content="context/title" />
 
-        <div class="eventDetails vcard">
+        <div class="eventDetails vcard" tal:define="activities_folder python:context.get('actividades', None);">
+
+          <tal:block tal:condition="activities_folder">
+            <center>
+            <span tal:define="my_self nocall:activities_folder/@@events; menu_item my_self/factory_item;"
+              tal:condition="python:checkPermission('Add portal content', activities_folder)">
+              <br/>
+                <a href="#" style="font-size:medium; background: #427597; color:white; padding: 4px; border-radius:4px; border-color: #2e6da4;" tal:condition="menu_item"
+                    tal:attributes="href menu_item/action | nothing;
+                                    title menu_item/description;
+                                    id menu_item/extra/id | nothing;"
+                    i18n:attributes="title">
+                  <span i18n:translate="" i18n:domain="plone">Add</span> <span tal:content="menu_item/title" i18n:translate="">Title</span>
+                </a>
+              <br/>&nbsp;
+            </span>
+          </center>
+
+          </tal:block>
+
           <table class="vertical listing">
             <tbody>
               <tr>
