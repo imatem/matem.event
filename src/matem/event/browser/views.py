@@ -76,7 +76,7 @@ class IMEventView(BaseTopicView):
             vocabulary = self.context.getField('speaker_nationality').Vocabulary(self.context)
             translation_service = getSite().translation_service
             nationality = translation_service.translate(vocabulary.getValue(
-                int(value)),
+                value),
                 domain="matem.event",
                 target_language=self.context.REQUEST.LANGUAGE).encode('utf-8')
 
