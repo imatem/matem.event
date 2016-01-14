@@ -18,8 +18,7 @@
 
   <div class="standard-topic"
        tal:define="topicContents view/getContents;
-       folderContents python:view.filterTopics(topicContents);"
-       tal:condition="topicContents">
+       folderContents python:view.filterTopics(topicContents);">
 
     <tal:listing i18n:domain="plone"
                  define="view context/@@collage_kss_helper/getKssView;
@@ -243,10 +242,6 @@
 
 
     </tal:listing>
-
-    <a tal:attributes="href here/absolute_url"
-       tal:condition="python:len(topicContents) ==  here.itemCount"
-       i18n:domain="plone" i18n:translate="box_morelink">More...</a>
 
   </div>
 
