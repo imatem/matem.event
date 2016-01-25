@@ -36,8 +36,12 @@ class IMEventView(BaseTopicView):
                 return portal_catalog.searchResults(query)[0].Title
 
             return None
-
+        try:
+            self.context.speaker
+        except AttributeError:
+            return None
         return self.context.speaker
+        # return self.context.speaker
         # return getattr(self.context, 'speaker', None)
 
     def getEventInstitution(self):
@@ -47,7 +51,12 @@ class IMEventView(BaseTopicView):
             member_value = 'no'
         if member_value == 'yes':
             return 'IM-UNAM'
+        try:
+            self.context.institution
+        except AttributeError:
+            return None
         return self.context.institution
+        # return self.context.institution
         # return getattr(self.context, 'institution', None)
 
     def isCanceled(self):
