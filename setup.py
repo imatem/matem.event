@@ -48,11 +48,8 @@ setup(
         'develop': [
             'plone.reload',
             'Products.PDBDebugMode',
-            'Products.PrintingMailHost',
         ],
         'test': [
-            'mock',
-            'plone.app.robotframework',
             'plone.app.testing',
             'unittest2',
         ],
