@@ -13,7 +13,7 @@ matem.event
     :alt: Stories in Ready
     :target: https://waffle.io/imatem/matem.event
 
-This is a Plone Event extension.
+Event type for the Institute of Mathematics
 
 
 Features
