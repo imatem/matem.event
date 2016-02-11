@@ -1,26 +1,30 @@
-# byte-compiled Python files
-*.py[co]
-
-
-# Packages
-bin
-develop-eggs
-eggs
-parts
-src/matem.event.egg-info/
-var
-.installed.cfg
-Makefile
-
-# Unit test / coverage reports
-.coverage
-coverage
-
-# Translations
+*.egg-info
 *.mo
-
-# Mr Developer
+*.pyc
+*.DS_Store
+*~
+.coverage
+.installed.cfg
 .mr.developer.cfg
-
-# SublimeCodeIntel
-.codeintel
+.project
+.pydevproject
+.settings
+bin/
+coverage/
+develop-eggs/
+dist/
+downloads/
+eggs/
+htmlcov/
+include/
+lib/
+local.cfg
+Makefile
+parts/
+src-git/
+var/
+docs/Makefile
+docs/make.bat
+docs/doctrees
+docs/html
+docs/build
