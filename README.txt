@@ -1,17 +1,70 @@
-.. contents::
+matem.event
+==============================================================================
 
-.. Note!
-   -----
-   Update the following URLs to point to your:
+.. image:: https://travis-ci.org/imatem/matem.event.png?branch=master
+    :alt: Travis CI badge
+    :target: https://travis-ci.org/imatem/matem.event
 
-   - code repository
-   - bug tracker
-   - questions/comments feedback mail
-   (do not set a real mail, to avoid spams)
+.. image:: https://coveralls.io/repos/imatem/matem.event/badge.png?branch=master
+    :alt: Coveralls badge
+    :target: https://coveralls.io/r/imatem/matem.event
 
-   Or remove it if not used.
+.. image:: https://badge.waffle.io/imatem/matem.event.png?label=Ready
+    :alt: Stories in Ready
+    :target: https://waffle.io/imatem/matem.event
 
-- Code repository: http://svn.somewhere.com/...
-- Questions and comments to somemailing_list
-- Report bugs at http://bug.somewhere.com/..
+This is a Plone Event extension.
 
+
+Features
+--------
+
+- Plone Event extension
+
+
+Documentation
+-------------
+
+Full documentation for end users can be found in the "docs" folder, and is also available online at https://github.com/imatem/matem.event/docs
+
+
+Requirements
+------------
+
+    * `Plone 4.3.x <http://plone.org/products/plone>`_
+
+
+Installation
+------------
+
+Install matem.event by adding it to your buildout::
+
+   [buildout]
+
+    ...
+
+    eggs =
+        matem.event
+
+
+and then running "bin/buildout"
+
+
+Contribute
+----------
+
+- Issue Tracker: `@ GitHub <http://github.com/imatem/matem.event/issues>`_
+- Source Code: `@ GitHub <https://github.com/imatem/matem.event.git>`_
+- Documentation: `@ readthedocs.org <http://github.com/imatem/matem.event>`_
+
+
+Support
+-------
+
+If you are having issues, please let us know.
+We have a mailing list located at: computoacademico@im.unam.mx
+
+License
+-------
+
+The project is licensed under the GPLv2.
