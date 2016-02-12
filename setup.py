@@ -43,6 +43,7 @@ setup(
         'Plone',
         'setuptools',
         'plone.app.dexterity',
+        'Products.Collage',
     ],
     extras_require={
         'develop': [
