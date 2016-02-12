@@ -1,12 +1,22 @@
 # -*- coding: utf-8 -*-
 
 from matem.event import _
-from matem.fsdextender.users import get_users_as_brains
 from zope.component.hooks import getSite
 from zope.interface import directlyProvides
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
+
+
+import pkg_resources
+
+try:
+    pkg_resources.get_distribution('matem.fsdextender')
+except pkg_resources.DistributionNotFound:
+    HAS_FSD = False
+else:
+    from matem.fsdextender.users import get_users_as_brains
+    HAS_FSD = True
 
 
 def Weekdays(context):
@@ -36,10 +46,19 @@ def PersonVocabulary(context):
     """Vocabulary factory for all people
     """
     items = []
-    res = get_users_as_brains(
-        getSite(),
-        sortable=True,
-        person_classification=['investigadores', 'posdoc', 'becarios'])
+    res = []
+    if HAS_FSD:
+        res = get_users_as_brains(
+            getSite(),
+            person_classification=[
+                'investigadores',
+                'posdoc',
+                'catedras-conacyt',
+                'becarios',
+            ],
+            sortable=True,
+        )
+
     for r in res:
         title = (r.lastName + ', ' + r.firstName).encode('utf-8')
         items.append((title, r.UID))
@@ -119,13 +138,18 @@ directlyProvides(isIMember, IVocabularyFactory)
 
 def speakersVocabulary(context):
     items = []
-    brains = get_users_as_brains(
-        getSite(),
-        sortable=True,
-        review_state='active',
-        # 'tecnicos-academicos', 'becarios'
-        person_classification=['investigadores', 'posdoc', 'catedras-conacyt']
-    )
+    brains = []
+    if HAS_FSD:
+        brains = get_users_as_brains(
+            getSite(),
+            person_classification=[
+                'investigadores',
+                'posdoc',
+                'catedras-conacyt',
+            ],
+            review_state='active',
+            sortable=True,
+        )
     items.append(SimpleTerm(value='', title=''))
     for b in brains:
         items.append(SimpleTerm(value=b.id, title=" ".join([b.lastName, b.firstName])))
