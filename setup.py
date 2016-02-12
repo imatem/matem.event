@@ -42,8 +42,10 @@ setup(
         'Pillow',
         'Plone',
         'setuptools',
-        'plone.app.dexterity',
+        'plone.app.dexterity [grok]',
         'Products.Collage',
+        'Products.MasterSelectWidget',
+        'z3c.jbot',
     ],
     extras_require={
         'develop': [
