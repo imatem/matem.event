@@ -30,17 +30,14 @@ class TestInstallation(unittest.TestCase):
         installer.uninstallProducts([PROJECTNAME])
         self.assertFalse(installer.isProductInstalled(PROJECTNAME))
 
-    def testSchemaExtension(self):
-        self.failUnless(
-            self.dummyEvent.Schema().get('researchTopic') is not None,
-            'fail to append researchTopic field to Events.')
-
     # extenders/event.py
-    def test_extenders_registered(self):
-        """Test if schema extenders are registered."""
-        reg_adapters = self.portal.getSiteManager().registeredAdapters()
-        adapters = [a for a in reg_adapters if a.provided == ISchemaExtender]
-        self.assertEqual(len(adapters), 1)
-        reg_adapters = self.portal.getSiteManager().registeredAdapters()
-        adapters = [a for a in reg_adapters if a.provided == ISchemaModifier]
-        self.assertEqual(len(adapters), 1)
+    # def test_extenders_registered(self):
+    #     """Test if schema extenders are registered."""
+    #     reg_adapters = self.portal.getSiteManager().registeredAdapters()
+    #     adapters = [a for a in reg_adapters if a.provided == ISchemaModifier]
+    #     self.assertEqual(len(adapters), 1)
+
+    # def testSchemaExtension(self):
+    #     self.failUnless(
+    #         self.dummyEvent.Schema().get('researchTopic') is not None,
+    #         'fail to append researchTopic field to Events.')
