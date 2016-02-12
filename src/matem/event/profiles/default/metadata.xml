@@ -1,4 +1,8 @@
 <?xml version="1.0"?>
 <metadata>
+  <description>Event extender.</description>
   <version>1</version>
+  <dependencies>
+    <dependency>profile-Products.MasterSelectWidget:default</dependency>
+  </dependencies>
 </metadata>
