@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-from Products.CMFCore.utils import getToolByName
+
 from five import grok
 from matem.event import _
 from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
 from plone.autoform import directives as form
 from plone.supermodel import model
+from Products.CMFCore.utils import getToolByName
 from zope import schema
 from zope.component import getUtility
 from zope.component.hooks import getSite
@@ -35,7 +36,7 @@ class ISeminar(model.Schema):
             default=u'Select the day, when this seminar happens.'
         ),
         required=True,
-        vocabulary="matem.event.Weekdays"
+        vocabulary='matem.event.Weekdays',
     )
 
     start = schema.TextLine(
@@ -86,8 +87,7 @@ class ISeminar(model.Schema):
             default=u'Periodicity of the seminar.'
         ),
         required=False,
-        vocabulary="matem.event.PeriodicitySeminar"
-
+        vocabulary='matem.event.PeriodicitySeminar',
     )
 
     organizer = schema.List(
@@ -96,7 +96,7 @@ class ISeminar(model.Schema):
             default=u'Organizer(s)',
         ),
         value_type=schema.Choice(
-            vocabulary="matem.event.PersonVocabulary",
+            vocabulary='matem.event.PersonVocabulary',
         ),
         required=True,
         # default=set([1,3])

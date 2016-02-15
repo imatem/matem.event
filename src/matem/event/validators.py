@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-from Products.validation.interfaces.IValidator import IValidator
+
 from matem.event import _
+from Products.validation.interfaces.IValidator import IValidator
 from zope.i18n import translate
 from zope.interface import implements
 
@@ -37,7 +38,7 @@ class InternalSpeakerValidator:
         request = kwargs['REQUEST']
         member_value = request.form.get('isIMember', '')
         if member_value == 'yes' and not value:
-            return translate(_("Validation failed: Speaker is required, please correct it."), domain='matem.event', context=request)
+            return translate(_('Validation failed: Speaker is required, please correct it.'), domain='matem.event', context=request)
             # return _("Validation failed: Speaker is required, please correct it.")
 
         return True
@@ -58,7 +59,7 @@ class ExternalSpeakerValidator:
         request = kwargs['REQUEST']
         member_value = request.form.get('isIMember', '')
         if member_value == 'no' and not value:
-            return translate(_("Validation failed: Speaker is required, please correct it."), domain='matem.event', context=request)
+            return translate(_('Validation failed: Speaker is required, please correct it.'), domain='matem.event', context=request)
             # return _("Validation failed: Speaker is required, please correct it.")
 
         # instance = kwargs.get('instance', None)

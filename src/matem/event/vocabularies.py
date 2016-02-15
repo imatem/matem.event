@@ -7,8 +7,8 @@ from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
-
 import pkg_resources
+
 
 try:
     pkg_resources.get_distribution('matem.fsdextender')
@@ -152,6 +152,6 @@ def speakersVocabulary(context):
         )
     items.append(SimpleTerm(value='', title=''))
     for b in brains:
-        items.append(SimpleTerm(value=b.id, title=" ".join([b.lastName, b.firstName])))
+        items.append(SimpleTerm(value=b.id, title=' '.join([b.lastName, b.firstName])))
     return SimpleVocabulary(items)
 directlyProvides(speakersVocabulary, IVocabularyFactory)
