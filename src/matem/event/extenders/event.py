@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
-from DateTime import DateTime
-from Products.ATContentTypes.content.event import ATEvent
-from Products.ATContentTypes.interfaces import IATEvent
-from Products.Archetypes import atapi
-from Products.CMFCore.utils import getToolByName
-from Products.MasterSelectWidget.MasterSelectWidget import MasterSelectWidget
+
 from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import IOrderableSchemaExtender
 from archetypes.schemaextender.interfaces import ISchemaModifier
+from DateTime import DateTime
 from five import grok
 from matem.event import _
 from plone.indexer.decorator import indexer
+from Products.Archetypes import atapi
+from Products.ATContentTypes.content.event import ATEvent
+from Products.ATContentTypes.interfaces import IATEvent
+from Products.CMFCore.utils import getToolByName
+from Products.MasterSelectWidget.MasterSelectWidget import MasterSelectWidget
 from zope import component
 from zope import interface
 from zope.component.hooks import getSite
@@ -132,7 +133,7 @@ BasicSchema = [
             i18n_domain='matem.event',
             checkbox_bound=1,
             visible={'view': 'invisible'},
-            modes=("edit"),
+            modes=('edit'),
         ),
         allowed_types=('FSDSpecialty', ),
         vocabulary_factory='imatem.person.specialties',
@@ -214,19 +215,19 @@ def object_created(context, event):
 
     if ajax is None:
         dt = DateTime()
-        date = '%s %s:00 %s' % (dt.Date(), seminar.start, dt.timezone())
+        date = '{0} {1}:00 {2}'.format(dt.Date(), seminar.start, dt.timezone())
         context.REQUEST['startDate'] = DateTime(date)
-        date = '%s %s:00 %s' % (dt.Date(), seminar.end, dt.timezone())
+        date = '{0} {1}:00 {2}'.format(dt.Date(), seminar.end, dt.timezone())
         context.REQUEST['endDate'] = DateTime(date)
 
     dt = context.REQUEST.get('startDate', None)
     if isinstance(dt, DateTime) and wholeday:
-        date = '%s %s:00 %s' % (dt.Date(), seminar.start, dt.timezone())
+        date = '{0} {1}:00 {2}'.format(dt.Date(), seminar.start, dt.timezone())
         context.REQUEST['startDate'] = DateTime(date)
 
     dt = context.REQUEST.get('endDate', None)
     if isinstance(dt, DateTime) and wholeday:
-        date = '%s %s:00 %s' % (dt.Date(), seminar.end, dt.timezone())
+        date = '{0} {1}:00 {2}'.format(dt.Date(), seminar.end, dt.timezone())
         context.REQUEST['endDate'] = DateTime(date)
 
 
