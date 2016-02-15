@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
 """"Setup/installation tests for this package."""
 
-from archetypes.schemaextender.interfaces import ISchemaExtender
-from archetypes.schemaextender.interfaces import ISchemaModifier
 from matem.event.config import PROJECTNAME
 from matem.event.testing import INTEGRATION_TESTING
 from Products.CMFCore.utils import getToolByName
-
 
 import unittest2 as unittest
 

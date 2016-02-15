@@ -8,7 +8,6 @@ from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import PloneSandboxLayer
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
-from plone.testing import z2
 
 
 class EventExtenderLayer(PloneSandboxLayer):
