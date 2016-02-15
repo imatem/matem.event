@@ -79,7 +79,7 @@ class EventsView(BrowserView):
 
     def date_speller(self, dt):
         vocabulary = getUtility(IVocabularyFactory, 'matem.event.Months')(self.context).by_value
-        minute = "00"
+        minute = '00'
         if dt.minute():
             if len(str(dt.minute())) > 1:
                 minute = dt.minute()

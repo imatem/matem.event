@@ -72,7 +72,7 @@ class IMEventView(BaseTopicView):
             for value in filter(None, values):
                 langvalue = translation_service.translate(vocabulary.getValue(
                     value),
-                    domain="matem.event",
+                    domain='matem.event',
                     target_language=self.context.REQUEST.LANGUAGE).encode('utf-8')
 
                 etypes.append(langvalue)
@@ -86,7 +86,7 @@ class IMEventView(BaseTopicView):
             translation_service = getSite().translation_service
             nationality = translation_service.translate(vocabulary.getValue(
                 value),
-                domain="matem.event",
+                domain='matem.event',
                 target_language=self.context.REQUEST.LANGUAGE).encode('utf-8')
 
         return nationality

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from DateTime import DateTime
 from DateTime.interfaces import DateTimeError
-from Products.Five import BrowserView
 from plone.app.portlets.portlets.rss import RSSFeed
+from Products.Five import BrowserView
 
 
 class RSSView(BrowserView):
@@ -94,7 +94,7 @@ class IMRSSFeed(RSSFeed):
             'seminarytitle': item.get('dc_seminarytitle', ''),
             'location': item.get('dc_location', ''),
         }
-        if hasattr(item, "updated"):
+        if 'updated' in item:
             try:
                 itemdict['updated'] = DateTime(item.updated)
             except DateTimeError:
