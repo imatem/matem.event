@@ -71,6 +71,10 @@
                   <span tal:content="item_description"/><br/>
                   <span tal:content="fancy_date"/>
                   <span tal:content="python:item_location"/>
+                  <span tal:condition="python:'Molina' in item_expositor">
+                    <a href="https://sites.google.com/site/1ertallerdecomputodistribuido/">
+                    1er. Taller de Cómputo Distribuido</a>
+                  </span>
                   <br/>
                   <span tal:content="item_seminary"/> <br/>
                 </dd>
