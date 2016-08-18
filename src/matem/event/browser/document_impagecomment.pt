@@ -1,0 +1,72 @@
+<tal:manager replace="structure provider:collage.ContentManager" />
+<div class="standard-document" style="overflow: scroll;height: 300px;">
+    <h2 metal:define-macro="title"
+        tal:define="view context/@@collage_kss_helper"
+        tal:attributes="id string:title-${view/getUniqueIdentifier};
+                class python: view.getKssClasses('title')"
+        tal:condition="here/Title">
+      <span metal:define-slot="inside"
+            tal:replace="here/Title">title</span>
+    </h2>
+    
+    <p class="description"
+       tal:condition="here/Description">
+      <span metal:define-macro="description"
+            tal:define="view context/@@collage_kss_helper"
+            tal:attributes="id string:description-${view/getUniqueIdentifier};
+                    class python: view.getKssClasses('description')"
+            tal:condition="here/Description">
+        <span metal:define-slot="inside"
+              tal:replace="here/Description">description</span>
+      </span>
+    </p>
+    
+    <div metal:define-macro="text"
+         tal:define="view context/@@collage_kss_helper;
+             text python: here.CookedBody(stx_level=2)"
+         tal:attributes="id string:text-${view/getUniqueIdentifier};
+                 class python: here.Format() in
+                               ['text/structured', 'text/x-rst'] and 'stx' or 'plain' +
+                 view.getKssClasses('text')"
+         tal:condition="text"
+         class="stx">
+      <span metal:define-slot="inside"
+            tal:replace="structure text">text</span>
+    </div>
+
+    <!--------------------------------------- -->
+    <!-- <div id="viewlet-below-content" tal:content="structure provider:plone.belowcontent" /> -->
+
+    <div class="discussion"
+         tal:define="replies view/getComments;
+         wtool context/@@plone_tools/workflow;">
+        <tal:getreplies repeat="reply_dict replies">
+            <div class="comment"
+                tal:define="reply reply_dict/comment;">
+
+                <div i18n:domain="plone.app.discussion">
+                  <tal:name>
+                    <span tal:condition="python:reply.author_username" tal:content="reply/author_name | nothing"/>
+                    <span tal:condition="python:not reply.author_username" i18n:translate="label_anonymous">Anonymous</span>
+                  </tal:name>
+                  <tal:posted i18n:translate="label_says">says:</tal:posted>
+                  <div class="commentDate"
+                       tal:content="python:view.format_time(reply.modification_date)">
+                       8/23/2001 12:40:44 PM
+                  </div>
+                </div>
+
+                <div class="commentBody">
+                    <span tal:replace="structure reply/getText" />
+                </div>
+
+
+            </div>
+        </tal:getreplies>
+    </div>
+
+<!--------------------------------------------------------------------- -->
+
+
+
+</div>

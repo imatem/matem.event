@@ -20,6 +20,14 @@
         class=".rss_view.RSSView"
     />
 
+    <browser:page
+        name="impagecomment"
+        for="Products.ATContentTypes.content.document.ATDocument"
+        permission="zope.Public"
+        template="document_impagecomment.pt"
+        class=".views.IMPageCommentView"
+        layer="Products.Collage.interfaces.ICollageBrowserLayer"
+    />
 
     <browser:page
         name="imstandard"
