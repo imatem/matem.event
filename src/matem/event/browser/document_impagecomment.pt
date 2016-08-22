@@ -46,8 +46,7 @@
 
                 <div i18n:domain="plone.app.discussion">
                   <tal:name>
-                    <span tal:condition="python:reply.author_username" tal:content="reply/author_name | nothing"/>
-                    <span tal:condition="python:not reply.author_username" i18n:translate="label_anonymous">Anonymous</span>
+                    <span i18n:translate="label_anonymous">Anonymous</span>
                   </tal:name>
                   <tal:posted i18n:translate="label_says">says:</tal:posted>
                   <div class="commentDate"
