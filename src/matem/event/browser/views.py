@@ -3,6 +3,7 @@
 from Products.CMFCore.utils import getToolByName
 from Products.Collage.browser.views import BaseTopicView
 from zope.component.hooks import getSite
+from collective.plonetruegallery.browser.views.galleryview import GalleryView
 
 
 class IMStandardTopicView(BaseTopicView):
@@ -174,3 +175,7 @@ class IMPageCommentView(BaseTopicView):
         util = getToolByName(self.context, 'translation_service')
         zope_time = DateTime(time.isoformat())
         return util.toLocalizedTime(zope_time, long_format=True)
+
+
+class IMGalleryView(GalleryView):
+    pass

@@ -1,0 +1,25 @@
+<tal:manager replace="structure provider:collage.ContentManager" />
+
+<tal:gallery tal:define="macros nocall:context/@@collective.plonetruegallery.macros;
+                         displayer nocall:view/displayer;">
+    <tal:replace tal:replace="structure displayer/css" />
+    <style type="text/css">
+      .galleria-info{
+        width: 20%;
+      }
+      .galleria-info-text{
+        background-color: transparent;
+      }
+      .galleria-info-title{
+        color: transparent;
+      }
+      .galleria-info-close{
+        opacity: 0;
+      }
+      .galleria-container img{
+        margin-right: 25%;
+      }
+    </style>
+    <tal:replace tal:replace="structure displayer/javascript" />
+    <p metal:use-macro="macros/main|macros/content-core" />
+</tal:gallery>

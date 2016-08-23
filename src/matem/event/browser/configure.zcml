@@ -3,6 +3,7 @@
     xmlns:browser="http://namespaces.zope.org/browser">
 
   <include package="Products.Collage" />
+  <include package="collective.plonetruegallery" />
 
     <browser:page
         name="rssoaxacaview"
@@ -19,6 +20,15 @@
         template="rss_view.pt"
         class=".rss_view.RSSView"
     />
+
+    <browser:page
+     name="gallery-imcollage-view"
+     for="collective.plonetruegallery.interfaces.IGallery"
+     permission="zope.Public"
+     template="gallery_imcollage.pt"
+     class=".views.IMGalleryView"
+     layer="Products.Collage.interfaces.ICollageBrowserLayer"
+     />
 
     <browser:page
         name="impagecomment"
