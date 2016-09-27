@@ -10,9 +10,12 @@
 
   <five:registerPackage package="." initialize=".initialize" />
 
-  <!-- Include the sub-packages that use their own configure.zcml files. -->
+  <!-- Include the sub-packages that use their own config§ure.zcml files. -->
   <include package=".browser" />
   <include package=".extenders" />
+
+  <!-- for add content rules -->
+  <include package=".actions" />
 
   <includeDependencies package="." />
 

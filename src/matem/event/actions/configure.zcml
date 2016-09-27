@@ -1,0 +1,34 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone">
+
+  <!-- Categorization label to object -->
+  <adapter factory=".categorization.CategorizationActionExecutor" />
+
+    <browser:page
+        for="plone.app.contentrules.browser.interfaces.IRuleActionAdding"
+        name="matem.actions.Categorization"
+        class=".categorization.CategorizationAddForm"
+        permission="plone.app.contentrules.ManageContentRules"
+      />
+
+    <browser:page
+        for="matem.event.actions.categorization.ICategorizationAction"
+        name="edit"
+        class=".categorization.CategorizationEditForm"
+        permission="plone.app.contentrules.ManageContentRules"
+      />
+
+    <plone:ruleAction
+        name="matem.actions.Categorization"
+        title="Categorization label"
+        description="Add categorization to the content"
+        for="*"
+        event="*"
+        addview="matem.actions.Categorization"
+        editview="edit"
+        schema=".categorization.ICategorizationAction"
+        factory=".categorization.CategorizationAction"
+        />
+</configure>
