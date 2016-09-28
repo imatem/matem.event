@@ -22,7 +22,7 @@ class ICategorizationAction(Interface):
     #                           description=_(u"This Label add to categorization object"),
     #                           required=True)
 
-    message = schema.TextLine(title=_(u"Label Categorization"),
+    message = schema.Text(title=_(u"Label Categorization"),
                               description=_(u"This Label add to categorization object"),
                               required=True)
 
@@ -65,8 +65,11 @@ class CategorizationActionExecutor(object):
         request = self.context.REQUEST
         label = self.element.message
         obj = self.event.object
-        # ('Foo',)
-        self.event.object.setSubject(label)
+        if obj.Subject():
+            value = obj.Subject() + tuple(label.split('\n'))
+        else:
+            value = label.split('\n')
+        self.event.object.setSubject(value)
 
 
 
