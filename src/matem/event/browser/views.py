@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
-
+from AccessControl import getSecurityManager
+from Acquisition import aq_inner
+from collective.plonetruegallery.browser.views.galleryview import GalleryView
+from DateTime import DateTime
+from plone.app.discussion.interfaces import IConversation
 from Products.CMFCore.utils import getToolByName
 from Products.Collage.browser.views import BaseTopicView
+from Products.Five import BrowserView
 from zope.component.hooks import getSite
-from collective.plonetruegallery.browser.views.galleryview import GalleryView
 
 
 class IMStandardTopicView(BaseTopicView):
@@ -94,27 +98,11 @@ class IMEventView(BaseTopicView):
         # return getattr(self.context, 'speaker_nationality', None)
 
 
-from Acquisition import aq_inner, aq_base
-from AccessControl import getSecurityManager
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.CMFCore.utils import getToolByName
-from Products.CMFDefault.DiscussionTool import DiscussionNotAllowed
-
-from plone.app.layout.viewlets.common import ViewletBase
-from zope.component import getMultiAdapter
-
-from plone.app.discussion.interfaces import IConversation
-from DateTime import DateTime
-
-
-
-
 class IMPageCommentView(BaseTopicView):
 
     # Methods of
     def can_reply(self):
         return getSecurityManager().checkPermission('Reply to item', aq_inner(self.context))
-
 
     def getComments(self, workflow_actions=True):
         """Returns all replies to a content object.
@@ -162,7 +150,6 @@ class IMPageCommentView(BaseTopicView):
         # Return all direct replies
         lenvalue = len(conversation.objectIds())
 
-
         if len(conversation.objectIds()):
             if workflow_actions:
                 return replies_with_workflow_actions()
@@ -179,3 +166,31 @@ class IMPageCommentView(BaseTopicView):
 
 class IMGalleryView(GalleryView):
     pass
+
+
+class SemanaryView(BrowserView):
+
+    def __init__(self, context, request):
+        """Initialize view."""
+        self.context = context
+        self.request = request
+
+    @property
+    def portal_catalog(self):
+        """."""
+        return getToolByName(getSite(), 'portal_catalog')
+
+    def semanaryActivities(self):
+        today = DateTime()
+        start_date = today + 1
+        end_date = today + 7
+        query = {
+            'portal_type': 'Event',
+            'end': {'query': [start_date, ], 'range': 'min'},
+            'start': {'query': [end_date, ], 'range': 'max'},
+            'review_state': 'external',
+        }
+
+        brains = self.portal_catalog.searchResults(query)
+
+        return brains
