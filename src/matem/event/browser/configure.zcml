@@ -6,6 +6,15 @@
   <include package="collective.plonetruegallery" />
 
     <browser:page
+        name="semanaryview"
+        for="*"
+        permission="zope.Public"
+        template="semanary_view.pt"
+        class=".views.SemanaryView"
+    />
+
+
+    <browser:page
         name="rssoaxacaview"
         for="*"
         permission="zope.Public"

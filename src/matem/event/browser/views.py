@@ -1,9 +1,18 @@
 # -*- coding: utf-8 -*-
-
+from AccessControl import getSecurityManager
+from Acquisition import aq_inner
+from collective.plonetruegallery.browser.views.galleryview import GalleryView
+from DateTime import DateTime
+from plone.app.discussion.interfaces import IConversation
 from Products.CMFCore.utils import getToolByName
 from Products.Collage.browser.views import BaseTopicView
+from Products.Five import BrowserView
 from zope.component.hooks import getSite
-from collective.plonetruegallery.browser.views.galleryview import GalleryView
+
+from zope.component import getUtility
+from zope.i18n import translate
+from zope.schema.interfaces import IVocabularyFactory
+from matem.event.browser.rss_view import IMRSSFeed
 
 
 class IMStandardTopicView(BaseTopicView):
@@ -94,27 +103,11 @@ class IMEventView(BaseTopicView):
         # return getattr(self.context, 'speaker_nationality', None)
 
 
-from Acquisition import aq_inner, aq_base
-from AccessControl import getSecurityManager
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.CMFCore.utils import getToolByName
-from Products.CMFDefault.DiscussionTool import DiscussionNotAllowed
-
-from plone.app.layout.viewlets.common import ViewletBase
-from zope.component import getMultiAdapter
-
-from plone.app.discussion.interfaces import IConversation
-from DateTime import DateTime
-
-
-
-
 class IMPageCommentView(BaseTopicView):
 
     # Methods of
     def can_reply(self):
         return getSecurityManager().checkPermission('Reply to item', aq_inner(self.context))
-
 
     def getComments(self, workflow_actions=True):
         """Returns all replies to a content object.
@@ -162,7 +155,6 @@ class IMPageCommentView(BaseTopicView):
         # Return all direct replies
         lenvalue = len(conversation.objectIds())
 
-
         if len(conversation.objectIds()):
             if workflow_actions:
                 return replies_with_workflow_actions()
@@ -179,3 +171,102 @@ class IMPageCommentView(BaseTopicView):
 
 class IMGalleryView(GalleryView):
     pass
+
+
+class SemanaryView(BrowserView):
+
+    def __init__(self, context, request):
+        """Initialize view."""
+        self.context = context
+        self.request = request
+        self.matcuerfeed = IMRSSFeed('http://www.matcuer.unam.mx/RSS/', 100)
+        self.matcuerfeed.update()
+        self.oaxfeed = IMRSSFeed('http://paginas.matem.unam.mx/oaxaca/RSS/index.xml', 100)
+        self.oaxfeed.update()
+
+    @property
+    def portal_catalog(self):
+        """."""
+        return getToolByName(getSite(), 'portal_catalog')
+
+    def semanaryActivities(self):
+        ftoday = DateTime()
+        today = DateTime('/'.join([str(ftoday.year()), str(ftoday.month()), str(ftoday.day())]))
+        start_date = today + 1
+        end_date = today + 7.9999
+        query = {
+            'portal_type': 'Event',
+            'end': {'query': [start_date, ], 'range': 'min'},
+            'start': {'query': [end_date, ], 'range': 'max'},
+            'review_state': 'external',
+            'sort_on': 'start',
+            'isCanceled': False,
+
+        }
+
+        brains = self.portal_catalog.searchResults(query)
+
+        brainscu = []
+        brainsjur = []
+
+        for brain in brains:
+            if 'Juriquilla' in brain.Subject:
+                brainsjur.append(brain)
+            else:
+                brainscu.append(brain)
+
+        iso_start = start_date.ISO().split('-')
+        day_start = iso_start[2].split('T')
+
+        iso_end = end_date.ISO().split('-')
+        day_end = iso_end[2].split('T')
+
+        return {
+            'brainscu': brainscu,
+            'start_date': '/'.join([day_start[0], iso_start[1], iso_start[0]]),
+            'end_date': '/'.join([day_end[0], iso_end[1], iso_end[0]]),
+            'matcuerrss': self.semanaryRSS(self.matcuerfeed, start_date, end_date),
+            'oaxrss': self.semanaryRSS(self.oaxfeed, start_date, end_date),
+            'brainsjur': brainsjur,
+        }
+
+    def date_speller(self, dt):
+        vocabulary = getUtility(IVocabularyFactory, 'matem.event.Months')(self.context).by_value
+        minute = "00"
+        if dt.minute():
+            if len(str(dt.minute())) > 1:
+                minute = dt.minute()
+
+        ret = {
+            'year': dt.year(),
+            'month': translate(vocabulary[dt.month()].title, domain='matem.event', context=self.request)[:3],
+            'day': dt.day(),
+            'hour': dt.hour(),
+            'minute': minute,
+            'second': int(dt.second()),
+            'tz': dt.timezone(),
+        }
+        return ret
+
+    def semanaryRSS(self, feed, start_date, end_date):
+
+        ritems = []
+        # date = DateTime()
+        for item in feed.items:
+            if item.get('updated', ''):
+                if item['updated'] < start_date:
+                    continue
+                if item['updated'] >= start_date and item['updated'] <= end_date:
+                    ritems.append(item)
+                elif item['updated']._hour + 1 >= start_date._hour and item['updated'] <= end_date:
+                    ritems.append(item)
+        return ritems
+
+
+
+
+
+
+
+
+
