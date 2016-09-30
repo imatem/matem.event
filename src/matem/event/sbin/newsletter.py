@@ -13,7 +13,7 @@ def main(app):
 
     try:
         api.portal.send_email(
-            recipient="gil@im.unam.mx",
+            recipient="informatica.academica@matem.unam.mx",
             sender="semanario@im.unam.mx",
             subject="SEMANARIO IMUNAM, 30 NOVIEMBRE - 04 DICIEMBRE, 2015",
             body=mail_text,
