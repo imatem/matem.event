@@ -30,19 +30,18 @@ setup(
     zip_safe=False,
     install_requires=[
         'setuptools',
-        'plone.app.dexterity',
+        'plone.api',
+        'plone.app.dexterity[grok]',
+        'collective.plonetruegallery',
+        'Products.Collage',
+        'Products.MasterSelectWidget',
     ],
     extras_require={
         'develop': [
-            'flake8',
-            'jarn.mkrelease',
-            'manuel',
-            'Sphinx',
-            'zest.releaser',
+            'plone.reload',
         ],
         'test': [
             'plone.app.testing',
-            'unittest2',
         ],
     },
     entry_points="""
