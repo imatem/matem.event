@@ -13,14 +13,32 @@
         class=".views.SemanaryView"
     />
 
+    <browser:page
+        name="site_topics"
+        for="Products.ATContentTypes.content.topic.ATTopic"
+        permission="zope.Public"
+        template="site_topics.pt"
+        class=".views.IMSiteTopicView"
+        layer="Products.Collage.interfaces.ICollageBrowserLayer"
+    />
 
     <browser:page
-        name="rssoaxacaview"
-        for="*"
-        permission="zope.Public"
-        template="rss_view.pt"
-        class=".rss_view.RSSOaxacaView"
-    />
+          name="rsslink_topics"
+          for="Products.ATContentTypes.content.link.ATLink"
+          permission="zope.Public"
+          template="rsslink_topics.pt"
+          class=".views.RSSTopicsView"
+          layer="Products.Collage.interfaces.ICollageBrowserLayer"
+      />
+
+
+      <browser:page
+          name="rssoaxacaview"
+          for="*"
+          permission="zope.Public"
+          template="rss_view.pt"
+          class=".rss_view.RSSOaxacaView"
+      />
 
     <browser:page
         name="rssview"
