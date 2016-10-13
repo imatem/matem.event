@@ -28,7 +28,7 @@
                          ">
       <dl>
         <span tal:condition="folderContents/CU">
-          <h3 style="background-color: #4387fd; ; width: 17em;">
+          <h3 style="background-color: #4387fd; ; width: 47%;">
             <font color="#FFFFFF">&nbsp; Ciudad Universitaria</font>  &nbsp;</h3>
         </span>
         <tal:entry tal:repeat="item folderContents/CU" metal:define-macro="entries">
