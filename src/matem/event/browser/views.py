@@ -274,12 +274,12 @@ class SemanaryView(BrowserView):
 class IMSiteTopicView(BaseTopicView):
 
     def cstyle(self, ptitle):
-        if 'Juriquilla' == ptitle:
+        if 'Juriquilla' in ptitle:
             return 'jurheader-color'
         return 'cuheader-color'
 
     def topicstyle(self, ptitle):
-        if 'Juriquilla' == ptitle:
+        if 'Juriquilla' in ptitle:
             return 'jurborder-color'
         return 'cuborder-color'
 

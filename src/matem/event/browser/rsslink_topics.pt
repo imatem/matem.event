@@ -25,10 +25,9 @@
 <div tal:attributes="class topic_style">
 <!-- <span tal:condition="view/hasFeed"> -->
   <br/>
-  <h3 style="width: 47%;" tal:attributes="class cstyle">
+  <h3 style="width: 98%;" tal:attributes="class cstyle">
     <font color="#FFFFFF">&nbsp; <span tal:content="titlesection"/></font>  &nbsp;</h3>
 <!-- </span> -->
-
 <tal:entry tal:condition="view/feedAvailable"
       tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime"
       tal:repeat="item view/items">

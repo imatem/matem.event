@@ -14,7 +14,47 @@
     background-color: #4387fd;
   }
 
+  #Juriquilla dt{
+    display:none;
+  }
+
+  #Juriquilla dt{
+    padding-bottom: 1px;
+  }
+
+  #loadMoreJuriquilla {
+    color:green;
+    cursor:pointer;
+  }
+
+  #showLessJuriquilla{
+    color:red;
+    cursor:pointer;
+}
+
+
 </style>
+<script type="text/javascript">
+  $(document).ready(function () {
+    size_li = $("#Juriquilla dt").size();
+    x=3;
+    $('#Juriquilla dt:lt('+x+')').show();
+    $('#Juriquilla dd:lt('+x+')').show();
+    $('#loadMoreJuriquilla').click(function () {
+        x= (x+30 <= size_li) ? x+30 : size_li;
+        $('#Juriquilla dt:lt('+x+')').show();
+        $('#Juriquilla dd:lt('+x+')').show();
+    });
+    $('#showLessJuriquilla').click(function () {
+        x=(x-30<0) ? 3 : x-30;
+        $('#Juriquilla dt').not(':lt('+x+')').hide();
+        $('#Juriquilla dd').not(':lt('+x+')').hide();
+    });
+});
+</script>
+
+
+
 
 <tal:variables define="plone_view here/@@plone;
                        toLocalizedTime nocall: plone_view/toLocalizedTime;
@@ -37,13 +77,13 @@
       <tal:block tal:define="ptitle here/Title | nothing;
           cstyle python:view.cstyle(ptitle);">
         <br/>
-        <h3 style="width: 47%;" tal:attributes="class cstyle">
+        <h3 style="width: 98%;" tal:attributes="class cstyle">
           <font color="#FFFFFF">&nbsp; <span tal:content="ptitle"/></font>  &nbsp;</h3>
 
 
-      <dl tal:condition="topicContents" >
+      <dl tal:attributes="id ptitle" tal:condition="topicContents" >
         <tal:entry tal:repeat="item topicContents">
-          <div class="tileItem">
+          <!-- <div class="tileItem"> -->
             <tal:block tal:define="item_url item/getURL|item/absolute_url;
                                 item_title_or_id item/pretty_title_or_id;
                                 item_description item/Description;
@@ -71,7 +111,7 @@
                     <br/>
                   </span>
                 </dt>
-                <dd>
+                <dd class="tileItem">
                   <span tal:condition="item_institution">
                     <b><span tal:condition="item_expositor" tal:content="item_expositor"/><span tal:condition="item_institution" tal:content="python:' (' + item_institution + ').'"/></b>
                   </span>
@@ -89,9 +129,12 @@
 
           </tal:block>
 
-        </div>
+        <!-- </div> -->
         </tal:entry>
       </dl>
+      <div tal:attributes="id python:'loadMore' + ptitle">Mostrar más</div>
+      <div tal:attributes="id python:'showLess' + ptitle">Mostrar menos</div>
+      <!-- <div id="loadMore">Load more</div> -->
       </tal:block>
     </tal:listing>
 
