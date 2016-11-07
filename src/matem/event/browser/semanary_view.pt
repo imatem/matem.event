@@ -90,11 +90,6 @@
       <tal:block tal:repeat="data brainscu">
         <article itemscope itemtype="http://data-vocabulary.org/Event" class="vevent"
                                     tal:define="startf python:view.date_speller(data.start)">
-
-          <ul class="hCalendar-hidden">
-            <li itemprop="startDate" class="dtstart" tal:content="data/start/ISO8601">end</li>
-            <li itemprop="endDate" class="dtend" tal:content="data/end/ISO8601">end</li>
-          </ul>
           <div class="cal_date">
             <span class="cal_day" tal:content="string:${startf/day}">15.</span>
             <span class="cal_month" tal:content="string:${startf/month}.">Oct.</span>
@@ -121,11 +116,6 @@
       <tal:block tal:repeat="data items_matcuer">
         <article itemscope itemtype="http://data-vocabulary.org/Event" class="vevent"
                                     tal:define="startf python:view.date_speller(data['updated'])">
-
-          <ul class="hCalendar-hidden">
-            <li itemprop="startDate" class="dtstart" tal:content="data/updated/ISO8601">end</li>
-            <li itemprop="endDate" class="dtend" tal:content="data/updated/ISO8601">end</li>
-          </ul>
           <div class="cal_date">
             <span class="cal_day" tal:content="string:${startf/day}">15.</span>
             <span class="cal_month" tal:content="string:${startf/month}.">Oct.</span>
@@ -152,11 +142,6 @@
       <tal:block tal:repeat="data brainsjur">
         <article itemscope itemtype="http://data-vocabulary.org/Event" class="vevent"
                                     tal:define="startf python:view.date_speller(data.start)">
-
-          <ul class="hCalendar-hidden">
-            <li itemprop="startDate" class="dtstart" tal:content="data/start/ISO8601">end</li>
-            <li itemprop="endDate" class="dtend" tal:content="data/end/ISO8601">end</li>
-          </ul>
           <div class="cal_date">
             <span class="cal_day" tal:content="string:${startf/day}">15.</span>
             <span class="cal_month" tal:content="string:${startf/month}.">Oct.</span>
@@ -183,11 +168,6 @@
       <tal:block tal:repeat="data items_oax">
         <article itemscope itemtype="http://data-vocabulary.org/Event" class="vevent"
                                     tal:define="startf python:view.date_speller(data['updated'])">
-
-          <ul class="hCalendar-hidden">
-            <li itemprop="startDate" class="dtstart" tal:content="data/updated/ISO8601">end</li>
-            <li itemprop="endDate" class="dtend" tal:content="data/updated/ISO8601">end</li>
-          </ul>
           <div class="cal_date">
             <span class="cal_day" tal:content="string:${startf/day}">15.</span>
             <span class="cal_month" tal:content="string:${startf/month}.">Oct.</span>
@@ -205,9 +185,6 @@
           </div>
         </article>
       </tal:block>
-
-
-
 
       </div>
     </div>
