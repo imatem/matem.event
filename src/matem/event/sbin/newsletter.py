@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 """Script to be call as a cron job.
 
-bin/instance run -O PloneSite src/x.y/x/y/testscript.py
+bin/client -O PloneSite run src/x.y/x/y/testscript.py
 """
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 from lxml import etree
 from lxml import html
 from plone import api
@@ -15,13 +17,15 @@ def main(app):
     html_view = view()
     tree = html.fragment_fromstring(html_view, create_parent=True)
     content_core = tree.xpath("//div[@id='content-core']")[0]
-    mail_text = etree.tostring(content_core, pretty_print=False, encoding='utf-8')
+    html_text = etree.tostring(content_core, pretty_print=False, encoding='utf-8')
+    message = MIMEMultipart()
+    message.attach(MIMEText(html_text, 'html'))
     try:
         api.portal.send_email(
             recipient="gil@matem.unam.mx, gil@im.unam.mx",
             sender="noreply@im.unam.mx",
             subject="SEMANARIO IMUNAM",
-            body=mail_text,
+            body=message,
             immediate=True,
         )
     except SMTPRecipientsRefused:
