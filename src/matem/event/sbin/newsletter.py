@@ -22,7 +22,7 @@ def main(app):
     message.attach(MIMEText(html_text, 'html'))
     try:
         api.portal.send_email(
-            recipient="gil@matem.unam.mx, gil@im.unam.mx",
+            recipient="informatica.academica@matem.unam.mx",
             sender="semanario@im.unam.mx",
             subject="SEMANARIO IMUNAM",
             body=message,
