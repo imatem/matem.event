@@ -52,6 +52,9 @@
             font-weight: bold;
             padding: 0;
         }
+        .summary{
+          font-size: larger;
+        }
     </style>
   </head>
   <body>
@@ -74,7 +77,7 @@
                                     tal:define="startf python:view.date_speller(data.start)">
           <div class="cal_date">
             <span class="cal_day" tal:content="string:${startf/day}">15.</span>
-            <span class="cal_month" tal:content="string:${startf/month}.">Oct.</span>
+            <span class="cal_month" tal:content="string:${startf/month}">Oct.</span>
           </div>
           <div class="cal_info">
             <b><a href="" itemprop="url" class="url" tal:attributes="href data/getURL|data/absolute_url;">
@@ -100,7 +103,7 @@
                                     tal:define="startf python:view.date_speller(data['updated'])">
           <div class="cal_date">
             <span class="cal_day" tal:content="string:${startf/day}">15.</span>
-            <span class="cal_month" tal:content="string:${startf/month}.">Oct.</span>
+            <span class="cal_month" tal:content="string:${startf/month}">Oct.</span>
           </div>
           <div class="cal_info">
             <b><a href="" itemprop="url" class="url" tal:attributes="href data/url|nothing;">
@@ -126,7 +129,7 @@
                                     tal:define="startf python:view.date_speller(data.start)">
           <div class="cal_date">
             <span class="cal_day" tal:content="string:${startf/day}">15.</span>
-            <span class="cal_month" tal:content="string:${startf/month}.">Oct.</span>
+            <span class="cal_month" tal:content="string:${startf/month}">Oct.</span>
           </div>
           <div class="cal_info">
             <b><a href="" itemprop="url" class="url" tal:attributes="href data/getURL|data/absolute_url;">
@@ -152,7 +155,7 @@
                                     tal:define="startf python:view.date_speller(data['updated'])">
           <div class="cal_date">
             <span class="cal_day" tal:content="string:${startf/day}">15.</span>
-            <span class="cal_month" tal:content="string:${startf/month}.">Oct.</span>
+            <span class="cal_month" tal:content="string:${startf/month}">Oct.</span>
           </div>
           <div class="cal_info">
             <b><a href="" itemprop="url" class="url" tal:attributes="href data/url|nothing;">
