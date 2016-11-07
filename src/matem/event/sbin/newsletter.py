@@ -38,3 +38,11 @@ def main(app):
 # modules are being loaded on the start-up
 if "app" in locals():
     main(app)
+# (Pdb++) from plone import api
+# (Pdb++) portal = api.portal.get()
+# (Pdb++) view = portal.unrestrictedTraverse("acerca-de/semanaryview")
+# (Pdb++) html_view = view()
+# (Pdb++) from premailer import Premailer
+# (Pdb++) import logging
+# (Pdb++) pmail = Premailer(html_view, cssutils_logging_level=logging.CRITICAL)
+# (Pdb++) result = pmail.transform()

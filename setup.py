@@ -35,6 +35,7 @@ setup(
         'collective.plonetruegallery',
         'Products.Collage',
         'Products.MasterSelectWidget',
+        'premailer',
     ],
     extras_require={
         'develop': [
