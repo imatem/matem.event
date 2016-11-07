@@ -20,7 +20,7 @@ def main(app):
     tree = html.fragment_fromstring(pmail, create_parent=True)
     content_core = tree.xpath("//div[@id='content-core']")[0]
     html_text = etree.tostring(content_core, pretty_print=False, encoding='utf-8')
-    html_text.replace('nohost/infomatem', 'www.matem.unam.mx')
+    html_text = html_text.replace('nohost/infomatem', 'www.matem.unam.mx')
     message = MIMEMultipart()
     message.attach(MIMEText(html_text, 'html'))
     try:
