@@ -1,13 +1,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
   xmlns:tal="http://xml.zope.org/namespaces/tal"
-  xmlns:metal="http://xml.zope.org/namespaces/metal"
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-  metal:use-macro="context/main_template/macros/master"
   i18n:domain="UNAM.imateCVct">
   <head>
-
-    <metal:css fill-slot="style_slot" tal:define="resources_url string:${context/portal_url}/++resource++wcfc">
-      <link href="++resource++wcfc/bootstrap/bootstrap-fixed.css" tal:attributes="href string:${resources_url}/bootstrap/bootstrap-fixed.css" rel="stylesheet" type="text/css"/>
+      <!-- <link href="++resource++wcfc/bootstrap/bootstrap-fixed.css" rel="stylesheet" type="text/css"/> -->
       <style type="text/css">
         .hCalendar-hidden {
             display:none; /* hide hCal fields not useful to human eyes */
@@ -56,24 +52,10 @@
             font-weight: bold;
             padding: 0;
         }
-
     </style>
-    </metal:css>
-
-    <metal:block fill-slot="top_slot"
-      tal:define="dummy python:request.set('disable_border',1);
-                disable_column_one python:request.set('disable_plone.leftcolumn',1);
-                disable_column_two python:request.set('disable_plone.rightcolumn',1);"
-    />
-    <metal:js fill-slot="javascript_head_slot" tal:define="resources_url string:${context/portal_url}/++resource++wcfc">
-      <script type="text/javascript" src="++resource++wcfc/bootstrap/bootstrap.min.js"
-                tal:attributes="src string:${resources_url}/bootstrap/bootstrap.min.js">
-      </script>
-    </metal:js>
-
   </head>
   <body>
-    <div id="content-core" metal:fill-slot="main">
+    <div id="content-core">
       <div class="fc" tal:define="activities view/semanaryActivities;
                               start_date activities/start_date;
                               end_date activities/end_date;
@@ -101,7 +83,7 @@
             <div class="documentByLine">
               <div tal:define="expositor data/getSpeaker|nothing" tal:content="expositor"/>
                 <span tal:define="location data/location|nothing" tal:content="location"/>
-                <span tal:content="string:${startf/hour} : ${startf/minute} hrs."/><br/>
+                <span tal:content="string:${startf/hour}:${startf/minute} hrs."/><br/>
                 <span tal:content="python:data['Subject'][0] or ''"/>
             </div>
           </div>
@@ -127,7 +109,7 @@
             <div class="documentByLine">
               <div tal:define="expositor data/speaker|nothing" tal:content="expositor"/>
                 <span tal:define="location data/location|nothing" tal:content="location"/>
-                <span tal:content="string:${startf/hour} : ${startf/minute} hrs."/><br/>
+                <span tal:content="string:${startf/hour}:${startf/minute} hrs."/><br/>
                 <span tal:content="data/seminarytitle | nothing"/>
             </div>
           </div>
@@ -153,7 +135,7 @@
             <div class="documentByLine">
               <div tal:define="expositor data/getSpeaker|nothing" tal:content="expositor"/>
                 <span tal:define="location data/location|nothing" tal:content="location"/>
-                <span tal:content="string:${startf/hour} : ${startf/minute} hrs."/><br/>
+                <span tal:content="string:${startf/hour}:${startf/minute} hrs."/><br/>
                 <span tal:content="python:data['Subject'][0] or ''"/>
             </div>
           </div>
@@ -179,7 +161,7 @@
             <div class="documentByLine">
               <div tal:define="expositor data/speaker|nothing" tal:content="expositor"/>
                 <span tal:define="location data/location|nothing" tal:content="location"/>
-                <span tal:content="string:${startf/hour} : ${startf/minute} hrs."/><br/>
+                <span tal:content="string:${startf/hour}:${startf/minute} hrs."/><br/>
                 <span tal:content="data/seminarytitle | nothing"/>
             </div>
           </div>

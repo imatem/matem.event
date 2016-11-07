@@ -8,6 +8,7 @@ from email.mime.text import MIMEText
 from lxml import etree
 from lxml import html
 from plone import api
+from premailer import transform
 from smtplib import SMTPRecipientsRefused
 
 
@@ -15,7 +16,8 @@ def main(app):
     portal = api.portal.get()
     view = portal.unrestrictedTraverse("acerca-de/semanaryview")
     html_view = view()
-    tree = html.fragment_fromstring(html_view, create_parent=True)
+    pmail = transform(html_view)
+    tree = html.fragment_fromstring(pmail, create_parent=True)
     content_core = tree.xpath("//div[@id='content-core']")[0]
     html_text = etree.tostring(content_core, pretty_print=False, encoding='utf-8')
     message = MIMEMultipart()
@@ -23,7 +25,7 @@ def main(app):
     try:
         api.portal.send_email(
             recipient="informatica.academica@matem.unam.mx",
-            sender="semanario@im.unam.mx",
+            sender="difusion@matem.unam.mx",
             subject="SEMANARIO IMUNAM",
             body=message,
             immediate=True,
@@ -38,10 +40,7 @@ def main(app):
 # modules are being loaded on the start-up
 if "app" in locals():
     main(app)
-# (Pdb++) from plone import api
-# (Pdb++) portal = api.portal.get()
-# (Pdb++) view = portal.unrestrictedTraverse("acerca-de/semanaryview")
-# (Pdb++) html_view = view()
+
 # (Pdb++) from premailer import Premailer
 # (Pdb++) import logging
 # (Pdb++) pmail = Premailer(html_view, cssutils_logging_level=logging.CRITICAL)
