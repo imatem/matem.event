@@ -23,7 +23,7 @@ def main(app):
     try:
         api.portal.send_email(
             recipient="gil@matem.unam.mx, gil@im.unam.mx",
-            sender="noreply@im.unam.mx",
+            sender="semanario@im.unam.mx",
             subject="SEMANARIO IMUNAM",
             body=message,
             immediate=True,
