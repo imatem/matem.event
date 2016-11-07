@@ -3,19 +3,24 @@
 
 bin/instance run -O PloneSite src/x.y/x/y/testscript.py
 """
+from lxml import etree
+from lxml import html
 from plone import api
 from smtplib import SMTPRecipientsRefused
 
 
 def main(app):
-
-    mail_text = "http://localhost/people/9947603276956765"
-
+    portal = api.portal.get()
+    view = portal.unrestrictedTraverse("acerca-de/semanaryview")
+    html_view = view()
+    tree = html.fragment_fromstring(html_view, create_parent=True)
+    content_core = tree.xpath("//div[@id='content-core']")[0]
+    mail_text = etree.tostring(content_core, pretty_print=False, encoding='utf-8')
     try:
         api.portal.send_email(
-            recipient="informatica.academica@matem.unam.mx",
-            sender="semanario@im.unam.mx",
-            subject="SEMANARIO IMUNAM, 30 NOVIEMBRE - 04 DICIEMBRE, 2015",
+            recipient="gil@matem.unam.mx, gil@im.unam.mx",
+            sender="noreply@im.unam.mx",
+            subject="SEMANARIO IMUNAM",
             body=mail_text,
             immediate=True,
         )
