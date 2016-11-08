@@ -26,7 +26,7 @@ def main(app):
     try:
         api.portal.send_email(
             recipient="informatica.academica@matem.unam.mx",
-            sender="difusion@matem.unam.mx",
+            sender="difusion@im.unam.mx",
             subject="SEMANARIO IMUNAM",
             body=message,
             immediate=True,
