@@ -16,16 +16,30 @@ def main(app):
     portal = api.portal.get()
     view = portal.unrestrictedTraverse("acerca-de/semanaryview")
     html_view = view()
+
+    # apply inline style
     pmail = transform(html_view)
     tree = html.fragment_fromstring(pmail, create_parent=True)
     content_core = tree.xpath("//div[@id='content-core']")[0]
+
+    # Create the body of the message (a plain-text and an HTML version).
     html_text = etree.tostring(content_core, pretty_print=False, encoding='utf-8')
     html_text = html_text.replace('nohost/infomatem', 'www.matem.unam.mx')
-    message = MIMEMultipart()
+
+    transforms = api.portal.get_tool('portal_transforms')
+    stream = transforms.convertTo('text/plain', html_text, mimetype='text/html')
+    text = stream.getData()
+
+    # Create message container - the correct MIME type is multipart/alternative.
+    message = MIMEMultipart('alternative')
+    # Attach parts into message container.
+    # According to RFC 2046, the last part of a multipart message, in this case
+    # the HTML message, is best and preferred.
+    message.attach(MIMEText(text, 'plain'))
     message.attach(MIMEText(html_text, 'html'))
     try:
         api.portal.send_email(
-            recipient="informatica.academica@matem.unam.mx",
+            recipient="gil@matem.unam.mx",
             sender="difusion@im.unam.mx",
             subject="SEMANARIO IMUNAM",
             body=message,
