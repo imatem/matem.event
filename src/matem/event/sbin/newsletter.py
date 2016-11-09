@@ -28,7 +28,7 @@ def main(app):
 
     transforms = api.portal.get_tool('portal_transforms')
     stream = transforms.convertTo('text/plain', html_text, mimetype='text/html')
-    text = stream.getData()
+    text = stream.getData().strip()
 
     # Create message container - the correct MIME type is multipart/alternative.
     message = MIMEMultipart('alternative')
