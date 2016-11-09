@@ -11,6 +11,8 @@ from plone import api
 from premailer import transform
 from smtplib import SMTPRecipientsRefused
 
+import re
+
 
 def main(app):
     portal = api.portal.get()
@@ -29,6 +31,7 @@ def main(app):
     transforms = api.portal.get_tool('portal_transforms')
     stream = transforms.convertTo('text/plain', html_text, mimetype='text/html')
     text = stream.getData().strip()
+    text = re.sub(r'(?i)(\n +)+', '\n', text)
 
     # Create message container - the correct MIME type is multipart/alternative.
     message = MIMEMultipart('alternative')
