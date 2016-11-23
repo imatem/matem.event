@@ -1,5 +1,20 @@
 <tal:manager replace="structure provider:collage.ContentManager" />
+<!-- #loadMoreJuriquilla {
+    color:green;
+    cursor:pointer;
+  }
 
+  #showLessJuriquilla{
+    color:red;
+    cursor:pointer;
+  }
+
+  #loadMoreCiudad{
+    diplay:none;
+  }
+
+  #showLessCiudad{
+    display:none; -->
 <style type="text/css">
   .text-danger{
           background-color: #FF0000;
@@ -22,19 +37,11 @@
     padding-bottom: 1px;
   }
 
-  #loadMoreJuriquilla {
-    color:green;
-    cursor:pointer;
-  }
-
-  #showLessJuriquilla{
-    color:red;
-    cursor:pointer;
 }
 
 
 </style>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   $(document).ready(function () {
     size_li = $("#Juriquilla dt").size();
     x=3;
@@ -51,7 +58,7 @@
         $('#Juriquilla dd').not(':lt('+x+')').hide();
     });
 });
-</script>
+</script> -->
 
 
 
@@ -132,8 +139,8 @@
         <!-- </div> -->
         </tal:entry>
       </dl>
-      <div tal:attributes="id python:'loadMore' + ptitle">Mostrar más</div>
-      <div tal:attributes="id python:'showLess' + ptitle">Mostrar menos</div>
+      <!-- <div tal:attributes="id python:'loadMore' + ptitle">Mostrar más</div>
+      <div tal:attributes="id python:'showLess' + ptitle">Mostrar menos</div> -->
       <!-- <div id="loadMore">Load more</div> -->
       </tal:block>
     </tal:listing>
