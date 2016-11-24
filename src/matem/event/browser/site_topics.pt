@@ -82,10 +82,20 @@
                          month_name python:{'Jan.': 'Enero', 'Feb.':'Febrero', 'Mar.':'Marzo', 'Apr.':'Abril', 'May':'Mayo', 'June':'Junio', 'July':'Julio', 'Aug.':'Agosto', 'Sep.':'Septiembre', 'Oct.':'Octubre', 'Nov.':'Noviembre', 'Dec.':'Diciembre'};
                          ">
       <tal:block tal:define="ptitle here/Title | nothing;
-          cstyle python:view.cstyle(ptitle);">
+          cstyle python:view.cstyle(ptitle);
+          homeurl python:view.topicHome(ptitle);">
         <br/>
         <h3 style="width: 98%;" tal:attributes="class cstyle">
-          <font color="#FFFFFF">&nbsp; <span tal:content="ptitle"/></font>  &nbsp;</h3>
+          <font color="#FFFFFF">&nbsp; 
+            <tal:block tal:condition="homeurl">
+              <a href="" tal:attributes="href homeurl"><span tal:content="ptitle"/></a>
+            </tal:block>
+
+            <tal:block tal:condition="python:not homeurl">
+              <span tal:content="ptitle"/>
+            </tal:block>
+
+          </font>  &nbsp;</h3>
 
 
       <dl tal:attributes="id ptitle" tal:condition="topicContents" >

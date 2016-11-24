@@ -21,12 +21,21 @@
 
 <tal:block tal:define="cstyle view/cstyle;
           titlesection here/Title | nothing;
-          topic_style view/topicstyle;">
+          topic_style view/topicstyle;
+          homeurl view/topicHome;">
 <div tal:attributes="class topic_style">
 <!-- <span tal:condition="view/hasFeed"> -->
   <br/>
   <h3 style="width: 98%;" tal:attributes="class cstyle">
-    <font color="#FFFFFF">&nbsp; <span tal:content="titlesection"/></font>  &nbsp;</h3>
+    <font color="#FFFFFF">&nbsp; 
+      <tal:block tal:condition="homeurl">
+        <a href="" tal:attributes="href homeurl"><span tal:content="titlesection"/></a>
+      </tal:block>
+
+      <tal:block tal:condition="python:not homeurl">
+        <span tal:content="titlesection"/>
+      </tal:block>
+    </font>  &nbsp;</h3>
 <!-- </span> -->
 <tal:entry tal:condition="view/feedAvailable"
       tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime"

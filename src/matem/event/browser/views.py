@@ -283,6 +283,11 @@ class IMSiteTopicView(BaseTopicView):
             return 'jurborder-color'
         return 'cuborder-color'
 
+    def topicHome(self, ptitle):
+        if 'Juriquilla' in ptitle:
+            return ''
+        return 'http://www.matem.unam.mx'
+
 
 class RSSTopicsView(BaseView):
     title = u'RSSlink_topics'
@@ -351,6 +356,11 @@ class RSSTopicsView(BaseView):
         if 'oaxaca' in self.context.remote_url():
             return 'oaxborder-color'
         return 'cuerborder-color'
+
+    def topicHome(self):
+        if 'oaxaca' in self.context.remote_url():
+            return 'http://paginas.matem.unam.mx/oaxaca/'
+        return 'http://www.matcuer.unam.mx/'
 
 
 class IMRSSFeed(RSSFeed):
