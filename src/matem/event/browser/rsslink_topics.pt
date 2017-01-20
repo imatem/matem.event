@@ -16,6 +16,10 @@
     background-color: #75ad0a;
   }
 
+  #content span.link-external a{
+    background: none;
+  }
+
 
 </style>
 
@@ -27,7 +31,7 @@
 <!-- <span tal:condition="view/hasFeed"> -->
   <br/>
   <h3 style="width: 98%;" tal:attributes="class cstyle">
-    <font color="#FFFFFF">&nbsp; 
+    <font color="#FFFFFF">&nbsp;
       <tal:block tal:condition="homeurl">
         <a href="" tal:attributes="href homeurl"><span tal:content="titlesection"/></a>
       </tal:block>
