@@ -39,7 +39,7 @@ def main(app):
     # According to RFC 2046, the last part of a multipart message, in this case
     # the HTML message, is best and preferred.
     message.attach(MIMEText(text, 'plain'))
-    message.attach(MIMEText(html_text, 'html'))
+    message.attach(MIMEText(html_text, 'html', 'utf-8'))
     try:
         api.portal.send_email(
             recipient="l.academicos@im.unam.mx, l.becarios@im.unam.mx, difusion@im.unam.mx",
