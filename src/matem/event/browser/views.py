@@ -269,7 +269,7 @@ class SemanaryView(BrowserView):
 
     def isOneDay(self, dstart, dend):
 
-        if dend - dstart >= 2:
+        if dend.JulianDay() > dstart.JulianDay():
             return True
         return False
 
