@@ -74,10 +74,16 @@
       </tal:block>
       <tal:block tal:repeat="data brainscu">
         <article itemscope itemtype="http://data-vocabulary.org/Event" class="vevent"
-                                    tal:define="startf python:view.date_speller(data.start)">
+                                    tal:define="startf python:view.date_speller(data.start);
+                                                endf python:view.date_speller(data.end);">
           <div class="cal_date">
             <span class="cal_day" tal:content="string:${startf/day}">15.</span>
             <span class="cal_month" tal:content="string:${startf/month}.">Oct.</span>
+            <tal:block tal:condition="python: view.isOneDay(data.start, data.end)">
+              --
+              <span class="cal_day" tal:content="string:${endf/day}">15.</span>
+              <span class="cal_month" tal:content="string:${endf/month}.">Oct.</span>
+            </tal:block>
           </div>
           <div class="cal_info">
             <b><a href="" itemprop="url" class="url" tal:attributes="href data/getURL|data/absolute_url;">
@@ -126,10 +132,16 @@
       </tal:block>
       <tal:block tal:repeat="data brainsjur">
         <article itemscope itemtype="http://data-vocabulary.org/Event" class="vevent"
-                                    tal:define="startf python:view.date_speller(data.start)">
+                                    tal:define="startf python:view.date_speller(data.start);
+                                                endf python:view.date_speller(data.end);">
           <div class="cal_date">
             <span class="cal_day" tal:content="string:${startf/day}">15.</span>
             <span class="cal_month" tal:content="string:${startf/month}.">Oct.</span>
+            <tal:block tal:condition="python: view.isOneDay(data.start, data.end)">
+              --
+              <span class="cal_day" tal:content="string:${endf/day}">15.</span>
+              <span class="cal_month" tal:content="string:${endf/month}.">Oct.</span>
+            </tal:block>
           </div>
           <div class="cal_info">
             <b><a href="" itemprop="url" class="url" tal:attributes="href data/getURL|data/absolute_url;">
