@@ -267,6 +267,12 @@ class SemanaryView(BrowserView):
                     ritems.append(item)
         return ritems
 
+    def isOneDay(self, dstart, dend):
+
+        if dend - dstart >= 2:
+            return True
+        return False
+
 # ##########
 # classes that unify the events in the site and rss service
 # ##########
