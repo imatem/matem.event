@@ -75,6 +75,23 @@
         layer="Products.Collage.interfaces.ICollageBrowserLayer"
     />
 
+    <browser:page
+        name="im_move_news_standard"
+        for="Products.ATContentTypes.content.topic.ATTopic"
+        permission="zope.Public"
+        template="move_news_imstandard.pt"
+        class=".views.IMStandardTopicView"
+        layer="Products.Collage.interfaces.ICollageBrowserLayer"
+    />
+
+    <browser:page
+        name="collection_imsummary"
+        for="Products.ATContentTypes.content.topic.ATTopic"
+        permission="zope.Public"
+        template="collection_imsummary.pt"
+        class=".views.IMStandardTopicView"
+        layer="Products.Collage.interfaces.ICollageBrowserLayer"
+    />
 
     <browser:page
         name="im_news_standard"
