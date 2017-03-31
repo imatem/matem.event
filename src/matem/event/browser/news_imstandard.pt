@@ -126,19 +126,19 @@
                         </span>
                     </p>
 
-                    <p tal:condition="item_efective_date">
+                    <!-- <p tal:condition="item_efective_date">
                       Publicado el: <span tal:replace="python:toLocalizedTime(item_efective_date,long_format=0)">
                         August 16, 2001 at 23:35:59 </span>
-                    </p>
+                    </p> -->
 
 
-                    <p class="tileFooter">
+                    <!-- <p class="tileFooter">
                         <a href=""
                            tal:attributes="href python:item_type in use_view_action and item_url+'/view' or item_url;"
                            i18n:translate="read_more">
                         Read More&hellip;
                         </a>
-                    </p>
+                    </p> -->
 
                     <div class="visualClear"><!-- --></div>
 
