@@ -16,22 +16,6 @@
   });
 </script>
 
-<style type="text/css">
-  .rotatedlist{
-    height: 130px;
-    overflow-y: hidden;
-  }
-
-  #content ul.ulrotated {
-    list-style-type: none;
-  }
-
-  #content li.lirotated{
-    height: 60px;
-  }
-
-
-</style>
 
 
 <tal:variables define="plone_view here/@@plone;
