@@ -88,7 +88,7 @@
         <h3 style="width: 98%;" tal:attributes="class cstyle">
           <font color="#FFFFFF">&nbsp; 
             <tal:block tal:condition="homeurl">
-              <a href="" tal:attributes="href homeurl"><span tal:content="ptitle"/></a>
+              <a href="" tal:attributes="href homeurl; class cstyle"><span tal:content="ptitle"/></a>
             </tal:block>
 
             <tal:block tal:condition="python:not homeurl">
