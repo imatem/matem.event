@@ -291,7 +291,7 @@ class IMSiteTopicView(BaseTopicView):
 
     def topicHome(self, ptitle):
         if 'Juriquilla' in ptitle:
-            return 'http://www.matem.unam.mx/Juriquilla'
+            return 'http://www.matem.unam.mx/juriquilla'
         return 'http://www.matem.unam.mx'
 
 
