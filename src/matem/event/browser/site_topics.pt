@@ -115,6 +115,7 @@
                                 fancy_date python:date_s and date_s[1].replace(',', '') +' de '+ month_name[date_s[0]] + ', ' +  date_s[3] + ' ' + date_s[4] + '.' or '';
                                 ">
               <metal:block>
+                <div class="tileItem">
                 <dt>
                   <span>
                     <span tal:attributes="class cstyle">
@@ -124,11 +125,11 @@
                     <span style="background-color: #FF0000;"><font color="#FFFFFF">&nbsp; Cancelado</font>  &nbsp;</span>
                   </span><!-- end is canceled-->
                   <span class="summary">
-                    <a href="#" tal:content="item_title_or_id" tal:attributes="href item_url">Title</a>
+                    <a href="#" tal:content="item_title_or_id" tal:attributes="href item_url" >Title</a>
                     <br/>
                   </span>
                 </dt>
-                <dd class="tileItem">
+                <dd >
                   <span tal:condition="item_institution">
                     <b><span tal:condition="item_expositor" tal:content="item_expositor"/><span tal:condition="item_institution" tal:content="python:' (' + item_institution + ').'"/></b>
                   </span>
@@ -142,6 +143,7 @@
                   <br/>
                   <span tal:content="item_seminary"/> <br/>
                 </dd>
+              </div>
             </metal:block>
 
           </tal:block>
