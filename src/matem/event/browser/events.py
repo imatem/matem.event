@@ -36,6 +36,29 @@ class EventsView(BrowserView):
         result = cat(**query)
         return result
 
+
+    def upcomingEventsWithoutcalendar(self, **kw):
+        """Show all upcoming events"""
+
+        query = {}
+        # has_query = getattr(self.context, 'buildQuery', None)
+        # if has_query:
+        #     query = self.context.buildQuery()
+        # else:
+        query['path'] = {
+            'query': '/'.join(self.context.getPhysicalPath()),
+        }
+        query['Type'] = ('Event',)
+        query['review_state'] = ('external',)
+
+        start = DateTime()
+        query['end'] = {'query': start, 'range': 'min'}
+        query['sort_on'] = 'start'
+        query.update(kw)
+        cat = getToolByName(self.context, 'portal_catalog')
+        result = cat(**query)
+        return result
+
     def pastEvents(self, **kw):
         """Show all past events"""
         query = {}
