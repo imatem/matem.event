@@ -291,8 +291,15 @@ class IMSiteTopicView(BaseTopicView):
 
     def topicHome(self, ptitle):
         if 'Juriquilla' in ptitle:
-            return 'http://www.matem.unam.mx/juriquilla'
-        return 'http://www.matem.unam.mx'
+            if 'juriquilla' in self.request['ACTUAL_URL']:
+                # must be url activities
+                return 'http://www.matem.unam.mx/juriquilla'
+            else:
+                return 'http://www.matem.unam.mx/juriquilla'
+        if 'juriquilla' in self.request['ACTUAL_URL']:
+            return 'http://www.matem.unam.mx'
+        else:
+            return 'http://www.matem.unam.mx/actividades/calendario'
 
 
 class RSSTopicsView(BaseView):
@@ -365,8 +372,14 @@ class RSSTopicsView(BaseView):
 
     def topicHome(self):
         if 'oaxaca' in self.context.remote_url():
-            return 'http://paginas.matem.unam.mx/oaxaca/'
-        return 'http://www.matcuer.unam.mx/'
+            if 'juriquilla' in self.request['ACTUAL_URL']:
+                return 'http://paginas.matem.unam.mx/oaxaca/'
+            else:
+                return 'http://paginas.matem.unam.mx/oaxaca/actividades/'
+        if 'juriquilla' in self.request['ACTUAL_URL']:
+            return 'http://www.matcuer.unam.mx/'
+        else:
+            return 'http://www.matcuer.unam.mx/actividades/'
 
 
 class IMRSSFeed(RSSFeed):
