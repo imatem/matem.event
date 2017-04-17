@@ -293,13 +293,13 @@ class IMSiteTopicView(BaseTopicView):
         if 'Juriquilla' in ptitle:
             if 'juriquilla' in self.request['ACTUAL_URL']:
                 # must be url activities
-                return 'http://www.matem.unam.mx/juriquilla'
+                return 'http://www.matem.unam.mx/juriquilla/actividades'
             else:
                 return 'http://www.matem.unam.mx/juriquilla'
         if 'juriquilla' in self.request['ACTUAL_URL']:
             return 'http://www.matem.unam.mx'
         else:
-            return 'http://www.matem.unam.mx/actividades/calendario'
+            return 'http://www.matem.unam.mx/actividades/allactivitiesview'
 
 
 class RSSTopicsView(BaseView):
