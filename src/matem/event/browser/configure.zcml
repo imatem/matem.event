@@ -128,5 +128,13 @@
         class=".events.EventsView"
     />
 
+    <browser:page
+        name="allactivitiesview"
+        for="*"
+        permission="zope.Public"
+        template="allactivities_view.pt"
+        class=".events.EventsView"
+    />
+
 
 </configure>
