@@ -29,9 +29,9 @@
     background-color: #4387fd;
   }
 
-  #Juriquilla dt{
+  /*#Juriquilla dt{
     display:none;
-  }
+  }*/
 
   #Juriquilla dt{
     padding-bottom: 1px;
