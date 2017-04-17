@@ -323,9 +323,9 @@ class RSSTopicsView(BaseView):
             if item.get('updated', ''):
                 if item['updated'] < date:
                     continue
-                if item['updated'] >= date and item['updated'] <= date + 14:
+                if item['updated'] >= date and item['updated'] <= date + 7:
                     ritems.append(item)
-                elif item['updated']._hour + 1 >= date._hour and item['updated'] <= date + 14:
+                elif item['updated']._hour + 1 >= date._hour and item['updated'] <= date + 7:
                     ritems.append(item)
         return ritems
 
