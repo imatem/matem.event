@@ -209,6 +209,11 @@ def object_created(context, event):
     context.setLocation(seminar.location)
     context.setSubject(seminar.subject)
 
+    try:
+        context.REQUEST
+    except AttributeError:
+        context.REQUEST = {}
+
     wholeday = context.REQUEST.get('wholeDay', False)
     ajax = context.REQUEST.get('ajax_load', None)
 
@@ -220,6 +225,7 @@ def object_created(context, event):
         context.REQUEST['endDate'] = DateTime(date)
 
     dt = context.REQUEST.get('startDate', None)
+
     if isinstance(dt, DateTime) and wholeday:
         date = '%s %s:00 %s' % (dt.Date(), seminar.start, dt.timezone())
         context.REQUEST['startDate'] = DateTime(date)
