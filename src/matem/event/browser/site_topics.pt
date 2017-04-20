@@ -60,9 +60,6 @@
 });
 </script> -->
 
-
-
-
 <tal:variables define="plone_view here/@@plone;
                        toLocalizedTime nocall: plone_view/toLocalizedTime;
                        isAnon view/isAnon;
@@ -79,14 +76,14 @@
                  define="myview context/@@collage_kss_helper/getKssView;
                          getKssClasses python: myview.getKssClasses;
                          templateId string:folder_summary_view;
-                         month_name python:{'Jan.': 'Enero', 'Feb.':'Febrero', 'Mar.':'Marzo', 'Apr.':'Abril', 'May':'Mayo', 'June':'Junio', 'July':'Julio', 'Aug.':'Agosto', 'Sep.':'Septiembre', 'Oct.':'Octubre', 'Nov.':'Noviembre', 'Dec.':'Diciembre'};
+                         month_name python:{'Jan.': 'enero', 'Feb.':'febrero', 'Mar.':'marzo', 'Apr.':'abril', 'May':'mayo', 'June':'junio', 'July':'julio', 'Aug.':'agosto', 'Sep.':'septiembre', 'Oct.':'octubre', 'Nov.':'noviembre', 'Dec.':'diciembre'};
                          ">
       <tal:block tal:define="ptitle here/Title | nothing;
           cstyle python:view.cstyle(ptitle);
           homeurl python:view.topicHome(ptitle);">
         <br/>
         <h3 style="width: 98%;" tal:attributes="class cstyle">
-          <font color="#FFFFFF">&nbsp; 
+          <font color="#FFFFFF">&nbsp;
             <tal:block tal:condition="homeurl">
               <a href="" tal:attributes="href homeurl; class cstyle"><span tal:content="ptitle"/></a>
             </tal:block>
