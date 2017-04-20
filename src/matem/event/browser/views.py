@@ -338,18 +338,18 @@ class RSSTopicsView(BaseView):
 
     def getFancyDate(self, date):
         month_name = {
-            'Jan.': 'Enero',
-            'Feb.': 'Febrero',
-            'Mar.': 'Marzo',
-            'Apr.': 'Abril',
-            'May': 'Mayo',
-            'June': 'Junio',
-            'July': 'Julio',
-            'Aug.': 'Agosto',
-            'Sep.': 'Septiembre',
-            'Oct.': 'Octubre',
-            'Nov.': 'Noviembre',
-            'Dec.': 'Diciembre'
+            'Jan.': 'enero',
+            'Feb.': 'febrero',
+            'Mar.': 'marzo',
+            'Apr.': 'abril',
+            'May': 'mayo',
+            'June': 'junio',
+            'July': 'julio',
+            'Aug.': 'agosto',
+            'Sep.': 'septiembre',
+            'Oct.': 'octubre',
+            'Nov.': 'noviembre',
+            'Dec.': 'diciembre'
         }
 
         datetime = date and date.pCommon() or ''
