@@ -42,7 +42,7 @@ def main(app):
     message.attach(MIMEText(html_text, 'html', 'utf-8'))
     try:
         api.portal.send_email(
-            recipient="l.academicos@im.unam.mx, l.becarios@im.unam.mx, difusion@im.unam.mx",
+            recipient="l.academicos@im.unam.mx, l.becarios@im.unam.mx, difusion@im.unam.mx, actividades.imunam@im.unam.mx",
             sender="difusion@im.unam.mx",
             subject="SEMANARIO IMUNAM",
             body=message,
