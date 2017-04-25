@@ -70,7 +70,8 @@
                        topic_title here/Title | nothing;
                        topic_style python:view.topicstyle(topic_title);">
   <div tal:attributes="class topic_style"
-       tal:define="topicContents view/getContents;">
+       tal:define="topicContents view/getContents; ptitle here/Title | nothing;">
+    <tal:block tal:condition="python:topicContents ">
 
     <tal:listing i18n:domain="plone"
                  define="myview context/@@collage_kss_helper/getKssView;
@@ -153,6 +154,7 @@
       <!-- <div id="loadMore">Load more</div> -->
       </tal:block>
     </tal:listing>
+  </tal:block>
 
   </div>
 
