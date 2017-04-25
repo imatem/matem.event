@@ -84,6 +84,7 @@
         layer="Products.Collage.interfaces.ICollageBrowserLayer"
     />
 
+    <!-- view for topics without publication date -->
     <browser:page
         name="collection_imsummary"
         for="Products.ATContentTypes.content.topic.ATTopic"
@@ -92,6 +93,18 @@
         class=".views.IMStandardTopicView"
         layer="Products.Collage.interfaces.ICollageBrowserLayer"
     />
+
+    <!-- view for topics without publication date, image and description -->
+    <browser:page
+        name="collection_im_without_sumary"
+        for="Products.ATContentTypes.content.topic.ATTopic"
+        permission="zope.Public"
+        template="collection_im_without_sumary.pt"
+        class=".views.IMStandardTopicView"
+        layer="Products.Collage.interfaces.ICollageBrowserLayer"
+    />
+
+
 
     <browser:page
         name="im_news_standard"
