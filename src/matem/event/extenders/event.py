@@ -94,6 +94,7 @@ BasicSchema = [
             description=_(u'Select Mexican if the speaker was born in Mexico'),
             i18n_domain='matem.event',
         ),
+        # read_permission='Modify portal content',
     ),
 
     _LinesExtensionField(

@@ -95,6 +95,11 @@ class IMEventView(BaseTopicView):
 
     def getNationality(self):
         nationality = None
+
+        local_roles = self.context.portal_membership.getAuthenticatedMember().getRolesInContext(self.context)
+        if not ('Editor' in local_roles or 'Manager' in local_roles):
+            return nationality
+
         value = getattr(self.context, 'speaker_nationality', None)
         if value:
             vocabulary = self.context.getField('speaker_nationality').Vocabulary(self.context)
