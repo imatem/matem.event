@@ -84,6 +84,16 @@
         layer="Products.Collage.interfaces.ICollageBrowserLayer"
     />
 
+    <!-- view for news rotate with images -->
+    <browser:page
+        name="im_move_news_images"
+        for="Products.ATContentTypes.content.topic.ATTopic"
+        permission="zope.Public"
+        template="move_news_imimages.pt"
+        class=".views.IMStandardTopicView"
+        layer="Products.Collage.interfaces.ICollageBrowserLayer"
+    />
+
     <!-- view for topics without publication date -->
     <browser:page
         name="collection_imsummary"
