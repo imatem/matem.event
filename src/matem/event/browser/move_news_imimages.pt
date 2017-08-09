@@ -12,7 +12,7 @@
       });
     }
 
-    window.setInterval(run,1000);
+    window.setInterval(run,10000);
   });
 </script>
 
