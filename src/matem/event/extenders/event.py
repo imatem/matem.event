@@ -206,6 +206,10 @@ class MatemEventExtender(object):
 def object_created(context, event):
     """
     """
+
+    if context.portal_type == 'SEvent':
+        return
+
     seminar = context.getFolderWhenPortalFactory().aq_parent
     context.setLocation(seminar.location)
     context.setSubject(seminar.subject)
