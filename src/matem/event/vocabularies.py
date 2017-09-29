@@ -131,3 +131,16 @@ def speakersVocabulary(context):
         items.append(SimpleTerm(value=b.id, title=" ".join([b.lastName, b.firstName])))
     return SimpleVocabulary(items)
 directlyProvides(speakersVocabulary, IVocabularyFactory)
+
+
+def activityTypeVocabulary(context):
+    items = [
+        (_(u'Workshop'), 'workshop'),
+        (_(u'School'), 'school'),
+        (_(u'Congress'), 'congress'),
+        (_(u'Jornada'), 'jornada'),
+    ]
+
+    items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
+    return SimpleVocabulary(items)
+directlyProvides(activityTypeVocabulary, IVocabularyFactory)

@@ -78,4 +78,9 @@
       name="matem.event.speakersVocabulary"
       />
 
+  <utility
+      component=".vocabularies.activityTypeVocabulary"
+      name="matem.event.activityType"
+      />
+
 </configure>
