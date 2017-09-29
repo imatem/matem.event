@@ -253,6 +253,10 @@ def object_added(context, event):
     else:
         context.internal_speaker = None
 
+    # if context.portal_type == 'SEvent':
+        # context.setLocation(seminar.location)
+        # context.setSubject(context.REQUEST.get('activityType', None))
+
 
 @grok.subscribe(ATEvent, IObjectModifiedEvent)
 def object_modified(context, event):
