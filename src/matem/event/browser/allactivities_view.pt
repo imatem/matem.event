@@ -98,9 +98,14 @@
                                         <span class="cal_month" tal:content="string:${startf/year}">2014.</span>
                                     </div>
                                     <div class="cal_info">
-                                        <h3><a href="" itemprop="url" class="url" tal:attributes="href data/getURL|data/absolute_url;">
+                                        <h3>
+                                          <span tal:condition="data/isCanceled | nothing">
+                                            <span style="background-color: #FF0000;"><font color="#FFFFFF">&nbsp; Cancelado</font>  &nbsp;</span>
+                                          </span><!-- end is canceled-->
+                                          <a href="" itemprop="url" class="url" tal:attributes="href data/getURL|data/absolute_url;">
                                             <span itemprop="summary" class="summary" tal:content="data/pretty_title_or_id">Title</span>
-                                        </a></h3>
+                                          </a>
+                                        </h3>
 
                                         <div class="documentByLine">
                                             <div tal:define="expositor data/getSpeaker|nothing" tal:content="expositor"/>
