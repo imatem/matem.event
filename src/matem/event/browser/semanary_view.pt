@@ -93,7 +93,7 @@
               <div tal:define="expositor data/getSpeaker|nothing" tal:content="expositor"/>
                 <span tal:define="location data/location|nothing" tal:content="location"/>
                 <span tal:content="string:${startf/hour}:${startf/minute} hrs."/><br/>
-                <span tal:content="python:data['Subject'][0] or ''"/>
+                <span tal:condition="python:data['Subject']" tal:content="python:data['Subject'][0]"/>
             </div>
           </div>
         </article>
@@ -151,7 +151,7 @@
               <div tal:define="expositor data/getSpeaker|nothing" tal:content="expositor"/>
                 <span tal:define="location data/location|nothing" tal:content="location"/>
                 <span tal:content="string:${startf/hour}:${startf/minute} hrs."/><br/>
-                <span tal:content="python:data['Subject'][0] or ''"/>
+                <span tal:condition="python:data['Subject']" tal:content="python:data['Subject'][0] or ''"/>
             </div>
           </div>
         </article>
