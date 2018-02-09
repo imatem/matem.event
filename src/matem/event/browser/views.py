@@ -391,7 +391,7 @@ class IMRSSFeed(RSSFeed):
     """an RSS feed"""
 
     def _buildItemDict(self, item):
-        link = item.links[0]['href']
+        link = item.links[0].get('href', None)
         itemdict = {
             'title': item.title,
             'url': link,
@@ -411,10 +411,3 @@ class IMRSSFeed(RSSFeed):
                 pass
 
         return itemdict
-
-
-
-
-
-
-
