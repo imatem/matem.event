@@ -20,6 +20,14 @@
             clear: both;
         }
 
+        .jurheader-color{
+          background-color: #944ADF;
+        }
+
+        .cuheader-color{
+          background-color: #4387fd;
+        }
+
         .oaxheader-color{
           background-color: #F17C06;
         }
@@ -152,6 +160,8 @@
         </article>
       </tal:block>
 
+      <br/>
+
       <!-- Cuernavaca -->
       <h2>Cuernavaca</h2>
       <tal:block tal:condition="python: not items_matcuer">
@@ -178,41 +188,73 @@
         </article>
       </tal:block>
 
+      <br/>
+
       <!-- Juriquilla -->
-      <h2>Juriquilla</h2>
-      <tal:block tal:condition="python: not brainsjur">
-        <b>Sin actividades para hoy</b>
-      </tal:block>
-      <tal:block tal:repeat="data brainsjur">
-        <article itemscope itemtype="http://data-vocabulary.org/Event" class="vevent"
-                                    tal:define="startf python:view.date_speller(data.start);
-                                                endf python:view.date_speller(data.end);">
-          <div class="cal_date">
-            <span class="cal_day" tal:content="string:${startf/day}">15.</span>
-            <span class="cal_month" tal:content="string:${startf/month}.">Oct.</span>
-            <tal:block tal:condition="python: view.isOneDay(data.start, data.end)">
-              --
-              <span class="cal_day" tal:content="string:${endf/day}">15.</span>
-              <span class="cal_month" tal:content="string:${endf/month}.">Oct.</span>
+      <tal:block tal:define="cstyle string:jurheader-color;
+          titlesection string:Juriquilla;
+          topic_style string:jurborder-color;
+          homeurl nothing">
+        <div tal:attributes="class topic_style">
+          <br/>
+          <h3 style="width: 98%;" tal:attributes="class cstyle">
+            <font color="#FFFFFF">&nbsp;
+              <tal:block tal:condition="homeurl">
+                <a href="" tal:attributes="href homeurl; class cstyle"><span tal:content="titlesection"/></a>
+              </tal:block>
+
+              <tal:block tal:condition="python:not homeurl">
+                <span tal:content="titlesection"/>
+              </tal:block>
+            </font>  &nbsp;</h3>
+            <tal:block tal:condition="python: not brainsjur">
+              <b>Sin actividades para hoy</b>
             </tal:block>
-          </div>
-          <div class="cal_info">
-            <b><a href="" itemprop="url" class="url" tal:attributes="href data/getURL|data/absolute_url;">
-                <span itemprop="summary" class="summary" tal:content="data/pretty_title_or_id">Title</span>
-            </a></b>
-            <div class="documentByLine">
-              <div tal:define="expositor data/getSpeaker|nothing" tal:content="expositor"/>
-                <span tal:define="location data/location|nothing" tal:content="location"/>
-                <span tal:content="string:${startf/hour}:${startf/minute} hrs."/><br/>
-                <span tal:condition="python:data['Subject']" tal:content="python:data['Subject'][0] or ''"/>
+
+          <tal:entry tal:condition="brainsjur"
+            tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;"
+            tal:repeat="item brainsjur">
+            <div class="tileItem" tal:define="startf python:view.date_speller(item.start)">
+              <metal:block>
+                <dt>
+                  <span>
+                    <span tal:attributes="class cstyle">
+                      <font color="#FFFFFF">&nbsp;</font>  &nbsp;</span>
+                  </span>
+                  <span class="summary">
+
+                    <a tal:define="mtitle item/pretty_title_or_id" style="background: none; padding: 0; border: none !important" href="#" tal:attributes="href item/getURL|item/absolute_url;">
+                      <span tal:replace="structure mtitle"/>
+                    </a>
+                    <br/>
+                  </span>
+                </dt>
+                <dd>
+                  <span tal:condition="item/getEventInstitution|nothing">
+                    <b>
+                      <span tal:condition="item/getSpeaker|nothing" tal:content="item/getSpeaker"/>
+                      <span tal:condition="item/getEventInstitution|nothing" tal:content="python:' (' + item.getEventInstitution + ').'"/>
+                    </b>
+                  </span>
+                  <span tal:condition="python: not item.getEventInstitution">
+                    <b><span tal:condition="item/getSpeaker|nothing" tal:content="item/getSpeaker"/></b>
+                  </span>
+                  <br/>
+                  <span tal:content="string:${startf/hour}:${startf/minute} hrs."/>
+                  <span tal:content="item/location | nothing"/>
+                  <br/>
+                  <span tal:condition="python:item['Subject']" tal:content="python:item['Subject'][0] or ''"/>
+                  <br/>
+                </dd>
+              </metal:block>
             </div>
-          </div>
-        </article>
-      </tal:block>
+          </tal:entry>
+        </div>
+      </tal:block><!-- end Juriquilla -->
+      
+      <br/>
 
       <!-- Oaxaca -->
-      <!-- <h2>Oaxaca</h2> -->
-      
       <tal:block tal:define="cstyle string:oaxheader-color;
           titlesection string:Oaxaca;
           topic_style string:oaxborder-color;
@@ -262,7 +304,6 @@
                     <b><span tal:condition="item/speaker" tal:content="item/speaker"/></b>
                   </span>
                   <br/>
-                  <!-- <span tal:content="python: view.getFancyDate(item['updated']) or ''"/> -->
                   <span tal:content="string:${startf/hour}:${startf/minute} hrs."/>
                   <span tal:content="item/location | nothing"/>
                   <br/>
@@ -273,7 +314,7 @@
             </div>
           </tal:entry>
         </div>
-      </tal:block>
+      </tal:block><!-- end Oaxaca -->
 
     </div>
           
