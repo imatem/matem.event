@@ -17,6 +17,7 @@ from zope.schema.interfaces import IVocabularyFactory
 from Products.Collage.browser.views import BaseView
 from plone.app.portlets.portlets.rss import RSSFeed
 from DateTime.interfaces import DateTimeError
+from plone import api
 
 
 
@@ -282,15 +283,10 @@ class SemanaryView(BrowserView):
         }
 
     def imgPosters(self):
-        # this elements could be the collection
-        query = {
-            'portal_type': 'Congreso',
-            'review_state': 'frontpage_published',
-            'sort_on': 'start',
-        }
+        atopic = api.content.get(path='/inicio/1/1/congresos')
+        items = atopic.queryCatalog()
+        return [item.getPath() + '/image' for item in items]
 
-        brains = self.portal_catalog.searchResults(query)
-        return [brain.getURL()+'/image' for brain in brains]
 
     def date_speller(self, dt):
         vocabulary = getUtility(IVocabularyFactory, 'matem.event.Months')(self.context).by_value
