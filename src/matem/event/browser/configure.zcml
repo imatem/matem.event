@@ -6,6 +6,14 @@
   <include package="collective.plonetruegallery" />
 
     <browser:page
+        name="tvactivities"
+        for="*"
+        permission="zope.Public"
+        template="tvactivities.pt"
+        class=".views.SemanaryView"
+    />
+
+    <browser:page
         name="semanaryview"
         for="*"
         permission="zope.Public"
