@@ -322,25 +322,27 @@
     </div>
           
     </div><!--end first column -->
-        <div class="columnss">
+        <div class="columnss" tal:define="images view/imgPosters">
           <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <tal:block tal:repeat="x python:range(1, len(images))">
+        <li data-target="#myCarousel" tal:attributes="data-slide-to x"/>
+      </tal:block>
     </ol>
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
       <div class="item active">
-        <!-- <img src="la.jpg" alt="Los Angeles" style="width:100%;"> -->
-        <img src="http://localhost:8080/infomatem/actividades/otras-actividades/eventos-2018/marzo-sesiones-para-el-seminario-junior-de-matematicas/image" alt="Los Angeles" style="width:100%;">
+        <img style="width:100%;" tal:attributes="src python:images[0]"/>
       </div>
 
-      <div class="item">
-        <!-- <img src="chicago.jpg" alt="Chicago" style="width:100%;"> -->
-        <img src="http://localhost:8080/infomatem/actividades/otras-actividades/eventos-2018/marzo-sesiones-para-el-coloquio-oaxaqueno/image" alt="Los Angeles" style="width:100%;">
-      </div>
+      <tal:block tal:repeat="x python:range(1, len(images))">
+        <div class="item">
+        <img style="width:100%;" tal:attributes="src python:images[x]">
+        </div>        
+      </tal:block>
     
     </div>
 

@@ -281,6 +281,17 @@ class SemanaryView(BrowserView):
             'brainsjur': brainsjur,
         }
 
+    def imgPosters(self):
+        # this elements could be the collection
+        query = {
+            'portal_type': 'Congreso',
+            'review_state': 'frontpage_published',
+            'sort_on': 'start',
+        }
+
+        brains = self.portal_catalog.searchResults(query)
+        return [brain.getURL()+'/image' for brain in brains]
+
     def date_speller(self, dt):
         vocabulary = getUtility(IVocabularyFactory, 'matem.event.Months')(self.context).by_value
         minute = "00"
