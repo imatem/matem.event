@@ -212,9 +212,7 @@
 
       <!-- Oaxaca -->
       <!-- <h2>Oaxaca</h2> -->
-      <tal:block tal:condition="python: not items_oax">
-        <b>Sin actividades para hoy</b>
-      </tal:block>
+      
       <tal:block tal:define="cstyle string:oaxheader-color;
           titlesection string:Oaxaca;
           topic_style string:oaxborder-color;
@@ -231,6 +229,10 @@
                 <span tal:content="titlesection"/>
               </tal:block>
             </font>  &nbsp;</h3>
+            <tal:block tal:condition="python: not items_oax">
+              <b>Sin actividades para hoy</b>
+            </tal:block>
+
           <tal:entry tal:condition="items_oax"
             tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;"
             tal:repeat="item items_oax">
