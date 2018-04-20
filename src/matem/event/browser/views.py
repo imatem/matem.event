@@ -245,8 +245,8 @@ class SemanaryView(BrowserView):
     def tvActivities(self):
         ftoday = DateTime()
         today = DateTime('/'.join([str(ftoday.year()), str(ftoday.month()), str(ftoday.day())]))
-        start_date = today - 8
-        end_date = today + 8.9
+        start_date = today
+        end_date = today + 0.9
         query = {
             'portal_type': 'Event',
             'end': {'query': [start_date, ], 'range': 'min'},
