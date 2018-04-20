@@ -88,7 +88,46 @@
         ul.ulrotated {
           list-style-type: none;
         }
-        
+
+        ul.ulsedes{
+          list-style-type: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        li.liCuernavaca{
+          background: url('++resource++matem.event/itemCuerna.png') no-repeat left top;
+          background-color: green;
+          padding-left: 47px;
+          height: 182px;
+          /*list-style: url('++resource++matem.event/itemCuerna.png');*/
+        }
+
+        li.liJuriquilla{
+          background: url('++resource++matem.event/itemCuerna.png') no-repeat left top;
+          background-color: violet;
+          padding-left: 47px;
+          height: 182px;
+          /*list-style-image: url('++resource++matem.event/itemCuerna.png');*/
+        }
+
+        li.liOaxaca{
+          background: url('++resource++matem.event/itemoax.png') no-repeat left top;
+          background-color: orange;
+          padding-left: 47px;
+          height: 182px;
+          /*list-style-image: url('++resource++matem.event/itemoax.png');*/
+        }
+
+
+
+        /*div.ulsedes{
+          list-style-type: none;
+          transform: rotate(270deg);
+          background: red;
+          float: left;
+        }*/
+
         .carousel-fade .carousel-inner .item {
           opacity: 0;
           transition-property: opacity;
@@ -287,14 +326,15 @@
             <tal:block tal:condition="unionactivities">
               <h3>Actividades del día en Cuernavaca, Juriquilla, Oaxaca</h3>
               <div class="rotatedlistUnion">
-                <ul class="ulrotated" tal:attributes="id python:view.classstyle(unionactivities)+'UNION'">
-                  <li tal:repeat="item unionactivities">
+                <ul class="ulsedes" tal:attributes="id python:view.classstyle(unionactivities)+'UNION'">
+                  <li tal:attributes="class python:'li'+item['campus']" tal:repeat="item unionactivities">
+                    <span>
                     <b tal:content="item/title"/><br/>
                     <span tal:content="item/expositor"/><br/>
                     <span tal:content="item/hour"/>
                     <span tal:content="item/location"/><br/>
                     <span tal:content="item/seminarytitle"/><br/>
-                    <span tal:content="item/campus"/><br/><br/>
+                  </span>
                   </li>
                 </ul>
               </div>
