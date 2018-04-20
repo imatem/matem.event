@@ -14,6 +14,14 @@
     />
 
     <browser:page
+        name="tvshow"
+        for="*"
+        permission="zope.Public"
+        template="tvshow.pt"
+        class=".views.SemanaryView"
+    />
+
+    <browser:page
         name="semanaryview"
         for="*"
         permission="zope.Public"

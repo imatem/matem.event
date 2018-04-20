@@ -18,6 +18,7 @@ from Products.Collage.browser.views import BaseView
 from plone.app.portlets.portlets.rss import RSSFeed
 from DateTime.interfaces import DateTimeError
 from plone import api
+from operator import itemgetter
 
 
 
@@ -244,7 +245,7 @@ class SemanaryView(BrowserView):
     def tvActivities(self):
         ftoday = DateTime()
         today = DateTime('/'.join([str(ftoday.year()), str(ftoday.month()), str(ftoday.day())]))
-        start_date = today 
+        start_date = today
         end_date = today + 0.9
         query = {
             'portal_type': 'Event',
@@ -281,6 +282,70 @@ class SemanaryView(BrowserView):
             'oaxrss': self.semanaryRSS(self.oaxfeed, start_date, end_date),
             'brainsjur': brainsjur,
         }
+
+    def unionActivities(self, cuer, jur, oax):
+
+        union = []
+
+
+        for item in cuer:
+            data = {}
+            data['startf'] = self.date_speller(item['updated'])
+            data['date'] = item['updated']
+            data['expositor'] = item.get('speaker', '')
+            data['title'] = item.get('title', '')
+            data['location'] = item.get('location', '')
+            data['hour'] = str(data['startf']['hour']) + ':' + str(data['startf']['minute'])  + 'hrs.'
+            data['seminarytitle'] = item.get('seminarytitle', '')
+            data['campus'] = 'Cuernavaca'
+            union.append(data)
+
+        for item in jur:
+            data = {}
+            data['startf'] = self.date_speller(item.start)
+            data['date'] = item.start
+            data['expositor'] = item.getSpeaker
+            data['title'] = item.pretty_title_or_id()
+            data['location'] = item.location
+            data['hour'] = str(data['startf']['hour']) + ':' + str(data['startf']['minute'])  + 'hrs.'
+            value = ''
+            if item.Subject:
+                value = item.Subject[0]
+            data['seminarytitle'] = value
+            data['campus'] = 'Juriquilla'
+            union.append(data)
+
+        for item in oax:
+            data = {}
+            data['startf'] = self.date_speller(item['updated'])
+            data['date'] = item['updated']
+            data['expositor'] = item.get('speaker', '')
+            data['title'] = item.get('title', '')
+            data['location'] = item.get('location', '')
+            data['hour'] = str(data['startf']['hour']) + ':' + str(data['startf']['minute'])  + 'hrs.'
+            data['seminarytitle'] = item.get('seminarytitle', '')
+            data['campus'] = 'Oaxaca'
+            union.append(data)
+
+        aux = [(x, x['date'], x['campus']) for x in union]
+        aux_sorted = sorted(aux, key=itemgetter(1, 2))
+        newunion = [y[0] for y in aux_sorted]
+
+        # return union
+        return newunion
+
+    def classstyle (self, items):
+        if len(items) > 4:
+            return 'rotated'
+
+        return 'notrotated'
+
+    def classcolumn(self, nitems):
+        if nitems == 0:
+            return 'columnsspettit'
+
+        return 'columnss'
+
 
     def imgPosters(self):
         atopic = api.content.get(path='/inicio/1/1/congresos')
