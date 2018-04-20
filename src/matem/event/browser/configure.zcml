@@ -6,7 +6,7 @@
   <include package="collective.plonetruegallery" />
 
     <browser:page
-        name="tvactivities"
+        name="samsungtv"
         for="*"
         permission="zope.Public"
         template="tvactivities.pt"
@@ -14,7 +14,7 @@
     />
 
     <browser:page
-        name="tvshow"
+        name="smarttv"
         for="*"
         permission="zope.Public"
         template="tvshow.pt"
