@@ -1,0 +1,323 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  i18n:domain="UNAM.imateCVct">
+  <head>
+      <!-- <link href="++resource++wcfc/bootstrap/bootstrap-fixed.css" rel="stylesheet" type="text/css"/> -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script type="text/javascript">
+        $(document).ready(function () {
+
+          function run() {
+            var prev = $("#rotatedCU li:first-child");
+            $.unique(prev).each(function(i) {
+              $(this).delay(i*600).slideUp(function() {
+                $(this).appendTo(this.parentNode).slideDown();
+              });
+            });
+          }
+
+          function run2() {
+            var prev = $("#rotatedUNION li:first-child");
+            $.unique(prev).each(function(i) {
+              $(this).delay(i*800).slideUp(function() {
+                $(this).appendTo(this.parentNode).slideDown();
+              });
+            });
+          }
+
+          window.setInterval(run,10000);
+          window.setInterval(run2,15000);
+        });
+
+        function startTime() {
+          var today = new Date();
+          var h = today.getHours();
+          var m = today.getMinutes();
+          var s = today.getSeconds();
+          m = checkTime(m);
+          s = checkTime(s);
+          document.getElementById('txt').innerHTML =
+          h + ":" + m + ":" + s;
+          var t = setTimeout(startTime, 500);
+        }
+        function checkTime(i) {
+            if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+            return i;
+        }
+
+
+      </script>
+      <style type="text/css">
+
+        /* Create two equal columns that floats next to each other */
+        .columnss {
+            float: left;
+            width: 50%;
+            padding: 0 10px 0 10px;
+        }
+        .columnsspettit{
+            float: left;
+            width: 25%;
+            padding: 0 10px 0 10px;
+        }
+
+        /* Clear floats after the columns */
+        .rowss:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .rotatedlist{
+          /*height: 13%;*/
+          height: 380px;
+          overflow-y: hidden;
+          /*background: red;*/
+        }
+
+        .rotatedlistUNION{
+          /*height: 13%;*/
+          height: 480px;
+          overflow-y: hidden;
+          /*background: blue;*/
+        }
+
+        ul.ulrotated {
+          list-style-type: none;
+        }
+        
+        .carousel-fade .carousel-inner .item {
+          opacity: 0;
+          transition-property: opacity;
+        }
+
+        .carousel-fade .carousel-inner .active {
+          opacity: 1;
+        }
+
+        .carousel-fade .carousel-inner .active.left,
+        .carousel-fade .carousel-inner .active.right {
+          left: 0;
+          opacity: 0;
+          z-index: 1;
+        }
+
+        .carousel-fade .carousel-inner .next.left,
+        .carousel-fade .carousel-inner .prev.right {
+          opacity: 1;
+        }
+
+        .carousel-fade .carousel-control {
+          z-index: 2;
+        }
+
+        @media all and (transform-3d), (-webkit-transform-3d) {
+          .carousel-fade .carousel-inner > .item.next,
+          .carousel-fade .carousel-inner > .item.active.right {
+            opacity: 0;
+            -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0);
+          }
+          .carousel-fade .carousel-inner > .item.prev,
+          .carousel-fade .carousel-inner > .item.active.left {
+            opacity: 0;
+            -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0);
+          }
+          .carousel-fade .carousel-inner > .item.next.left,
+          .carousel-fade .carousel-inner > .item.prev.right,
+          .carousel-fade .carousel-inner > .item.active {
+            opacity: 1;
+            -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0);
+          }
+      }
+
+
+
+
+
+
+
+        .jurheader-color{
+          background-color: #944ADF;
+        }
+
+        .cuheader-color{
+          background-color: #4387fd;
+        }
+
+        .oaxheader-color{
+          background-color: #F17C06;
+        }
+
+        .cuerheader-color{
+          background-color: #75ad0a;
+        }
+
+        /* border activities styles */
+        .jurborder-color{
+            border: #944ADF;
+            border-style: solid;
+            padding-left: 1em;
+          }
+        .cuborder-color{
+            border: #4387fd;
+            border-style: solid;
+            padding-left: 1em;
+          }
+
+        .oaxborder-color{
+            border: #F17C06;
+            border-style: solid;
+            padding-left: 1em;
+          }
+        .cuerborder-color{
+            border: #75ad0a;
+            border-style: solid;
+            padding-left: 1em;
+          }
+
+
+        .hCalendar-hidden {
+            display:none; /* hide hCal fields not useful to human eyes */
+        }
+
+        article.vevent {
+            background-color: #EAEAEA;
+            border-radius: 1em 1em 1em 1em;
+            margin-top: 1em;
+            padding: 1em;
+        }
+        .vevent div.cal_date {
+            float:left;
+            vertical-align:top;
+            margin: 0 1.5em 0.5em 0;
+            padding:0.7em 0.7em 0.5em;
+            background-color:white;
+            border:none;
+            border-radius:0.5em;
+            box-shadow: 0.5em 0.5em 0.4em black;
+            min-width:4.4em;
+        }
+        .vevent span.cal_wkday {
+            display:block;
+            font-size:2.3em;
+            font-weight:bold;
+            border-bottom:2px solid black;
+            padding-bottom:0.3em;
+        }
+        .vevent span.cal_day {
+            font-size:1.7em;
+            display:inline-block;
+            padding-top:0.3em;
+        }
+        .vevent span.cal_month {
+            font-size:1.3em;
+            line-height:1.3em;
+            display:inline-block;
+        }
+
+        .vevent div.cal_info { margin-left:8em; }
+        article.vevent .documentByLine {
+            background: none repeat scroll 0 0 transparent;
+            color: black !important;
+            font-size: 1em !important;
+            font-weight: bold;
+            padding: 0;
+        }
+        .summary{
+          font-size: larger;
+        }
+
+        .carousel-inner {
+          display: grid;
+          grid-auto-rows: 1060px;
+        }
+
+        .carousel-inner > .item > img {
+          height: 1060px;
+          margin:auto;
+        }
+
+
+    </style>
+  </head>
+  <body onload="startTime()">
+    <div id="content-core">
+      <div style="text-align: center;">
+        XXX
+        <span id="txt"></span>
+      </div>
+      <div class="rowss"
+      tal:define="activities view/tvActivities;
+                              start_date activities/start_date;
+                              end_date activities/end_date;
+                              brainscu activities/brainscu;
+                              brainsjur activities/brainsjur;
+                              items_matcuer activities/matcuerrss;
+                              items_oax activities/oaxrss;
+                              unionactivities python:view.unionActivities(items_matcuer, brainsjur, items_oax);">
+        <div tal:attributes="class python:view.classcolumn(len(brainscu) + len(unionactivities))">
+          <div class="fc">
+            <tal:block tal:condition="python: not brainscu">
+              <!-- <h3>Sin actividades para hoy en C.U.</h3> -->
+              <h3></h3>
+            </tal:block>
+            <tal:block tal:condition="brainscu">
+              <h3>Actividades del día en C.U.</h3>
+              <div class="rotatedlist">
+                <ul class="ulrotated" tal:attributes="id python:view.classstyle(brainscu)+'CU';">
+                  <tal:block tal:repeat="data brainscu">
+                    <li tal:define="startf python:view.date_speller(data.start);">
+                      <b tal:content="data/pretty_title_or_id">Title</b><br/>
+                      <span tal:define="expositor data/getSpeaker|nothing" tal:content="expositor"/><br/>
+                      <span tal:content="string:${startf/hour}:${startf/minute} hrs."/>
+                      <span tal:define="location data/location|nothing" tal:content="location"/><br/>
+                      <span tal:condition="python:data['Subject']" tal:content="python:data['Subject'][0]"/><br/><br/>
+                    </li>
+                  </tal:block>
+                </ul>
+              </div>
+            </tal:block>
+
+            <tal:block tal:condition="unionactivities">
+              <h3>Actividades del día en Cuernavaca, Juriquilla, Oaxaca</h3>
+              <div class="rotatedlistUnion">
+                <ul class="ulrotated" tal:attributes="id python:view.classstyle(unionactivities)+'UNION'">
+                  <li tal:repeat="item unionactivities">
+                    <b tal:content="item/title"/><br/>
+                    <span tal:content="item/expositor"/><br/>
+                    <span tal:content="item/hour"/>
+                    <span tal:content="item/location"/><br/>
+                    <span tal:content="item/seminarytitle"/><br/>
+                    <span tal:content="item/campus"/><br/><br/>
+                  </li>
+                </ul>
+              </div>
+            </tal:block>
+          </div>
+        </div><!--end first column -->
+
+        <div class="carousel slide carousel-fade columnss" data-ride="carousel" data-interval="10000" tal:define="images view/imgPosters">
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+            <div class="item active">
+              <img src="" tal:attributes="src python:images[0]"/>
+            </div>
+
+            <div class="item" tal:repeat="x python:range(1, len(images))">
+              <img src="" tal:attributes="src python:images[x]"/>
+            </div>
+          </div>  <!-- end carousel-inner -->
+
+        </div>  <!-- end columnss -->
+
+      </div>
+    </div>  <!-- end core -->
+
+  </body>
+</html>

@@ -6,6 +6,22 @@
   <include package="collective.plonetruegallery" />
 
     <browser:page
+        name="samsungtv"
+        for="*"
+        permission="zope.Public"
+        template="tvactivities.pt"
+        class=".views.SemanaryView"
+    />
+
+    <browser:page
+        name="smarttv"
+        for="*"
+        permission="zope.Public"
+        template="tvshow.pt"
+        class=".views.SemanaryView"
+    />
+
+    <browser:page
         name="semanaryview"
         for="*"
         permission="zope.Public"
