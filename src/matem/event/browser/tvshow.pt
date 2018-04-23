@@ -73,16 +73,28 @@
 
         .rotatedlist{
           /*height: 13%;*/
-          height: 380px;
+          height: 914px;
+          /*padding-left: 47px;*/
           overflow-y: hidden;
-          /*background: red;*/
+          background: url('++resource++matem.event/itemcu.png') no-repeat left top;
+          background-color: #E1E1E1;;
+          
         }
 
         .rotatedlistUNION{
           /*height: 13%;*/
-          height: 480px;
+          height: 364px;
           overflow-y: hidden;
           /*background: blue;*/
+        }
+
+        b.activityTitle{
+          font-size: 21px;
+          font-weight: bold;
+        }
+
+        li{
+          font-size: 20px;
         }
 
         ul.ulrotated {
@@ -95,9 +107,16 @@
           margin: 0;
         }
 
+        li.licu{
+          /*background: url('++resource++matem.event/itemcu.png') no-repeat left top;*/
+          background-color: #E1E1E1;
+          margin-left: 10px;
+          height: 182px;
+        }
+
         li.liCuernavaca{
           background: url('++resource++matem.event/itemCuerna.png') no-repeat left top;
-          background-color: green;
+          background-color: #EBF2F6;
           padding-left: 47px;
           height: 182px;
           /*list-style: url('++resource++matem.event/itemCuerna.png');*/
@@ -113,14 +132,43 @@
 
         li.liOaxaca{
           background: url('++resource++matem.event/itemoax.png') no-repeat left top;
-          background-color: orange;
+          background-color: #E2E8EE;
           padding-left: 47px;
           height: 182px;
           /*list-style-image: url('++resource++matem.event/itemoax.png');*/
         }
 
+        .unidadestitle{
+          font-size:42px;
+          text-align: center;
+          background-color: #6289A0;
+          /*height: 50px;*/
+        }
+
+        .cutitle{
+          font-size:53px;
+          text-align: center;
+          /*background-color: red;*/
+          /*height: 55px;*/
+        }
+
+        div.dateclock{
+          font-size: 50px;
+          /*background-color: #4D1C1A;*/
+          background: linear-gradient(to right, #4D1C1A , #8C1812, #4D1C1A);
+          font-weight: bold;
+          text-align: center;
+          font-family: "Open Sans Condensed";
+          color:white;
+        }
 
 
+        div.actfooter{
+          font-size: 47px;
+          font-weight: bold;
+          text-align: center;
+          background-color: #E2E8EE;
+        }
         /*div.ulsedes{
           list-style-type: none;
           transform: rotate(270deg);
@@ -287,8 +335,8 @@
   </head>
   <body onload="startTime()">
     <div id="content-core">
-      <div style="text-align: center;">
-        XXX
+      <div class="dateclock">
+        <span tal:content="view/currentDate"/>
         <span id="txt"></span>
       </div>
       <div class="rowss"
@@ -307,14 +355,15 @@
               <h3></h3>
             </tal:block>
             <tal:block tal:condition="brainscu">
-              <h3>Actividades del día en C.U.</h3>
+              <!-- <h3>Actividades del día en C.U.</h3> -->
+              <div class="cutitle">Actividades del día</div>
               <div class="rotatedlist">
-                <ul class="ulrotated" tal:attributes="id python:view.classstyle(brainscu)+'CU';">
+                <ul class="ulrotated" tal:attributes="id python:view.classstyleCU(brainscu)+'CU';">
                   <tal:block tal:repeat="data brainscu">
-                    <li tal:define="startf python:view.date_speller(data.start);">
-                      <b tal:content="data/pretty_title_or_id">Title</b><br/>
+                    <li class="licu" tal:define="startf python:view.date_speller(data.start);">
+                      <b class="activityTitle" tal:content="data/pretty_title_or_id">Title</b><br/>
                       <span tal:define="expositor data/getSpeaker|nothing" tal:content="expositor"/><br/>
-                      <span tal:content="string:${startf/hour}:${startf/minute} hrs."/>
+                      <span tal:content="string:${startf/hour}:${startf/minute} hrs."/><br/>
                       <span tal:define="location data/location|nothing" tal:content="location"/><br/>
                       <span tal:condition="python:data['Subject']" tal:content="python:data['Subject'][0]"/><br/><br/>
                     </li>
@@ -324,17 +373,16 @@
             </tal:block>
 
             <tal:block tal:condition="unionactivities">
-              <h3>Actividades del día en Cuernavaca, Juriquilla, Oaxaca</h3>
+              <!-- <h3>Actividades del día en Cuernavaca, Juriquilla, Oaxaca</h3> -->
+              <div class="unidadestitle">Unidades</div>
               <div class="rotatedlistUnion">
                 <ul class="ulsedes" tal:attributes="id python:view.classstyle(unionactivities)+'UNION'">
                   <li tal:attributes="class python:'li'+item['campus']" tal:repeat="item unionactivities">
-                    <span>
-                    <b tal:content="item/title"/><br/>
+                    <b class="activityTitle" tal:content="item/title"/><br/>
                     <span tal:content="item/expositor"/><br/>
                     <span tal:content="item/hour"/>
                     <span tal:content="item/location"/><br/>
                     <span tal:content="item/seminarytitle"/><br/>
-                  </span>
                   </li>
                 </ul>
               </div>
@@ -356,6 +404,9 @@
 
         </div>  <!-- end columnss -->
 
+      </div>
+      <div class="actfooter">
+        Instituto de Matemáticas de la UNAM
       </div>
     </div>  <!-- end core -->
 

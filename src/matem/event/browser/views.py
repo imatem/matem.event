@@ -245,7 +245,7 @@ class SemanaryView(BrowserView):
     def tvActivities(self):
         ftoday = DateTime()
         today = DateTime('/'.join([str(ftoday.year()), str(ftoday.month()), str(ftoday.day())]))
-        start_date = today -8
+        start_date = today - 18
         end_date = today + 8.9
         query = {
             'portal_type': 'Event',
@@ -334,11 +334,22 @@ class SemanaryView(BrowserView):
         # return union
         return newunion
 
-    def classstyle (self, items):
-        if len(items) > 40:
+    def classstyleCU(self, items):
+        if len(items) > 3:
             return 'rotated'
 
         return 'notrotated'
+
+    def classstyle(self, items):
+        if len(items) > 2:
+            return 'rotated'
+
+        return 'notrotated'
+
+    def currentDate(self):
+        today = DateTime()
+        return today
+
 
     def classcolumn(self, nitems):
         if nitems == 0:
