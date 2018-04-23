@@ -5,6 +5,7 @@
   <head>
       <!-- <link href="++resource++wcfc/bootstrap/bootstrap-fixed.css" rel="stylesheet" type="text/css"/> -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       <script type="text/javascript">
@@ -65,11 +66,13 @@
         body {
           background-image: url("++resource++matem.event/mosaico.jpg");
           background-repeat: repeat;
-        }
-
-        .general{
           font-family: "Open Sans Condensed";
         }
+
+        /*div.general{
+          font-family: "Open Sans Condensed", sans-serif;
+
+        }*/
 
         /* Create two equal columns that floats next to each other */
         .columnss {
@@ -95,7 +98,7 @@
           height: 413px;
           /*padding-left: 47px;*/
           overflow-y: hidden;
-          background: url('++resource++matem.event/itemcu.png') no-repeat left top;
+          background: url('++resource++matem.event/pleca_cu.jpg') no-repeat left top;
           background-color: #E1E1E1;;
           
         }
@@ -108,12 +111,12 @@
         }
 
         b.activityTitle{
-          font-size: 21px;
+          font-size: 26px;
           font-weight: bold;
         }
 
         li{
-          font-size: 20px;
+          font-size: 25px;
         }
 
         ul.ulrotated {
@@ -134,7 +137,7 @@
         }
 
         li.liCuernavaca{
-          background: url('++resource++matem.event/itemCuerna.png') no-repeat left top;
+          background: url('++resource++matem.event/pleca_cuernavaca.jpg') no-repeat left top;
           background-color: #EBF2F6;
           padding-left: 47px;
           height: 182px;
@@ -142,7 +145,7 @@
         }
 
         li.liJuriquilla{
-          background: url('++resource++matem.event/itemCuerna.png') no-repeat left top;
+          background: url('++resource++matem.event/pleca_juriquilla.jpg') no-repeat left top;
           background-color: violet;
           padding-left: 47px;
           height: 182px;
@@ -150,7 +153,7 @@
         }
 
         li.liOaxaca{
-          background: url('++resource++matem.event/itemoax.png') no-repeat left top;
+          background: url('++resource++matem.event/pleca_oaxaca.jpg') no-repeat left top;
           background-color: #E2E8EE;
           padding-left: 47px;
           height: 182px;
@@ -160,13 +163,16 @@
         .unidadestitle{
           font-size:42px;
           text-align: center;
-          background-color: #6289A0;
+          font-weight: bold;
+          /*background-color: #6289A0;*/
           /*height: 50px;*/
         }
 
         .cutitle{
           font-size:53px;
           text-align: center;
+          font-weight: bold;
+          font-family: "Open Sans Condensed", sans-serif;
           /*background-color: red;*/
           /*height: 55px;*/
         }
@@ -384,7 +390,7 @@
                       <span tal:define="expositor data/getSpeaker|nothing" tal:content="expositor"/><br/>
                       <span tal:content="string:${startf/hour}:${startf/minute} hrs."/>
                       <span tal:define="location data/location|nothing" tal:content="location"/><br/>
-                      <span tal:condition="python:data['Subject']" tal:content="python:data['Subject'][0]"/><br/><br/>
+                      <!-- <span tal:condition="python:data['Subject']" tal:content="python:data['Subject'][0]"/><br/><br/> -->
                     </li>
                   </tal:block>
                 </ul>
@@ -401,7 +407,7 @@
                     <span tal:content="item/expositor"/><br/>
                     <span tal:content="item/hour"/>
                     <span tal:content="item/location"/><br/>
-                    <span tal:content="item/seminarytitle"/><br/>
+                    <!-- <span tal:content="item/seminarytitle"/><br/> -->
                   </li>
                 </ul>
               </div>
@@ -426,7 +432,9 @@
 
       </div>
       <div class="actfooter">
+        <img src="++resource++matem.event/Logo_UNAM.png" style="padding: 20px;"/>
         Instituto de Matemáticas de la UNAM
+        <img src="++resource++matem.event/Logo_im.png" style="padding: 20px;"/>
       </div>
     </div>  <!-- end core -->
 
