@@ -352,6 +352,14 @@ class SemanaryView(BrowserView):
 
         return 'columnss'
 
+    def fontSize(self, lenTitle):
+        if lenTitle < 54:
+            return 'sizeGfont'
+        if lenTitle < 109:
+            return 'sizeMfont'
+
+        return 'sizeSfont'
+
 
     def imgPosters(self):
         atopic = api.content.get(path='/inicio/1/1/congresos')

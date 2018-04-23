@@ -110,14 +110,38 @@
           /*background: blue;*/
         }
 
-        b.activityTitle{
-          font-size: 26px;
-          font-weight: bold;
+        b.sizeGfont{
+          font-size: 31px;
         }
 
-        li{
+        b.sizeMfont{
+          font-size: 26px;
+        }
+
+        b.sizeSfont{
+          font-size: 20px;
+        }
+
+        li.sizeGfont{
+          font-size: 30px;
+        }
+
+        li.sizeMfont{
           font-size: 25px;
         }
+
+        li.sizeSfont{
+          font-size: 19px;
+        }
+        b.activityTitle{
+          /*font-size: 26px;*/
+          font-weight: bold;
+          line-height: 80%;
+        }
+
+        /*li{
+          font-size: 30px;
+        }*/
 
         ul.ulrotated {
           list-style-type: none;
@@ -130,7 +154,6 @@
         }
 
         li.licu{
-          /*background: url('++resource++matem.event/itemcu.png') no-repeat left top;*/
           background-color: #E1E1E1;
           margin-left: 10px;
           height: 137px;
@@ -139,24 +162,27 @@
         li.liCuernavaca{
           background: url('++resource++matem.event/pleca_cuernavaca.jpg') no-repeat left top;
           background-color: #EBF2F6;
-          padding-left: 47px;
+          padding-left: 50px;
           height: 182px;
-          /*list-style: url('++resource++matem.event/itemCuerna.png');*/
+          padding-top: 20px;
         }
 
         li.liJuriquilla{
           background: url('++resource++matem.event/pleca_juriquilla.jpg') no-repeat left top;
-          background-color: violet;
-          padding-left: 47px;
+          background-color: #D8E3E8;
+          /*background: linear-gradient(to right, #EBF2F6 , #CCD9DE);*/
+          /*linear-gradient(to right, red , yellow);*/
+          padding-left: 50px;
           height: 182px;
-          /*list-style-image: url('++resource++matem.event/itemCuerna.png');*/
+          padding-top: 20px;
         }
 
         li.liOaxaca{
           background: url('++resource++matem.event/pleca_oaxaca.jpg') no-repeat left top;
           background-color: #E2E8EE;
-          padding-left: 47px;
+          padding-left: 50px;
           height: 182px;
+          padding-top:20px;
           /*list-style-image: url('++resource++matem.event/itemoax.png');*/
         }
 
@@ -385,8 +411,12 @@
               <div class="rotatedlist">
                 <ul class="ulrotated" tal:attributes="id python:view.classstyleCU(brainscu)+'CU';">
                   <tal:block tal:repeat="data brainscu">
-                    <li class="licu" tal:define="startf python:view.date_speller(data.start);">
-                      <b class="activityTitle" tal:content="data/pretty_title_or_id">Title</b><br/>
+                    <li
+                    tal:attributes="class python:' '.join(['licu', view.fontSize(len(data.pretty_title_or_id()))]);"
+                    tal:define="startf python:view.date_speller(data.start);">
+                      <b
+                      tal:attributes="class python:' '.join(['activityTitle', view.fontSize(len(data.pretty_title_or_id()))]);"
+                      tal:content="data/pretty_title_or_id">Title</b><br/>
                       <span tal:define="expositor data/getSpeaker|nothing" tal:content="expositor"/><br/>
                       <span tal:content="string:${startf/hour}:${startf/minute} hrs."/>
                       <span tal:define="location data/location|nothing" tal:content="location"/><br/>
@@ -402,8 +432,8 @@
               <div class="unidadestitle">Unidades</div>
               <div class="rotatedlistUnion">
                 <ul class="ulsedes" tal:attributes="id python:view.classstyle(unionactivities)+'UNION'">
-                  <li tal:attributes="class python:'li'+item['campus']" tal:repeat="item unionactivities">
-                    <b class="activityTitle" tal:content="item/title"/><br/>
+                  <li tal:attributes="class python:'li'+item['campus'] + ' ' + view.fontSize(len(item['title']))" tal:repeat="item unionactivities">
+                    <b tal:attributes="class python:' '.join(['activityTitle', view.fontSize(len(item['title']))]);" tal:content="item/title"/><br/>
                     <span tal:content="item/expositor"/><br/>
                     <span tal:content="item/hour"/>
                     <span tal:content="item/location"/><br/>
