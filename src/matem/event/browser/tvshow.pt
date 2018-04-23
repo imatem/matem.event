@@ -62,6 +62,11 @@
       </script>
       <style type="text/css">
 
+        body {
+          background-image: url("++resource++matem.event/mosaico.jpg");
+          background-repeat: repeat;
+        }
+
         .general{
           font-family: "Open Sans Condensed";
         }
@@ -87,7 +92,7 @@
 
         .rotatedlist{
           /*height: 13%;*/
-          height: 914px;
+          height: 413px;
           /*padding-left: 47px;*/
           overflow-y: hidden;
           background: url('++resource++matem.event/itemcu.png') no-repeat left top;
@@ -336,11 +341,11 @@
 
         .carousel-inner {
           display: grid;
-          grid-auto-rows: 1060px;
+          grid-auto-rows: 645px;
         }
 
         .carousel-inner > .item > img {
-          height: 1060px;
+          height: 645px;
           margin:auto;
         }
 
@@ -405,6 +410,7 @@
         </div><!--end first column -->
 
         <div class="carousel slide carousel-fade columnss" data-ride="carousel" data-interval="10000" tal:define="images view/imgPosters">
+          <div class="cutitle">Próximas actividades</div>
           <!-- Wrapper for slides -->
           <div class="carousel-inner">
             <div class="item active">
