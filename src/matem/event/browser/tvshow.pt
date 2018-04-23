@@ -275,111 +275,15 @@
       }
 
 
+      .carousel-inner {
+        display: grid;
+        grid-auto-rows: 645px;
+      }
 
-
-
-
-
-        .jurheader-color{
-          background-color: #944ADF;
-        }
-
-        .cuheader-color{
-          background-color: #4387fd;
-        }
-
-        .oaxheader-color{
-          background-color: #F17C06;
-        }
-
-        .cuerheader-color{
-          background-color: #75ad0a;
-        }
-
-        /* border activities styles */
-        .jurborder-color{
-            border: #944ADF;
-            border-style: solid;
-            padding-left: 1em;
-          }
-        .cuborder-color{
-            border: #4387fd;
-            border-style: solid;
-            padding-left: 1em;
-          }
-
-        .oaxborder-color{
-            border: #F17C06;
-            border-style: solid;
-            padding-left: 1em;
-          }
-        .cuerborder-color{
-            border: #75ad0a;
-            border-style: solid;
-            padding-left: 1em;
-          }
-
-
-        .hCalendar-hidden {
-            display:none; /* hide hCal fields not useful to human eyes */
-        }
-
-        article.vevent {
-            background-color: #EAEAEA;
-            border-radius: 1em 1em 1em 1em;
-            margin-top: 1em;
-            padding: 1em;
-        }
-        .vevent div.cal_date {
-            float:left;
-            vertical-align:top;
-            margin: 0 1.5em 0.5em 0;
-            padding:0.7em 0.7em 0.5em;
-            background-color:white;
-            border:none;
-            border-radius:0.5em;
-            box-shadow: 0.5em 0.5em 0.4em black;
-            min-width:4.4em;
-        }
-        .vevent span.cal_wkday {
-            display:block;
-            font-size:2.3em;
-            font-weight:bold;
-            border-bottom:2px solid black;
-            padding-bottom:0.3em;
-        }
-        .vevent span.cal_day {
-            font-size:1.7em;
-            display:inline-block;
-            padding-top:0.3em;
-        }
-        .vevent span.cal_month {
-            font-size:1.3em;
-            line-height:1.3em;
-            display:inline-block;
-        }
-
-        .vevent div.cal_info { margin-left:8em; }
-        article.vevent .documentByLine {
-            background: none repeat scroll 0 0 transparent;
-            color: black !important;
-            font-size: 1em !important;
-            font-weight: bold;
-            padding: 0;
-        }
-        .summary{
-          font-size: larger;
-        }
-
-        .carousel-inner {
-          display: grid;
-          grid-auto-rows: 645px;
-        }
-
-        .carousel-inner > .item > img {
-          height: 645px;
-          margin:auto;
-        }
+      .carousel-inner > .item > img {
+        height: 645px;
+        margin:auto;
+      }
 
 
     </style>
@@ -445,7 +349,7 @@
           </div>
         </div><!--end first column -->
 
-        <div class="carousel slide carousel-fade columnss" data-ride="carousel" data-interval="10000" tal:define="images view/imgPosters">
+        <div class="carousel slide carousel-fade columnss" data-ride="carousel" data-interval="9000" tal:define="images view/imgPosters">
           <div class="cutitle">Próximas actividades</div>
           <!-- Wrapper for slides -->
           <div class="carousel-inner">
