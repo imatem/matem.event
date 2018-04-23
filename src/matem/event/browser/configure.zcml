@@ -5,6 +5,11 @@
   <include package="Products.Collage" />
   <include package="collective.plonetruegallery" />
 
+  <browser:resourceDirectory
+      name="matem.event"
+      directory="static"
+      />
+
     <browser:page
         name="samsungtv"
         for="*"

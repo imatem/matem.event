@@ -5,6 +5,7 @@
   <head>
       <!-- <link href="++resource++wcfc/bootstrap/bootstrap-fixed.css" rel="stylesheet" type="text/css"/> -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       <script type="text/javascript">
@@ -37,6 +38,16 @@
           var h = today.getHours();
           var m = today.getMinutes();
           var s = today.getSeconds();
+          var days = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+          var months = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+          var day = today.getDay();
+          var month = today.getMonth();
+          var year = today.getFullYear();
+
+
+          document.getElementById('txtdate').innerHTML = 
+          days[day] + ' ' + today.getDate() + ' de ' + months[month] + ' de ' + year;
+
           m = checkTime(m);
           s = checkTime(s);
           document.getElementById('txt').innerHTML =
@@ -51,6 +62,13 @@
 
       </script>
       <style type="text/css">
+
+        body {
+          background-image: url("++resource++matem.event/mosaico.jpg");
+          background-repeat: repeat;
+          font-family: "Open Sans Condensed";
+        }
+
 
         /* Create two equal columns that floats next to each other */
         .columnss {
@@ -73,22 +91,135 @@
 
         .rotatedlist{
           /*height: 13%;*/
-          height: 380px;
+          height: 413px;
+          /*padding-left: 47px;*/
           overflow-y: hidden;
-          /*background: red;*/
+          background: url('++resource++matem.event/pleca_cu.jpg') no-repeat left top;
+          background-color: #E1E1E1;;
+          
         }
 
         .rotatedlistUNION{
           /*height: 13%;*/
-          height: 480px;
+          height: 364px;
           overflow-y: hidden;
           /*background: blue;*/
+        }
+
+        b.sizeGfont{
+          font-size: 31px;
+        }
+
+        b.sizeMfont{
+          font-size: 26px;
+        }
+
+        b.sizeSfont{
+          font-size: 20px;
+        }
+
+        li.sizeGfont{
+          font-size: 30px;
+        }
+
+        li.sizeMfont{
+          font-size: 25px;
+        }
+
+        li.sizeSfont{
+          font-size: 19px;
+        }
+        b.activityTitle{
+          /*font-size: 26px;*/
+          font-weight: bold;
+          line-height: 80%;
         }
 
         ul.ulrotated {
           list-style-type: none;
         }
-        
+
+        ul.ulsedes{
+          list-style-type: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        li.licu{
+          background-color: #E1E1E1;
+          margin-left: 10px;
+          height: 137px;
+          padding-top: 20px;
+        }
+
+        li.liCuernavaca{
+          background: url('++resource++matem.event/pleca_cuernavaca.jpg') no-repeat left top;
+          background-color: #EBF2F6;
+          padding-left: 50px;
+          height: 182px;
+          padding-top: 20px;
+        }
+
+        li.liJuriquilla{
+          background: url('++resource++matem.event/pleca_juriquilla.jpg') no-repeat left top;
+          background-color: #D8E3E8;
+          /*background: linear-gradient(to right, #EBF2F6 , #CCD9DE);*/
+          /*linear-gradient(to right, red , yellow);*/
+          padding-left: 50px;
+          height: 182px;
+          padding-top: 20px;
+        }
+
+        li.liOaxaca{
+          background: url('++resource++matem.event/pleca_oaxaca.jpg') no-repeat left top;
+          background-color: #E2E8EE;
+          padding-left: 50px;
+          height: 182px;
+          padding-top:20px;
+          /*list-style-image: url('++resource++matem.event/itemoax.png');*/
+        }
+
+        .unidadestitle{
+          font-size:42px;
+          text-align: center;
+          font-weight: bold;
+          /*background-color: #6289A0;*/
+          /*height: 50px;*/
+        }
+
+        .cutitle{
+          font-size:53px;
+          text-align: center;
+          font-weight: bold;
+          font-family: "Open Sans Condensed", sans-serif;
+          /*background-color: red;*/
+          /*height: 55px;*/
+        }
+
+        div.dateclock{
+          font-size: 50px;
+          /*background-color: #4D1C1A;*/
+          background: linear-gradient(to right, #4D1C1A , #8C1812, #4D1C1A);
+          font-weight: bold;
+          text-align: center;
+          font-family: "Open Sans Condensed";
+          color:white;
+        }
+
+
+        div.actfooter{
+          font-size: 47px;
+          font-weight: bold;
+          text-align: center;
+          background-color: #E2E8EE;
+        }
+        /*div.ulsedes{
+          list-style-type: none;
+          transform: rotate(270deg);
+          background: red;
+          float: left;
+        }*/
+
         .carousel-fade .carousel-inner .item {
           opacity: 0;
           transition-property: opacity;
@@ -137,119 +268,33 @@
       }
 
 
+      .carousel-inner {
+        display: grid;
+        grid-auto-rows: 825px;
+      }
 
+      .carousel-inner > .item > img {
+        height: 645px;
+        margin:auto;
+      }
 
+      .postertitle {
+        font-size: 30px;
+        font-weight: bold;
+        text-align: center;
+      }
 
-
-
-        .jurheader-color{
-          background-color: #944ADF;
-        }
-
-        .cuheader-color{
-          background-color: #4387fd;
-        }
-
-        .oaxheader-color{
-          background-color: #F17C06;
-        }
-
-        .cuerheader-color{
-          background-color: #75ad0a;
-        }
-
-        /* border activities styles */
-        .jurborder-color{
-            border: #944ADF;
-            border-style: solid;
-            padding-left: 1em;
-          }
-        .cuborder-color{
-            border: #4387fd;
-            border-style: solid;
-            padding-left: 1em;
-          }
-
-        .oaxborder-color{
-            border: #F17C06;
-            border-style: solid;
-            padding-left: 1em;
-          }
-        .cuerborder-color{
-            border: #75ad0a;
-            border-style: solid;
-            padding-left: 1em;
-          }
-
-
-        .hCalendar-hidden {
-            display:none; /* hide hCal fields not useful to human eyes */
-        }
-
-        article.vevent {
-            background-color: #EAEAEA;
-            border-radius: 1em 1em 1em 1em;
-            margin-top: 1em;
-            padding: 1em;
-        }
-        .vevent div.cal_date {
-            float:left;
-            vertical-align:top;
-            margin: 0 1.5em 0.5em 0;
-            padding:0.7em 0.7em 0.5em;
-            background-color:white;
-            border:none;
-            border-radius:0.5em;
-            box-shadow: 0.5em 0.5em 0.4em black;
-            min-width:4.4em;
-        }
-        .vevent span.cal_wkday {
-            display:block;
-            font-size:2.3em;
-            font-weight:bold;
-            border-bottom:2px solid black;
-            padding-bottom:0.3em;
-        }
-        .vevent span.cal_day {
-            font-size:1.7em;
-            display:inline-block;
-            padding-top:0.3em;
-        }
-        .vevent span.cal_month {
-            font-size:1.3em;
-            line-height:1.3em;
-            display:inline-block;
-        }
-
-        .vevent div.cal_info { margin-left:8em; }
-        article.vevent .documentByLine {
-            background: none repeat scroll 0 0 transparent;
-            color: black !important;
-            font-size: 1em !important;
-            font-weight: bold;
-            padding: 0;
-        }
-        .summary{
-          font-size: larger;
-        }
-
-        .carousel-inner {
-          display: grid;
-          grid-auto-rows: 1060px;
-        }
-
-        .carousel-inner > .item > img {
-          height: 1060px;
-          margin:auto;
-        }
-
+      .posterdescription {
+        font-size: 29px;
+        text-align: center;
+      }
 
     </style>
   </head>
   <body onload="startTime()">
-    <div id="content-core">
-      <div style="text-align: center;">
-        XXX
+    <div id="content-core" class="general">
+      <div class="dateclock">
+        <span id="txtdate"></span>
         <span id="txt"></span>
       </div>
       <div class="rowss"
@@ -268,16 +313,21 @@
               <h3></h3>
             </tal:block>
             <tal:block tal:condition="brainscu">
-              <h3>Actividades del día en C.U.</h3>
+              <!-- <h3>Actividades del día en C.U.</h3> -->
+              <div class="cutitle">Actividades del día</div>
               <div class="rotatedlist">
-                <ul class="ulrotated" tal:attributes="id python:view.classstyle(brainscu)+'CU';">
+                <ul class="ulrotated" tal:attributes="id python:view.classstyleCU(brainscu)+'CU';">
                   <tal:block tal:repeat="data brainscu">
-                    <li tal:define="startf python:view.date_speller(data.start);">
-                      <b tal:content="data/pretty_title_or_id">Title</b><br/>
+                    <li
+                    tal:attributes="class python:' '.join(['licu', view.fontSize(len(data.pretty_title_or_id()))]);"
+                    tal:define="startf python:view.date_speller(data.start);">
+                      <b
+                      tal:attributes="class python:' '.join(['activityTitle', view.fontSize(len(data.pretty_title_or_id()))]);"
+                      tal:content="data/pretty_title_or_id">Title</b><br/>
                       <span tal:define="expositor data/getSpeaker|nothing" tal:content="expositor"/><br/>
                       <span tal:content="string:${startf/hour}:${startf/minute} hrs."/>
                       <span tal:define="location data/location|nothing" tal:content="location"/><br/>
-                      <span tal:condition="python:data['Subject']" tal:content="python:data['Subject'][0]"/><br/><br/>
+                      <!-- <span tal:condition="python:data['Subject']" tal:content="python:data['Subject'][0]"/><br/><br/> -->
                     </li>
                   </tal:block>
                 </ul>
@@ -285,16 +335,16 @@
             </tal:block>
 
             <tal:block tal:condition="unionactivities">
-              <h3>Actividades del día en Cuernavaca, Juriquilla, Oaxaca</h3>
+              <!-- <h3>Actividades del día en Cuernavaca, Juriquilla, Oaxaca</h3> -->
+              <div class="unidadestitle">Unidades</div>
               <div class="rotatedlistUnion">
-                <ul class="ulrotated" tal:attributes="id python:view.classstyle(unionactivities)+'UNION'">
-                  <li tal:repeat="item unionactivities">
-                    <b tal:content="item/title"/><br/>
+                <ul class="ulsedes" tal:attributes="id python:view.classstyle(unionactivities)+'UNION'">
+                  <li tal:attributes="class python:'li'+item['campus'] + ' ' + view.fontSize(len(item['title']))" tal:repeat="item unionactivities">
+                    <b tal:attributes="class python:' '.join(['activityTitle', view.fontSize(len(item['title']))]);" tal:content="item/title"/><br/>
                     <span tal:content="item/expositor"/><br/>
                     <span tal:content="item/hour"/>
                     <span tal:content="item/location"/><br/>
-                    <span tal:content="item/seminarytitle"/><br/>
-                    <span tal:content="item/campus"/><br/><br/>
+                    <!-- <span tal:content="item/seminarytitle"/><br/> -->
                   </li>
                 </ul>
               </div>
@@ -302,20 +352,30 @@
           </div>
         </div><!--end first column -->
 
-        <div class="carousel slide carousel-fade columnss" data-ride="carousel" data-interval="10000" tal:define="images view/imgPosters">
+        <div class="carousel slide carousel-fade columnss" data-ride="carousel" data-interval="9000" tal:define="items view/imgPosters">
+          <div class="cutitle">Próximas actividades</div>
           <!-- Wrapper for slides -->
           <div class="carousel-inner">
-            <div class="item active">
-              <img src="" tal:attributes="src python:images[0]"/>
+            <div class="item active" tal:define="item python:items[0]">
+              <img src="" tal:attributes="src python:item.getPath() + '/image'"/>
+              <div class="postertitle" tal:content="item/Title"></div>
+              <div class="posterdescription" tal:content="structure item/Description"></div>
             </div>
 
-            <div class="item" tal:repeat="x python:range(1, len(images))">
-              <img src="" tal:attributes="src python:images[x]"/>
+            <div class="item" tal:repeat="item python:items[1:]">
+              <img src="" tal:attributes="src  python:item.getPath() + '/image'"/>
+              <div class="postertitle" tal:content="item/Title"></div>
+              <div class="posterdescription" tal:content="structure item/Description"></div>
             </div>
           </div>  <!-- end carousel-inner -->
 
         </div>  <!-- end columnss -->
 
+      </div>
+      <div class="actfooter">
+        <img src="++resource++matem.event/Logo_UNAM.png" style="padding: 15 50px;"/>
+        Instituto de Matemáticas de la UNAM
+        <img src="++resource++matem.event/Logo_im.png" style="padding: 15 50px;"/>
       </div>
     </div>  <!-- end core -->
 

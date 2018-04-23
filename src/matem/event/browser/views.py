@@ -334,8 +334,14 @@ class SemanaryView(BrowserView):
         # return union
         return newunion
 
-    def classstyle (self, items):
-        if len(items) > 4:
+    def classstyleCU(self, items):
+        if len(items) > 3:
+            return 'rotated'
+
+        return 'notrotated'
+
+    def classstyle(self, items):
+        if len(items) > 2:
             return 'rotated'
 
         return 'notrotated'
@@ -346,11 +352,19 @@ class SemanaryView(BrowserView):
 
         return 'columnss'
 
+    def fontSize(self, lenTitle):
+        if lenTitle < 54:
+            return 'sizeGfont'
+        if lenTitle < 109:
+            return 'sizeMfont'
+
+        return 'sizeSfont'
+
 
     def imgPosters(self):
         atopic = api.content.get(path='/inicio/1/1/congresos')
-        items = atopic.queryCatalog()
-        return [item.getPath() + '/image' for item in items]
+        return atopic.queryCatalog()
+        # return [item.getPath() + '/image' for item in items]
 
 
     def date_speller(self, dt):
