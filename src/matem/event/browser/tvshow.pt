@@ -130,7 +130,7 @@
           /*background: url('++resource++matem.event/itemcu.png') no-repeat left top;*/
           background-color: #E1E1E1;
           margin-left: 10px;
-          height: 182px;
+          height: 137px;
         }
 
         li.liCuernavaca{
@@ -382,7 +382,7 @@
                     <li class="licu" tal:define="startf python:view.date_speller(data.start);">
                       <b class="activityTitle" tal:content="data/pretty_title_or_id">Title</b><br/>
                       <span tal:define="expositor data/getSpeaker|nothing" tal:content="expositor"/><br/>
-                      <span tal:content="string:${startf/hour}:${startf/minute} hrs."/><br/>
+                      <span tal:content="string:${startf/hour}:${startf/minute} hrs."/>
                       <span tal:define="location data/location|nothing" tal:content="location"/><br/>
                       <span tal:condition="python:data['Subject']" tal:content="python:data['Subject'][0]"/><br/><br/>
                     </li>
