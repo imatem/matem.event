@@ -37,6 +37,16 @@
           var h = today.getHours();
           var m = today.getMinutes();
           var s = today.getSeconds();
+          var days = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+          var months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+          var day = today.getDay();
+          var month = today.getMonth();
+          var year = today.getFullYear();
+
+
+          document.getElementById('txtdate').innerHTML = 
+          days[day] + ' ' + today.getDate() + ' de ' + months[month] + ' de ' + year;
+
           m = checkTime(m);
           s = checkTime(s);
           document.getElementById('txt').innerHTML =
@@ -340,7 +350,7 @@
   <body onload="startTime()">
     <div id="content-core" class="general">
       <div class="dateclock">
-        <span tal:content="view/currentDate"/>
+        <span id="txtdate"></span>
         <span id="txt"></span>
       </div>
       <div class="rowss"

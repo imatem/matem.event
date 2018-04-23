@@ -346,11 +346,6 @@ class SemanaryView(BrowserView):
 
         return 'notrotated'
 
-    def currentDate(self):
-        today = DateTime()
-        return today
-
-
     def classcolumn(self, nitems):
         if nitems == 0:
             return 'columnsspettit'
