@@ -245,8 +245,8 @@ class SemanaryView(BrowserView):
     def tvActivities(self):
         ftoday = DateTime()
         today = DateTime('/'.join([str(ftoday.year()), str(ftoday.month()), str(ftoday.day())]))
-        start_date = today - 18
-        end_date = today + 8.9
+        start_date = today
+        end_date = today + 0.9
         query = {
             'portal_type': 'Event',
             'end': {'query': [start_date, ], 'range': 'min'},
@@ -363,8 +363,8 @@ class SemanaryView(BrowserView):
 
     def imgPosters(self):
         atopic = api.content.get(path='/inicio/1/1/congresos')
-        items = atopic.queryCatalog()
-        return [item.getPath() + '/image' for item in items]
+        return atopic.queryCatalog()
+        # return [item.getPath() + '/image' for item in items]
 
 
     def date_speller(self, dt):
