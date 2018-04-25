@@ -317,10 +317,10 @@
                 <ul class="ulrotated" tal:attributes="id python:view.classstyleCU(brainscu)+'CU';">
                   <tal:block tal:repeat="data brainscu">
                     <li
-                    tal:attributes="class python:' '.join(['licu', view.fontSize(len(data.pretty_title_or_id()))]);"
+                    tal:attributes="class python:' '.join(['licu', 'sizeMfont']);"
                     tal:define="startf python:view.date_speller(data.start);">
                       <b
-                      tal:attributes="class python:' '.join(['activityTitle', view.fontSize(len(data.pretty_title_or_id()))]);"
+                      tal:attributes="class python:' '.join(['activityTitle', 'sizeMfont']);"
                       tal:content="data/pretty_title_or_id">Title</b><br/>
                       <span tal:define="expositor data/getSpeaker|nothing" tal:content="expositor"/><br/>
                       <span tal:content="string:${startf/hour}:${startf/minute} hrs."/>
@@ -337,8 +337,8 @@
               <div class="unidadestitle">Unidades</div>
               <div class="rotatedlistUnion">
                 <ul class="ulsedes" tal:attributes="id python:view.classstyle(unionactivities)+'UNION'">
-                  <li tal:attributes="class python:'li'+item['campus'] + ' ' + view.fontSize(len(item['title']))" tal:repeat="item unionactivities">
-                    <b tal:attributes="class python:' '.join(['activityTitle', view.fontSize(len(item['title']))]);" tal:content="item/title"/><br/>
+                  <li tal:attributes="class python:'li'+item['campus'] + ' ' + 'sizeMfont'" tal:repeat="item unionactivities">
+                    <b tal:attributes="class python:' '.join(['activityTitle', 'sizeMfont']);" tal:content="item/title"/><br/>
                     <span tal:content="item/expositor"/><br/>
                     <span tal:content="item/hour"/>
                     <span tal:content="item/location"/><br/>
