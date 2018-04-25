@@ -29,7 +29,7 @@
             });
           }
 
-          window.setInterval(run,10000);
+          window.setInterval(run,12000);
           window.setInterval(run2,15000);
         });
 
@@ -90,20 +90,15 @@
         }
 
         .rotatedlist{
-          /*height: 13%;*/
           height: 413px;
-          /*padding-left: 47px;*/
           overflow-y: hidden;
           background: url('++resource++matem.event/pleca_cu.jpg') no-repeat left top;
           background-color: #E1E1E1;;
-          
         }
 
         .rotatedlistUNION{
-          /*height: 13%;*/
           height: 364px;
           overflow-y: hidden;
-          /*background: blue;*/
         }
 
         b.sizeGfont{
@@ -129,27 +124,27 @@
         li.sizeSfont{
           font-size: 19px;
         }
+
         b.activityTitle{
-          /*font-size: 26px;*/
           font-weight: bold;
           line-height: 80%;
         }
 
         ul.ulrotated {
           list-style-type: none;
+          padding-left: 47px;
         }
 
         ul.ulsedes{
           list-style-type: none;
-          padding: 0;
+          padding-left: 0;
           margin: 0;
         }
 
         li.licu{
           background-color: #E1E1E1;
-          margin-left: 10px;
           height: 137px;
-          padding-top: 20px;
+          padding: 20px 20px 0 20px;
         }
 
         li.liCuernavaca{
@@ -157,7 +152,7 @@
           background-color: #EBF2F6;
           padding-left: 50px;
           height: 182px;
-          padding-top: 20px;
+          padding: 20px 20px 0 67px;
         }
 
         li.liJuriquilla{
@@ -167,7 +162,7 @@
           /*linear-gradient(to right, red , yellow);*/
           padding-left: 50px;
           height: 182px;
-          padding-top: 20px;
+          padding: 20px 20px 0 67px;
         }
 
         li.liOaxaca{
@@ -175,7 +170,7 @@
           background-color: #E2E8EE;
           padding-left: 50px;
           height: 182px;
-          padding-top:20px;
+          padding: 20px 20px 0 67px;
           /*list-style-image: url('++resource++matem.event/itemoax.png');*/
         }
 
@@ -289,6 +284,9 @@
         text-align: center;
       }
 
+      #txtdate {
+        padding-right: 100px;
+      }
     </style>
   </head>
   <body onload="startTime()">
@@ -352,7 +350,7 @@
           </div>
         </div><!--end first column -->
 
-        <div class="carousel slide carousel-fade columnss" data-ride="carousel" data-interval="9000" tal:define="items view/imgPosters">
+        <div class="carousel slide carousel-fade columnss" data-ride="carousel" data-interval="12000" tal:define="items view/imgPosters">
           <div class="cutitle">Próximas actividades</div>
           <!-- Wrapper for slides -->
           <div class="carousel-inner">
