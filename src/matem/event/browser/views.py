@@ -220,11 +220,7 @@ class SemanaryView(BrowserView):
         day_end = iso_end[2].split('T')
 
         folderS  = getSite().unrestrictedTraverse('actividades/actividades-especiales')
-        brainscuS = self.criteriaActivities(start_date, end_date, ['/'.join(folderS.getPhysicalPath())+'/cu'])
-        brainscuerS = self.criteriaActivities(start_date, end_date, ['/'.join(folderS.getPhysicalPath())+'/cuernavaca'])
-        brainsjurS = self.criteriaActivities(start_date, end_date, ['/'.join(folderS.getPhysicalPath())+'/juriquilla'])
-        brainsoaxS = self.criteriaActivities(start_date, end_date, ['/'.join(folderS.getPhysicalPath())+'/oaxaca'])
-        brainss = brainscuerS + brainscuerS + brainsjur + brainsoaxS
+        brainss = self.criteriaActivities(start_date, end_date, ['/'.join(folderS.getPhysicalPath())])
 
         return {
             'brainscu': brainscu,
