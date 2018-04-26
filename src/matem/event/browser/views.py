@@ -327,10 +327,13 @@ class SemanaryView(BrowserView):
 
         folderc = getSite().unrestrictedTraverse('actividades/coloquio')
         foldersem = getSite().unrestrictedTraverse('actividades/seminarios')
+        folderspe = getSite().unrestrictedTraverse('actividades/actividades-especiales/cu')
 
         return [
             '/'.join(folderc.getPhysicalPath()),
             '/'.join(foldersem.getPhysicalPath()),
+            '/'.join(folderspe.getPhysicalPath()),
+
         ]
 
     def pathjur(self):
@@ -375,12 +378,11 @@ class SemanaryView(BrowserView):
         start_date = today
         end_date = today + 0.9
         folderS  = getSite().unrestrictedTraverse('actividades/actividades-especiales')
-        brainscuS = {'CU': self.criteriaActivities(start_date, end_date, ['/'.join(folderS.getPhysicalPath())+'/cu'])}
         brainscuerS = {'Cuernavaca': self.criteriaActivities(start_date, end_date, ['/'.join(folderS.getPhysicalPath())+'/cuernavaca'])}
         brainsjurS = {'Juriquilla': self.criteriaActivities(start_date, end_date, ['/'.join(folderS.getPhysicalPath())+'/juriquilla'])}
         brainsoaxS = {'Oaxaca': self.criteriaActivities(start_date, end_date, ['/'.join(folderS.getPhysicalPath())+'/oaxaca'])}
 
-        for items in [brainscuS, brainscuerS, brainsjurS, brainsoaxS]:
+        for items in [brainscuerS, brainsjurS, brainsoaxS]:
             campus = items.keys()[0]
             brains = items[campus]
             for item in brains:
