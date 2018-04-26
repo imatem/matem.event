@@ -242,11 +242,51 @@ class SemanaryView(BrowserView):
             'brainsjur': brainsjur,
         }
 
-    def tvActivities(self):
-        ftoday = DateTime()
-        today = DateTime('/'.join([str(ftoday.year()), str(ftoday.month()), str(ftoday.day())]))
-        start_date = today
-        end_date = today + 0.9
+    # def tvActivities(self):
+    #     ftoday = DateTime()
+    #     today = DateTime('/'.join([str(ftoday.year()), str(ftoday.month()), str(ftoday.day())]))
+    #     start_date = today
+    #     end_date = today + 0.9
+    #     query = {
+    #         'portal_type': 'Event',
+    #         'end': {'query': [start_date, ], 'range': 'min'},
+    #         'start': {'query': [end_date, ], 'range': 'max'},
+    #         'review_state': 'external',
+    #         'sort_on': 'start',
+    #         'isCanceled': False,
+
+    #     }
+
+    #     brains = self.portal_catalog.searchResults(query)
+
+    #     brainscu = []
+    #     brainsjur = []
+
+    #     special = {}
+
+    #     for brain in brains:
+    #         if 'Juriquilla' in brain.Subject:
+    #             brainsjur.append(brain)
+    #         else:
+    #             brainscu.append(brain)
+
+    #     iso_start = start_date.ISO().split('-')
+    #     day_start = iso_start[2].split('T')
+
+    #     iso_end = end_date.ISO().split('-')
+    #     day_end = iso_end[2].split('T')
+
+    #     return {
+    #         'brainscu': brainscu,
+    #         'start_date': '/'.join([day_start[0], iso_start[1], iso_start[0]]),
+    #         'end_date': '/'.join([day_end[0], iso_end[1], iso_end[0]]),
+    #         'matcuerrss': self.semanaryRSS(self.matcuerfeed, start_date, end_date),
+    #         'oaxrss': self.semanaryRSS(self.oaxfeed, start_date, end_date),
+    #         'brainsjur': brainsjur,
+    #     }
+
+    def criteriaActivities(self, start_date, end_date, pathact=None):
+
         query = {
             'portal_type': 'Event',
             'end': {'query': [start_date, ], 'range': 'min'},
@@ -254,19 +294,63 @@ class SemanaryView(BrowserView):
             'review_state': 'external',
             'sort_on': 'start',
             'isCanceled': False,
-
         }
 
-        brains = self.portal_catalog.searchResults(query)
+        if pathact:
+            query['path'] = {'query': pathact}
 
-        brainscu = []
-        brainsjur = []
+        return self.portal_catalog.searchResults(query)
 
-        for brain in brains:
-            if 'Juriquilla' in brain.Subject:
-                brainsjur.append(brain)
-            else:
-                brainscu.append(brain)
+
+    def criteriaSActivities(self, start_date, end_date, pathact=None):
+
+        query = {
+            'portal_type': 'Event',
+            'end': {'query': [start_date, ], 'range': 'min'},
+            'start': {'query': [end_date, ], 'range': 'max'},
+            'review_state': 'external',
+            'sort_on': 'start',
+            'isCanceled': False,
+        }
+
+        if pathact:
+            query['path'] = {'query': pathact}
+
+        return self.portal_catalog.searchResults(query)
+
+        # start = DateTime()
+        # query['end'] = {'query': start, 'range': 'min'}
+        # query['sort_on'] = 'start'
+
+
+    def pathcu(self):
+
+        folderc = getSite().unrestrictedTraverse('actividades/coloquio')
+        foldersem = getSite().unrestrictedTraverse('actividades/seminarios')
+
+        return [
+            '/'.join(folderc.getPhysicalPath()),
+            '/'.join(foldersem.getPhysicalPath()),
+        ]
+
+    def pathjur(self):
+        folder  = getSite().unrestrictedTraverse('juriquilla/actividades')
+
+        return [
+            '/'.join(folder.getPhysicalPath())
+        ]
+
+
+    def tvActivities(self):
+        ftoday = DateTime()
+        today = DateTime('/'.join([str(ftoday.year()), str(ftoday.month()), str(ftoday.day())]))
+        start_date = today
+        end_date = today + 0.9
+        foldercu = self.pathcu()
+        brainscu = self.criteriaActivities(start_date, end_date, foldercu)
+
+        folderjur = self.pathjur()
+        brainsjur = self.criteriaActivities(start_date, end_date, folderjur)
 
         iso_start = start_date.ISO().split('-')
         day_start = iso_start[2].split('T')
@@ -283,7 +367,41 @@ class SemanaryView(BrowserView):
             'brainsjur': brainsjur,
         }
 
-    def unionActivities(self, cuer, jur, oax):
+    def specialActivities(self):
+
+        sactivities = []
+        ftoday = DateTime()
+        today = DateTime('/'.join([str(ftoday.year()), str(ftoday.month()), str(ftoday.day())]))
+        start_date = today
+        end_date = today + 0.9
+        folderS  = getSite().unrestrictedTraverse('actividades/actividades-especiales')
+        brainscuS = {'CU': self.criteriaActivities(start_date, end_date, ['/'.join(folderS.getPhysicalPath())+'/cu'])}
+        brainscuerS = {'Cuernavaca': self.criteriaActivities(start_date, end_date, ['/'.join(folderS.getPhysicalPath())+'/cuernavaca'])}
+        brainsjurS = {'Juriquilla': self.criteriaActivities(start_date, end_date, ['/'.join(folderS.getPhysicalPath())+'/juriquilla'])}
+        brainsoaxS = {'Oaxaca': self.criteriaActivities(start_date, end_date, ['/'.join(folderS.getPhysicalPath())+'/oaxaca'])}
+
+        for items in [brainscuS, brainscuerS, brainsjurS, brainsoaxS]:
+            campus = items.keys()[0]
+            brains = items[campus]
+            for item in brains:
+                data = {}
+                data['startf'] = self.date_speller(item.start)
+                data['date'] = item.start
+                data['expositor'] = item.getSpeaker
+                data['title'] = item.pretty_title_or_id()
+                data['location'] = item.location
+                data['hour'] = str(data['startf']['hour']) + ':' + str(data['startf']['minute'])  + 'hrs.'
+                value = ''
+                if item.Subject:
+                    value = item.Subject[0]
+                data['seminarytitle'] = value
+                data['campus'] = campus
+                sactivities.append(data)
+
+        return sactivities
+
+
+    def unionActivities(self, cuer, jur, oax, specialActivities):
 
         union = []
 
@@ -327,7 +445,9 @@ class SemanaryView(BrowserView):
             data['campus'] = 'Oaxaca'
             union.append(data)
 
-        aux = [(x, x['date'], x['campus']) for x in union]
+        mergedlist = union + specialActivities
+        # aux = [(x, x['date'], x['campus']) for x in union]
+        aux = [(x, x['date'], x['campus']) for x in mergedlist]
         aux_sorted = sorted(aux, key=itemgetter(1, 2))
         newunion = [y[0] for y in aux_sorted]
 

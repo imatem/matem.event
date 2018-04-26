@@ -303,7 +303,8 @@
                               brainsjur activities/brainsjur;
                               items_matcuer activities/matcuerrss;
                               items_oax activities/oaxrss;
-                              unionactivities python:view.unionActivities(items_matcuer, brainsjur, items_oax);">
+                              specialactivities view/specialActivities;
+                              unionactivities python:view.unionActivities(items_matcuer, brainsjur, items_oax, specialactivities);">
         <div tal:attributes="class python:view.classcolumn(len(brainscu) + len(unionactivities))">
           <div class="fc">
             <tal:block tal:condition="python: not brainscu">
