@@ -206,32 +206,25 @@ class SemanaryView(BrowserView):
         today = DateTime('/'.join([str(ftoday.year()), str(ftoday.month()), str(ftoday.day())]))
         start_date = today + 1
         end_date = today + 7.9999
-        query = {
-            'portal_type': 'Event',
-            'end': {'query': [start_date, ], 'range': 'min'},
-            'start': {'query': [end_date, ], 'range': 'max'},
-            'review_state': 'external',
-            'sort_on': 'start',
-            'isCanceled': False,
 
-        }
+        foldercu = self.pathcu()
+        brainscu = self.criteriaActivities(start_date, end_date, [foldercu[0], foldercu[1]])
 
-        brains = self.portal_catalog.searchResults(query)
-
-        brainscu = []
-        brainsjur = []
-
-        for brain in brains:
-            if 'Juriquilla' in brain.Subject:
-                brainsjur.append(brain)
-            else:
-                brainscu.append(brain)
+        folderjur = self.pathjur()
+        brainsjur = self.criteriaActivities(start_date, end_date, folderjur)
 
         iso_start = start_date.ISO().split('-')
         day_start = iso_start[2].split('T')
 
         iso_end = end_date.ISO().split('-')
         day_end = iso_end[2].split('T')
+
+        folderS  = getSite().unrestrictedTraverse('actividades/actividades-especiales')
+        brainscuS = self.criteriaActivities(start_date, end_date, ['/'.join(folderS.getPhysicalPath())+'/cu'])
+        brainscuerS = self.criteriaActivities(start_date, end_date, ['/'.join(folderS.getPhysicalPath())+'/cuernavaca'])
+        brainsjurS = self.criteriaActivities(start_date, end_date, ['/'.join(folderS.getPhysicalPath())+'/juriquilla'])
+        brainsoaxS = self.criteriaActivities(start_date, end_date, ['/'.join(folderS.getPhysicalPath())+'/oaxaca'])
+        brainss = brainscuerS + brainscuerS + brainsjur + brainsoaxS
 
         return {
             'brainscu': brainscu,
@@ -240,7 +233,91 @@ class SemanaryView(BrowserView):
             'matcuerrss': self.semanaryRSS(self.matcuerfeed, start_date, end_date),
             'oaxrss': self.semanaryRSS(self.oaxfeed, start_date, end_date),
             'brainsjur': brainsjur,
+            'brainss': brainss,
         }
+
+
+
+
+
+
+
+        # query = {
+        #     'portal_type': 'Event',
+        #     'end': {'query': [start_date, ], 'range': 'min'},
+        #     'start': {'query': [end_date, ], 'range': 'max'},
+        #     'review_state': 'external',
+        #     'sort_on': 'start',
+        #     'isCanceled': False,
+
+        # }
+
+        # brains = self.portal_catalog.searchResults(query)
+
+        # brainscu = []
+        # brainsjur = []
+
+        # for brain in brains:
+        #     if 'Juriquilla' in brain.Subject:
+        #         brainsjur.append(brain)
+        #     else:
+        #         brainscu.append(brain)
+
+        # iso_start = start_date.ISO().split('-')
+        # day_start = iso_start[2].split('T')
+
+        # iso_end = end_date.ISO().split('-')
+        # day_end = iso_end[2].split('T')
+
+        # return {
+        #     'brainscu': brainscu,
+        #     'start_date': '/'.join([day_start[0], iso_start[1], iso_start[0]]),
+        #     'end_date': '/'.join([day_end[0], iso_end[1], iso_end[0]]),
+        #     'matcuerrss': self.semanaryRSS(self.matcuerfeed, start_date, end_date),
+        #     'oaxrss': self.semanaryRSS(self.oaxfeed, start_date, end_date),
+        #     'brainsjur': brainsjur,
+        # }
+
+    # def semanaryActivities(self):
+    #     ftoday = DateTime()
+    #     today = DateTime('/'.join([str(ftoday.year()), str(ftoday.month()), str(ftoday.day())]))
+    #     start_date = today + 1
+    #     end_date = today + 7.9999
+    #     query = {
+    #         'portal_type': 'Event',
+    #         'end': {'query': [start_date, ], 'range': 'min'},
+    #         'start': {'query': [end_date, ], 'range': 'max'},
+    #         'review_state': 'external',
+    #         'sort_on': 'start',
+    #         'isCanceled': False,
+
+    #     }
+
+    #     brains = self.portal_catalog.searchResults(query)
+
+    #     brainscu = []
+    #     brainsjur = []
+
+    #     for brain in brains:
+    #         if 'Juriquilla' in brain.Subject:
+    #             brainsjur.append(brain)
+    #         else:
+    #             brainscu.append(brain)
+
+    #     iso_start = start_date.ISO().split('-')
+    #     day_start = iso_start[2].split('T')
+
+    #     iso_end = end_date.ISO().split('-')
+    #     day_end = iso_end[2].split('T')
+
+    #     return {
+    #         'brainscu': brainscu,
+    #         'start_date': '/'.join([day_start[0], iso_start[1], iso_start[0]]),
+    #         'end_date': '/'.join([day_end[0], iso_end[1], iso_end[0]]),
+    #         'matcuerrss': self.semanaryRSS(self.matcuerfeed, start_date, end_date),
+    #         'oaxrss': self.semanaryRSS(self.oaxfeed, start_date, end_date),
+    #         'brainsjur': brainsjur,
+    #     }
 
     def criteriaActivities(self, start_date, end_date, pathact=None):
 
