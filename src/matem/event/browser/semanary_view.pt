@@ -206,7 +206,8 @@
               <span class="cal_month" tal:content="string:${endf/month}.">Oct.</span>
             </tal:block>
           </div>
-          <div class="cal_info">
+          <!-- for events -->
+          <div class="cal_info" tal:condition="python: data.portal_type == 'Event'">
             <b><a href="" itemprop="url" class="url" tal:attributes="href data/getURL|data/absolute_url;">
                 <span itemprop="summary" class="summary" tal:content="data/pretty_title_or_id">Title</span>
             </a></b>
@@ -217,6 +218,21 @@
                 <span tal:condition="python:data['Subject']" tal:content="python:data['Subject'][0]"/>
             </div>
           </div>
+          <!-- for congress -->
+          <div class="cal_info" tal:condition="python: data.portal_type == 'Congreso'">
+            <tal:block tal:define="obj data/getObject">
+              <b><a href="" itemprop="url" class="url" tal:attributes="href obj/event_url|nothing;">
+                  <span itemprop="summary" class="summary" tal:content="data/pretty_title_or_id">Title</span>
+                </a>
+              </b>
+              <div class="documentByLine">
+                  <span tal:define="location obj/getEventplace|nothing" tal:content="location"/>
+                  <br/>
+                  <br/>
+              </div>
+            </tal:block>
+          </div>
+
         </article>
       </tal:block>
 

@@ -222,6 +222,21 @@ class SemanaryView(BrowserView):
         folderS  = getSite().unrestrictedTraverse('actividades/actividades-especiales')
         brainss = self.criteriaActivities(start_date, end_date, ['/'.join(folderS.getPhysicalPath())])
 
+
+        brainscongress = []
+        for brain in brainss:
+            brainscongress.append(brain)
+
+        for congresspage in self.imgPosters():
+            if self.isActive(congresspage, start_date, end_date):
+                brainscongress.append(congresspage)
+
+
+        aux = [(x, x.start) for x in brainscongress]
+        aux_sorted = sorted(aux, key=itemgetter(1))
+        unionbrains = [y[0] for y in aux_sorted]
+
+
         return {
             'brainscu': brainscu,
             'start_date': '/'.join([day_start[0], iso_start[1], iso_start[0]]),
@@ -229,13 +244,18 @@ class SemanaryView(BrowserView):
             'matcuerrss': self.semanaryRSS(self.matcuerfeed, start_date, end_date),
             'oaxrss': self.semanaryRSS(self.oaxfeed, start_date, end_date),
             'brainsjur': brainsjur,
-            'brainss': brainss,
+            'brainss': unionbrains,
         }
 
 
+    def isActive(self, congress, start_date, end_date):
 
+        if congress.end < start_date:
+            return False
+        elif congress.start > end_date:
+            return False
 
-
+        return True
 
 
         # query = {
