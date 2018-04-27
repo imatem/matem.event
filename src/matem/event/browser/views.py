@@ -253,6 +253,17 @@ class SemanaryView(BrowserView):
         if congress.end < start_date:
             return False
         elif congress.start > end_date:
+            # return False
+            obj = congress.getObject()
+            objdict = obj.__dict__
+            dates = objdict.get('semanarydates', ())
+            for itemdates in dates:
+                itemdate = itemdates.get('semdate', '')
+                if itemdate:
+                    effectivedate = DateTime(itemdate, datefmt='MX')
+                    if effectivedate >= start_date and effectivedate <= end_date:
+                        return True
+
             return False
 
         return True
