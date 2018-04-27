@@ -226,7 +226,7 @@
                 </a>
               </b>
               <div class="documentByLine">
-                  <span tal:define="location obj/getEventplace|nothing" tal:content="location"/>
+                  <span tal:define="location obj/eventplace|nothing" tal:content="location"/>
                   <br/>
                   <br/>
               </div>
