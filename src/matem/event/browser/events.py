@@ -45,9 +45,6 @@ class EventsView(BrowserView):
         # if has_query:
         #     query = self.context.buildQuery()
         # else:
-        query['path'] = {
-            'query': '/'.join(self.context.getPhysicalPath()),
-        }
         query['Type'] = ('Event',)
         query['review_state'] = ('external',)
 
@@ -56,8 +53,15 @@ class EventsView(BrowserView):
         query['sort_on'] = 'start'
         query.update(kw)
         cat = getToolByName(self.context, 'portal_catalog')
-        result = cat(**query)
-        return result
+        query['path'] = {
+            'query': (
+                '/'.join(self.context.getPhysicalPath()) + '/seminarios',
+                '/'.join(self.context.getPhysicalPath()) + '/coloquio',
+                '/'.join(self.context.getPhysicalPath()) + '/actividades-especiales/cu'
+            ),
+        }
+        seminarios = cat(**query)
+        return seminarios
 
     def pastEvents(self, **kw):
         """Show all past events"""

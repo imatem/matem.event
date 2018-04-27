@@ -207,6 +207,7 @@
           font-weight: bold;
           text-align: center;
           background-color: #E2E8EE;
+          margin-top: 6px;
         }
         /*div.ulsedes{
           list-style-type: none;
@@ -303,7 +304,8 @@
                               brainsjur activities/brainsjur;
                               items_matcuer activities/matcuerrss;
                               items_oax activities/oaxrss;
-                              unionactivities python:view.unionActivities(items_matcuer, brainsjur, items_oax);">
+                              specialactivities view/specialActivities;
+                              unionactivities python:view.unionActivities(items_matcuer, brainsjur, items_oax, specialactivities);">
         <div tal:attributes="class python:view.classcolumn(len(brainscu) + len(unionactivities))">
           <div class="fc">
             <tal:block tal:condition="python: not brainscu">
@@ -371,9 +373,9 @@
 
       </div>
       <div class="actfooter">
-        <img src="++resource++matem.event/Logo_UNAM.png" style="padding: 15 50px;"/>
+        <img src="++resource++matem.event/Logo_UNAM.png" style="padding: 10 50px;"/>
         Instituto de Matemáticas de la UNAM
-        <img src="++resource++matem.event/Logo_im.png" style="padding: 15 50px;"/>
+        <img src="++resource++matem.event/Logo_im.png" style="padding: 10 50px;"/>
       </div>
     </div>  <!-- end core -->
 

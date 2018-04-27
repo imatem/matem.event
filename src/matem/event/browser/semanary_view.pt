@@ -65,7 +65,8 @@
                               brainscu activities/brainscu;
                               brainsjur activities/brainsjur;
                               items_matcuer activities/matcuerrss;
-                              items_oax activities/oaxrss;">
+                              items_oax activities/oaxrss;
+                              brainss activities/brainss;">
       <h1>Actividades del Instituto de Matemáticas, UNAM</h1>
       <h3>Periodo: <span tal:content="start_date"/> al <span tal:content="end_date"/></h3>
       <h2> Ciudad Universitaria</h2>
@@ -185,6 +186,53 @@
                 <span tal:content="data/seminarytitle | nothing"/>
             </div>
           </div>
+        </article>
+      </tal:block>
+
+      <!-- Specials -->
+      <tal:block tal:condition="python: brainss">
+        <h2> Actividades Especiales</h2>
+      </tal:block>
+      <tal:block tal:repeat="data brainss">
+        <article itemscope itemtype="http://data-vocabulary.org/Event" class="vevent"
+                                    tal:define="startf python:view.date_speller(data.start);
+                                                endf python:view.date_speller(data.end);">
+          <div class="cal_date">
+            <span class="cal_day" tal:content="string:${startf/day}">15.</span>
+            <span class="cal_month" tal:content="string:${startf/month}.">Oct.</span>
+            <tal:block tal:condition="python: view.isOneDay(data.start, data.end)">
+              --
+              <span class="cal_day" tal:content="string:${endf/day}">15.</span>
+              <span class="cal_month" tal:content="string:${endf/month}.">Oct.</span>
+            </tal:block>
+          </div>
+          <!-- for events -->
+          <div class="cal_info" tal:condition="python: data.portal_type == 'Event'">
+            <b><a href="" itemprop="url" class="url" tal:attributes="href data/getURL|data/absolute_url;">
+                <span itemprop="summary" class="summary" tal:content="data/pretty_title_or_id">Title</span>
+            </a></b>
+            <div class="documentByLine">
+              <div tal:define="expositor data/getSpeaker|nothing" tal:content="expositor"/>
+                <span tal:define="location data/location|nothing" tal:content="location"/>
+                <span tal:content="string:${startf/hour}:${startf/minute} hrs."/><br/>
+                <span tal:condition="python:data['Subject']" tal:content="python:data['Subject'][0]"/>
+            </div>
+          </div>
+          <!-- for congress -->
+          <div class="cal_info" tal:condition="python: data.portal_type == 'Congreso'">
+            <tal:block tal:define="obj data/getObject">
+              <b><a href="" itemprop="url" class="url" tal:attributes="href obj/event_url|nothing;">
+                  <span itemprop="summary" class="summary" tal:content="data/pretty_title_or_id">Title</span>
+                </a>
+              </b>
+              <div class="documentByLine">
+                  <span tal:define="location obj/eventplace|nothing" tal:content="location"/>
+                  <br/>
+                  <br/>
+              </div>
+            </tal:block>
+          </div>
+
         </article>
       </tal:block>
 
