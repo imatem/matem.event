@@ -376,7 +376,7 @@ class SemanaryView(BrowserView):
                 data['expositor'] = item.getSpeaker
                 data['title'] = item.pretty_title_or_id()
                 data['location'] = item.location
-                data['hour'] = str(data['startf']['hour']) + ':' + str(data['startf']['minute'])  + 'hrs.'
+                data['hour'] = str(data['startf']['hour']) + ':' + str(data['startf']['minute'])  + ' hrs.'
                 value = ''
                 if item.Subject:
                     value = item.Subject[0]
@@ -399,7 +399,7 @@ class SemanaryView(BrowserView):
             data['expositor'] = item.get('speaker', '')
             data['title'] = item.get('title', '')
             data['location'] = item.get('location', '')
-            data['hour'] = str(data['startf']['hour']) + ':' + str(data['startf']['minute'])  + 'hrs.'
+            data['hour'] = str(data['startf']['hour']) + ':' + str(data['startf']['minute'])  + ' hrs.'
             data['seminarytitle'] = item.get('seminarytitle', '')
             data['campus'] = 'Cuernavaca'
             union.append(data)
@@ -411,7 +411,7 @@ class SemanaryView(BrowserView):
             data['expositor'] = item.getSpeaker
             data['title'] = item.pretty_title_or_id()
             data['location'] = item.location
-            data['hour'] = str(data['startf']['hour']) + ':' + str(data['startf']['minute'])  + 'hrs.'
+            data['hour'] = str(data['startf']['hour']) + ':' + str(data['startf']['minute'])  + ' hrs.'
             value = ''
             if item.Subject:
                 value = item.Subject[0]
@@ -426,7 +426,7 @@ class SemanaryView(BrowserView):
             data['expositor'] = item.get('speaker', '')
             data['title'] = item.get('title', '')
             data['location'] = item.get('location', '')
-            data['hour'] = str(data['startf']['hour']) + ':' + str(data['startf']['minute'])  + 'hrs.'
+            data['hour'] = str(data['startf']['hour']) + ':' + str(data['startf']['minute'])  + ' hrs.'
             data['seminarytitle'] = item.get('seminarytitle', '')
             data['campus'] = 'Oaxaca'
             union.append(data)
