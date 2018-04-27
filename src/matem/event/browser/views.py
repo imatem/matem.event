@@ -227,9 +227,9 @@ class SemanaryView(BrowserView):
         for brain in brainss:
             brainscongress.append(brain)
 
-        for congresspage in self.imgPosters():
-            if self.isActive(congresspage, start_date, end_date):
-                brainscongress.append(congresspage)
+        # for congresspage in self.imgPosters():
+        #     if self.isActive(congresspage, start_date, end_date):
+        #         brainscongress.append(congresspage)
 
 
         aux = [(x, x.start) for x in brainscongress]
