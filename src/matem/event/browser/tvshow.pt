@@ -271,7 +271,7 @@
 
       .carousel-inner {
         display: grid;
-        grid-auto-rows: 825px;
+        grid-auto-rows: 912px;
       }
 
       .carousel-inner > .item > img {
