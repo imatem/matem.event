@@ -4,7 +4,7 @@
   i18n:domain="UNAM.imateCVct">
   <head>
       <!-- <link href="++resource++wcfc/bootstrap/bootstrap-fixed.css" rel="stylesheet" type="text/css"/> -->
-      <meta http-equiv="refresh" content="900">
+      <!-- <meta http-equiv="refresh" content="900"> -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
       <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -32,6 +32,7 @@
 
           window.setInterval(run,12000);
           window.setInterval(run2,15000);
+          var myreload = setInterval(function(){ window.location.reload(1);}, 900000);
         });
 
         function startTime() {
@@ -59,6 +60,8 @@
             if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
             return i;
         }
+
+
 
 
       </script>
