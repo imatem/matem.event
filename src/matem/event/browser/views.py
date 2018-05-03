@@ -442,7 +442,7 @@ class SemanaryView(BrowserView):
         return newunion
 
     def classstyleCU(self, items):
-        if len(items) > 3:
+        if len(items) > 2:
             return 'rotated'
 
         return 'notrotated'

@@ -4,6 +4,7 @@
   i18n:domain="UNAM.imateCVct">
   <head>
       <!-- <link href="++resource++wcfc/bootstrap/bootstrap-fixed.css" rel="stylesheet" type="text/css"/> -->
+      <!-- <meta http-equiv="refresh" content="900"> -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
       <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -31,6 +32,7 @@
 
           window.setInterval(run,12000);
           window.setInterval(run2,15000);
+          var myreload = setInterval(function(){ window.location.reload(1);}, 900000);
         });
 
         function startTime() {
@@ -58,6 +60,8 @@
             if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
             return i;
         }
+
+
 
 
       </script>
@@ -144,7 +148,7 @@
         li.licu{
           background-color: #E1E1E1;
           /*height: 137px;*/
-          height: 196px;
+          height: 206px;
           /*padding: 5px 10px 0 20px;*/
           padding: 20px 20px 0 20px;
         }
@@ -155,6 +159,7 @@
           padding-left: 50px;
           height: 182px;
           padding: 10px 10px 0 67px;
+          overflow-y: hidden;
           /*padding: 20px 20px 0 67px;*/
         }
 
@@ -166,6 +171,7 @@
           padding-left: 50px;
           height: 182px;
           padding: 10px 10px 0 67px;
+          overflow-y: hidden;
           /*padding: 20px 20px 0 67px;*/
         }
 
@@ -176,6 +182,7 @@
           height: 182px;
           padding: 10px 10px 0 67px;
           /*padding: 20px 20px 0 67px;*/
+          overflow-y: hidden;
           /*list-style-image: url('++resource++matem.event/itemoax.png');*/
         }
 
