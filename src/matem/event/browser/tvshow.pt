@@ -127,7 +127,7 @@
 
         b.activityTitle{
           font-weight: bold;
-          line-height: 80%;
+          line-height: 100%;
         }
 
         ul.ulrotated {
@@ -143,7 +143,9 @@
 
         li.licu{
           background-color: #E1E1E1;
-          height: 137px;
+          /*height: 137px;*/
+          height: 196px;
+          /*padding: 5px 10px 0 20px;*/
           padding: 20px 20px 0 20px;
         }
 
@@ -152,7 +154,8 @@
           background-color: #EBF2F6;
           padding-left: 50px;
           height: 182px;
-          padding: 20px 20px 0 67px;
+          padding: 10px 10px 0 67px;
+          /*padding: 20px 20px 0 67px;*/
         }
 
         li.liJuriquilla{
@@ -162,7 +165,8 @@
           /*linear-gradient(to right, red , yellow);*/
           padding-left: 50px;
           height: 182px;
-          padding: 20px 20px 0 67px;
+          padding: 10px 10px 0 67px;
+          /*padding: 20px 20px 0 67px;*/
         }
 
         li.liOaxaca{
@@ -170,7 +174,8 @@
           background-color: #E2E8EE;
           padding-left: 50px;
           height: 182px;
-          padding: 20px 20px 0 67px;
+          padding: 10px 10px 0 67px;
+          /*padding: 20px 20px 0 67px;*/
           /*list-style-image: url('++resource++matem.event/itemoax.png');*/
         }
 
@@ -266,7 +271,7 @@
 
       .carousel-inner {
         display: grid;
-        grid-auto-rows: 825px;
+        grid-auto-rows: 912px;
       }
 
       .carousel-inner > .item > img {
@@ -321,13 +326,15 @@
                     <li
                     tal:attributes="class python:' '.join(['licu', 'sizeMfont']);"
                     tal:define="startf python:view.date_speller(data.start);">
+                      <div>
                       <b
                       tal:attributes="class python:' '.join(['activityTitle', 'sizeMfont']);"
                       tal:content="data/pretty_title_or_id">Title</b><br/>
                       <span tal:define="expositor data/getSpeaker|nothing" tal:content="expositor"/><br/>
                       <span tal:content="string:${startf/hour}:${startf/minute} hrs."/>
                       <span tal:define="location data/location|nothing" tal:content="location"/><br/>
-                      <!-- <span tal:condition="python:data['Subject']" tal:content="python:data['Subject'][0]"/><br/><br/> -->
+                      <span tal:condition="python:data['Subject']" tal:content="python:data['Subject'][0]"/>
+                    </div>
                     </li>
                   </tal:block>
                 </ul>
@@ -344,7 +351,7 @@
                     <span tal:content="item/expositor"/><br/>
                     <span tal:content="item/hour"/>
                     <span tal:content="item/location"/><br/>
-                    <!-- <span tal:content="item/seminarytitle"/><br/> -->
+                    <span tal:content="item/seminarytitle"/>
                   </li>
                 </ul>
               </div>
@@ -353,16 +360,18 @@
         </div><!--end first column -->
 
         <div class="carousel slide carousel-fade columnss" data-ride="carousel" data-interval="12000" tal:define="items view/imgPosters">
-          <div class="cutitle">Próximas actividades</div>
+          <!-- <div class="cutitle">Próximas actividades</div> -->
           <!-- Wrapper for slides -->
           <div class="carousel-inner">
             <div class="item active" tal:define="item python:items[0]">
+              <div class="cutitle" tal:content="python:view.posterTitle(items[0])"/>
               <img src="" tal:attributes="src python:item.getPath() + '/image'"/>
               <div class="postertitle" tal:content="item/Title"></div>
               <div class="posterdescription" tal:content="structure item/Description"></div>
             </div>
 
             <div class="item" tal:repeat="item python:items[1:]">
+              <div class="cutitle" tal:content="python:view.posterTitle(item)"/>
               <img src="" tal:attributes="src  python:item.getPath() + '/image'"/>
               <div class="postertitle" tal:content="item/Title"></div>
               <div class="posterdescription" tal:content="structure item/Description"></div>

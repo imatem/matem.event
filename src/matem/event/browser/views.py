@@ -19,6 +19,7 @@ from plone.app.portlets.portlets.rss import RSSFeed
 from DateTime.interfaces import DateTimeError
 from plone import api
 from operator import itemgetter
+from datetime import datetime, timedelta
 
 
 
@@ -471,6 +472,36 @@ class SemanaryView(BrowserView):
         atopic = api.content.get(path='/inicio/1/1/congresos')
         return atopic.queryCatalog()
         # return [item.getPath() + '/image' for item in items]
+
+
+    def posterTitle(self, brain):
+        ftoday = datetime.today().date() # - timedelta(days=days_to_subtract)
+        start_date = brain.start
+        end_date = brain.end
+        numberday = ftoday.weekday()
+        sem_start_date = ftoday - timedelta(days=numberday)
+        sem_end_date = ftoday + timedelta(days=6-numberday)
+
+        sdate = datetime(start_date.year(), start_date.month(), start_date.day()).date()
+        fdate = datetime(end_date.year(), end_date.month(), end_date.day()).date()
+        if fdate < sem_start_date:
+            return "Próximas actividades"
+        elif sdate > sem_end_date:
+            return "Próximas actividades"
+
+        return "Actividades de la semana"
+
+        # ftoday = DateTime()
+        # start_date = brain.start
+        # end_date = brain.end
+        # week = ftoday.week()
+        # if start_date.week() == week or end_date.week() == week:
+        #     return "Actividades de la semana"
+
+        # return "Próximas actividades"
+
+
+
 
 
     def date_speller(self, dt):
