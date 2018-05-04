@@ -295,6 +295,7 @@
       .posterdescription {
         font-size: 29px;
         text-align: center;
+        max-height: 124px;
       }
 
       #txtdate {
@@ -320,16 +321,11 @@
                               unionactivities python:view.unionActivities(items_matcuer, brainsjur, items_oax, specialactivities);">
         <div tal:attributes="class python:view.classcolumn(len(brainscu) + len(unionactivities))">
           <div class="fc">
-            <tal:block tal:condition="python: not brainscu">
-              <!-- <h3>Sin actividades para hoy en C.U.</h3> -->
-              <h3></h3>
-            </tal:block>
-            <tal:block tal:condition="brainscu">
-              <!-- <h3>Actividades del día en C.U.</h3> -->
+            <!-- <tal:block tal:condition="brainscu"> -->
               <div class="cutitle">Actividades del día</div>
               <div class="rotatedlist">
                 <ul class="ulrotated" tal:attributes="id python:view.classstyleCU(brainscu)+'CU';">
-                  <tal:block tal:repeat="data brainscu">
+                  <tal:block tal:condition="brainscu" tal:repeat="data brainscu">
                     <li
                     tal:attributes="class python:' '.join(['licu', 'sizeMfont']);"
                     tal:define="startf python:view.date_speller(data.start);">
@@ -346,7 +342,7 @@
                   </tal:block>
                 </ul>
               </div>
-            </tal:block>
+            <!-- </tal:block> -->
 
             <tal:block tal:condition="unionactivities">
               <!-- <h3>Actividades del día en Cuernavaca, Juriquilla, Oaxaca</h3> -->
