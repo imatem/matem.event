@@ -18,9 +18,9 @@
       <span tal:condition="view/isCanceled">
         <span style="background-color: #FF0000;"><font color="#FFFFFF">&nbsp; Cancelado</font>  &nbsp;</span><br/>
       </span><!-- end is canceled-->
-      <b>Expositor</b>: <span tal:define="speaker view/getSpeaker" tal:content="speaker"/> <br/>
+      <b>Ponente</b>: <span tal:define="speaker view/getSpeaker" tal:content="speaker"/> <br/>
       <span tal:condition="view/getNationality">
-        <b>Nacionalidad del Expositor</b>: <span tal:define="nationality view/getNationality" tal:content="nationality"/><br/>
+        <b>Nacionalidad del ponente</b>: <span tal:define="nationality view/getNationality" tal:content="nationality"/><br/>
       </span>
       <span tal:condition="view/getEventInstitution">
         <b>Institución</b>: <span tal:define="institution view/getEventInstitution" tal:content="institution"/><br/>
