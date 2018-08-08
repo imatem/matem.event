@@ -87,15 +87,21 @@
                         <div class="eventlist_month" tal:define="items view/upcomingEventsWithoutcalendar">
                             <tal:items repeat="data items">
                                 <article itemscope itemtype="http://data-vocabulary.org/Event" class="vevent"
-                                                tal:define="startf python:view.date_speller(data.start)">
+                                                tal:define="startf python:view.date_speller(data.start);
+                                                endf python:view.date_speller(data.end);">
                                     <ul class="hCalendar-hidden">
                                         <li itemprop="startDate" class="dtstart" tal:content="data/start/ISO8601">end</li>
                                         <li itemprop="endDate" class="dtend" tal:content="data/end/ISO8601">end</li>
                                     </ul>
                                     <div class="cal_date">
                                         <span class="cal_day" tal:content="string:${startf/day}">15.</span>
-                                        <span class="cal_month" tal:content="string:${startf/month}.">Oct.</span> <br/>
-                                        <span class="cal_month" tal:content="string:${startf/year}">2014.</span>
+                                        <span class="cal_month" tal:content="string:${startf/month}.">Oct.</span>
+                                        <tal:block tal:condition="python: view.isOneDay(data.start, data.end)">
+                                          --
+                                          <span class="cal_day" tal:content="string:${endf/day}">15.</span>
+                                          <span class="cal_month" tal:content="string:${endf/month}.">Oct.</span>
+                                        </tal:block>
+
                                     </div>
                                     <div class="cal_info">
                                         <h3>

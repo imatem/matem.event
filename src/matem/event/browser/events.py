@@ -132,3 +132,9 @@ class EventsView(BrowserView):
         if items:
             return items[0]
         return None
+
+    def isOneDay(self, dstart, dend):
+
+        if dend.JulianDay() > dstart.JulianDay():
+            return True
+        return False
