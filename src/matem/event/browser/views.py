@@ -206,7 +206,7 @@ class SemanaryView(BrowserView):
         ftoday = DateTime()
         today = DateTime('/'.join([str(ftoday.year()), str(ftoday.month()), str(ftoday.day())]))
         start_date = today + 1
-        end_date = today + 7.9999
+        end_date = today + 9.9999
 
         foldercu = self.pathcu()
         brainscu = self.criteriaActivities(start_date, end_date, [foldercu[0], foldercu[1]])
