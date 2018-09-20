@@ -76,7 +76,7 @@ class RSSOaxacaView(RSSView):
     def __init__(self, context, request):
         self.context = context
         self.request = request
-        self.feed = IMRSSFeed('http://paginas.matem.unam.mx/oaxaca/RSS/index.xml', 100)
+        self.feed = IMRSSFeed('http://oaxaca.matem.unam.mx/RSS/index.xml', 100)
         self.feed.update()
 
 
