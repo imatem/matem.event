@@ -191,7 +191,7 @@
 
       <!-- Specials -->
       <tal:block tal:condition="python: brainss">
-        <h2> Escuelas y talleres</h2>
+        <h2> Escuelas, talleres y otras actividades</h2>
       </tal:block>
       <tal:block tal:repeat="data brainss">
         <article itemscope itemtype="http://data-vocabulary.org/Event" class="vevent"
