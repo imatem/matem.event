@@ -67,9 +67,10 @@
                               items_matcuer activities/matcuerrss;
                               items_oax activities/oaxrss;
                               brainss activities/brainss;">
-      <h1>Actividades del Instituto de Matemáticas, UNAM</h1>
+      <h1>Programa de actividades del Instituto de Matemáticas de la UNAM</h1>
       <h3>Periodo: <span tal:content="start_date"/> al <span tal:content="end_date"/></h3>
-      <h2> Ciudad Universitaria</h2>
+      <dl><h1>Seminarios y Coloquios</h1><dl>
+      <dd><h2>Ciudad Universitaria</h2>
       <tal:block tal:condition="python: not brainscu">
         <b>Sin actividades en este periodo</b>
       </tal:block>
@@ -188,6 +189,7 @@
           </div>
         </article>
       </tal:block>
+      </dd>
 
       <!-- Specials -->
       <tal:block tal:condition="python: brainss">
