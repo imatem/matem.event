@@ -6,9 +6,9 @@
                        mtool view/mtool;
                        portal_url view/portal_url;
                        normalizeString view/normalizeString;
-                       site_properties view/site_properties">
+                       site_properties view/site_properties;">
 
-  <div class="standard-topic"
+  <div class="standard-topic news_imstandard"
        tal:define="topicContents view/getContents"
        tal:condition="topicContents">
 

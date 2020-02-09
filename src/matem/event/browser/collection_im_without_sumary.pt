@@ -8,7 +8,7 @@
                        normalizeString view/normalizeString;
                        site_properties view/site_properties">
 
-  <div class="standard-topic"
+  <div class="standard-topic collection_im_without_summary"
        tal:define="topicContents view/getContents"
        tal:condition="topicContents">
 
