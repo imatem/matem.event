@@ -72,7 +72,7 @@
       <dl><h1>Seminarios y Coloquios</h1><dl>
       <dd><h2>Ciudad Universitaria</h2>
       <tal:block tal:condition="python: not brainscu">
-        <b>Sin actividades en este periodo</b>
+        <b>Sin seminarios en este periodo</b>
       </tal:block>
       <tal:block tal:repeat="data brainscu">
         <article itemscope itemtype="http://data-vocabulary.org/Event" class="vevent"
@@ -104,7 +104,7 @@
       <!-- Cuernavaca -->
       <h2>Cuernavaca</h2>
       <tal:block tal:condition="python: not items_matcuer">
-        <b>Sin actividades en este periodo</b>
+        <b>Sin seminarios en este periodo</b>
       </tal:block>
       <tal:block tal:repeat="data items_matcuer">
         <article itemscope itemtype="http://data-vocabulary.org/Event" class="vevent"
@@ -130,7 +130,7 @@
       <!-- Juriquilla -->
       <h2>Juriquilla</h2>
       <tal:block tal:condition="python: not brainsjur">
-        <b>Sin actividades en este periodo</b>
+        <b>Sin seminarios en este periodo</b>
       </tal:block>
       <tal:block tal:repeat="data brainsjur">
         <article itemscope itemtype="http://data-vocabulary.org/Event" class="vevent"
@@ -162,7 +162,7 @@
       <!-- Oaxaca -->
       <h2>Oaxaca</h2>
       <tal:block tal:condition="python: not items_oax">
-        <b>Sin actividades en este periodo</b>
+        <b>Sin seminarios en este periodo</b>
       </tal:block>
       <tal:block tal:repeat="data items_oax">
         <article itemscope itemtype="http://data-vocabulary.org/Event" class="vevent"
@@ -193,8 +193,9 @@
 
       <!-- Specials -->
       <tal:block tal:condition="python: brainss">
-        <h2> Escuelas, talleres y otras actividades</h2>
+        <dl><h1> Divulgación </h1><dl>
       </tal:block>
+      <dd>
       <tal:block tal:repeat="data brainss">
         <article itemscope itemtype="http://data-vocabulary.org/Event" class="vevent"
                                     tal:define="startf python:view.date_speller(data.start);
@@ -237,6 +238,7 @@
 
         </article>
       </tal:block>
+      </dd>
 
       </div>
     </div>
