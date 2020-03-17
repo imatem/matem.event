@@ -366,6 +366,7 @@
           <!-- <div class="cutitle">Próximas actividades</div> -->
           <!-- Wrapper for slides -->
           <div class="carousel-inner">
+            <tal:block tal:condition="items">
             <div class="item active" tal:define="item python:items[0]">
               <div class="cutitle" tal:content="python:view.posterTitle(items[0])"/>
               <img src="" tal:attributes="src python:item.getPath() + '/image'"/>
@@ -379,6 +380,7 @@
               <div class="postertitle" tal:content="item/Title"></div>
               <div class="posterdescription" tal:content="structure item/Description"></div>
             </div>
+           </tal:block>
           </div>  <!-- end carousel-inner -->
 
         </div>  <!-- end columnss -->
