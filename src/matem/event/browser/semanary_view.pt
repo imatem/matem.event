@@ -193,7 +193,7 @@
 
       <!-- Specials -->
       <tal:block tal:condition="python: brainss">
-        <dl><h1> Divulgación </h1><dl>
+        <dl><h1> Conferencias, escuelas, talleres y otras actividades </h1><dl>
       </tal:block>
       <dd>
       <tal:block tal:repeat="data brainss">
