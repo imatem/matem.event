@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from DateTime import DateTime
+from plone import api
 from Products.CMFCore.utils import getToolByName
 from Products.Collage.browser.views import BrowserView
 from zope.browsermenu.interfaces import IBrowserMenu
@@ -55,9 +56,9 @@ class EventsView(BrowserView):
         cat = getToolByName(self.context, 'portal_catalog')
         query['path'] = {
             'query': (
-                '/'.join(self.context.getPhysicalPath()) + '/seminarios',
-                '/'.join(self.context.getPhysicalPath()) + '/coloquio',
-                '/'.join(self.context.getPhysicalPath()) + '/actividades-especiales/cu'
+                api.content.get(path='/seminarios').absolute_url_path(),
+                api.content.get(path='/actividades/coloquio').absolute_url_path(),
+                api.content.get(path='/actividades/actividades-especiales/cu').absolute_url_path(),
             ),
         }
         seminarios = cat(**query)
