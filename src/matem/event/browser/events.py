@@ -54,6 +54,8 @@ class EventsView(BrowserView):
         query['sort_on'] = 'start'
         query.update(kw)
         cat = getToolByName(self.context, 'portal_catalog')
+        print api.content.get(path='/seminarios').absolute_url_path()
+        print api.content.get(path='/seminarios').getPhysicalPath()
         query['path'] = {
             'query': (
                 api.content.get(path='/seminarios').absolute_url_path(),
