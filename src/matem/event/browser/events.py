@@ -54,13 +54,12 @@ class EventsView(BrowserView):
         query['sort_on'] = 'start'
         query.update(kw)
         cat = getToolByName(self.context, 'portal_catalog')
-        print api.content.get(path='/seminarios').absolute_url_path()
-        print api.content.get(path='/seminarios').getPhysicalPath()
+        portal_ppath = api.portal.get().getPhysicalPath()
         query['path'] = {
             'query': (
-                api.content.get(path='/seminarios').absolute_url_path(),
-                api.content.get(path='/actividades/coloquio').absolute_url_path(),
-                api.content.get(path='/actividades/actividades-especiales/cu').absolute_url_path(),
+                '/'.join(portal_ppath) + '/seminarios',
+                '/'.join(portal_ppath) + '/actividades/coloquio',
+                '/'.join(portal_ppath) + '/actividades/actividades-especiales/cu'
             ),
         }
         seminarios = cat(**query)
