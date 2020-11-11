@@ -469,9 +469,9 @@ class SemanaryView(BrowserView):
 
 
     def imgPosters(self):
-        atopic = api.content.get(path='/inicio/1/1/congresos')
-        return atopic.queryCatalog()
-        # return [item.getPath() + '/image' for item in items]
+        return []
+        # atopic = api.content.get(path='/inicio/1/1/congresos')
+        # return atopic.queryCatalog()
 
 
     def posterTitle(self, brain):
