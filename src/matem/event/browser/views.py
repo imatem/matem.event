@@ -199,6 +199,11 @@ class SemanaryView(BrowserView):
         """."""
         return getToolByName(getSite(), 'portal_catalog')
 
+
+    def getCampusEvents(campus, begindate, enddate):
+        return []
+
+
     def semanaryActivities(self):
         ftoday = DateTime()
         today = DateTime('/'.join([str(ftoday.year()), str(ftoday.month()), str(ftoday.day())]))
@@ -218,7 +223,7 @@ class SemanaryView(BrowserView):
         day_end = iso_end[2].split('T')
 
         folderS  = getSite().unrestrictedTraverse('actividades/actividades-especiales')
-        brainss = self.criteriaActivities(start_date, end_date, ['/'.join(folderS.getPhysicalPath())])
+        brainss = self.criteriaActivities(start_date, end_date, folderS)
 
 
         brainscongress = []
@@ -267,7 +272,7 @@ class SemanaryView(BrowserView):
         return True
 
 
-    def criteriaActivities(self, start_date, end_date, pathact=None):
+    def criteriaActivities(self, start_date, end_date, folders=None):
 
         query = {
             'portal_type': 'Event',
@@ -278,31 +283,24 @@ class SemanaryView(BrowserView):
             'isCanceled': False,
         }
 
-        if pathact:
-            query['path'] = {'query': pathact}
+        if folders is not None:
+            if not isinstance(folders, list):
+                folders = [folders]
+            paths = ['/'.join(i.getPhysicalPath()) for i in folders]
+            query['path'] = {'query': paths}
 
         return self.portal_catalog.searchResults(query)
 
 
     def pathcu(self):
-
         folderc = getSite().unrestrictedTraverse('actividades/coloquio')
         foldersem = getSite().unrestrictedTraverse('actividades/seminarios')
         folderspe = getSite().unrestrictedTraverse('actividades/actividades-especiales/cu')
+        return [folderc, foldersem, folderspe]
 
-        return [
-            '/'.join(folderc.getPhysicalPath()),
-            '/'.join(foldersem.getPhysicalPath()),
-            '/'.join(folderspe.getPhysicalPath()),
-
-        ]
 
     def pathjur(self):
-        folder  = getSite().unrestrictedTraverse('juriquilla/actividades')
-
-        return [
-            '/'.join(folder.getPhysicalPath())
-        ]
+        return [getSite().unrestrictedTraverse('juriquilla/actividades')]
 
 
     def tvActivities(self):
@@ -338,10 +336,13 @@ class SemanaryView(BrowserView):
         today = DateTime('/'.join([str(ftoday.year()), str(ftoday.month()), str(ftoday.day())]))
         start_date = today
         end_date = today + 0.9
-        folderS  = getSite().unrestrictedTraverse('actividades/actividades-especiales')
-        brainscuerS = {'Cuernavaca': self.criteriaActivities(start_date, end_date, ['/'.join(folderS.getPhysicalPath())+'/cuernavaca'])}
-        brainsjurS = {'Juriquilla': self.criteriaActivities(start_date, end_date, ['/'.join(folderS.getPhysicalPath())+'/juriquilla'])}
-        brainsoaxS = {'Oaxaca': self.criteriaActivities(start_date, end_date, ['/'.join(folderS.getPhysicalPath())+'/oaxaca'])}
+        ucim  = getSite().unrestrictedTraverse('actividades/actividades-especiales/cuernavaca')
+        ujim  = getSite().unrestrictedTraverse('actividades/actividades-especiales/juriquilla')
+        uoim  = getSite().unrestrictedTraverse('actividades/actividades-especiales/oaxaca')
+
+        brainscuerS = {'Cuernavaca': self.criteriaActivities(start_date, end_date, ucim)}
+        brainsjurS = {'Juriquilla': self.criteriaActivities(start_date, end_date, ujim)}
+        brainsoaxS = {'Oaxaca': self.criteriaActivities(start_date, end_date, uoim)}
 
         for items in [brainscuerS, brainsjurS, brainsoaxS]:
             campus = items.keys()[0]
