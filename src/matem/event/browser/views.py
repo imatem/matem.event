@@ -287,27 +287,6 @@ class SemanaryView(BrowserView):
         return self.portal_catalog.searchResults(query)
 
 
-    def criteriaSActivities(self, start_date, end_date, pathact=None):
-
-        query = {
-            'portal_type': 'Event',
-            'end': {'query': [start_date, ], 'range': 'min'},
-            'start': {'query': [end_date, ], 'range': 'max'},
-            'review_state': 'external',
-            'sort_on': 'start',
-            'isCanceled': False,
-        }
-
-        if pathact:
-            query['path'] = {'query': pathact}
-
-        return self.portal_catalog.searchResults(query)
-
-        # start = DateTime()
-        # query['end'] = {'query': start, 'range': 'min'}
-        # query['sort_on'] = 'start'
-
-
     def pathcu(self):
 
         folderc = getSite().unrestrictedTraverse('actividades/coloquio')
