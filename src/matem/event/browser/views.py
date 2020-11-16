@@ -2,25 +2,22 @@
 from AccessControl import getSecurityManager
 from Acquisition import aq_inner
 from collective.plonetruegallery.browser.views.galleryview import GalleryView
+from datetime import datetime
+from datetime import timedelta
 from DateTime import DateTime
-from plone.app.discussion.interfaces import IConversation
-from Products.CMFCore.utils import getToolByName
-from Products.Collage.browser.views import BaseTopicView
-from Products.Five import BrowserView
-from zope.component.hooks import getSite
-
-from zope.component import getUtility
-from zope.i18n import translate
-from zope.schema.interfaces import IVocabularyFactory
-# from matem.event.browser.rss_view import IMRSSFeed
-
-from Products.Collage.browser.views import BaseView
-from plone.app.portlets.portlets.rss import RSSFeed
 from DateTime.interfaces import DateTimeError
 from plone import api
+from plone.app.discussion.interfaces import IConversation
+from plone.app.portlets.portlets.rss import RSSFeed
+from Products.CMFCore.utils import getToolByName
+from Products.Collage.browser.views import BaseTopicView
+from Products.Collage.browser.views import BaseView
+from Products.Five import BrowserView
 from operator import itemgetter
-from datetime import datetime, timedelta
-
+from zope.component import getUtility
+from zope.component.hooks import getSite
+from zope.i18n import translate
+from zope.schema.interfaces import IVocabularyFactory
 
 
 class IMStandardTopicView(BaseTopicView):
@@ -469,18 +466,6 @@ class SemanaryView(BrowserView):
             return "Próximas actividades"
 
         return "Actividades de la semana"
-
-        # ftoday = DateTime()
-        # start_date = brain.start
-        # end_date = brain.end
-        # week = ftoday.week()
-        # if start_date.week() == week or end_date.week() == week:
-        #     return "Actividades de la semana"
-
-        # return "Próximas actividades"
-
-
-
 
 
     def date_speller(self, dt):
