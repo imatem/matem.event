@@ -200,54 +200,26 @@ class SemanaryView(BrowserView):
         return getToolByName(getSite(), 'portal_catalog')
 
 
-    def getCampusEvents(campus, begindate, enddate):
-        return []
-
-
     def semanaryActivities(self):
-        ftoday = DateTime()
-        today = DateTime('/'.join([str(ftoday.year()), str(ftoday.month()), str(ftoday.day())]))
+        today = DateTime().earliestTime()
         start_date = today + 1
-        end_date = today + 9.9999
+        end_date = today.latestTime() + 9
 
         foldercu = self.pathcu()
-        brainscu = self.criteriaActivities(start_date, end_date, [foldercu[0], foldercu[1]])
+        brainscu = self.criteriaActivities(start_date, end_date, foldercu[0:2])
+        brainsuj = self.criteriaActivities(start_date, end_date, self.pathjur())
 
-        folderjur = self.pathjur()
-        brainsjur = self.criteriaActivities(start_date, end_date, folderjur)
-
-        iso_start = start_date.ISO().split('-')
-        day_start = iso_start[2].split('T')
-
-        iso_end = end_date.ISO().split('-')
-        day_end = iso_end[2].split('T')
-
-        folderS  = getSite().unrestrictedTraverse('actividades/actividades-especiales')
-        brainss = self.criteriaActivities(start_date, end_date, folderS)
-
-
-        brainscongress = []
-        for brain in brainss:
-            brainscongress.append(brain)
-
-        # for congresspage in self.imgPosters():
-        #     if self.isActive(congresspage, start_date, end_date):
-        #         brainscongress.append(congresspage)
-
-
-        aux = [(x, x.start) for x in brainscongress]
-        aux_sorted = sorted(aux, key=itemgetter(1))
-        unionbrains = [y[0] for y in aux_sorted]
-
+        special  = api.content.get(path='/actividades/actividades-especiales')
+        brainss = self.criteriaActivities(start_date, end_date, special)
 
         return {
+            'start_date': start_date.strftime('%d/%m/%Y'),
+            'end_date': end_date.strftime('%d/%m/%Y'),
             'brainscu': brainscu,
-            'start_date': '/'.join([day_start[0], iso_start[1], iso_start[0]]),
-            'end_date': '/'.join([day_end[0], iso_end[1], iso_end[0]]),
+            'brainsjur': brainsuj,
             'matcuerrss': self.semanaryRSS(self.matcuerfeed, start_date, end_date),
             'oaxrss': self.semanaryRSS(self.oaxfeed, start_date, end_date),
-            'brainsjur': brainsjur,
-            'brainss': unionbrains,
+            'brainss': brainss,
         }
 
 
@@ -293,60 +265,45 @@ class SemanaryView(BrowserView):
 
 
     def pathcu(self):
-        folderc = getSite().unrestrictedTraverse('actividades/coloquio')
-        foldersem = getSite().unrestrictedTraverse('actividades/seminarios')
-        folderspe = getSite().unrestrictedTraverse('actividades/actividades-especiales/cu')
-        return [folderc, foldersem, folderspe]
+        return [
+            api.content.get(path='/actividades/coloquio'),
+            api.content.get(path='/actividades/seminarios'),
+            api.content.get(path='/actividades/actividades-especiales/cu')]
 
 
     def pathjur(self):
-        return [getSite().unrestrictedTraverse('juriquilla/actividades')]
+        return [api.content.get(path='/juriquilla/actividades')]
 
 
     def tvActivities(self):
-        ftoday = DateTime()
-        today = DateTime('/'.join([str(ftoday.year()), str(ftoday.month()), str(ftoday.day())]))
-        start_date = today
-        end_date = today + 0.9
-        foldercu = self.pathcu()
-        brainscu = self.criteriaActivities(start_date, end_date, foldercu)
+        start_date = DateTime().earliestTime()
+        end_date = start_date.latestTime()
 
-        folderjur = self.pathjur()
-        brainsjur = self.criteriaActivities(start_date, end_date, folderjur)
-
-        iso_start = start_date.ISO().split('-')
-        day_start = iso_start[2].split('T')
-
-        iso_end = end_date.ISO().split('-')
-        day_end = iso_end[2].split('T')
+        brainscu = self.criteriaActivities(start_date, end_date, self.pathcu())
+        brainsuj = self.criteriaActivities(start_date, end_date, self.pathjur())
 
         return {
             'brainscu': brainscu,
-            'start_date': '/'.join([day_start[0], iso_start[1], iso_start[0]]),
-            'end_date': '/'.join([day_end[0], iso_end[1], iso_end[0]]),
+            'brainsjur': brainsuj,
             'matcuerrss': self.semanaryRSS(self.matcuerfeed, start_date, end_date),
             'oaxrss': self.semanaryRSS(self.oaxfeed, start_date, end_date),
-            'brainsjur': brainsjur,
         }
 
     def specialActivities(self):
+        start_date = DateTime().earliestTime()
+        end_date = start_date.latestTime()
+
+        ucim  = api.content.get(path='/actividades/actividades-especiales/cuernavaca')
+        ujim  = api.content.get(path='/actividades/actividades-especiales/juriquilla')
+        uoim  = api.content.get(path='/actividades/actividades-especiales/oaxaca')
+
+        campuses = {
+            'Cuernavaca': self.criteriaActivities(start_date, end_date, ucim),
+            'Juriquilla': self.criteriaActivities(start_date, end_date, ujim),
+            'Oaxaca': self.criteriaActivities(start_date, end_date, uoim)}
 
         sactivities = []
-        ftoday = DateTime()
-        today = DateTime('/'.join([str(ftoday.year()), str(ftoday.month()), str(ftoday.day())]))
-        start_date = today
-        end_date = today + 0.9
-        ucim  = getSite().unrestrictedTraverse('actividades/actividades-especiales/cuernavaca')
-        ujim  = getSite().unrestrictedTraverse('actividades/actividades-especiales/juriquilla')
-        uoim  = getSite().unrestrictedTraverse('actividades/actividades-especiales/oaxaca')
-
-        brainscuerS = {'Cuernavaca': self.criteriaActivities(start_date, end_date, ucim)}
-        brainsjurS = {'Juriquilla': self.criteriaActivities(start_date, end_date, ujim)}
-        brainsoaxS = {'Oaxaca': self.criteriaActivities(start_date, end_date, uoim)}
-
-        for items in [brainscuerS, brainsjurS, brainsoaxS]:
-            campus = items.keys()[0]
-            brains = items[campus]
+        for campus, brains in campuses.iteritems():
             for item in brains:
                 data = {}
                 data['startf'] = self.date_speller(item.start)

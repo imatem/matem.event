@@ -311,8 +311,6 @@
       </div>
       <div class="rowss"
       tal:define="activities view/tvActivities;
-                              start_date activities/start_date;
-                              end_date activities/end_date;
                               brainscu activities/brainscu;
                               brainsjur activities/brainsjur;
                               items_matcuer activities/matcuerrss;
