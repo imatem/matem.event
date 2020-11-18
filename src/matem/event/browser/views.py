@@ -275,6 +275,19 @@ class SemanaryView(BrowserView):
         return [api.content.get(path='/juriquilla/actividades')]
 
 
+    def weekActivities(self):
+        start_date = DateTime().earliestTime()
+        end_date = start_date.latestTime() + 7
+
+        brainsuj = self.criteriaActivities(start_date, end_date, self.pathjur())
+
+        return {
+            'brainsjur': brainsuj,
+            'matcuerrss': self.semanaryRSS(self.matcuerfeed, start_date, end_date),
+            'oaxrss': self.semanaryRSS(self.oaxfeed, start_date, end_date),
+        }
+
+
     def tvActivities(self):
         start_date = DateTime().earliestTime()
         end_date = start_date.latestTime()
