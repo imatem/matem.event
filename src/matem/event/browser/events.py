@@ -115,7 +115,7 @@ class EventsView(BrowserView):
 
         ret = {
             'year': dt.year(),
-            'month': translate(vocabulary[dt.month()].title, domain='matem.event', context=self.request)[:3],
+            'month': translate(vocabulary[dt.month()].title, domain='matem.event', context=self.request)[:3].lower(),
             'day': dt.day(),
             'hour': dt.hour(),
             'minute': minute,
