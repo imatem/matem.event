@@ -172,5 +172,12 @@
         class=".events.EventsView"
     />
 
+    <browser:page
+        name="agenda"
+        for="*"
+        permission="zope.Public"
+        template="agenda_view.pt"
+        class=".events.EventsView"
+    />
 
 </configure>

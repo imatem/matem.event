@@ -65,6 +65,38 @@ class EventsView(BrowserView):
         seminarios = cat(**query)
         return seminarios
 
+    def getActivities(self, activities):
+        """ see matem.event.browser.views.semanaryActivities
+        """
+        act = []
+        act.extend(activities['brainscu'])
+        act.extend(activities['brainsjur'])
+        uc = self.unidadContents(activities['matcuerrss'], 'calendar-ucim')
+        act.extend(uc)
+        uo = self.unidadContents(activities['oaxrss'], 'calendar-uoim')
+        act.extend(uo)
+        act.extend(activities['special'])
+        return sorted(act, key = lambda i: i['start'])
+
+    def unidadContents(self, activities, campuscode):
+        min_dt = DateTime()
+        uc = []
+        for act in activities:
+            start = act['updated']
+            if min_dt < start:
+                uc.append({
+                    'getURL': act['url'],
+                    'pretty_title_or_id': act['title'],
+                    'start': start,
+                    'location': act['location'],
+                    'Subject': (act['seminarytitle'],),
+                    'getSpeaker': act['speaker'],
+                    'getEventInstitution': act['institution'],
+                    'isCanceled': False,
+                    'campus': campuscode,
+                })
+        return uc
+
     def pastEvents(self, **kw):
         """Show all past events"""
         query = {}
@@ -136,7 +168,8 @@ class EventsView(BrowserView):
         return None
 
     def isOneDay(self, dstart, dend):
-
+        if dend is None:
+            return False
         if dend.JulianDay() > dstart.JulianDay():
             return True
         return False

@@ -287,6 +287,24 @@ class SemanaryView(BrowserView):
             'oaxrss': self.semanaryRSS(self.oaxfeed, start_date, end_date),
         }
 
+    def upcomingActivities(self):
+        start_date = DateTime()
+        end_date = start_date.latestTime() + 365
+
+        foldercu = self.pathcu()
+        brainscu = self.criteriaActivities(start_date, end_date, foldercu[0:2])
+        brainsuj = self.criteriaActivities(start_date, end_date, self.pathjur())
+        special  = api.content.get(path='/actividades/actividades-especiales')
+        brainss = self.criteriaActivities(start_date, end_date, special)
+
+        return {
+            'brainscu': brainscu,
+            'brainsjur': brainsuj,
+            'matcuerrss': self.semanaryRSS(self.matcuerfeed, start_date, end_date),
+            'oaxrss': self.semanaryRSS(self.oaxfeed, start_date, end_date),
+            'special': brainss,
+        }
+
 
     def tvActivities(self):
         start_date = DateTime().earliestTime()
