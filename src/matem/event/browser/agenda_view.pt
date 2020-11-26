@@ -78,7 +78,7 @@
                 tal:define="kssClassesView context/@@kss_field_decorator_view;
                             getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
                             templateId template/getId;
-                            month_name python:{'Jan.': 'enero', 'Feb.':'febrero', 'Mar.':'marzo', 'Apr.':'abril', 'May':'mayo', 'June':'junio', 'July':'julio', 'Aug.':'agosto', 'Sep.':'septiembre', 'Oct.':'octubre', 'Nov.':'noviembre', 'Dec.':'diciembre'};">
+                            month_name python:{'Jan.': 'ene', 'Feb.':'feb', 'Mar.':'mar', 'Apr.':'abr', 'May':'may', 'June':'jun', 'July':'jul', 'Aug.':'ago', 'Sep.':'sep', 'Oct.':'oct', 'Nov.':'nov', 'Dec.':'dic'};">
             <div id="upcomingevents">
               <center><h1 class="documentFirstHeading">Agenda IM</h1></center>
 
@@ -89,10 +89,6 @@
                                     items python:view.getActivities(activities)">
 
                         <tal:items repeat="data items">
-<!--                           <article itemtype="http://data-vocabulary.org/Event" class="vevent"
-                                                 tal:define="startf python:view.date_speller(data.start);
-                                                endf python:view.date_speller(data.end);">
- -->
                           <article itemtype="http://data-vocabulary.org/Event" class="vevent"
                                   tal:define="item_title_or_id data/pretty_title_or_id;
                                               item_date_day data/start/day|nothing;
@@ -110,7 +106,7 @@
 
                             <div class="cal_date">
                               <span class="cal_day" tal:content="item_date_day">15.</span>
-                              <span class="cal_month" tal:content="python:item_date_mon.lower()">Oct.</span>
+                              <span class="cal_month" tal:content="month">Oct.</span>
 <!--                               <tal:block tal:condition="python: view.isOneDay(start_date, end_date)"> --
                                 <span class="cal_day" tal:content="data/end/day">15.</span>
                                 <span class="cal_month" tal:content="data/end/pMonth}.">Oct.</span>
