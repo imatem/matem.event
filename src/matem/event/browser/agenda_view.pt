@@ -78,7 +78,7 @@
                 tal:define="kssClassesView context/@@kss_field_decorator_view;
                             getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
                             templateId template/getId;
-                            month_name python:{'Jan.': 'ene', 'Feb.':'feb', 'Mar.':'mar', 'Apr.':'abr', 'May':'may', 'June':'jun', 'July':'jul', 'Aug.':'ago', 'Sep.':'sep', 'Oct.':'oct', 'Nov.':'nov', 'Dec.':'dic'};">
+                            month_name python:{'Jan.': 'ene.', 'Feb.':'feb.', 'Mar.':'mar.', 'Apr.':'abr.', 'May':'may.', 'June':'jun.', 'July':'jul.', 'Aug.':'ago.', 'Sep.':'sep.', 'Oct.':'oct.', 'Nov.':'nov.', 'Dec.':'dic.'};">
             <div id="upcomingevents">
               <center><h1 class="documentFirstHeading">Agenda IM</h1></center>
 
