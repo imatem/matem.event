@@ -88,13 +88,14 @@
             </tal:block>
           </div>
           <div class="cal_info">
+             <div class="documentByLine" tal:content="string:${startf/hour}:${startf/minute} horas"/>
             <b><a href="" itemprop="url" class="url" tal:attributes="href data/getURL|data/absolute_url;">
                 <span itemprop="summary" class="summary" tal:content="data/pretty_title_or_id">Title</span>
             </a></b>
             <div class="documentByLine">
               <div tal:define="expositor data/getSpeaker|nothing" tal:content="expositor"/>
                 <span tal:define="location data/location|nothing" tal:content="location"/>
-                <span tal:content="string:${startf/hour}:${startf/minute} hrs."/><br/>
+                <br/>
                 <span tal:condition="python:data['Subject']" tal:content="python:data['Subject'][0]"/>
             </div>
           </div>
@@ -114,13 +115,14 @@
             <span class="cal_month" tal:content="string:${startf/month}.">Oct.</span>
           </div>
           <div class="cal_info">
+            <div class="documentByLine" tal:content="string:${startf/hour}:${startf/minute} horas"/>
             <b><a href="" itemprop="url" class="url" tal:attributes="href data/url|nothing;">
                 <span itemprop="summary" class="summary" tal:content="data/title">Title</span>
             </a></b>
             <div class="documentByLine">
               <div tal:define="expositor data/speaker|nothing" tal:content="expositor"/>
                 <span tal:define="location data/location|nothing" tal:content="location"/>
-                <span tal:content="string:${startf/hour}:${startf/minute} hrs."/><br/>
+                <br/>
                 <span tal:content="data/seminarytitle | nothing"/>
             </div>
           </div>
@@ -146,13 +148,14 @@
             </tal:block>
           </div>
           <div class="cal_info">
+            <div class="documentByLine" tal:content="string:${startf/hour}:${startf/minute} horas"/>
             <b><a href="" itemprop="url" class="url" tal:attributes="href data/getURL|data/absolute_url;">
                 <span itemprop="summary" class="summary" tal:content="data/pretty_title_or_id">Title</span>
             </a></b>
             <div class="documentByLine">
               <div tal:define="expositor data/getSpeaker|nothing" tal:content="expositor"/>
                 <span tal:define="location data/location|nothing" tal:content="location"/>
-                <span tal:content="string:${startf/hour}:${startf/minute} hrs."/><br/>
+                <br/>
                 <span tal:condition="python:data['Subject']" tal:content="python:data['Subject'][0] or ''"/>
             </div>
           </div>
@@ -172,6 +175,7 @@
             <span class="cal_month" tal:content="string:${startf/month}.">Oct.</span>
           </div>
           <div class="cal_info">
+            <div class="documentByLine" tal:content="string:${startf/hour}:${startf/minute} horas"/>
             <b><a tal:condition="python: data.get('url', None)" href="" itemprop="url" class="url" tal:attributes="href data/url|nothing">
                 <span itemprop="summary" class="summary" tal:content="data/title">Title</span>
             </a>
@@ -183,7 +187,7 @@
             <div class="documentByLine">
               <div tal:define="expositor data/speaker|nothing" tal:content="expositor"/>
                 <span tal:define="location data/location|nothing" tal:content="location"/>
-                <span tal:content="string:${startf/hour}:${startf/minute} hrs."/><br/>
+                <br/>
                 <span tal:content="data/seminarytitle | nothing"/>
             </div>
           </div>
@@ -211,13 +215,14 @@
           </div>
           <!-- for events -->
           <div class="cal_info" tal:condition="python: data.portal_type == 'Event'">
+            <div class="documentByLine" tal:content="string:${startf/hour}:${startf/minute} horas"/>
             <b><a href="" itemprop="url" class="url" tal:attributes="href data/getURL|data/absolute_url;">
                 <span itemprop="summary" class="summary" tal:content="data/pretty_title_or_id">Title</span>
             </a></b>
             <div class="documentByLine">
               <div tal:define="expositor data/getSpeaker|nothing" tal:content="expositor"/>
                 <span tal:define="location data/location|nothing" tal:content="location"/>
-                <span tal:content="string:${startf/hour}:${startf/minute} hrs."/><br/>
+                <br/>
                 <span tal:condition="python:data['Subject']" tal:content="python:data['Subject'][0]"/>
             </div>
           </div>
