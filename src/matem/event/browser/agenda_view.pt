@@ -107,11 +107,13 @@
                             <div class="cal_date">
                               <span class="cal_day" tal:content="item_date_day">15.</span>
                               <span class="cal_month" tal:content="month">Oct.</span>
-<!--                               <tal:block tal:condition="python: view.isOneDay(start_date, end_date)"> --
+<!--                               <tal:block tal:condition="python: view.isOneDay(start_date, end_date)"> -
                                 <span class="cal_day" tal:content="data/end/day">15.</span>
                                 <span class="cal_month" tal:content="data/end/pMonth}.">Oct.</span>
                               </tal:block>
- -->                            </div>
+ -->
+                            <div class="documentByLine" tal:content="string:${item_time_minutes} h"/>
+                            </div>
 
                             <div class="cal_info">
                               <h3>
@@ -126,8 +128,7 @@
                               <div class="documentByLine">
                                 <div tal:content="item_expositor"/>
                                 <div class="fc">
-                                  <span tal:content="item_location"/>
-                                  <span tal:content="string:${item_time_minutes} hrs."/><br/>
+                                  <span tal:content="item_location"/> <br/>
                                   <span style="color:#75ad0a" tal:content="item_seminary"/>
                                 </div>
                               </div>

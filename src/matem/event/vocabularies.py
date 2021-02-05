@@ -39,7 +39,7 @@ def PersonVocabulary(context):
     res = get_users_as_brains(
         getSite(),
         sortable=True,
-        person_classification=['investigadores', 'posdoc', 'becarios'])
+        person_classification=['investigadores', 'catedras-conacyt', 'tecnicos-academicos', 'posdoc', 'becarios'])
     for r in res:
         title = (r.lastName + ', ' + r.firstName).encode('utf-8')
         items.append((title, r.UID))

@@ -210,7 +210,8 @@ class SemanaryView(BrowserView):
         brainsuj = self.criteriaActivities(start_date, end_date, self.pathjur())
 
         special  = api.content.get(path='/actividades/actividades-especiales')
-        brainss = self.criteriaActivities(start_date, end_date, special)
+        divulgacion = api.content.get(path='/divulgacion')
+        brainss = self.criteriaActivities(start_date, end_date, [special,divulgacion])
 
         return {
             'start_date': start_date.strftime('%d/%m/%Y'),
@@ -267,8 +268,9 @@ class SemanaryView(BrowserView):
     def pathcu(self):
         return [
             api.content.get(path='/actividades/coloquio'),
-            api.content.get(path='/actividades/seminarios'),
-            api.content.get(path='/actividades/actividades-especiales/cu')]
+            api.content.get(path='/seminarios'),
+            api.content.get(path='/actividades/actividades-especiales/cu'),
+            api.content.get(path='/divulgacion')]
 
 
     def pathjur(self):
@@ -287,6 +289,7 @@ class SemanaryView(BrowserView):
             'oaxrss': self.semanaryRSS(self.oaxfeed, start_date, end_date),
         }
 
+    # agenda
     def upcomingActivities(self):
         start_date = DateTime()
         end_date = start_date.latestTime() + 365
@@ -295,7 +298,8 @@ class SemanaryView(BrowserView):
         brainscu = self.criteriaActivities(start_date, end_date, foldercu[0:2])
         brainsuj = self.criteriaActivities(start_date, end_date, self.pathjur())
         special  = api.content.get(path='/actividades/actividades-especiales')
-        brainss = self.criteriaActivities(start_date, end_date, special)
+        divulgacion = api.content.get(path='/divulgacion')
+        brainss = self.criteriaActivities(start_date, end_date, [special, divulgacion])
 
         return {
             'brainscu': brainscu,

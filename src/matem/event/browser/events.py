@@ -59,7 +59,8 @@ class EventsView(BrowserView):
             'query': (
                 '/'.join(portal_ppath) + '/seminarios',
                 '/'.join(portal_ppath) + '/actividades/coloquio',
-                '/'.join(portal_ppath) + '/actividades/actividades-especiales/cu'
+                '/'.join(portal_ppath) + '/actividades/actividades-especiales/cu',
+                '/'.join(portal_ppath) + '/divulgacion'
             ),
         }
         seminarios = cat(**query)
