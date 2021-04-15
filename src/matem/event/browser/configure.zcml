@@ -27,6 +27,14 @@
     />
 
     <browser:page
+        name="semanario"
+        for="*"
+        permission="zope.Public"
+        template="semanario.pt"
+        class=".views.SemanaryView"
+    />
+
+    <browser:page
         name="site_topics"
         for="Products.ATContentTypes.content.topic.ATTopic"
         permission="zope.Public"
