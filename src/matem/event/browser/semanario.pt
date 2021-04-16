@@ -11,58 +11,57 @@
     <!-- The title tag shows in email notifications, like Android 4.4. -->
     <!-- Please use an inliner tool to convert all CSS to inline as inpage or external CSS is removed by email clients -->
 
-
     <!-- CSS Reset -->
     <style type="text/css">
-/* What it does: Remove spaces around the email design added by some email clients. */
-      /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
-html,  body {
-	margin: 0 !important;
-	padding: 0 !important;
-	height: 100% !important;
-	width: 100% !important;
-}
-/* What it does: Stops email clients resizing small text. */
-* {
-	-ms-text-size-adjust: 100%;
-	-webkit-text-size-adjust: 100%;
-}
-/* What it does: Forces Outlook.com to display emails full width. */
-.ExternalClass {
-	width: 100%;
-}
-/* What is does: Centers email on Android 4.4 */
-div[style*="margin: 16px 0"] {
-	margin: 0 !important;
-}
-/* What it does: Stops Outlook from adding extra spacing to tables. */
-table,  td {
-	mso-table-lspace: 0pt !important;
-	mso-table-rspace: 0pt !important;
-}
-/* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
-table {
-	border-spacing: 0 !important;
-	border-collapse: collapse !important;
-	table-layout: fixed !important;
-	margin: 0 auto !important;
-}
-table table table {
-	table-layout: auto;
-}
-/* What it does: Uses a better rendering method when resizing images in IE. */
-img {
-	-ms-interpolation-mode: bicubic;
-}
-/* What it does: Overrides styles added when Yahoo's auto-senses a link. */
-.yshortcuts a {
-	border-bottom: none !important;
-}
-/* What it does: Another work-around for iOS meddling in triggered links. */
-a[x-apple-data-detectors] {
-	color: inherit !important;
-}
-</style>
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,  body {
+          margin: 0 !important;
+          padding: 0 !important;
+          height: 100% !important;
+          width: 100% !important;
+        }
+        /* What it does: Stops email clients resizing small text. */
+        * {
+          -ms-text-size-adjust: 100%;
+          -webkit-text-size-adjust: 100%;
+        }
+        /* What it does: Forces Outlook.com to display emails full width. */
+        .ExternalClass {
+          width: 100%;
+        }
+        /* What is does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+          margin: 0 !important;
+        }
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,  td {
+          mso-table-lspace: 0pt !important;
+          mso-table-rspace: 0pt !important;
+        }
+        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+        table {
+          border-spacing: 0 !important;
+          border-collapse: collapse !important;
+          table-layout: fixed !important;
+          margin: 0 auto !important;
+        }
+        table table table {
+          table-layout: auto;
+        }
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+          -ms-interpolation-mode: bicubic;
+        }
+        /* What it does: Overrides styles added when Yahoo's auto-senses a link. */
+        .yshortcuts a {
+          border-bottom: none !important;
+        }
+        /* What it does: Another work-around for iOS meddling in triggered links. */
+        a[x-apple-data-detectors] {
+          color: inherit !important;
+        }
+    </style>
 
     <!-- Progressive Enhancements -->
     <style type="text/css">
@@ -136,7 +135,11 @@ a[x-apple-data-detectors] {
       <td tal:define="activities view/semanaryActivities;
                       start_date activities/start_date;
                       end_date activities/end_date;
-                      brainscu activities/brainscu;">
+                      brainscu activities/brainscu;
+                      brainsjur activities/brainsjur;
+                      items_matcuer activities/matcuerrss;
+                      items_oax activities/oaxrss;
+                      brainss activities/brainss;">
         <center style="width: 100%;">
 
           <!-- Visually Hidden Preheader Text : BEGIN -->
@@ -202,88 +205,93 @@ a[x-apple-data-detectors] {
                 style="padding:10px; text-align: letf; font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #FFFFFF;">
                 Ciudad Universitaria</td>
             </tr>
-            <tr>
-              <tal:block tal:condition="python: not brainscu">
+            <tr tal:condition="python: not brainscu">
                 <td
                   style="padding:10px; text-align: letf; font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 15px; color: #555555;">
                   Sin seminarios en este periodo</td>
-              </tal:block>
-              <tal:block tal:condition="python: brainscu">
-                <td dir="ltr" align="center" valign="top" width="100%" style="padding: 10px;">
-                  <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
-                    <tr tal:repeat="data brainscu">
-                      <td valign="top" width="33.33%" class="stack-column-center">
-                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                          <tr tal:define="startf python:view.date_speller(data.start);
-                                          endf python:view.date_speller(data.end);">
-                            <td valign="top"
-                              style="font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555; padding: 10px; text-align: center;">
-                              <span tal:content="string:${startf/day}">15.</span>
-                              <span tal:content="string:${startf/month}.">Oct.</span>
-                              <tal:block tal:condition="python: view.isOneDay(data.start, data.end)">
-                                --
-                                <span tal:content="string:${endf/day}">15.</span>
-                                <span tal:content="string:${endf/month}.">Oct.</span>
-                              </tal:block>
-                              <span tal:content="string:${startf/hour}:${startf/minute} h"/>
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                      <td width="66.66%" class="stack-column-center">
-                        <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
-                          <tr>
-                            <td dir="ltr" valign="top"
-                              style="font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555; padding: 10px; text-align: left;"
-                              class="center-on-narrow"><strong style="color:#111111;" tal:content="data/pretty_title_or_id">Title</strong>
-                              <br>
-                              <span tal:define="expositor data/getSpeaker|nothing" tal:replace="expositor"/><br>
-                              <span tal:define="location data/location|nothing" tal:replace="location"/><br>
-                              <span tal:condition="python:data['Subject']" tal:replace="python:data['Subject'][0]"/><br>
-                              <br>
-
-                              <!-- Button : Begin -->
-
-                              <table cellspacing="0" cellpadding="0" border="0" class="center-on-narrow"
-                                style="float:left;">
-                                <tr>
-                                  <td style="border-radius: 3px; background: #2C4E78; text-align: center;"
-                                    class="button-td"><a href="" tal:attributes="href data/getURL|data/absolute_url;"
-                                      style="background: #2C4E78; border: 5px solid #2C4E78; padding: 0 10px;color: #ffffff; font-family: sans-serif; font-size: 13px; line-height: 1.1; text-align: center; text-decoration: none; display: block; border-radius: 3px; font-weight: bold;"
-                                      class="button-a">
-                                      <!--[if mso]>&nbsp;&nbsp;&nbsp;&nbsp;<![endif]-->Más información
-                                      <!--[if mso]>&nbsp;&nbsp;&nbsp;&nbsp;<![endif]-->
-                                    </a></td>
-                                </tr>
-                              </table>
-
-                              <!-- Button : END -->
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-              </tal:block>
             </tr>
+            <tr tal:condition="python: brainscu" tal:repeat="data brainscu">
+              <td dir="ltr" align="center" valign="top" width="100%" style="padding: 10px;">
+                <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tr>
+                    <td valign="top" width="33.33%" class="stack-column-center">
+                      <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr tal:define="startf python:view.date_speller(data.start);
+                                        endf python:view.date_speller(data.end);">
+                          <td valign="top"
+                            style="font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555; padding: 10px; text-align: center;">
+                            <span tal:content="string:${startf/day}">15.</span>
+                            <span tal:content="string:${startf/month}.">Oct.</span>
+                            <tal:block tal:condition="python: view.isOneDay(data.start, data.end)">
+                              --
+                              <span tal:content="string:${endf/day}">15.</span>
+                              <span tal:content="string:${endf/month}.">Oct.</span>
+                            </tal:block>
+                            <span tal:content="string:${startf/hour}:${startf/minute} h"/>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                    <td width="66.66%" class="stack-column-center">
+                      <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                          <td dir="ltr" valign="top"
+                            style="font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555; padding: 10px; text-align: left;"
+                            class="center-on-narrow"><strong style="color:#111111;" tal:content="data/pretty_title_or_id">Title</strong>
+                            <br>
+                            <span tal:define="expositor data/getSpeaker|nothing" tal:replace="expositor"/><br>
+                            <span tal:define="location data/location|nothing" tal:replace="location"/><br>
+                            <span tal:condition="python:data['Subject']" tal:replace="python:data['Subject'][0]"/><br>
+                            <br>
 
+                            <!-- Button : Begin -->
+
+                            <table cellspacing="0" cellpadding="0" border="0" class="center-on-narrow"
+                              style="float:left;">
+                              <tr>
+                                <td style="border-radius: 3px; background: #2C4E78; text-align: center;"
+                                  class="button-td"><a href="" tal:attributes="href data/getURL|data/absolute_url;"
+                                    style="background: #2C4E78; border: 5px solid #2C4E78; padding: 0 10px;color: #ffffff; font-family: sans-serif; font-size: 13px; line-height: 1.1; text-align: center; text-decoration: none; display: block; border-radius: 3px; font-weight: bold;"
+                                    class="button-a">
+                                    <!--[if mso]>&nbsp;&nbsp;&nbsp;&nbsp;<![endif]-->Más información
+                                    <!--[if mso]>&nbsp;&nbsp;&nbsp;&nbsp;<![endif]-->
+                                  </a></td>
+                              </tr>
+                            </table>
+
+                            <!-- Button : END -->
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
 
             <tr>
               <td bgcolor="#468482"
                 style="padding:10px; text-align: letf; font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #FFFFFF;">
                 Cuernavaca</td>
             </tr>
-            <tr>
+            <tr tal:condition="python: not items_matcuer">
+                <td
+                  style="padding:10px; text-align: letf; font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 15px; color: #555555;">
+                  Sin seminarios en este periodo</td>
+            </tr>
+            <tr tal:condition="python: items_matcuer" tal:repeat="data items_matcuer">
               <td dir="ltr" align="center" valign="top" width="100%" style="padding: 10px;">
                 <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tr>
                     <td valign="top" width="33.33%" class="stack-column-center">
                       <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                        <tr>
+                        <tr tal:define="startf python:view.date_speller(data['updated'])">
                           <td valign="top"
                             style="font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555; padding: 10px; text-align: center;">
-                            23 mar. 16:00 h</td>
+                            <span tal:content="string:${startf/day}">15.</span>
+                            <span tal:content="string:${startf/month}.">Oct.</span>
+                            <span tal:content="string:${startf/hour}:${startf/minute} h"/>
+                          </td>
                         </tr>
                       </table>
                     </td>
@@ -292,12 +300,11 @@ a[x-apple-data-detectors] {
                         <tr>
                           <td dir="ltr" valign="top"
                             style="font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555; padding: 10px; text-align: left;"
-                            class="center-on-narrow"><strong style="color:#111111;">Caracterización estable de grupos
-                              p-locales finitos</strong>
+                            class="center-on-narrow"><strong style="color:#111111;" tal:content="data/title">Title</strong>
                             <br>
-                            Victor Antonio Torres Castillo<br>
-                            En línea (Zoom)<br>
-                            Estudiantes. <br>
+                            <span tal:define="expositor data/speaker|nothing" tal:replace="expositor"/><br>
+                            <span tal:define="location data/location|nothing" tal:replace="location"/><br>
+                            <span tal:replace="data/seminarytitle | nothing"/><br>
                             <br>
 
                             <!-- Button : Begin -->
@@ -306,7 +313,7 @@ a[x-apple-data-detectors] {
                               style="float:left;">
                               <tr>
                                 <td style="border-radius: 3px; background: #2C4E78; text-align: center;"
-                                  class="button-td"><a href="http://www.google.com"
+                                  class="button-td"><a href="" tal:attributes="href data/url|nothing;"
                                     style="background: #2C4E78; border: 5px solid #2C4E78; padding: 0 10px;color: #ffffff; font-family: sans-serif; font-size: 13px; line-height: 1.1; text-align: center; text-decoration: none; display: block; border-radius: 3px; font-weight: bold;"
                                     class="button-a">
                                     <!--[if mso]>&nbsp;&nbsp;&nbsp;&nbsp;<![endif]-->Más información
@@ -324,60 +331,6 @@ a[x-apple-data-detectors] {
                 </table>
               </td>
             </tr>
-            <!--  END -->
-
-            <!-- BEGIN -->
-            <tr>
-              <td dir="ltr" align="center" valign="top" width="100%" style="padding: 10px;">
-                <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
-                  <tr>
-                    <td valign="top" width="33.33%" class="stack-column-center">
-                      <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                        <tr>
-                          <td valign="top"
-                            style="font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555; padding: 10px; text-align: center;">
-                            23 mar. 16:00 h</td>
-                        </tr>
-                      </table>
-                    </td>
-                    <td width="66.66%" class="stack-column-center">
-                      <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
-                        <tr>
-                          <td dir="ltr" valign="top"
-                            style="font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555; padding: 10px; text-align: left;"
-                            class="center-on-narrow"><strong style="color:#111111;">Caracterización estable de grupos
-                              p-locales finitos</strong>
-                            <br>
-                            Victor Antonio Torres Castillo<br>
-                            En línea (Zoom)<br>
-                            Estudiantes. <br>
-                            <br>
-
-                            <!-- Button : Begin -->
-
-                            <table cellspacing="0" cellpadding="0" border="0" class="center-on-narrow"
-                              style="float:left;">
-                              <tr>
-                                <td style="border-radius: 3px; background: #2C4E78; text-align: center;"
-                                  class="button-td"><a href="http://www.google.com"
-                                    style="background: #2C4E78; border: 5px solid #2C4E78; padding: 0 10px;color: #ffffff; font-family: sans-serif; font-size: 13px; line-height: 1.1; text-align: center; text-decoration: none; display: block; border-radius: 3px; font-weight: bold;"
-                                    class="button-a">
-                                    <!--[if mso]>&nbsp;&nbsp;&nbsp;&nbsp;<![endif]-->Más información
-                                    <!--[if mso]>&nbsp;&nbsp;&nbsp;&nbsp;<![endif]-->
-                                  </a></td>
-                              </tr>
-                            </table>
-
-                            <!-- Button : END -->
-                          </td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-
 
             <!-- Juriquilla -->
             <tr>
@@ -385,83 +338,43 @@ a[x-apple-data-detectors] {
                 style="padding:10px; text-align: letf; font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #FFFFFF;">
                 Juriquilla</td>
             </tr>
-            <tr>
+            <tr tal:condition="python: not brainsjur">
+                <td
+                  style="padding:10px; text-align: letf; font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 15px; color: #555555;">
+                  Sin seminarios en este periodo</td>
+            </tr>
+            <tr tal:condition="python: brainsjur" tal:repeat="data brainsjur">
               <td dir="ltr" align="center" valign="top" width="100%" style="padding: 10px;">
                 <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tr>
                     <td valign="top" width="33.33%" class="stack-column-center">
                       <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                        <tr>
+                        <tr tal:define="startf python:view.date_speller(data.start);
+                                        endf python:view.date_speller(data.end);">
                           <td valign="top"
                             style="font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555; padding: 10px; text-align: center;">
-                            23 mar. 16:00 h</td>
-                        </tr>
-                      </table>
-                    </td>
-                    <td width="66.66%" class="stack-column-center">
-                      <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
-                        <tr>
-                          <td dir="ltr" valign="top"
-                            style="font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555; padding: 10px; text-align: left;"
-                            class="center-on-narrow"><strong style="color:#111111;">Caracterización estable de grupos
-                              p-locales finitos</strong>
-                            <br>
-                            Victor Antonio Torres Castillo<br>
-                            En línea (Zoom)<br>
-                            Estudiantes. <br>
-                            <br>
-
-                            <!-- Button : Begin -->
-
-                            <table cellspacing="0" cellpadding="0" border="0" class="center-on-narrow"
-                              style="float:left;">
-                              <tr>
-                                <td style="border-radius: 3px; background: #2C4E78; text-align: center;"
-                                  class="button-td"><a href="http://www.google.com"
-                                    style="background: #2C4E78; border: 5px solid #2C4E78; padding: 0 10px;color: #ffffff; font-family: sans-serif; font-size: 13px; line-height: 1.1; text-align: center; text-decoration: none; display: block; border-radius: 3px; font-weight: bold;"
-                                    class="button-a">
-                                    <!--[if mso]>&nbsp;&nbsp;&nbsp;&nbsp;<![endif]-->Más información
-                                    <!--[if mso]>&nbsp;&nbsp;&nbsp;&nbsp;<![endif]-->
-                                  </a></td>
-                              </tr>
-                            </table>
-
-                            <!-- Button : END -->
+                            <span tal:content="string:${startf/day}">15.</span>
+                            <span tal:content="string:${startf/month}.">Oct.</span>
+                            <tal:block tal:condition="python: view.isOneDay(data.start, data.end)">
+                              --
+                              <span tal:content="string:${endf/day}">15.</span>
+                              <span tal:content="string:${endf/month}.">Oct.</span>
+                            </tal:block>
+                            <span tal:content="string:${startf/hour}:${startf/minute} h"/>
                           </td>
                         </tr>
                       </table>
                     </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-            <!--  END -->
-
-            <!--  BEGIN -->
-            <tr>
-              <td dir="ltr" align="center" valign="top" width="100%" style="padding: 10px;">
-                <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
-                  <tr>
-                    <td valign="top" width="33.33%" class="stack-column-center">
-                      <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                        <tr>
-                          <td valign="top"
-                            style="font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555; padding: 10px; text-align: center;">
-                            23 mar. 16:00 h</td>
-                        </tr>
-                      </table>
-                    </td>
                     <td width="66.66%" class="stack-column-center">
                       <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
                         <tr>
                           <td dir="ltr" valign="top"
                             style="font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555; padding: 10px; text-align: left;"
-                            class="center-on-narrow"><strong style="color:#111111;">Caracterización estable de grupos
-                              p-locales finitos</strong>
+                            class="center-on-narrow"><strong style="color:#111111;" tal:content="data/pretty_title_or_id">Title</strong>
                             <br>
-                            Victor Antonio Torres Castillo<br>
-                            En línea (Zoom)<br>
-                            Estudiantes. <br>
+                            <span tal:define="expositor data/getSpeaker|nothing" tal:replace="expositor"/><br>
+                            <span tal:define="location data/location|nothing" tal:replace="location"/><br>
+                            <span tal:condition="python:data['Subject']" tal:replace="python:data['Subject'][0]"/><br>
                             <br>
 
                             <!-- Button : Begin -->
@@ -470,7 +383,7 @@ a[x-apple-data-detectors] {
                               style="float:left;">
                               <tr>
                                 <td style="border-radius: 3px; background: #2C4E78; text-align: center;"
-                                  class="button-td"><a href="http://www.google.com"
+                                  class="button-td"><a href="" tal:attributes="href data/getURL|data/absolute_url;"
                                     style="background: #2C4E78; border: 5px solid #2C4E78; padding: 0 10px;color: #ffffff; font-family: sans-serif; font-size: 13px; line-height: 1.1; text-align: center; text-decoration: none; display: block; border-radius: 3px; font-weight: bold;"
                                     class="button-a">
                                     <!--[if mso]>&nbsp;&nbsp;&nbsp;&nbsp;<![endif]-->Más información
@@ -495,16 +408,24 @@ a[x-apple-data-detectors] {
                 style="padding:10px; text-align: letf; font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #FFFFFF;">
                 Oaxaca</td>
             </tr>
-            <tr>
+            <tr tal:condition="python: not items_oax">
+                <td
+                  style="padding:10px; text-align: letf; font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 15px; color: #555555;">
+                  Sin seminarios en este periodo</td>
+            </tr>
+            <tr tal:condition="python: items_oax" tal:repeat="data items_oax">
               <td dir="ltr" align="center" valign="top" width="100%" style="padding: 10px;">
                 <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tr>
                     <td valign="top" width="33.33%" class="stack-column-center">
                       <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                        <tr>
+                        <tr tal:define="startf python:view.date_speller(data['updated'])">
                           <td valign="top"
                             style="font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555; padding: 10px; text-align: center;">
-                            23 mar. 16:00 h</td>
+                            <span tal:content="string:${startf/day}">15.</span>
+                            <span tal:content="string:${startf/month}.">Oct.</span>
+                            <span tal:content="string:${startf/hour}:${startf/minute} h"/>
+                          </td>
                         </tr>
                       </table>
                     </td>
@@ -513,12 +434,11 @@ a[x-apple-data-detectors] {
                         <tr>
                           <td dir="ltr" valign="top"
                             style="font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555; padding: 10px; text-align: left;"
-                            class="center-on-narrow"><strong style="color:#111111;">Caracterización estable de grupos
-                              p-locales finitos</strong>
+                            class="center-on-narrow"><strong style="color:#111111;" tal:content="data/title">Title</strong>
                             <br>
-                            Victor Antonio Torres Castillo<br>
-                            En línea (Zoom)<br>
-                            Estudiantes. <br>
+                            <span tal:define="expositor data/speaker|nothing" tal:replace="expositor"/><br>
+                            <span tal:define="location data/location|nothing" tal:replace="location"/><br>
+                            <span tal:replace="data/seminarytitle | nothing"/><br>
                             <br>
 
                             <!-- Button : Begin -->
@@ -527,7 +447,7 @@ a[x-apple-data-detectors] {
                               style="float:left;">
                               <tr>
                                 <td style="border-radius: 3px; background: #2C4E78; text-align: center;"
-                                  class="button-td"><a href="http://www.google.com"
+                                  class="button-td"><a href="" tal:attributes="href data/url|nothing;"
                                     style="background: #2C4E78; border: 5px solid #2C4E78; padding: 0 10px;color: #ffffff; font-family: sans-serif; font-size: 13px; line-height: 1.1; text-align: center; text-decoration: none; display: block; border-radius: 3px; font-weight: bold;"
                                     class="button-a">
                                     <!--[if mso]>&nbsp;&nbsp;&nbsp;&nbsp;<![endif]-->Más información
@@ -545,60 +465,6 @@ a[x-apple-data-detectors] {
                 </table>
               </td>
             </tr>
-            <!--  END -->
-
-            <!-- BEGIN -->
-            <tr>
-              <td dir="ltr" align="center" valign="top" width="100%" style="padding: 10px;">
-                <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
-                  <tr>
-                    <td valign="top" width="33.33%" class="stack-column-center">
-                      <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                        <tr>
-                          <td valign="top"
-                            style="font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555; padding: 10px; text-align: center;">
-                            23 mar. 16:00 h</td>
-                        </tr>
-                      </table>
-                    </td>
-                    <td width="66.66%" class="stack-column-center">
-                      <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
-                        <tr>
-                          <td dir="ltr" valign="top"
-                            style="font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555; padding: 10px; text-align: left;"
-                            class="center-on-narrow"><strong style="color:#111111;">Caracterización estable de grupos
-                              p-locales finitos</strong>
-                            <br>
-                            Victor Antonio Torres Castillo<br>
-                            En línea (Zoom)<br>
-                            Estudiantes. <br>
-                            <br>
-
-                            <!-- Button : Begin -->
-
-                            <table cellspacing="0" cellpadding="0" border="0" class="center-on-narrow"
-                              style="float:left;">
-                              <tr>
-                                <td style="border-radius: 3px; background: #2C4E78; text-align: center;"
-                                  class="button-td"><a href="http://www.google.com"
-                                    style="background: #2C4E78; border: 5px solid #2C4E78; padding: 0 10px;color: #ffffff; font-family: sans-serif; font-size: 13px; line-height: 1.1; text-align: center; text-decoration: none; display: block; border-radius: 3px; font-weight: bold;"
-                                    class="button-a">
-                                    <!--[if mso]>&nbsp;&nbsp;&nbsp;&nbsp;<![endif]-->Más información
-                                    <!--[if mso]>&nbsp;&nbsp;&nbsp;&nbsp;<![endif]-->
-                                  </a></td>
-                              </tr>
-                            </table>
-
-                            <!-- Button : END -->
-                          </td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-
 
             <tr>
               <td bgcolor="#B4CBE5"
