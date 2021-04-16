@@ -157,9 +157,9 @@
                   <!-- First header column with Logo -->
                   <tr>
                     <td style="color:#929292; text-align:center; font-family: sans-serif; ">
-                      <img src="images/logo_unam_negro.png" alt="UNAM" border="0" width="60px"
+                      <img src="++resource++matem.event/logo_unam_negro.png" alt="UNAM" border="0" width="60px"
                         style="margin-right: 20px;">
-                      <img src="images/im.png" alt="Instituto de Matemáticas de la UNAM" border="0">
+                      <img src="++resource++matem.event/im.png" alt="Instituto de Matemáticas de la UNAM" border="0">
 
                     </td>
                   </tr>
@@ -210,7 +210,7 @@
                   style="padding:10px; text-align: letf; font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 15px; color: #555555;">
                   Sin seminarios en este periodo</td>
             </tr>
-            <tr tal:condition="python: brainscu" tal:repeat="data brainscu">
+            <tr tal:repeat="data brainscu">
               <td dir="ltr" align="center" valign="top" width="100%" style="padding: 10px;">
                 <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tr>
@@ -279,7 +279,7 @@
                   style="padding:10px; text-align: letf; font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 15px; color: #555555;">
                   Sin seminarios en este periodo</td>
             </tr>
-            <tr tal:condition="python: items_matcuer" tal:repeat="data items_matcuer">
+            <tr tal:repeat="data items_matcuer">
               <td dir="ltr" align="center" valign="top" width="100%" style="padding: 10px;">
                 <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tr>
@@ -343,7 +343,7 @@
                   style="padding:10px; text-align: letf; font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 15px; color: #555555;">
                   Sin seminarios en este periodo</td>
             </tr>
-            <tr tal:condition="python: brainsjur" tal:repeat="data brainsjur">
+            <tr tal:repeat="data brainsjur">
               <td dir="ltr" align="center" valign="top" width="100%" style="padding: 10px;">
                 <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tr>
@@ -413,7 +413,7 @@
                   style="padding:10px; text-align: letf; font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 15px; color: #555555;">
                   Sin seminarios en este periodo</td>
             </tr>
-            <tr tal:condition="python: items_oax" tal:repeat="data items_oax">
+            <tr tal:repeat="data items_oax">
               <td dir="ltr" align="center" valign="top" width="100%" style="padding: 10px;">
                 <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tr>
@@ -466,21 +466,31 @@
               </td>
             </tr>
 
-            <tr>
+            <tr tal:condition="python: brainss">
               <td bgcolor="#B4CBE5"
                 style="padding:10px; text-align: center; font-weight: bold; font-family: sans-serif; font-size: 16px; mso-height-rule: exactly; line-height: 20px; color: #2C4E78;">
                 Divulgación y apoyo a la docencia</td>
             </tr>
-            <tr>
+
+            <tr tal:repeat="data brainss">
               <td dir="ltr" align="center" valign="top" width="100%" style="padding: 10px;">
                 <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tr>
                     <td valign="top" width="33.33%" class="stack-column-center">
                       <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                        <tr>
+                        <tr tal:define="startf python:view.date_speller(data.start);
+                                        endf python:view.date_speller(data.end);">
                           <td valign="top"
                             style="font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555; padding: 10px; text-align: center;">
-                            23 mar. 16:00 h</td>
+                            <span tal:content="string:${startf/day}">15.</span>
+                            <span tal:content="string:${startf/month}.">Oct.</span>
+                            <tal:block tal:condition="python: view.isOneDay(data.start, data.end)">
+                              --
+                              <span tal:content="string:${endf/day}">15.</span>
+                              <span tal:content="string:${endf/month}.">Oct.</span>
+                            </tal:block>
+                            <span tal:content="string:${startf/hour}:${startf/minute} h"/>
+                          </td>
                         </tr>
                       </table>
                     </td>
@@ -489,12 +499,11 @@
                         <tr>
                           <td dir="ltr" valign="top"
                             style="font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555; padding: 10px; text-align: left;"
-                            class="center-on-narrow"><strong style="color:#111111;">Caracterización estable de grupos
-                              p-locales finitos</strong>
+                            class="center-on-narrow"><strong style="color:#111111;" tal:content="data/pretty_title_or_id">Title</strong>
                             <br>
-                            Victor Antonio Torres Castillo<br>
-                            En línea (Zoom)<br>
-                            Estudiantes. <br>
+                            <span tal:define="expositor data/getSpeaker|nothing" tal:replace="expositor"/><br>
+                            <span tal:define="location data/location|nothing" tal:replace="location"/><br>
+                            <span tal:condition="python:data['Subject']" tal:replace="python:data['Subject'][0]"/><br>
                             <br>
 
                             <!-- Button : Begin -->
@@ -503,7 +512,7 @@
                               style="float:left;">
                               <tr>
                                 <td style="border-radius: 3px; background: #2C4E78; text-align: center;"
-                                  class="button-td"><a href="http://www.google.com"
+                                  class="button-td"><a href="" tal:attributes="href data/getURL|data/absolute_url;"
                                     style="background: #2C4E78; border: 5px solid #2C4E78; padding: 0 10px;color: #ffffff; font-family: sans-serif; font-size: 13px; line-height: 1.1; text-align: center; text-decoration: none; display: block; border-radius: 3px; font-weight: bold;"
                                     class="button-a">
                                     <!--[if mso]>&nbsp;&nbsp;&nbsp;&nbsp;<![endif]-->Más información
@@ -521,69 +530,13 @@
                 </table>
               </td>
             </tr>
-            <!-- Taller -->
-
-            <tr>
-              <td dir="ltr" align="center" valign="top" width="100%" style="padding: 10px;">
-                <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
-                  <tr>
-                    <td valign="top" width="33.33%" class="stack-column-center">
-                      <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                        <tr>
-                          <td valign="top"
-                            style="font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555; padding: 10px; text-align: center;">
-                            23 mar. 16:00 h</td>
-                        </tr>
-                      </table>
-                    </td>
-                    <td width="66.66%" class="stack-column-center">
-                      <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
-                        <tr>
-                          <td dir="ltr" valign="top"
-                            style="font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555; padding: 10px; text-align: left;"
-                            class="center-on-narrow"><strong style="color:#111111;">Caracterización estable de grupos
-                              p-locales finitos</strong>
-                            <br>
-                            Victor Antonio Torres Castillo<br>
-                            En línea (Zoom)<br>
-                            Estudiantes. <br>
-                            <br>
-
-                            <!-- Button : Begin -->
-
-                            <table cellspacing="0" cellpadding="0" border="0" class="center-on-narrow"
-                              style="float:left;">
-                              <tr>
-                                <td style="border-radius: 3px; background: #2C4E78; text-align: center;"
-                                  class="button-td"><a href="http://www.google.com"
-                                    style="background: #2C4E78; border: 5px solid #2C4E78; padding: 0 10px;color: #ffffff; font-family: sans-serif; font-size: 13px; line-height: 1.1; text-align: center; text-decoration: none; display: block; border-radius: 3px; font-weight: bold;"
-                                    class="button-a">
-                                    <!--[if mso]>&nbsp;&nbsp;&nbsp;&nbsp;<![endif]-->Más información
-                                    <!--[if mso]>&nbsp;&nbsp;&nbsp;&nbsp;<![endif]-->
-                                  </a></td>
-                              </tr>
-                            </table>
-
-                            <!-- Button : END -->
-                          </td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-
-
-
-
           </table>
           <!-- Email Body : END -->
 
           <!-- Email Footer : BEGIN -->
           <table bgcolor="#EFF6F7" align="center" width="600" class="email-container">
             <tr>
-              <td bgcolor="#EFF6F7" style="padding: 20px 0; text-align: center"><img src="images/im.png" height="60"
+              <td bgcolor="#EFF6F7" style="padding: 20px 0; text-align: center"><img src="++resource++matem.event/im.png" height="60"
                   alt="alt_text" border="0">
               </td>
 
