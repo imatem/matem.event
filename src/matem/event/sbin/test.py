@@ -16,7 +16,7 @@ import re
 
 def main(app):
     portal = api.portal.get()
-    view = portal.unrestrictedTraverse("acerca-de/semanaryview")
+    view = portal.unrestrictedTraverse("acerca-de/semanario")
     html_view = view()
 
     # apply inline style
