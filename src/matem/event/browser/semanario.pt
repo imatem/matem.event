@@ -1,5 +1,6 @@
-<!doctype html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 <head>
     <meta charset="utf-8">
     <!-- utf-8 works for most cases -->
@@ -129,6 +130,7 @@
 </head>
 
 <body bgcolor="#EBEBEB" width="100%" style="margin: 0;" yahoo="yahoo">
+<div id="content-core">
   <table bgcolor="#EBEBEB" cellpadding="0" cellspacing="0" border="0" height="100%" width="100%"
     style="border-collapse:collapse;">
     <tr>
@@ -587,6 +589,7 @@
       </td>
     </tr>
   </table>
+  </div>
 </body>
 
 </html>
