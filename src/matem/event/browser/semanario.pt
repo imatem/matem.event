@@ -159,9 +159,9 @@
                   <!-- First header column with Logo -->
                   <tr>
                     <td style="color:#929292; text-align:center; font-family: sans-serif; ">
-                      <img src="++resource++matem.event/logo_unam_negro.png" alt="UNAM" border="0" width="60px"
+                      <img src="https://www.matem.unam.mx/++resource++matem.event/logo_unam_negro.png" alt="UNAM" border="0" width="60px"
                         style="margin-right: 20px;">
-                      <img src="++resource++matem.event/im.png" alt="Instituto de Matemáticas de la UNAM" border="0">
+                      <img src="https://www.matem.unam.mx/++resource++matem.event/im.png" alt="Instituto de Matemáticas de la UNAM" border="0">
 
                     </td>
                   </tr>
@@ -185,7 +185,7 @@
                 Programa de actividades del Instituto de Matemáticas de la UNAM</td>
             </tr>
             <tr>
-              <td class="full-width-image"><img src="++resource++matem.event/banner.jpg" width="600" alt="alt_text" border="0"
+              <td class="full-width-image"><img src="https://www.matem.unam.mx/++resource++matem.event/banner.jpg" width="600" alt="alt_text" border="0"
                   align="center" style="width: 100%; max-width: 600px; height: auto;"></td>
             </tr>
           </table>
@@ -538,7 +538,7 @@
           <!-- Email Footer : BEGIN -->
           <table bgcolor="#EFF6F7" align="center" width="600" class="email-container">
             <tr>
-              <td bgcolor="#EFF6F7" style="padding: 20px 0; text-align: center"><img src="++resource++matem.event/im.png" height="60"
+              <td bgcolor="#EFF6F7" style="padding: 20px 0; text-align: center"><img src="https://www.matem.unam.mx/++resource++matem.event/im.png" height="60"
                   alt="alt_text" border="0">
               </td>
 
