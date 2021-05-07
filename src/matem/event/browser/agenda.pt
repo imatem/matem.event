@@ -24,74 +24,22 @@
 
     </metal:slot>
 </head>
+
 <body>
   <div metal:fill-slot="main">
     <tal:main-macro metal:define-macro="main">
       <metal:body define-macro="body_macro"
             tal:define="kssClassesView context/@@kss_field_decorator_view;
                         getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
-                        templateId template/getId;
                         month_name python:{'Jan.': 'ene.', 'Feb.':'feb.', 'Mar.':'mar.', 'Apr.':'abr.', 'May':'may.', 'June':'jun.', 'July':'jul.', 'Aug.':'ago.', 'Sep.':'sep.', 'Oct.':'oct.', 'Nov.':'nov.', 'Dec.':'dic.'};">
         <div id="upcomingevents">
-          <center><h1 class="documentFirstHeading">Agenda IM</h1></center>
-
-          <!-- <div class="eventlist">
-            <div class="eventlist_month"
-              tal:define="semanaryview nocall: context/semanaryview;
-                          activities semanaryview/upcomingActivities;
-                          items python:view.getActivities(activities)">
-
-              <tal:items repeat="data items">
-                <article itemtype="http://data-vocabulary.org/Event" class="vevent"
-                        tal:define="item_title_or_id data/pretty_title_or_id;
-                                    item_date_day data/start/day|nothing;
-                                    item_date_mon data/start/pMonth|nothing;
-                                    month python: month_name[item_date_mon];
-                                    item_time_minutes data/start/TimeMinutes|nothing;
-                                    item_expositor data/getSpeaker|nothing;
-                                    item_location data/location|nothing;
-                                    item_subjects data/Subject|None;
-                                    item_seminary python: item_subjects and item_subjects[0] or None;
-                                    item_url data/getURL|data/absolute_url;
-                                    start_date data/start|nothing;
-                                    end_date data/end|nothing">
-
-
-                  <div class="cal_date">
-                    <span class="cal_day" tal:content="item_date_day">15.</span>
-                    <span class="cal_month" tal:content="month">Oct.</span>
-                  <div class="documentByLine" tal:content="string:${item_time_minutes} h"/>
-                  </div>
-
-                  <div class="cal_info">
-                    <h3>
-                      <span tal:condition="data/isCanceled | nothing">
-                        <span style="background-color: #FF0000;"><font color="#FFFFFF">&nbsp; Cancelado</font>  &nbsp;</span>
-                      </span>
-                      <a href="" itemprop="url" class="url" tal:attributes="href item_url;">
-                        <span itemprop="summary" class="summary" tal:content="item_title_or_id">Title</span>
-                      </a>
-                    </h3>
-
-                    <div class="documentByLine">
-                      <div tal:content="item_expositor"/>
-                      <div class="fc">
-                        <span tal:content="item_location"/> <br/>
-                        <span style="color:#75ad0a" tal:content="item_seminary"/>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              </tal:items>
-            </div>
-          </div> -->
-
+         <div style="background: #B4CBE5;"> <center><h1 class="documentFirstHeading">Agenda IM</h1></center></div>
 
         <div tal:define="semanario nocall: context/semanario;
                           activities semanario/upcomingActivities;
                           items python:view.getActivities(activities)">
-          <div tal:repeat="data items" dir="ltr" align="center" valign="top" width="100%" style="padding: 10px;">
-            <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+          <div tal:repeat="data items" dir="ltr" align="center" valign="top" width="100%" style="padding: 10px; border-bottom-width: 1px;border-bottom-style: solid;">
+            <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 0;">
               <tr>
                 <td valign="top" width="33.33%" class="stack-column-center">
                   <table border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -102,7 +50,7 @@
                       <td valign="top"
                         style="font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555; padding: 10px; text-align: center;">
                         <span tal:content="string:${item_date_day}">15.</span>
-                        <span tal:content="string:${month}.">Oct.</span>
+                        <span tal:content="string:${month}">Oct.</span>
                         <span tal:content="string:${item_time_minutes} h"/>
                       </td>
                     </tr>
@@ -122,16 +70,23 @@
 
                         <!-- Button : Begin -->
 
-                        <table cellspacing="0" cellpadding="0" border="0" class="center-on-narrow"
-                          style="float:left;">
+                        <table class="center-on-narrow" style="border-collapse: initial; border-spacing: 5px 0; margin-bottom: 0;">
                           <tr>
                             <td style="border-radius: 3px; background: #2C4E78; text-align: center;"
-                              class="button-td"><a href="" tal:attributes="href data/getURL|data/absolute_url;"
+                                class="button-td"><a href="" tal:attributes="href data/getURL|data/absolute_url;"
                                 style="background: #2C4E78; border: 5px solid #2C4E78; padding: 0 10px;color: #ffffff; font-family: sans-serif; font-size: 13px; line-height: 1.1; text-align: center; text-decoration: none; display: block; border-radius: 3px; font-weight: bold;"
                                 class="button-a">
                                 <!--[if mso]>&nbsp;&nbsp;&nbsp;&nbsp;<![endif]-->Más información
                                 <!--[if mso]>&nbsp;&nbsp;&nbsp;&nbsp;<![endif]-->
                               </a>
+                            </td>
+                            <td style="border-radius: 3px; text-align: center;"
+                                class="button-td" tal:attributes="class python:view.campus_class(data);"><div
+                                style="border: 5px; padding: 0 10px;color: #ffffff; font-family: sans-serif; font-size: 13px; line-height: 1.1; text-align: center; text-decoration: none; display: block; border-radius: 3px; font-weight: bold;"
+                                class="button-a" tal:attributes="class python:view.campus_class(data);">
+                                <!--[if mso]>&nbsp;&nbsp;&nbsp;&nbsp;<![endif]--><span tal:replace="python:view.campus_name(data)"></span>
+                                <!--[if mso]>&nbsp;&nbsp;&nbsp;&nbsp;<![endif]-->
+                              </div>
                             </td>
                           </tr>
                         </table>

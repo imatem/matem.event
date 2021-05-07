@@ -72,12 +72,13 @@ class EventsView(BrowserView):
         act = []
         act.extend(activities['brainscu'])
         act.extend(activities['brainsjur'])
-        uc = self.unidadContents(activities['matcuerrss'], 'calendar-ucim')
+        uc = self.unidadContents(activities['matcuerrss'], 'sede-cuernavaca')
         act.extend(uc)
-        uo = self.unidadContents(activities['oaxrss'], 'calendar-uoim')
+        uo = self.unidadContents(activities['oaxrss'], 'sede-oaxaca')
         act.extend(uo)
         act.extend(activities['special'])
         return sorted(act, key = lambda i: i['start'])
+
 
     def unidadContents(self, activities, campuscode):
         min_dt = DateTime()
@@ -97,6 +98,35 @@ class EventsView(BrowserView):
                     'campus': campuscode,
                 })
         return uc
+
+
+    def campus_class(self, item):
+        cclass = item.get('campus', None)
+        if cclass is not None:
+            return cclass
+        url = item.getURL()
+        if '/juriquilla/' in url:
+            return 'sede-juriquilla'
+        if '/oaxaca/' in url:
+            return 'sede-oaxaca'
+        if 'cuernavaca' in url:
+            return 'sede-cuernavaca'
+        return 'sede-cu'
+
+    def campus_name(self, item):
+        cclass = item.get('campus', None)
+        if cclass is not None:
+            if cclass == 'sede-cuernavaca':
+                return 'Cuernavaca'
+            return 'Oaxaca'
+        url = item.getURL()
+        if '/juriquilla/' in url:
+            return 'Juriquilla'
+        if '/oaxaca/' in url:
+            return 'Oaxaca'
+        if 'cuernavaca' in url:
+            return 'Cuernavaca'
+        return 'Ciudad Universitaria'
 
     def pastEvents(self, **kw):
         """Show all past events"""
