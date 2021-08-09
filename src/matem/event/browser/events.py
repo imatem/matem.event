@@ -57,7 +57,7 @@ class EventsView(BrowserView):
         portal_ppath = api.portal.get().getPhysicalPath()
         query['path'] = {
             'query': (
-                '/'.join(portal_ppath) + '/seminarios',
+                '/'.join(portal_ppath) + '/actividades/seminarios',
                 '/'.join(portal_ppath) + '/actividades/coloquio',
                 '/'.join(portal_ppath) + '/actividades/actividades-especiales/cu',
                 '/'.join(portal_ppath) + '/divulgacion'

@@ -268,7 +268,7 @@ class SemanaryView(BrowserView):
     def pathcu(self):
         return [
             api.content.get(path='/actividades/coloquio'),
-            api.content.get(path='/seminarios'),
+            api.content.get(path='/actividades/seminarios'),
             api.content.get(path='/actividades/actividades-especiales/cu'),
             api.content.get(path='/divulgacion')]
 
