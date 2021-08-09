@@ -212,7 +212,7 @@ class SemanaryView(BrowserView):
         special  = api.content.get(path='/actividades/actividades-especiales')
         divulgacion = api.content.get(path='/divulgacion')
         brainss = self.criteriaActivities(start_date, end_date, [special,divulgacion])
-
+        cinig = self.criteriaActivities(start_date, end_date, api.content.get(path='/cinig-im'))
         return {
             'start_date': start_date.strftime('%d/%m/%Y'),
             'end_date': end_date.strftime('%d/%m/%Y'),
@@ -221,6 +221,7 @@ class SemanaryView(BrowserView):
             'matcuerrss': self.semanaryRSS(self.matcuerfeed, start_date, end_date),
             'oaxrss': self.semanaryRSS(self.oaxfeed, start_date, end_date),
             'brainss': brainss,
+            'cinig': cinig,
         }
 
 
@@ -299,6 +300,7 @@ class SemanaryView(BrowserView):
         brainsuj = self.criteriaActivities(start_date, end_date, self.pathjur())
         special  = api.content.get(path='/actividades/actividades-especiales')
         divulgacion = api.content.get(path='/divulgacion')
+        cinig = self.criteriaActivities(start_date, end_date, api.content.get(path='/cinig-im'))
         brainss = self.criteriaActivities(start_date, end_date, [special, divulgacion])
 
         return {
@@ -307,6 +309,7 @@ class SemanaryView(BrowserView):
             'matcuerrss': self.semanaryRSS(self.matcuerfeed, start_date, end_date),
             'oaxrss': self.semanaryRSS(self.oaxfeed, start_date, end_date),
             'special': brainss,
+            'cinig': cinig,
         }
 
 

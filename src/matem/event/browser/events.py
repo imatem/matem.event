@@ -77,6 +77,7 @@ class EventsView(BrowserView):
         uo = self.unidadContents(activities['oaxrss'], 'sede-oaxaca')
         act.extend(uo)
         act.extend(activities['special'])
+        act.extend(activities['cinig'])
         return sorted(act, key = lambda i: i['start'])
 
 
