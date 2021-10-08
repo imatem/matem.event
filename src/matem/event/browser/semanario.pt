@@ -471,7 +471,7 @@
 
             <tr tal:condition="python: brainss">
               <td bgcolor="#B4CBE5"
-                style="padding:10px; text-align: center; font-weight: bold; font-family: sans-serif; font-size: 16px; mso-height-rule: exactly; line-height: 20px; color: #2C4E78;">
+                style="padding:10px; text-align: letf; font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #2C4E78;">
                 Divulgación y apoyo a la docencia</td>
             </tr>
 
@@ -536,7 +536,7 @@
 
             <tr tal:condition="python: cinig">
               <td bgcolor="#B4CBE5"
-                style="padding:10px; text-align: center; font-weight: bold; font-family: sans-serif; font-size: 16px; mso-height-rule: exactly; line-height: 20px; color: #2C4E78;">
+                style="padding:10px; text-align: letf; font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #2C4E78;">
                 CInIG-IMUNAM</td>
             </tr>
 
