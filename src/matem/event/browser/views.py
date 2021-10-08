@@ -189,7 +189,7 @@ class SemanaryView(BrowserView):
         """Initialize view."""
         self.context = context
         self.request = request
-        self.matcuerfeed = IMRSSFeed('http://www.matcuer.unam.mx/RSS/', 100)
+        self.matcuerfeed = IMRSSFeed('https://www.matcuer.unam.mx/RSS/', 100)
         self.matcuerfeed.update()
         self.oaxfeed = IMRSSFeed('http://oaxaca.matem.unam.mx/RSS/index.xml', 100)
         self.oaxfeed.update()
