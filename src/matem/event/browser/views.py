@@ -211,7 +211,8 @@ class SemanaryView(BrowserView):
 
         special  = api.content.get(path='/actividades/actividades-especiales')
         divulgacion = api.content.get(path='/divulgacion')
-        brainss = self.criteriaActivities(start_date, end_date, [special,divulgacion])
+        brainss = self.criteriaActivities(start_date, end_date, special)
+        disemination = self.criteriaActivities(start_date, end_date, divulgacion)
         cinig = self.criteriaActivities(start_date, end_date, api.content.get(path='/cinig-im'))
         return {
             'start_date': start_date.strftime('%d/%m/%Y'),
@@ -221,6 +222,7 @@ class SemanaryView(BrowserView):
             'matcuerrss': self.semanaryRSS(self.matcuerfeed, start_date, end_date),
             'oaxrss': self.semanaryRSS(self.oaxfeed, start_date, end_date),
             'brainss': brainss,
+            'disemination': disemination,
             'cinig': cinig,
         }
 
