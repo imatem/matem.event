@@ -8,7 +8,7 @@
     <!-- Forcing initial-scale shouldn't be necessary -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Use the latest (edge) version of IE rendering engine -->
-    <title>Newsletter Instituto de Matemáticas UNAM</title>
+    <title>Programa semanal de actividades del IMUNAM</title>
     <!-- The title tag shows in email notifications, like Android 4.4. -->
     <!-- Please use an inliner tool to convert all CSS to inline as inpage or external CSS is removed by email clients -->
 
