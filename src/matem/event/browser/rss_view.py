@@ -11,7 +11,7 @@ class RSSView(BrowserView):
         self.context = context
         self.request = request
         self.feed = IMRSSFeed('https://www.matcuer.unam.mx/RSS/', 100)
-        self.feed.update()
+        # self.feed.update()
 
     # @property
     # def initializing(self):
