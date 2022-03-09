@@ -77,18 +77,15 @@
           max-height: 1061px;
         }
 
-        /* Create two equal columns that floats next to each other */
-        .columnss {
-            float: left;
-            width: 50%;
-            padding: 0 10px 0 10px;
+        .row {
+          display: flex;
+          gap: 0px 20px;
         }
 
-        /* Clear floats after the columns */
-        .rowss:after {
-            content: "";
-            display: table;
-            clear: both;
+        /* Create two equal columns that floats next to each other */
+        .column {
+          flex-basis: 50%;
+          padding: 0 10px 0 10px;
         }
 
         .rotatedlist{
@@ -260,14 +257,14 @@
 
       .carousel-inner {
         display: grid;
-        grid-auto-rows: 912px;
+        <!-- grid-auto-rows: 912px; -->
       }
 
-      <!-- .carousel-inner > .item > img {
-        height: 645px;
+      .carousel-inner > .item > img {
+        width: 800px;
         margin:auto;
       }
- -->
+
       .postertitle {
         font-size: 30px;
         font-weight: bold;
@@ -291,15 +288,15 @@
         <span id="txtdate"></span>
         <span id="txt"></span>
       </div>
-      <div class="rowss"
-      tal:define="activities view/tvActivities;
-                              brainscu activities/brainscu;
-                              brainsjur activities/brainsjur;
-                              items_matcuer activities/matcuerrss;
-                              items_oax activities/oaxrss;
-                              specialactivities view/specialActivities;
-                              unionactivities python:view.unionActivities(items_matcuer, brainsjur, items_oax, specialactivities);">
-        <div tal:attributes="class python:view.classcolumn(len(brainscu) + len(unionactivities))">
+      <div class="row"
+           tal:define="activities view/tvActivities;
+                       brainscu activities/brainscu;
+                       brainsjur activities/brainsjur;
+                       items_matcuer activities/matcuerrss;
+                       items_oax activities/oaxrss;
+                       specialactivities view/specialActivities;
+                       unionactivities python:view.unionActivities(items_matcuer, brainsjur, items_oax, specialactivities);">
+        <div class="column">
           <div class="fc">
             <!-- <tal:block tal:condition="brainscu"> -->
               <div class="cutitle">Actividades del día</div>
@@ -342,7 +339,7 @@
           </div>
         </div><!--end first column -->
 
-        <div class="carousel slide carousel-fade columnss" data-ride="carousel" data-interval="12000" tal:define="items view/imgPosters">
+        <div class="carousel slide carousel-fade column" data-ride="carousel" data-interval="12000" tal:define="items view/imgPosters">
           <!-- <div class="cutitle">Próximas actividades</div> -->
           <!-- Wrapper for slides -->
           <div class="carousel-inner">

@@ -427,12 +427,6 @@ class SemanaryView(BrowserView):
 
         return 'notrotated'
 
-    def classcolumn(self, nitems):
-        if nitems == 0:
-            return 'columnsspettit'
-
-        return 'columnss'
-
     def fontSize(self, lenTitle):
         if lenTitle < 54:
             return 'sizeGfont'
