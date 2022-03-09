@@ -73,14 +73,12 @@
           font-family: "Open Sans Condensed";
         }
 
+        .general {
+          max-height: 1061px;
+        }
 
         /* Create two equal columns that floats next to each other */
         .columnss {
-            float: left;
-            width: 50%;
-            padding: 0 10px 0 10px;
-        }
-        .columnsspettit{
             float: left;
             width: 50%;
             padding: 0 10px 0 10px;
@@ -147,9 +145,7 @@
 
         li.licu{
           background-color: #E1E1E1;
-          /*height: 137px;*/
           height: 206px;
-          /*padding: 5px 10px 0 20px;*/
           padding: 20px 20px 0 20px;
         }
 
@@ -160,19 +156,15 @@
           height: 182px;
           padding: 10px 10px 0 67px;
           overflow-y: hidden;
-          /*padding: 20px 20px 0 67px;*/
         }
 
         li.liJuriquilla{
           background: url('++resource++matem.event/pleca_juriquilla.jpg') no-repeat left top;
           background-color: #D8E3E8;
-          /*background: linear-gradient(to right, #EBF2F6 , #CCD9DE);*/
-          /*linear-gradient(to right, red , yellow);*/
           padding-left: 50px;
           height: 182px;
           padding: 10px 10px 0 67px;
           overflow-y: hidden;
-          /*padding: 20px 20px 0 67px;*/
         }
 
         li.liOaxaca{
@@ -181,17 +173,13 @@
           padding-left: 50px;
           height: 182px;
           padding: 10px 10px 0 67px;
-          /*padding: 20px 20px 0 67px;*/
           overflow-y: hidden;
-          /*list-style-image: url('++resource++matem.event/itemoax.png');*/
         }
 
         .unidadestitle{
           font-size:42px;
           text-align: center;
           font-weight: bold;
-          /*background-color: #6289A0;*/
-          /*height: 50px;*/
         }
 
         .cutitle{
@@ -199,13 +187,10 @@
           text-align: center;
           font-weight: bold;
           font-family: "Open Sans Condensed", sans-serif;
-          /*background-color: red;*/
-          /*height: 55px;*/
         }
 
         div.dateclock{
           font-size: 50px;
-          /*background-color: #4D1C1A;*/
           background: linear-gradient(to right, #4D1C1A , #8C1812, #4D1C1A);
           font-weight: bold;
           text-align: center;
@@ -221,12 +206,6 @@
           background-color: #E2E8EE;
           margin-top: 6px;
         }
-        /*div.ulsedes{
-          list-style-type: none;
-          transform: rotate(270deg);
-          background: red;
-          float: left;
-        }*/
 
         .carousel-fade .carousel-inner .item {
           opacity: 0;
@@ -235,6 +214,9 @@
 
         .carousel-fade .carousel-inner .active {
           opacity: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
         }
 
         .carousel-fade .carousel-inner .active.left,
@@ -281,11 +263,11 @@
         grid-auto-rows: 912px;
       }
 
-      .carousel-inner > .item > img {
+      <!-- .carousel-inner > .item > img {
         height: 645px;
         margin:auto;
       }
-
+ -->
       .postertitle {
         font-size: 30px;
         font-weight: bold;
@@ -365,19 +347,14 @@
           <!-- Wrapper for slides -->
           <div class="carousel-inner">
             <tal:block tal:condition="items">
-            <div class="item active" tal:define="item python:items[0]">
-              <div class="cutitle" tal:content="python:view.posterTitle(items[0])"/>
-              <img src="" tal:attributes="src python:item.getPath() + '/image'"/>
-              <div class="postertitle" tal:content="item/Title"></div>
-              <div class="posterdescription" tal:content="structure item/Description"></div>
-            </div>
-
-            <div class="item" tal:repeat="item python:items[1:]">
-              <div class="cutitle" tal:content="python:view.posterTitle(item)"/>
-              <img src="" tal:attributes="src  python:item.getPath() + '/image'"/>
-              <div class="postertitle" tal:content="item/Title"></div>
-              <div class="posterdescription" tal:content="structure item/Description"></div>
-            </div>
+              <div class="item active" tal:define="item python:items[0]">
+                <div class="cutitle"> Próximas Actividades </div>
+                <img src="" tal:attributes="src python:item.getPath() + '/image'"/>
+              </div>
+              <div class="item" tal:repeat="item python:items[1:]">
+                <div class="cutitle"> Próximas Actividades </div>
+                <img src="" tal:attributes="src  python:item.getPath() + '/image'"/>
+              </div>
            </tal:block>
           </div>  <!-- end carousel-inner -->
 
