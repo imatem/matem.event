@@ -273,7 +273,8 @@ class SemanaryView(BrowserView):
             api.content.get(path='/actividades/coloquio'),
             api.content.get(path='/actividades/seminarios'),
             api.content.get(path='/actividades/actividades-especiales/cu'),
-            api.content.get(path='/divulgacion')]
+            api.content.get(path='/divulgacion'),
+            api.content.get(path='/cinig-im/cinig-imunam')]
 
 
     def pathjur(self):

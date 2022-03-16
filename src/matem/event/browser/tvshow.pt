@@ -345,11 +345,11 @@
           <div class="carousel-inner">
             <tal:block tal:condition="items">
               <div class="item active" tal:define="item python:items[0]">
-                <div class="cutitle"> Próximas Actividades </div>
+                <div class="cutitle"> Próximas actividades </div>
                 <img src="" tal:attributes="src python:item.getPath() + '/image'"/>
               </div>
               <div class="item" tal:repeat="item python:items[1:]">
-                <div class="cutitle"> Próximas Actividades </div>
+                <div class="cutitle"> Próximas actividades </div>
                 <img src="" tal:attributes="src  python:item.getPath() + '/image'"/>
               </div>
            </tal:block>
