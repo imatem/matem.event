@@ -273,7 +273,8 @@ class SemanaryView(BrowserView):
             api.content.get(path='/actividades/coloquio'),
             api.content.get(path='/actividades/seminarios'),
             api.content.get(path='/actividades/actividades-especiales/cu'),
-            api.content.get(path='/divulgacion')]
+            api.content.get(path='/divulgacion'),
+            api.content.get(path='/cinig-im/cinig-imunam')]
 
 
     def pathjur(self):
@@ -427,12 +428,6 @@ class SemanaryView(BrowserView):
 
         return 'notrotated'
 
-    def classcolumn(self, nitems):
-        if nitems == 0:
-            return 'columnsspettit'
-
-        return 'columnss'
-
     def fontSize(self, lenTitle):
         if lenTitle < 54:
             return 'sizeGfont'
@@ -443,9 +438,8 @@ class SemanaryView(BrowserView):
 
 
     def imgPosters(self):
-        return []
-        # atopic = api.content.get(path='/inicio/1/1/congresos')
-        # return atopic.queryCatalog()
+        atopic = api.content.get(path='/inicio/1/1/posters')
+        return atopic.queryCatalog()
 
 
     def posterTitle(self, brain):
