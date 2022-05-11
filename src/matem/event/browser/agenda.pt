@@ -65,6 +65,9 @@
                         <br>
                         <span tal:define="expositor data/getSpeaker|nothing" tal:replace="expositor"/><br>
                         <span tal:define="location data/location|nothing" tal:replace="location"/><br>
+                        <span tal:define="vlink python:view.getVirtual_link(data)" tal:condition="vlink">
+                          <span tal:replace="vlink"/><br>
+                        </span>
                         <span tal:condition="python:data['Subject']" tal:replace="python:data['Subject'][0]"/><br>
                         <br>
 

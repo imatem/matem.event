@@ -205,3 +205,8 @@ class EventsView(BrowserView):
         if dend.JulianDay() > dstart.JulianDay():
             return True
         return False
+
+    def getVirtual_link(self, data):
+        if isinstance(data, dict):
+            return None
+        return getattr(data.getObject(), 'virtual_link', None)

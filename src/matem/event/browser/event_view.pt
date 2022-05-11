@@ -26,10 +26,8 @@
         <b>Institución</b>: <span tal:define="institution view/getEventInstitution" tal:content="institution"/><br/>
       </span>
       <span tal:condition="view/getEvetType">
-        <b>Tipo de Evento</b>: <span tal:define="etypes view/getEvetType" tal:content="python:', '.join(etypes)"/>
+        <b>Tipo de Evento</b>: <span tal:define="etypes view/getEvetType" tal:content="python:', '.join(etypes)"/><br/>
       </span>
-
-
         <div class="eventDetails vcard">
 
             <table class="vertical listing"
@@ -109,6 +107,14 @@
 
                             <metal:field use-macro="python:context.widget('location', mode='view')">
                             Location
+                            </metal:field>
+                        </td>
+                    </tr>
+                    <tr tal:condition="context/location">
+                        <th >Reunión virtual:</th>
+                        <td class="location">
+                            <metal:field use-macro="python:context.widget('virtual_link', mode='view')">
+                            Reunión virtual
                             </metal:field>
                         </td>
                     </tr>

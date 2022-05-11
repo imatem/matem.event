@@ -113,6 +113,18 @@ BasicSchema = [
         ),
         multiValued=True,
     ),
+
+
+    _StringExtensionField(
+        name='virtual_link',
+        widget=atapi.StringWidget(
+            label=_(u'Reunión virtual'),
+            i18n_domain='matem.event',
+            size=70,
+        ),
+    ),
+
+
     # _StringExtensionField(
     #     name='type_event',
     #     vocabulary_factory='matem.event.TypeEvent',
@@ -183,6 +195,8 @@ class MatemEventExtender(object):
         default.insert(idx + 4, 'speaker_nationality')
         default.remove('type_event')
         default.insert(idx + 5, 'type_event')
+        default.remove('virtual_link')
+        default.insert(idx + 7, 'virtual_link')
 
         return original
 

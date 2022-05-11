@@ -113,6 +113,9 @@ class IMEventView(BaseTopicView):
         # return getattr(self.context, 'speaker_nationality', None)
 
 
+    def getVirtual_link(self):
+        return getattr(self.context, 'virtual_link', None)
+
 class IMPageCommentView(BaseTopicView):
 
     # Methods of
