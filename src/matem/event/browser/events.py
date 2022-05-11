@@ -78,6 +78,7 @@ class EventsView(BrowserView):
         act.extend(uo)
         act.extend(activities['special'])
         act.extend(activities['cinig'])
+        act.extend(activities['local'])
         return sorted(act, key = lambda i: i['start'])
 
 

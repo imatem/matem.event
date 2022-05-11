@@ -214,6 +214,7 @@ class SemanaryView(BrowserView):
         brainss = self.criteriaActivities(start_date, end_date, special)
         disemination = self.criteriaActivities(start_date, end_date, divulgacion)
         cinig = self.criteriaActivities(start_date, end_date, api.content.get(path='/cinig-im'))
+        local = self.criteriaActivities(start_date, end_date, api.content.get(path='/actividades/institucionales'))
         return {
             'start_date': start_date.strftime('%d/%m/%Y'),
             'end_date': end_date.strftime('%d/%m/%Y'),
@@ -224,6 +225,7 @@ class SemanaryView(BrowserView):
             'brainss': brainss,
             'disemination': disemination,
             'cinig': cinig,
+            'local': local,
         }
 
 
@@ -274,7 +276,8 @@ class SemanaryView(BrowserView):
             api.content.get(path='/actividades/seminarios'),
             api.content.get(path='/actividades/actividades-especiales/cu'),
             api.content.get(path='/divulgacion'),
-            api.content.get(path='/cinig-im/cinig-imunam')]
+            api.content.get(path='/cinig-im/cinig-imunam'),
+            api.content.get(path='/actividades/institucionales')]
 
 
     def pathjur(self):
@@ -305,7 +308,7 @@ class SemanaryView(BrowserView):
         divulgacion = api.content.get(path='/divulgacion')
         cinig = self.criteriaActivities(start_date, end_date, api.content.get(path='/cinig-im'))
         brainss = self.criteriaActivities(start_date, end_date, [special, divulgacion])
-
+        local = self.criteriaActivities(start_date, end_date, api.content.get(path='/actividades/institucionales'))
         return {
             'brainscu': brainscu,
             'brainsjur': brainsuj,
@@ -313,6 +316,7 @@ class SemanaryView(BrowserView):
             'oaxrss': self.semanaryRSS(self.oaxfeed, start_date, end_date),
             'special': brainss,
             'cinig': cinig,
+            'local': local
         }
 
 
