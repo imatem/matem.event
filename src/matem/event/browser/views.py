@@ -43,12 +43,14 @@ class IMEventView(BaseTopicView):
         if member_value == 'yes':
             rid = self.context.internal_speaker
             if rid:
-                portal_catalog = getToolByName(getSite(), 'portal_catalog')
-                query = {
-                    'portal_type': 'FSDPerson',
-                    'id': rid,
-                }
-                return portal_catalog.searchResults(query)[0].Title
+                with api.env.adopt_user(username='admin'):
+                    portal_catalog = getToolByName(getSite(), 'portal_catalog')
+                    query = {
+                        'portal_type': 'FSDPerson',
+                        'id': rid,
+                    }
+                    speaker_name = portal_catalog.searchResults(query)[0].Title
+                return speaker_name
 
             return None
         try:
