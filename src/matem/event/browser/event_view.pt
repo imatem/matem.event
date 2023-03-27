@@ -18,6 +18,9 @@
       <span tal:condition="view/isCanceled">
         <span style="background-color: #FF0000;"><font color="#FFFFFF">&nbsp; Cancelado</font>  &nbsp;</span><br/>
       </span><!-- end is canceled-->
+
+      <b>Ciclo</b>: <span tal:define="ciclo view/getCiclo" tal:content="ciclo"/> <br/>
+      
       <b>Ponente</b>: <span tal:define="speaker view/getSpeaker" tal:content="speaker"/> <br/>
       <span tal:condition="view/getNationality">
         <b>Nacionalidad del ponente</b>: <span tal:define="nationality view/getNationality" tal:content="nationality"/><br/>

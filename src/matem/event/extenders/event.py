@@ -33,6 +33,16 @@ class _LinesExtensionField(ExtensionField, atapi.LinesField):
 BasicSchema = [
 
     _StringExtensionField(
+        name='ciclo',
+        widget=atapi.StringWidget(
+            label=_(u'Título del ciclo'),
+            i18n_domain='matem.event',
+            size=80,
+        ),
+        visible = {'view': 'invisible'}
+    ),    
+
+    _StringExtensionField(
         name='isIMember',
         required=True,
         vocabulary_factory='matem.event.isIMember',
@@ -170,19 +180,21 @@ class MatemEventExtender(object):
         default = original['default']
         idx = default.index('description')
 
+        default.remove('ciclo')
+        default.insert(idx, 'ciclo')
         default.remove('isIMember')
-        default.insert(idx, 'isIMember')
+        default.insert(idx + 1, 'isIMember')
         default.remove('internal_speaker')
-        default.insert(idx + 1, 'internal_speaker')
+        default.insert(idx + 2, 'internal_speaker')
 
         default.remove('speaker')
-        default.insert(idx + 2, 'speaker')
+        default.insert(idx + 3, 'speaker')
         default.remove('institution')
-        default.insert(idx + 3, 'institution')
+        default.insert(idx + 4, 'institution')
         default.remove('speaker_nationality')
-        default.insert(idx + 4, 'speaker_nationality')
+        default.insert(idx + 5, 'speaker_nationality')
         default.remove('type_event')
-        default.insert(idx + 5, 'type_event')
+        default.insert(idx + 6, 'type_event')
 
         return original
 
