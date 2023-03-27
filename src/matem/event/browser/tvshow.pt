@@ -339,7 +339,7 @@
           </div>
         </div><!--end first column -->
 
-        <div class="carousel slide carousel-fade column" data-ride="carousel" data-interval="12000" tal:define="items view/imgPosters">
+        <div class="carousel slide carousel-fade column" data-ride="carousel" data-interval="10000" tal:define="items view/imgPosters">
           <!-- <div class="cutitle">Próximas actividades</div> -->
           <!-- Wrapper for slides -->
           <div class="carousel-inner">

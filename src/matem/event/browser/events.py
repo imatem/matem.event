@@ -71,12 +71,13 @@ class EventsView(BrowserView):
         """
         act = []
         act.extend(activities['brainscu'])
-        act.extend(activities['brainsjur'])
-        uc = self.unidadContents(activities['matcuerrss'], 'sede-cuernavaca')
-        act.extend(uc)
-        uo = self.unidadContents(activities['oaxrss'], 'sede-oaxaca')
-        act.extend(uo)
-        act.extend(activities['special'])
+        if not self.request.getURL().endswith('/cu/agenda'):
+            act.extend(activities['brainsjur'])
+            uc = self.unidadContents(activities['matcuerrss'], 'sede-cuernavaca')
+            act.extend(uc)
+            uo = self.unidadContents(activities['oaxrss'], 'sede-oaxaca')
+            act.extend(uo)
+            act.extend(activities['special'])
         act.extend(activities['cinig'])
         act.extend(activities['local'])
         return sorted(act, key = lambda i: i['start'])
