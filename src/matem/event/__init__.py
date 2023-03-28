@@ -19,6 +19,17 @@ validation.register(InternalSpeakerValidator('isEmptyInternalSpeakerValidator'))
 validation.register(ExternalSpeakerValidator('isEmptyExternalSpeakerValidator'))
 
 
+from Products.ATContentTypes.lib import calendarsupport
+
+
+def patchedrfc2445dt(dt):
+    # return UTC in RFC2445 format YYYYMMDDTHHMMSSZ
+    newdt = dt + 1/24.0
+    return newdt.HTML4().replace('-', '').replace(':', '')
+
+calendarsupport.rfc2445dt = patchedrfc2445dt
+
+
 def initialize(context):
     """Initializer called when used as a Zope 2 product.
 
