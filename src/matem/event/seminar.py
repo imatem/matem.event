@@ -138,7 +138,7 @@ class View(grok.View):
         organizers = self.context.organizer
 
         catalog = getToolByName(getSite(), 'portal_catalog')
-        brains = catalog.searchResults(portal_type='FSDPerson', UID=organizers)
+        brains = catalog.searchResults(portal_type='FSDPerson', UID=organizers, sort_on='sortable_title')
 
         rows = []
         for b in brains:
