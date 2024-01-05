@@ -208,7 +208,7 @@
             class="email-container" tal:condition="python: not (brainscu or brainsjur or items_matcuer or items_oax)">
             <tr>
             <td style="font-family: sans-serif; font-size: 24px; color: #002B7A;" align="center"><br>
-            ¡Les deseamos que disfruten de muy buenos días de descanso y que tengan un excelente año 2024!
+            <!-- ¡Les deseamos que disfruten de muy buenos días de descanso y que tengan un excelente año 2024! -->
             <br>
             <br></td>
             </tr>
