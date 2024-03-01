@@ -34,7 +34,6 @@ class ISeminar(model.Schema):
             u'help_seminar_day',
             default=u'Select the day, when this seminar happens.'
         ),
-        required=True,
         vocabulary="matem.event.Weekdays"
     )
 
@@ -98,7 +97,7 @@ class ISeminar(model.Schema):
         value_type=schema.Choice(
             vocabulary="matem.event.PersonVocabulary",
         ),
-        required=True,
+        required=False,
         # default=set([1,3])
     )
 
@@ -124,10 +123,10 @@ class ISeminar(model.Schema):
                 raise StartBeforeEnd(_(
                     u"The start time must be before the end time"))
 
-    @invariant
-    def requiredOrganizer(data):
-        if len(data.organizer) < 1:
-            raise RequiredOrganizer(_(u"At least an organizer"))
+    # @invariant
+    # def requiredOrganizer(data):
+    #     if len(data.organizer) < 1:
+    #         raise RequiredOrganizer(_(u"At least an organizer"))
 
 
 class View(grok.View):
