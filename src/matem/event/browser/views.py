@@ -115,6 +115,41 @@ class IMEventView(BaseTopicView):
         # return getattr(self.context, 'speaker_nationality', None)
 
 
+    def getOrganizer(self):
+        etype = self.getEvetType()
+        if len(etype) == 1 and etype[0] == 'Divulgación':
+            try:
+                rid = self.context.organizer
+            except AttributeError:
+                return None
+            if rid:
+                with api.env.adopt_user(username='admin'):
+                    portal_catalog = getToolByName(getSite(), 'portal_catalog')
+                    query = {
+                        'portal_type': 'FSDPerson',
+                        'id': rid,
+                    }
+                    speaker_name = portal_catalog.searchResults(query)[0].Title
+                return speaker_name
+        return None
+
+
+    def getOrganizerCampus(self):
+        etype = self.getEvetType()
+        if len(etype) == 1 and etype[0] == 'Divulgación':
+            field = 'organizer_campus'
+            value = getattr(self.context, field, None)
+            if value:
+                vocabulary = self.context.getField(field).Vocabulary(self.context)
+                translation_service = getSite().translation_service
+                value_title = translation_service.translate(
+                    vocabulary.getValue(value),
+                    domain="matem.event",
+                    target_language=self.context.REQUEST.LANGUAGE).encode('utf-8')
+                return value_title
+        return None
+
+
 class IMPageCommentView(BaseTopicView):
 
     # Methods of

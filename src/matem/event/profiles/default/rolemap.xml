@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<rolemap>
+  <roles>
+    <role name="Event Organization Editor"/>
+  </roles>
+  <permissions>
+    <permission name="matem.event: Event organization editor" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="Event Organization Editor"/>
+    </permission>
+  </permissions>
+</rolemap>

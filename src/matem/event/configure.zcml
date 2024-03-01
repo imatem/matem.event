@@ -17,6 +17,9 @@
   <!-- for add content rules -->
   <include package=".actions" />
 
+  <!-- Add permissions -->
+  <include file="permissions.zcml" />
+
   <includeDependencies package="." />
 
   <grok:grok package="." />
@@ -76,6 +79,11 @@
   <utility
       component=".vocabularies.speakersVocabulary"
       name="matem.event.speakersVocabulary"
+      />
+
+  <utility
+      component=".vocabularies.CampusEvent"
+      name="matem.event.campusVocabulary"
       />
 
 </configure>

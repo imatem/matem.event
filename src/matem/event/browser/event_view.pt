@@ -18,7 +18,9 @@
       <span tal:condition="view/isCanceled">
         <span style="background-color: #FF0000;"><font color="#FFFFFF">&nbsp; Cancelado</font>  &nbsp;</span><br/>
       </span><!-- end is canceled-->
-      <b>Ponente</b>: <span tal:define="speaker view/getSpeaker" tal:content="speaker"/> <br/>
+      <span tal:condition="view/getSpeaker">
+        <b>Ponente</b>: <span tal:define="speaker view/getSpeaker" tal:content="speaker"/> <br/>
+      </span>
       <span tal:condition="view/getNationality">
         <b>Nacionalidad del ponente</b>: <span tal:define="nationality view/getNationality" tal:content="nationality"/><br/>
       </span>
@@ -26,8 +28,15 @@
         <b>Institución</b>: <span tal:define="institution view/getEventInstitution" tal:content="institution"/><br/>
       </span>
       <span tal:condition="view/getEvetType">
-        <b>Tipo de Evento</b>: <span tal:define="etypes view/getEvetType" tal:content="python:', '.join(etypes)"/>
+        <b>Tipo de Evento</b>: <span tal:define="etypes view/getEvetType" tal:content="python:', '.join(etypes)"/><br/>
       </span>
+      <span tal:condition="view/getOrganizer">
+        <b>Persona responsable de la organización</b>: <span tal:define="organizer view/getOrganizer" tal:content="organizer"/><br/>
+      </span>
+      <span tal:condition="view/getOrganizerCampus">
+        <b>Sede responsable de la organización</b>: <span tal:define="campus view/getOrganizerCampus" tal:content="campus"/><br/>
+      </span>
+      <br/>
 
 
         <div class="eventDetails vcard">

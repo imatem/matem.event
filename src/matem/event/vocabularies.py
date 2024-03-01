@@ -106,6 +106,17 @@ def TypeEvent(context):
 directlyProvides(TypeEvent, IVocabularyFactory)
 
 
+def CampusEvent(context):
+    items = [
+        SimpleVocabulary.createTerm('cu', 'cu', u'C.U.'),
+        SimpleVocabulary.createTerm('cuernavaca', 'cuernavaca', u'Cuernavaca'),
+        SimpleVocabulary.createTerm('juriquilla', 'juriquilla', u'Juriquilla'),
+        SimpleVocabulary.createTerm('oaxaca', 'oaxaca', u'Oaxaca'),
+    ]
+    return SimpleVocabulary(items)
+directlyProvides(CampusEvent, IVocabularyFactory)
+
+
 def isIMember(context):
     items = [
         (_(u'Yes'), 'yes'),

@@ -113,6 +113,29 @@ BasicSchema = [
         ),
         multiValued=True,
     ),
+
+    _StringExtensionField(
+        name='organizer',
+        vocabulary_factory='matem.event.speakersVocabulary',
+        widget=atapi.SelectionWidget(
+            format='select',
+            label=_(u'Persona responsable de la organización'),
+            i18n_domain='matem.event',
+        ),
+        write_permission='matem.event: Event organization editor',
+    ),
+
+    _StringExtensionField(
+        name='organizer_campus',
+        vocabulary_factory='matem.event.campusVocabulary',
+        widget=atapi.SelectionWidget(
+            format='select',
+            label=_(u'Sede responsable de la organización'),
+            i18n_domain='matem.event',
+        ),
+        write_permission='matem.event: Event organization editor',
+    ),
+
     # _StringExtensionField(
     #     name='type_event',
     #     vocabulary_factory='matem.event.TypeEvent',
