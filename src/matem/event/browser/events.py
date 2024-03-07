@@ -107,12 +107,13 @@ class EventsView(BrowserView):
         cclass = item.get('campus', None)
         if cclass is not None:
             return cclass
-        url = item.getURL()
-        if '/juriquilla/' in url:
+        campus = getattr(item.getObject(), 'organizer_campus', None)
+        url = item.getURL() 
+        if '/juriquilla/' in url or u'juriquilla' == campus:
             return 'sede-juriquilla'
-        if '/oaxaca/' in url:
+        if '/oaxaca/' in url or u'oaxaca' == campus:
             return 'sede-oaxaca'
-        if 'cuernavaca' in url:
+        if 'cuernavaca' in url or u'cuernavaca' == campus:
             return 'sede-cuernavaca'
         return 'sede-cu'
 
@@ -122,12 +123,13 @@ class EventsView(BrowserView):
             if cclass == 'sede-cuernavaca':
                 return 'Cuernavaca'
             return 'Oaxaca'
-        url = item.getURL()
-        if '/juriquilla/' in url:
+        campus = getattr(item.getObject(), 'organizer_campus', None)
+        url = item.getURL() 
+        if '/juriquilla/' in url or 'juriquilla' == campus:
             return 'Juriquilla'
-        if '/oaxaca/' in url:
+        if '/oaxaca/' in url or u'oaxaca' == campus:
             return 'Oaxaca'
-        if 'cuernavaca' in url:
+        if 'cuernavaca' in url or u'cuernavaca' == campus:
             return 'Cuernavaca'
         return 'Ciudad Universitaria'
 
