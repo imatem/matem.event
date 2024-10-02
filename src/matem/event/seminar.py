@@ -151,6 +151,9 @@ class View(grok.View):
                 }
             )
 
+        if self.context.id == 'matematicas-y-literatura':
+            rows.append({'name': 'Fías Villegas Gabriela', 'url':''})
+
         return rows
 
     def getPeriodicityTitle(self):
