@@ -196,4 +196,12 @@
         class=".events.EventsView"
     />
 
+    <browser:page
+        for="Products.ATContentTypes.content.folder.ATFolder"
+        name="seminars_view"
+        class=".seminars_view.SeminarsFolderView"
+        template="seminars_view.pt"
+        permission="zope.Public"
+        />
+
 </configure>
