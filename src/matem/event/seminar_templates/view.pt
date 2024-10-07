@@ -81,6 +81,14 @@
                 </td>
 
               </tr>
+              <tr>
+                <td colspan="2">
+                <div tal:define="picture nocall:context/image"
+                  tal:condition="nocall:picture">
+                  <img tal:attributes="src string:${context/absolute_url}/@@images/image"/>
+                </div>
+                </td>
+              </tr>
 
             </tbody>
           </table>

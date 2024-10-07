@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-from Products.CMFCore.utils import getToolByName
 from five import grok
 from matem.event import _
+from Products.CMFCore.utils import getToolByName
 from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
 from plone.autoform import directives as form
+from plone.namedfile.field import NamedBlobImage
 from plone.supermodel import model
 from zope import schema
 from zope.component import getUtility
@@ -98,7 +99,11 @@ class ISeminar(model.Schema):
             vocabulary="matem.event.PersonVocabulary",
         ),
         required=False,
-        # default=set([1,3])
+    )
+
+    image = NamedBlobImage(
+        title = _('label_seminar_image', 'Cartel'),
+        required=False,
     )
 
     form.widget('details', WysiwygFieldWidget)
@@ -114,7 +119,7 @@ class ISeminar(model.Schema):
         required=False,
     )
 
-    # #TODO: Add the details field for english
+    # TODO: Add the details field for english
 
     @invariant
     def validateStartEnd(data):
