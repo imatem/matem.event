@@ -1,0 +1,96 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+
+
+    <metal:block fill-slot="style_slot">
+        <style type="text/css">
+          .content-core img {
+            width: 100%;
+            margin-bottom: 1em;
+            }
+
+        .masonry {
+        display: grid;
+        grid-gap: 1em 2em; /* [1] Add some gap between rows and columns */
+        grid-template-columns: repeat( auto-fill, minmax( 250px, 1fr ) ); /* [2] Make columns adjust according to the available viewport */
+        }
+        </style>
+    </metal:block>
+
+<body>
+
+
+
+
+
+    <metal:content-core fill-slot="content-core">
+        <metal:block use-macro="context/folder_listing/macros/content-core">
+            <!-- we don't want the dl -->
+            <metal:entries fill-slot="entries">
+                <div class="masonry">
+                <metal:block use-macro="context/folder_listing/macros/entries">
+                    <metal:entry fill-slot="entry">
+                        <img tal:attributes="src string:${item/getURL}/@@images/image"/>
+                    </metal:entry>
+                </metal:block>
+                </div>
+            </metal:entries>
+        </metal:block>
+    </metal:content-core>
+
+</body>
+</html>
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swapping Songs</title>
+
+    <style type="text/css">
+      img {
+        width: 100%;
+        margin-bottom: 1em;
+        }
+
+        .masonry {
+        display: grid;
+        grid-gap: 1em 2em; /* [1] Add some gap between rows and columns */
+        grid-template-columns: repeat( auto-fill, minmax( 250px, 1fr ) ); /* [2] Make columns adjust according to the available viewport */
+        }
+  
+    </style>
+</head>
+<body>
+
+<div class="post">
+  <div class="card">
+    <h2>Card title</h2>
+    <p>Card content</p>
+  </div>
+</div>
+
+
+<div class="masonry">
+        <img src="https://www.matem.unam.mx/actividades/banner-actividades-academicas/copy12_of_seminario-nacional-de-geometria-algebraica-en-linea-4/image" alt="">
+        <img src="https://www.matem.unam.mx/actividades/banner-actividades-academicas/copy4_of_seminario-de-becarios-agosto-2023-1/image" alt="">
+        <img src="https://www.matem.unam.mx/actividades/banner-actividades-academicas/copy7_of_seminario-de-probabilidad-y-procesos-estocasticos-15/image" alt="">
+        <img src="https://www.matem.unam.mx/actividades/banner-actividades-academicas/cambiando-los-tiempos-homenaje-a-ma-emilia-caballero/image" alt="">
+        <img src="https://www.matem.unam.mx/actividades/banner-actividades-academicas/jornada-unam-coppel-de-modelos-y-algoritmos/image" alt="">
+        <img src="https://www.matem.unam.mx/actividades/banner-actividades-academicas/tercera-escuela-de-invierno-en-matematicas/image" alt="">
+        <img src="https://www.matem.unam.mx/actividades/banner-actividades-academicas/coloquio-del-imunam-c-u-octubre-2024/image" alt="">
+        <img src="https://www.matem.unam.mx/actividades/banner-actividades-academicas/copy_of_coloquio-oaxaqueno-1/image" alt="">
+        <img src="https://www.matem.unam.mx/actividades/banner-actividades-academicas/copy9_of_coloquio-cuernavaca-7-de-febrero-de-2024/image" alt="">
+        <img src="https://www.matem.unam.mx/actividades/banner-actividades-academicas/analisis-de-datos-con-perspectiva-incluyente-algunas-consideraciones/image" alt="">
+        <img src="https://www.matem.unam.mx/actividades/banner-actividades-academicas/copy2_of_seminario-de-foliaciones-y-singularidades/image" alt="">
+</div>
+
+</body>
+</html> -->
