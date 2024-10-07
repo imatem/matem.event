@@ -5,8 +5,12 @@
       lang="en"
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
+      <!-- Products/CMFPlone/skins/plone_templates/main_template.pt -->
+      <!-- plonetheme/sunburst/skins/sunburst_templates/main_template.pt  -->
 
+<!-- Products/CMFPlone/skins/plone_content/folder_full_view.pt -->
 
+<head>
     <metal:block fill-slot="style_slot">
         <style type="text/css">
           .content-core img {
@@ -21,12 +25,8 @@
         }
         </style>
     </metal:block>
-
+</head>
 <body>
-
-
-
-
 
     <metal:content-core fill-slot="content-core">
         <metal:block use-macro="context/folder_listing/macros/content-core">
@@ -35,7 +35,8 @@
                 <div class="masonry">
                 <metal:block use-macro="context/folder_listing/macros/entries">
                     <metal:entry fill-slot="entry">
-                        <img tal:attributes="src string:${item/getURL}/@@images/image"/>
+                        <img tal:attributes="src string:${item/getURL}/@@images/image;
+                                             alt string:${item/Title}"/>
                     </metal:entry>
                 </metal:block>
                 </div>
