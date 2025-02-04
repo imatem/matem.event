@@ -203,5 +203,13 @@
         template="seminars_view.pt"
         permission="zope.Public"
         />
+    
+    <browser:page
+        for="Products.ATContentTypes.content.folder.ATFolder"
+        name="seminars_byactivities"
+        class=".seminars_view.SeminarsFolderView"
+        template="seminars_byactivities.pt"
+        permission="zope.Public"
+        />
 
 </configure>

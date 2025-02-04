@@ -1,0 +1,153 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="matem.event">
+
+  <head>
+    <metal:css fill-slot="style_slot">
+        <style type="text/css">
+          .content-core img {
+            width: 100%;
+            margin-bottom: 1em;
+          }
+
+          .masonry {
+            display: grid;
+            grid-gap: 1em 2em; /* [1] Add some gap between rows and columns */
+            grid-template-columns: repeat( auto-fill, minmax( 250px, 1fr ) ); /* [2] Make columns adjust according to the available viewport */
+          }
+        </style>
+    </metal:css>
+
+    <metal:js fill-slot="javascript_head_slot">
+        <script type="text/javascript" charset="iso-8859-1">
+        </script>
+    </metal:js>
+  </head>
+
+  <body>
+    <metal:content-core fill-slot="content-core">
+      <metal:content-core define-macro="content-core">
+        <!-- <h1>Seminarios Institucionales</h1> -->
+        <!-- <hr/><hr/> -->
+        <tal:block tal:define="seminaries view/seminaries">
+          <tal:block tal:condition="seminaries/active">
+            <h2>Seminarios Activos</h2>
+            <div class="masonry">
+              <tal:block tal:repeat="seminary seminaries/active">
+                <div class="eventDetails vcard">
+                  <table class="vertical listing">
+                    <tbody>
+                      <tr>
+                        <td colspan="2">
+                        <div tal:define="picture nocall:seminary/image"
+                          tal:condition="nocall:picture">
+                          <img tal:attributes="src string:${seminary/absolute_url}/@@images/image"/>
+                        </div>
+
+                        <div tal:define="picture nocall:seminary/image"
+                          tal:condition="python:not(picture)">
+                          <p tal:content="seminary/Title"/>
+                        </div>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <th i18n:translate="label_seminar_activities">Seminar Activities</th>
+                        <td><a href="#" tal:attributes="href string:${seminary/absolute_url}/actividades"><img src="" tal:attributes="src string:${portal_url}/event_icon.png"/><span i18n:translate="label_seminar_calendar">Calendar</span></a></td>
+                      </tr>
+
+                      <tr>
+                        <th i18n:translate="label_seminar_when">When</th>
+                        <td>
+                          <span tal:content="python:view.getDayTitle(seminary)"/><br/>
+                          <tal:block condition="seminary/start">
+                            <span i18n:translate="label_seminar_from">From:</span>
+                            <span tal:content="seminary/start"/>
+                          </tal:block>
+                          <tal:block condition="seminary/end">
+                            <span i18n:translate="label_seminar_to">To:</span>
+                            <span tal:content="seminary/end"/>
+                          </tal:block>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th i18n:translate="label_seminar_where">Where</th>
+                        <td>
+                          <tal:block condition="seminary/location">
+                            <span tal:content="seminary/location"/>
+                          </tal:block>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </tal:block>
+            </div>
+          </tal:block>
+
+          <tal:block tal:condition="seminaries/notactive">
+            <h2>Seminarios sin actividades en los últimos seis meses</h2>
+            <div class="masonry">
+              <tal:block tal:repeat="seminary seminaries/notactive">
+                <div class="eventDetails vcard" style="opacity: 0.5;">
+                  <table class="vertical listing">
+                    <tbody>
+                      <tr>
+                        <td colspan="2">
+                        <div tal:define="picture nocall:seminary/image"
+                          tal:condition="nocall:picture">
+                          <img tal:attributes="src string:${seminary/absolute_url}/@@images/image"/>
+                        </div>
+
+                        <div tal:define="picture nocall:seminary/image"
+                          tal:condition="python:not(picture)">
+                          <p tal:content="seminary/Title"/>
+                        </div>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <th i18n:translate="label_seminar_activities">Seminar Activities</th>
+                        <td><a href="#" tal:attributes="href string:${seminary/absolute_url}/actividades"><img src="" tal:attributes="src string:${portal_url}/event_icon.png"/><span i18n:translate="label_seminar_calendar">Calendar</span></a></td>
+                      </tr>
+
+                      <tr>
+                        <th i18n:translate="label_seminar_when">When</th>
+                        <td>
+                          <span tal:content="python:view.getDayTitle(seminary)"/><br/>
+                          <tal:block condition="seminary/start">
+                            <span i18n:translate="label_seminar_from">From:</span>
+                            <span tal:content="seminary/start"/>
+                          </tal:block>
+                          <tal:block condition="seminary/end">
+                            <span i18n:translate="label_seminar_to">To:</span>
+                            <span tal:content="seminary/end"/>
+                          </tal:block>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th i18n:translate="label_seminar_where">Where</th>
+                        <td>
+                          <tal:block condition="seminary/location">
+                            <span tal:content="seminary/location"/>
+                          </tal:block>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </tal:block>
+            </div>
+          </tal:block>
+        </tal:block>
+
+        
+      </metal:content-core>
+    </metal:content-core>
+
+  </body>
+</html>
