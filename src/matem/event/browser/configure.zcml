@@ -206,9 +206,9 @@
     
     <browser:page
         for="Products.ATContentTypes.content.folder.ATFolder"
-        name="seminars_byactivities"
+        name="seminars_logo"
         class=".seminars_view.SeminarsFolderView"
-        template="seminars_byactivities.pt"
+        template="seminars_logo.pt"
         permission="zope.Public"
         />
 
