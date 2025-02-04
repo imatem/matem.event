@@ -81,4 +81,8 @@ class SeminarsFolderView(BrowserView):
         return vocabulary[value].title
     
 
-    
+    def getcampuscolor(self, seminar):
+        if 'juriquilla/actividades' in seminar.absolute_url():
+            return 'eventDetails vcard jurcampus'
+        else:
+            return 'eventDetails vcard cucampus'

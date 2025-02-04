@@ -9,6 +9,16 @@
   <head>
     <metal:css fill-slot="style_slot">
         <style type="text/css">
+          .jurcampus{
+            border-color: #4781A8 !important;
+            border-width: 0.1em !important;
+          }
+
+          .cucampus{
+            border-color: #13456B !important;
+            border-width: 0.1em !important;
+          }
+
           .content-core img {
             width: 100%;
             margin-bottom: 1em;
@@ -38,7 +48,7 @@
             <h2>Seminarios Activos</h2>
             <div class="masonry">
               <tal:block tal:repeat="seminary seminaries/active">
-                <div class="eventDetails vcard">
+                <div tal:attributes="class python:view.getcampuscolor(seminary)">
                   <table class="vertical listing">
                     <tbody>
                       <tr>
@@ -93,7 +103,7 @@
             <h2>Seminarios sin actividades en los últimos seis meses</h2>
             <div class="masonry">
               <tal:block tal:repeat="seminary seminaries/notactive">
-                <div class="eventDetails vcard" style="opacity: 0.5;">
+                <div tal:attributes="class python:view.getcampuscolor(seminary)" style="opacity: 0.5;">
                   <table class="vertical listing">
                     <tbody>
                       <tr>
