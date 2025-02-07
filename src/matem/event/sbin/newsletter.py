@@ -43,7 +43,7 @@ def main(app):
     try:
         api.portal.send_email(
             recipient="l.academicos@im.unam.mx, l.becarios@im.unam.mx, comunicacion@im.unam.mx, actividades.imunam@im.unam.mx",
-            sender="comunicacion@im.unam.mx",
+            sender="comunicacion@jacaranda.matem.unam.mx",
             subject="SEMANARIO IMUNAM",
             body=message,
             immediate=True,
